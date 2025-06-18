@@ -1,0 +1,684 @@
+/* ------------------------------------------------------------ temp block start */
+/* .main-block {
+    background-color: rgba(17, 197, 197, 0.493);
+}
+.content-container{
+    background-color: rgb(9, 139, 37);
+}
+.menu-block {
+    background-color: rgb(141, 49, 77);
+}
+.info-block {
+    background-color: rgb(139, 95, 180);
+} 
+.content-area{
+    background-color: rgb(105, 105, 218);
+}
+ .strike_line{
+    text-decoration: line-through;
+} 
+*/
+/* ------------------------------------------------------------ temp block end */
+
+html body{
+    background-color: rgb(69,71,49);
+}
+.header-area{
+    background-color: rgb(73, 73, 73);
+    color: white;
+    border-bottom: 2px solid rgb(117, 117, 117);
+}
+.content-area{
+    position: relative;
+}
+.footer-area{
+    background-color: rgb(73, 73, 73);
+    color: white;
+    border-top: 2px solid rgb(117, 117, 117);
+    z-index: 20;
+}
+.data-content {
+    margin-bottom: 15px;
+}
+/* ------------------------------------------------------------- gallery start */
+.gallery-data-block {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: 4;
+}
+.gallery-data-block .exit {
+    display: flex;
+    justify-content: right;    
+    padding-right: 10px;
+    padding-top: 50px;
+}
+.gallery-data-block .exit img {
+    /* TODO */
+    width: 5vw; 
+    height: auto;
+    cursor: pointer;
+    z-index: 6;
+}
+.gallery-data-block .image-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding-top: 40px;
+}
+.gallery-data-block:not(.active){
+    display: none;
+}
+.gallery-data-block .image-block img {
+    height: 90vh;
+    width: auto;
+    background-color: aliceblue;
+}
+/* ------------------------------------------------------------- gallery end */
+/* ------------------------------------------------------------- tags start */
+li {
+    list-style-type:none;
+}
+content ol, content ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+    margin-bottom: 0;
+}
+body p{
+    margin: 0;
+}
+/* ------------------------------------------------------------- tags end */
+
+/* ------------------------------------------------------------- top area start */
+.home-link{    
+    height: 20px;
+}
+header .dnd-su-link img, header .mobile_list_button img{
+    height: 30px;
+}
+header .header-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+}
+.stub-header {
+    visibility: hidden;
+    padding: 6px;
+}
+.chapter-title{
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    border-left: 2px solid rgb(117, 117, 117);
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+header .mobile_list_button{
+    background:none;
+    border: none;
+    width: 30px;
+    padding: 0;
+}
+.home-link{
+    margin-right: 12px;
+}
+
+/* ------------------------------------------------------------- top area end */
+
+/* ------------------------------------------------------------- content area start */
+.chapter-title-mobile{
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+}
+/* ------------------------------------------------------------- content area end */
+
+/* ------------------------------------------------------------- bottom area start */
+div.parting-words-col-wide{
+    border-left: 2px solid rgb(117, 117, 117);
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.footer-area.fixed-bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+}
+/* ------------------------------------------------------------- bottom area end */
+
+/* ------------------------------------------------------------- menu area start */
+.menu-block-section{
+    margin-bottom: 5px;
+}
+.menu-block-section-name-button{
+    background-color: rgb(65, 65, 65);
+    border: rgb(90, 89, 85) solid 2px;
+    border-radius: 5px;
+    color: white;
+}
+.menu-block-section-name-button:hover {
+    background-color: rgb(90, 89, 85);
+    color: rgb(144, 197, 128);
+}
+.menu-block-section-name-button .label {
+    text-align: left;
+    font-size: 30px;
+}
+.menu-block-section-list {
+    border-left: rgb(90, 89, 85) solid 2px;
+    border-right: rgb(90, 89, 85) solid 2px;
+    border-bottom: rgb(90, 89, 85) solid 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: rgb(38, 38, 38);
+    padding-bottom: 5px;
+}
+.menu-block-section-list a{
+    color: white;
+    text-decoration: none;
+}
+.menu-block-section-list a:hover{
+    color: rgb(30, 161, 13);
+    text-decoration: none;
+}
+.menu-block-section-list .row {
+    padding-top: 5px;
+    padding-left: 20px;
+}
+/* ------------------------------------------------------------- menu area end */
+
+/* ------------------------------------------------------------- NEWS PAGES start */
+/* ------------------------------------------------------------- NP main start */
+.news-data-area{
+    background-color: rgb(236,228,217);
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.news-data-area img{
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+}
+content .info-block ul, content .info-block ol{
+    padding-left:32px;
+}
+content .info-block ul li{
+    list-style-type:circle;
+}
+content .info-block ol li{
+    list-style-type:decimal;
+}
+/* ------------------------------------------------------------- NP main end */
+
+a.read-all{
+    text-decoration: underline solid black 1px;
+    color:black;
+    font-style: italic;
+}
+a.read-all:hover{
+    text-decoration: underline dashed rgb(65, 65, 65) 1px;
+    color:rgb(65, 65, 65);
+    font-style: italic;
+}
+/* ------------------------------------------------------------- NEWS PAGES end */
+
+/* ------------------------------------------------------------- RACE LIST PAGE start */
+.grid-group{
+    margin-bottom: 10px;
+}
+.grid-group-name {
+    font-size: 25px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.grid-group-data {
+    display: flex;
+    flex-flow: row wrap;
+}
+.grid-group-data-item {
+    margin-bottom: 8px;
+}
+.grid-group-data-item a {
+    text-decoration: none;
+}
+.grid-group-data-item .button-view{
+    background-color: rgb(236,228,217);
+    border-radius: 5px;
+}
+.grid-group-data-item .button-view:hover{
+    background-color: rgb(230, 206, 174);
+}
+.cr-name {
+    padding-top: 4px;
+    z-index: 3;
+    position: relative;
+    color:black;
+}
+.cr-name-head {
+    font-size: 20px;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px white;
+    line-height: 1;
+    margin-bottom: 5px;    
+}
+.cr-name-append {
+    font-style: italic;
+    margin-top: -7px;
+}
+.button-view {
+    position: relative;
+    z-index: 2;
+    height: 75px;
+}
+.button-view img {
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+/* ------------------------------------------------------------- RACE LIST PAGE end */
+
+/* ------------------------------------------------------------- RACE-CLASS DATA PAGE start */
+/* ------------------------------------------------------------- h start*/
+.race-class-data-area h1{
+    /* Крупный красный заглавный без подчеркивания */
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    color: #691414;
+    padding: 0;
+    display: block;
+    margin: 0 0 8px;
+}
+.race-class-data-area h2{
+    /* черный заглавный без подчеркивания */
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    padding: 0;
+    display: block;
+    margin: 0 0 8px;
+}
+.race-class-data-area h3{
+    /* красный заглавный с подчеркиванием */
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #691414;
+    color: #691414;
+    padding: 0;
+    display: block;
+    margin: 0 0 8px;
+}
+.race-class-data-area h4 {
+    /* красный заглавный без подчеркивания */
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+    
+    color: #691414;
+    padding: 0;
+    display: block;
+    margin: 0 0 8px;
+}
+.race-class-data-area h5 {
+    /* красный без подчеркивания */
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #691414;
+    padding: 0;
+    display: block;
+    margin: 0 0 8px;
+}
+/* ------------------------------------------------------------- h end*/
+/* ------------------------------------------------------------- p start*/
+.race-class-data-area .content-block p{
+    margin-top: 0px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    font-weight: 350;
+}
+.race-class-data-area .content-block p.level{
+    margin-top: -5px;
+    font-style: italic;
+}
+/* ------------------------------------------------------------- p end */
+/* ------------------------------------------------------------- race-class-data-area start */
+.race-class-data-area strong {
+    font-weight: 500;
+}
+.race-class-data-area {
+    background-color:  rgb(236,228,217);
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: relative;
+}
+.race-class-name p {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.race-class-source {
+    margin-bottom: 10px;
+}
+.race-class-citation {
+    text-align: right;
+    font-style: italic;
+}
+.race-class-data-area .content-block{
+    padding-top: 10px;
+}
+.race-class-data-area .feature-race {
+    font-weight: 500;
+    font-style: italic;
+}
+.race-class-data-area .empty-line {
+    visibility: hidden;
+}
+.race-class-data-area .content-block .sub-menu {
+    margin-bottom: 8px;
+}
+.race-class-data-area .content-block .table td {
+    text-align: center;
+    border: 1px solid rgba(168, 168, 168,.3);
+}
+.race-class-data-area .content-block .table th {
+    padding: 4px 8px;
+    font-weight: 600;
+}
+.race-class-data-area .content-block .table th, .race-class-data-area .content-block .table td {
+    text-align: center;
+    border: 1px solid rgba(168, 168, 168,.3);
+}
+.race-class-data-area .content-block .table td.left-content {
+    text-align: left;
+}
+.race-class-data-area .content-block .table td {
+    padding: 0px 5px;
+}
+.race-class-data-area .content-block .table tr:not(.tb-head-row):not(.tb-empty-row):hover {
+    background-color: rgba(255,165,0,.2);
+}
+.race-class-data-area .content-block .table tr:nth-child(odd) {
+    background-color: rgba(20,20,20,.05);
+}
+.race-class-data-area .content-block .blue-data-area {
+    background: rgba(89,192,184,.1);
+    border: 1px solid rgb(202, 202, 202);
+    margin: 16px;
+    border-radius: 2px;
+    padding: 8px;
+    box-shadow: 2px 2px 0 0 rgb(179, 179, 179);
+}
+.race-class-data-area .content-block .blue-data-area .data-block {
+    margin-top: 20px;
+}
+.race-class-data-area .content-block .spec-info-block .hide-next:hover {
+    cursor: pointer;
+}
+.race-class-data-area .content-block .spec-info-block .hidden-data-item.active {
+    display: block;
+}
+.race-class-data-area h1.hide-next:not(.active) {
+    margin: 0;
+}
+.race-class-data-area .content-block .spec-info-block .hidden-data-item:not(.active) {
+    display: none;
+}
+.race-class-data-area .content-block .spec-info-block {
+    padding: 8px;
+    border: 1px solid rgba(20,20,20,.1);
+    border-radius: 5px;
+    background-color: rgba(20,20,20,.05);
+    margin-bottom: 10px;
+}
+.race-class-data-area .content-block .spec-info-block b {
+    font-style: italic;
+}
+
+.race-class-data-area .content-block .spec-info-block .data-content{
+    margin-top: 30px;
+}
+
+.race-class-data-area .content-block .sub-data{
+    margin-top: 15px;
+}
+
+.race-class-data-area .content-block .spec-info-block .data-content .sub-data{
+    margin-top: 15px;
+}
+.race-class-data-area .back-image {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    z-index: 0;
+}
+.race-class-data-area .back-image img {
+    max-width: 50%;
+    max-height: 50%;
+    float: right;
+    opacity: 40%;
+    
+} 
+.race-class-data-area .main-content-block {
+    position: relative;
+    z-index: 2;
+} 
+
+.race-class-data-area .spoiler {
+    margin-top: 30px;
+}
+/* ------------------------------------------------------------- race-class-data-area end */
+/* ------------------------------------------------------------- image-block start */
+/* ------------------------------------------------------------- h start */
+.image-block h6 {
+    /* Светлый без подчеркивания */
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: rgb(236,228,217);
+    padding: 0;
+    display: block;
+    margin: 0 0 8px;
+}
+/* ------------------------------------------------------------- h end */
+.image-block{
+    margin-top: 15px;
+}
+.image-block .image-gallery-data-set {
+    display: flex;
+    flex-wrap: wrap;
+}
+.image-block .image-gallery-data-set .image-data{
+    background-color: rgb(236,228,217);
+    position: relative;
+    height: 200px;
+    display: inline;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.image-block .image-gallery-data-set .image-data img{
+    position: relative;
+    width: 100%;
+    height: 100%;    
+    border-radius: 5px;
+}
+.image-block .image-gallery-data-set .image-data img:hover{
+    cursor: pointer;
+}
+/* ------------------------------------------------------------- image-block end */
+/* ------------------------------------------------------------- RACE-CLASS DATA PAGE end */
+/* ------------------------------------------------------------- armament abilities start */
+.filter-grid-group{
+    margin-bottom: 0px;
+}
+.filter-grid-group-data-item select {
+    height: 30px;
+    width: 100%;    
+    border-radius: 5px;
+    background-color: rgb(236,228,217);
+}
+.filter-grid-group-data-item .col {
+    padding: 0 4px 8px 4px;
+    position: relative;
+}
+.filter-above-grig-oficial {
+    padding: 0 4px 0 4px;
+    width: 100%;
+    background-color: rgb(128,154,65);
+    border-radius: 5px;
+    margin-bottom: 8px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filter-above-grig-oficial p {
+    text-align: center;
+}
+.armament-abilities-content {
+    background-color: rgb(236,228,217);
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.prompt-area hr {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 80%, rgba(0,212,255,0) 100%);
+}
+
+.prompt-data {
+    display: flex;
+    justify-content: end;
+    flex-flow: row wrap;
+}
+
+.prompt-data span {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.prompt-data .components {
+    font-weight: 600;
+    opacity: 0.7;
+    color: gray;
+}
+
+.vertical-group-name {
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+    opacity: 0.5;
+}
+
+.grid-abilities-data {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.abilities-info-block{
+    border-radius: 2px;
+    text-decoration: none;
+    color: black;
+}
+
+.abilities-info-block:hover{
+    color: black;
+}
+
+.abilities-info-block-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.abilities-hr-gradient {
+    margin: 0;
+    background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 80%, rgba(0,212,255,0) 100%);;
+}
+
+.dot-gradient {
+    background: linear-gradient(to right, transparent 50%, #fff 50%), linear-gradient(to right, rgba(2, 0, 36, 0) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 212, 255, 0) 100%);
+    background-size: 16px 2px, 100% 2px;
+    margin-top: 5px;
+    margin-bottom: 6px;
+}
+
+.grid-abilities-item {
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.grid-abilities-item:hover {
+    border-radius: 2px;
+    background-color: rgba(20, 20, 20, 0.05);
+}
+
+.grid-abilities-item .components{
+    font-weight: 600;
+    opacity: 0.7;
+    color: gray;
+    align-self: flex-end;
+}
+
+.grid-abilities-item .name{
+    display: inline;
+}
+
+.grid-abilities-item .school-logo {
+    vertical-align: middle;
+    line-height: 100%;  
+    font-size: 10px;
+}
+
+.left-align-data {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(270deg, transparent 8px, #141414 24px);
+    mask-image: linear-gradient(270deg, transparent 8px, #141414 24px);
+}
+/* 
+.armament-filtered-area {
+    border-bottom: 1px rgba(0, 0, 0, 0.582);
+}  */
+
+.armament-data {
+    margin-bottom: 20px;
+}
+
+.armament-data .name {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.armament-data .cost-type {
+    font-style: italic;
+}
+
+.armament-data .param {
+    font-weight: 600;
+}
+
+.armament-data .half-gray {
+    color: rgba(0, 0, 0, 0.7);
+}
+/* ------------------------------------------------------------- armament abilities end */

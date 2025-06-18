@@ -1,0 +1,304 @@
+@media (min-width: 992px) {
+    /* ------------------------------------------------ footer-block start*/
+    .parting-words-col {
+        display: none;
+    }
+    .parting-words-col-wide {
+        display: flex;
+        align-items: center;
+    }    
+    /* ------------------------------------------------ footer-block end*/
+
+    /* ------------------------------------------------ header-block start*/
+    .chapter-title {
+        display: flex;
+        align-items: center;
+    }
+    .chapter-title-mobile { /*заголовок для мобилки */
+        display: none;
+    }
+
+    .home-link_ico {
+        height: 20px;
+    }    
+    .list-ico, .dnd-su-ico {
+        width: 30px;
+    }
+    /* ------------------------------------------------ header-block end*/
+}
+@media (max-width: 992px) {
+    /* ------------------------------------------------ footer-block start*/
+    .parting-words-col {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .soul-data-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .parting-words-col-wide {
+        display: none;
+    }
+    /* ------------------------------------------------ footer-block end*/
+
+    /* ------------------------------------------------ header-block start*/
+    .chapter-title {
+        display: none;
+    }
+    .chapter-title-mobile { /*заголовок для мобилки */
+        display: block;
+    }
+    .home-link_ico {
+        height: 24px;        
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }    
+    .list-ico, .dnd-su-ico {
+        height: 25px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    /* ------------------------------------------------ header-block end*/
+}
+
+/* ------------------------------------------------ menu-width start*/
+@media (min-width: 992px) {
+    .list-button {
+        display: none;
+    }   
+    .menu-block-back {
+        display: none;
+    }
+    content .container .menu-block {
+        width: 280px;
+        position: static;
+    }    
+}
+@media (max-width: 992px) {
+    content .container .active{
+        transform: translateX(0);
+        z-index: 30;
+    }
+    content .menu-block-back {
+        position: fixed;
+        top: 33px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 30px);
+        transform: translateX(100%);
+        background-color: rgb(0, 0, 0);
+    }
+    content .menu-block {
+        position: fixed;
+        top: 40px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 40px);
+        transform: translateX(100%);
+    }    
+    content .container .menu-block .container {
+        width: 278px;
+    }    
+}
+/* ------------------------------------------------ menu-width end*/
+
+/* ------------------------------------------------ race class menu cells start*/
+@media (min-width: 1200px) {
+    .grid-group-data-item{
+        padding-right: 8px;
+        width: 20%;
+    }
+}
+@media (max-width: 1200px) {
+    .grid-group-data-item{
+        padding-right: 8px;
+        width: 25%;
+    }
+}
+@media (max-width: 768px) {
+    .grid-group-data-item{
+        padding-right: 8px;
+        width: 33%;
+    }
+}
+@media (max-width: 576px) {
+    .grid-group-data-item{
+        width: 100%;
+    }
+}
+/* ------------------------------------------------ race class menu cells end*/
+
+/* ------------------------------------------------ class table start*/
+@media (min-width: 1200px){
+    .class-progress-table {
+        margin: 15px 8px;
+        width: calc(100% - 16px);
+    }
+    table .long {
+        display: inline;
+    }
+    table .short {
+        display: none;
+    }
+}
+@media (max-width: 1200px){
+    .class-progress-table {
+        margin: 15px 0px;
+        width: 100%;
+    }
+    table .long {
+        display: none;
+    }
+    table .short {
+        display: inline;
+    }
+}
+/* ------------------------------------------------ class table end*/
+
+/* ------------------------------------------------ armament_abilities start */
+@media (min-width: 1200px){
+    .filter-grid-group-data-item{
+        width: 20%;
+    }
+    .grid-abilities-item {
+        width: 25%;
+    }
+}
+@media (max-width: 1200px){
+    .filter-grid-group-data-item{
+        width: 25%;
+    }
+    .grid-abilities-item {
+        width: 33%;
+    }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+    .abilities-grid {
+        max-width: 680px;
+    }
+}
+@media (max-width: 992px) {
+    .grid-abilities-item {
+        width: 50%;
+    }
+}
+@media (max-width: 576px) {
+    .filter-grid-group-data-item{
+        width: 50%;
+    }
+    .grid-abilities-item{
+        width: 100%;
+    }
+}
+/* ------------------------------------------------ armament_abilities end */
+
+/*  
+@media (min-width: 1200px) {
+    
+    - class-block-item ячейка класса, смещение на новую строку
+    
+    table .long{
+        display: inline;
+    }
+    table .short{
+        display: none;
+    } 
+    .class-progress-table {
+        margin: 15px 8px;   
+        width: calc(100% - 16px);
+    }
+    .race-page-data-background-image img {
+        max-width: 750px;
+    }
+}  
+@media (min-width: 992px) {
+    - кнопка меню для уменьшенного экрана 
+
+    - название статьи
+
+    - размеры иконок home, list, dndsu
+
+- подпись внизу
+
+- меню блок
+
+    body {
+        background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(0,212,255,0) 100%), url("../Images/back_vert.png");
+    }
+    .race-page-data-background-image {
+        display: block;
+    }
+    .race-page-data-background-image img {
+        max-width: 600px;
+    }
+}
+@media (max-width: 1200px) {
+    - class-block-item ячейка класса, смещение на новую строку
+    table .long{
+        display: none;
+    }
+    table .short{
+        display: inline;
+    }
+    .class-progress-table {
+        margin: 15px 0px;   
+        width: 100%;
+    }
+}
+@media (max-width: 992px) {
+
+    - отображение меню
+
+    - название статьи
+
+    .home-logo {
+        height: 30px;
+    }    
+    .list-logo, .dnd-su-logo {
+        width: 25px;
+    }
+    .parting-words {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .soul-data-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .parting-words-wide {
+        display: none;
+    }
+    body {
+        background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0,212,255,0) 100%), url("../Images/back_vert.png");
+        background-size: cover;
+    }
+    table .long{
+        display: inline;
+    }
+    table .short{
+        display: none;
+    }
+    .race-page-data-background-image {
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    - class-block-item ячейка класса, смещение на новую строку
+    table .long{
+        display: none;
+    }
+    table .short{
+        display: inline;
+    }    
+}
+@media (max-width: 576px) {
+    - class-block-item ячейка класса, смещение на новую строку
+    table.class-progress-table td {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+} */
