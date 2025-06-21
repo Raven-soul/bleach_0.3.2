@@ -20,6 +20,7 @@
 
     .home-link_ico {
         height: 20px;
+        width: auto;
     }    
     .list-ico, .dnd-su-ico {
         width: 30px;
@@ -52,6 +53,7 @@
     }
     .home-link_ico {
         height: 24px;        
+        width: auto;
         padding-top: 2px;
         padding-bottom: 2px;
     }    
