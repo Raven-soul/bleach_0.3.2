@@ -2,10 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./../components/css/common.css";
 import "./../components/css/multiplatform.css";
 import {Menu} from "./../components/page_part/menu";
+
 import {Mobile_list_button} from "./../components/page_part/common/buttons.js";
 import Image from 'next/image'
-
-import UI_common from "@/../public/js/common/UI.js";
 
 import home_logo from "@/../public/img/home/home_button_logo_white.png";
 import dnd_su_logo from "@/../public/img/home/dnd_su_logo.png";
@@ -19,6 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru">
       <body> {/*onload="awake(0)">*/}
+         {/* <Onload/> */}
          <div class="main-block">
             <header>
               <div class="stub-header">data</div>

@@ -4,7 +4,7 @@ export default function Home(param) {
   const { data } = param;
 
   return (
-    <p>Hello world</p>
+    <div hidden>data</div>
   );
 }
 

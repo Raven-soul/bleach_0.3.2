@@ -11,15 +11,15 @@ function hideChangeChevron(hideTagClassNameWithoutId, chevronClassNameWithoutId,
     }
 }
 
-function mobileMenuData(list_button_ico, list_exit_ico) {
-    $('.menu-block-back').toggleClass('active');
-    $('.menu-block').toggleClass('active');
-    if($('.list-ico').attr('src')== list_button_ico) {
-        $('.list-ico').attr('src', list_exit_ico);
-    } else {
-        $('.list-ico').attr('src', list_button_ico);
-    }   
-}
+// function mobileMenuData(list_button_ico, list_exit_ico) {
+//     $('.menu-block-back').toggleClass('active');
+//     $('.menu-block').toggleClass('active');
+//     if($('.list-ico').attr('src')== list_button_ico) {
+//         $('.list-ico').attr('src', list_exit_ico);
+//     } else {
+//         $('.list-ico').attr('src', list_button_ico);
+//     }   
+// }
 
 function nestingOrder(order) {
     var result = ''

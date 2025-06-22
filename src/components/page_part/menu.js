@@ -1,7 +1,11 @@
-import { getMenuContent, getMenuSectionlist } from "../../lib/ControllerDB/crud";
+import Link from 'next/link'
+import { getMenuTemplate, getMenuContent, getMenuSectionlist } from "../../lib/ControllerDB/crud";
 
 export async function MenuTemplateList() {
     let selections = await getMenuSectionlist();    
+    let template_list = await getMenuTemplate();
+    let hide_section = template_list[2].value;
+    let chevrone = template_list[3].value;
 
     for(let i = 0; i < selections.length; i++){
         selections[i]["content"] = await getMenuContent(selections[i].id);
@@ -22,17 +26,17 @@ export async function MenuTemplateList() {
                                 <div class="col label">
                                     {selection.name}
                                 </div>
-                                <div class={"col-auto d-flex align-items-center menu-block-section-chevron-data-" + selection.id}>
+                                <div class={"col-auto d-flex align-items-center "+ chevrone +"-" + selection.id}>
                                     <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </button>
-                        <div class={"col menu-block-section-list menu-block-section-list-" + selection.id} style={{display: "block"}}>
+                        <div class={"col " + hide_section + " " + hide_section + "-" + selection.id} style={{display: "block"}}>
                             <ul key={"list_" + selection.id}>
                                 {selection.content.map((line) => {
                                     return(
                                         <li>
-                                            <a href={line.link} class="w-100 p-0">
+                                            <Link href={line.link} class="w-100 p-0">
                                                 <div class="row m-0">
                                                     <div class="col-1 p-0 image-data">
                                                         <i class={line.logo} aria-hidden="true"></i>
@@ -41,7 +45,7 @@ export async function MenuTemplateList() {
                                                         {p(line)}
                                                     </div>
                                                 </div>
-                                            </a>
+                                            </Link>
                                         </li>
                                     )
                                 })}
