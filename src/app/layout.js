@@ -2,11 +2,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./../components/css/common.css";
 import "./../components/css/multiplatform.css";
 import {Menu} from "./../components/page_part/menu";
+import {Mobile_list_button} from "./../components/page_part/common/buttons.js";
 import Image from 'next/image'
+
+import UI_common from "@/../public/js/common/UI.js";
 
 import home_logo from "@/../public/img/home/home_button_logo_white.png";
 import dnd_su_logo from "@/../public/img/home/dnd_su_logo.png";
-import list_button_ico from "@/../public/img/home/list_button_ico.png";
 
 export const metadata = {
   title: "Bleach D&D 5e",
@@ -36,7 +38,6 @@ export default function RootLayout({ children }) {
                                                     width={122}
                                                     alt="home"
                                                   />
-                                                  {/* <img src="common/main/img/home_button_logo_white.png" alt="home" class=""> */}
                                               </a>
                                           </div>
                                           <div class="col-auto chapter-title">
@@ -57,21 +58,10 @@ export default function RootLayout({ children }) {
                                                     height={25}
                                                     alt="dnd su"
                                                   />
-                                                  {/* <img src="common/main/img/dnd_su_logo.png" alt="dnd.su" class="dnd-su-ico"> */}
                                               </a>
                                           </div>
                                           <div class="col list-button">
-                                              <button class="mobile_list_button"
-                                                  onclick="mobileMenuData(nestingOrder(0))">
-                                                  <Image
-                                                    src={list_button_ico}
-                                                    className={"list-ico"}
-                                                    width={25}
-                                                    height={25}
-                                                    alt="list ico"
-                                                  />
-                                                  {/* <img src="common/main/img/list_button_ico.png" alt="list" class="list-ico"> */}
-                                              </button>
+                                              <Mobile_list_button/>
                                           </div>
                                       </div>
                                   </div>
@@ -84,8 +74,8 @@ export default function RootLayout({ children }) {
             <content>
               <div class="content-area my-2">
                   <div class="container content-container">
-                      <div class="row">
-                          <div clas="col menu-block-back"></div>
+                      <div class="row">  
+                          <div class="col menu-block-back"></div>                        
                           <Menu/>
                           <div class="col p-0 info-block">
                               <div class="row-2">
@@ -97,7 +87,9 @@ export default function RootLayout({ children }) {
               </div>
             </content>
             <footer>
+              <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
               <script src="https://kit.fontawesome.com/a98fe6b196.js" crossorigin="anonymous"></script>
+              {/* <script src={UI_common}></script> */}
             </footer>
          </div>
       </body>

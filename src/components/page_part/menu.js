@@ -1,4 +1,4 @@
-import { getMenuTemplate, getMenuContent, getMenuSectionlist } from "../../lib/ControllerDB/crud";
+import { getMenuContent, getMenuSectionlist } from "../../lib/ControllerDB/crud";
 
 export async function MenuTemplateList() {
     let selections = await getMenuSectionlist();    
@@ -60,6 +60,6 @@ export function Menu(){
             <div class="container p-0">
                 <MenuTemplateList/>
             </div>
-        </div>
+        </div>         
     );
 }
