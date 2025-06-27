@@ -9,6 +9,16 @@ export const getMenuTemplate = () => {
     return template.prepare(sql).all();
 };
 
+export const getFooterTemplate = () => {
+    const sql = `
+        select tc.name,
+               tc.value
+           from template_common tc
+           where tc.synonim = 'footer'
+    `;
+    return template.prepare(sql).all();
+};
+
 export const getMenuSectionlist = () => {
     const sql = `
         select *               

@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./../components/css/common.css";
 import "./../components/css/multiplatform.css";
-import {Menu} from "./../components/page_part/menu";
+import {Menu} from "../components/page_part/common/server_side/index/menu";
+import {Footer} from "../components/page_part/common/server_side/index/footer";
 
-import {Mobile_list_button} from "./../components/page_part/common/buttons.js";
+import {Mobile_list_button} from "../components/page_part/common/user_side/buttons.js";
 import Image from 'next/image'
 
 import home_logo from "@/../public/img/home/home_button_logo_white.png";
@@ -86,11 +87,7 @@ export default function RootLayout({ children }) {
                   </div>
               </div>
             </content>
-            <footer>
-              <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-              <script src="https://kit.fontawesome.com/a98fe6b196.js" crossorigin="anonymous"></script>
-              {/* <script src={UI_common}></script> */}
-            </footer>
+            <Footer/>
          </div>
       </body>
     </html>

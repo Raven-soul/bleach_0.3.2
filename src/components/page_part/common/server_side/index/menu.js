@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { getMenuTemplate, getMenuContent, getMenuSectionlist } from "../../lib/ControllerDB/crud";
-import { ChevronМenuButton } from "./common/buttons"
+import { getMenuTemplate, getMenuContent, getMenuSectionlist } from "../../../../../lib/ControllerDB/crud";
+import { ChevronМenuButton } from "../../user_side/buttons"
 
 export async function MenuTemplateList() {
     let selections = await getMenuSectionlist();    
