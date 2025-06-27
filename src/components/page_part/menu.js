@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getMenuTemplate, getMenuContent, getMenuSectionlist } from "../../lib/ControllerDB/crud";
+import { ChevronМenuButton } from "./common/buttons"
 
 export async function MenuTemplateList() {
     let selections = await getMenuSectionlist();    
@@ -21,16 +22,7 @@ export async function MenuTemplateList() {
             {selections.map((selection) => {
                 return (
                     <div class="col menu-block-section" key={"section_" + selection.id}>
-                        <button onclick="hideChangeChevron('menu-block-section-list', 'menu-block-section-chevron-data', this)" id={selection.id} class="col w-100 px-3 menu-block-section-name-button">
-                            <div class="row d-flex justify-content-between">
-                                <div class="col label">
-                                    {selection.name}
-                                </div>
-                                <div class={"col-auto d-flex align-items-center "+ chevrone +"-" + selection.id}>
-                                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </button>
+                        <ChevronМenuButton selection_id={selection.id} selection_name={selection.name} chevrone={chevrone} hide_section={hide_section}/>
                         <div class={"col " + hide_section + " " + hide_section + "-" + selection.id} style={{display: "block"}}>
                             <ul key={"list_" + selection.id}>
                                 {selection.content.map((line) => {
