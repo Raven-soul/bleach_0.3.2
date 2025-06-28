@@ -1,4 +1,4 @@
-import { getFooterTemplate } from "../../../../../lib/ControllerDB/crud";
+import { getFooterTemplate } from "../../../../lib/ControllerDB/crud";
 import { FooterContent } from "../../user_side/index/footer"
 
 export async function Footer() {

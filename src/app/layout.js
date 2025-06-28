@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./../components/css/common.css";
 import "./../components/css/multiplatform.css";
-import {Menu} from "../components/page_part/common/server_side/index/menu";
-import {Footer} from "../components/page_part/common/server_side/index/footer";
+import {Menu} from "../components/page_part/server_side/index/menu";
+import {Footer} from "../components/page_part/server_side/index/footer";
 
-import {Mobile_list_button} from "../components/page_part/common/user_side/buttons.js";
+import {Mobile_list_button} from "../components/page_part/user_side/common/buttons.js";
 import Image from 'next/image'
 
 import home_logo from "@/../public/img/home/home_button_logo_white.png";
