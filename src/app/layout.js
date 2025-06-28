@@ -6,6 +6,7 @@ import {Footer} from "../components/page_part/server_side/index/footer";
 
 import {Mobile_list_button} from "../components/page_part/user_side/common/buttons.js";
 import Image from 'next/image'
+import Link from 'next/link'
 
 import home_logo from "@/../public/img/home/home_button_logo_white.png";
 import dnd_su_logo from "@/../public/img/home/dnd_su_logo.png";
@@ -17,11 +18,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru">
+    <html lang="ru" >
       <body> {/*onload="awake(0)">*/}
          {/* <Onload/> */}
          <div class="main-block">
             <header>
+            <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+            <script src="https://kit.fontawesome.com/a98fe6b196.js" crossOrigin="anonymous"></script>
               <div class="stub-header">data</div>
               <div class="header-area">
                   <div class="container">
@@ -31,15 +34,15 @@ export default function RootLayout({ children }) {
                                   <div class="col-auto d-flex align-items-center">
                                       <div class="row">
                                           <div class="col-auto p-0 d-flex align-items-center">
-                                              <a href="homeLink" class="home-link d-flex align-items-center">
-                                                  <Image
-                                                    src={home_logo}
-                                                    className={"home-link_ico"}
-                                                    height={24}
-                                                    width={122}
-                                                    alt="home"
-                                                  />
-                                              </a>
+                                              <Link href="/" class="home-link d-flex align-items-center">
+                                                <Image
+                                                        src={home_logo}
+                                                        className={"home-link_ico"}
+                                                        height={24}
+                                                        width={122}
+                                                        alt="home"
+                                                    />
+                                              </Link>
                                           </div>
                                           <div class="col-auto chapter-title">
                                               <div class="chapter-title-label">

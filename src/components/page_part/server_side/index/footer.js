@@ -1,5 +1,5 @@
-import { getFooterTemplate } from "../../../../lib/ControllerDB/crud";
-import { FooterContent } from "../../user_side/index/footer"
+import { getFooterTemplate } from "@/lib/ControllerDB/crud"
+import { FooterContent } from "@/components/page_part/user_side/index/footer"
 
 export async function Footer() {
     const footerTemplate = getFooterTemplate();
@@ -9,7 +9,7 @@ export async function Footer() {
     let comment_wide = footerTemplate[3].value;
 
     return (
-        <footer>
+        <footer suppressHydrationWarning>
           <div class="footer-area">
             <div class="container">
               <div class="row-2 d-flex justify-content-center">
@@ -17,10 +17,6 @@ export async function Footer() {
               </div>
             </div>
           </div>
-
-          <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-          <script src="https://kit.fontawesome.com/a98fe6b196.js" crossorigin="anonymous"></script>
-
         </footer>
     )    
 }

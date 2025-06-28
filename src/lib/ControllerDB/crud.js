@@ -1,6 +1,18 @@
 import db from './db_connection';
 import template from './db_connection_template';
 
+//Template data ------------------------------------------------------------------------
+
+export const getPageTitleTemplate = (synonym = 'class') => {
+    const sql = `
+        select tt.id,
+               tt.name
+           from template_title tt
+           where tt.synonim = '${synonym}'
+    `;
+    return template.prepare(sql).all();
+};
+
 export const getMenuTemplate = () => {
     const sql = `
         select *
@@ -17,6 +29,34 @@ export const getFooterTemplate = () => {
            where tc.synonim = 'footer'
     `;
     return template.prepare(sql).all();
+};
+
+//Content data -------------------------------------------------------------------------
+
+export const getClassContent = (class_name = 'Shinigami') => {
+    const sql = `
+        select class.*
+          from content_class_menu class_menu
+               inner join content_class class on class.class_id = class_menu.id
+         where class_menu.latin_name = '${class_name}'
+    `;
+    return db.prepare(sql).all();
+};
+export const getClassMenuGroupContent = () => {
+    const sql = `
+        select *
+          from content_class_menu_group ccmg
+    `;
+    return db.prepare(sql).all();
+};
+
+export const getClassMenuContent = (group_id = 1) => {
+    const sql = `
+        select *
+          from content_class_menu ccm
+         where ccm.group_id = ${group_id}
+    `;
+    return db.prepare(sql).all();
 };
 
 export const getMenuSectionlist = () => {
