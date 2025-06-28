@@ -2,10 +2,14 @@ import Image from 'next/image'
 
 import { getClassContent } from "@/lib/ControllerDB/crud";
 
-export default async function Page({ params }) {
-  const { slug } = await params
+export function generateStaticParams() {
+  return [{ id: 'Shinigami' }, { id: 'Quincy' }, { id: 'Arrankar' }, { id: 'Fullbringer' }, { id: 'Bount' }]
+}
 
-  const classContent = getClassContent(slug);
+export default async function Page({ params }) {
+  const { id } = await params
+
+  const classContent = getClassContent(id);
   let classElement = classContent[0];
 
   //return <div>Мой пост: {slug}</div>
