@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { getPageTitleTemplate, getClassMenuGroupContent, getClassMenuContent } from "@/lib/ControllerDB/crud";
 
@@ -25,13 +26,13 @@ export default function Class(param) {
                                 {group.content.map((element)=>{
                                     return(
                                         <div class="grid-group-data-item">
-                                            <a href={element.link}>
+                                            <Link href={element.link}>
                                                 <div class="button-view">
                                                     <div class="row-2 ps-2 cr-name">
                                                         <div class="col cr-name-head">{element.name}</div>
                                                             <div class="col cr-name-append">{element.latin_name}</div>
                                                         </div>
-                                                        <Image //bleach_0_3_2\public\img\class\13_Unborder_without_white.png
+                                                        <Image
                                                             src={"/img/class/" + element.logo}
                                                             height={75}
                                                             width={75}
@@ -39,7 +40,7 @@ export default function Class(param) {
                                                         />
                                                     {/* <img src="@@CLASSLOGO@@" alt="@@CLASSNAMEENG@@"> */}
                                                 </div>
-                                            </a>
+                                            </Link>
                                         </div>
                                     )
                                 })}
