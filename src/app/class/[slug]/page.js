@@ -2,14 +2,19 @@ import Image from 'next/image'
 
 import { getClassContent } from "@/lib/ControllerDB/crud";
 
+// export function generateStaticParams() {
+//   return [{ slug: 'Shinigami' }, { slug: 'Quincy' }, { slug: 'Arrankar' }, { slug: 'Fullbringer' }, { slug: 'Bount' }]
+// }
+
 export function generateStaticParams() {
-  return [{ id: 'Shinigami' }, { id: 'Quincy' }, { id: 'Arrankar' }, { id: 'Fullbringer' }, { id: 'Bount' }]
+  const pages = ['Shinigami', 'Quincy', 'Arrankar', 'Fullbringer', 'Bount'];
+  return pages.map((page) => ({ slug: page }));
 }
 
 export default async function Page({ params }) {
-  const { id } = await params
+  const { slug } = await params
 
-  const classContent = getClassContent(id);
+  const classContent = getClassContent(slug);
   let classElement = classContent[0];
 
   //return <div>Мой пост: {slug}</div>
