@@ -1,6 +1,7 @@
 'use client';
 
 import $ from "jquery"
+import Link from 'next/link'
 import Image from 'next/image'
 
 import { useEffect } from "react";
@@ -21,6 +22,35 @@ export function Mobile_list_button_function(){
             $('.list-ico-start').show();
             $('.list-ico-exit').hide();
         }
+}
+
+export function Menu_stroke_link({link, logo, show, name, key}){
+    
+    var check_strike = (()=>{
+        if(show == 1) return (name)
+        else return(<strike>{name}</strike>)
+    });
+
+    const func = (()=>{
+        if($('.menu-block-back').hasClass('active')){
+            Mobile_list_button_function();
+        }
+    });
+
+    return (
+        <li key={key}>
+            <Link href={link} class="w-100 p-0" onClick={func}>
+                <div class="row m-0">
+                    <div class="col-1 p-0 image-data">
+                        <i class={logo} aria-hidden="true"></i>
+                    </div>
+                    <div class="col content-data strike_line">
+                        {check_strike()}
+                    </div>
+                </div>
+            </Link>
+        </li>
+    )
 }
 
 export function Mobile_list_button(){
