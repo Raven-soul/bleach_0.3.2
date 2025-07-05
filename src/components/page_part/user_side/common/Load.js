@@ -3,7 +3,12 @@
 import $ from "jquery"
 import { useEffect } from "react";
 
-export function PageLoad(){
+export function PageLoad({page_title = 'Онлайн-справочник Bleach D&D 5e'}){
+
+    const title_name = (()=>{
+        $(".chapter-title-label").html(page_title);
+    });
+
     const futer_fix = (()=>{
         // прикрепление футера к окончанию страницы
         if( $(document).height() <= $(window).height() ){		
@@ -14,6 +19,7 @@ export function PageLoad(){
     });
 
     useEffect(()=>{
+        title_name();
         futer_fix();
     },);    
 

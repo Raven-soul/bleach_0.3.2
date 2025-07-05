@@ -19,7 +19,7 @@ export default async function Page({ params }) {
     <div class="row-2">
             <div class="col chapter-title-mobile">{classElement.title_name}</div>
             <div class="col">
-                <PageLoad/>
+                <PageLoad page_title={classElement.title_name}/>
                 <div class="race-class-data-area">
                     <div class="back-image">
                         {/* <img src="@@CLASSBACKIMAGE@@" alt="back"> */}
@@ -35,7 +35,7 @@ export default async function Page({ params }) {
                                 </div>
                                 <div class="col race-class-citation">
                                     <p>{classElement.comment}</p>
-                                    <p>{classElement.comment_author}</p>
+                                    <p>{classElement.comment_author}, <strong>{classElement.comment_author_rank}</strong></p>
                                 </div>
                             </div>
                         </div>

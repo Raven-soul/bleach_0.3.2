@@ -20,7 +20,7 @@ export default function Class(param) {
     <div class="row-2">
         <div class="col chapter-title-mobile">{pageTitle[0].name}</div>
         <div class="col">
-            <PageLoad/>
+            <PageLoad page_title={pageTitle[0].name}/>
             <div class="row-2">
                 {menuTemplate.map((group)=>{
                     return (
