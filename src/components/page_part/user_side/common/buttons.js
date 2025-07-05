@@ -8,10 +8,7 @@ import { useEffect } from "react";
 import list_button_ico from "@/../public/img/home/list_button_ico.png";
 import list_exit_ico from "@/../public/img/home/list_exit_ico.png";
 
-export function Mobile_list_button(){
-    useEffect(()=>{},);
-
-    const func = (()=>{
+export function Mobile_list_button_function(){
         $('.menu-block-back').toggleClass('active');
         $('.menu-block').toggleClass('active');
         
@@ -24,19 +21,13 @@ export function Mobile_list_button(){
             $('.list-ico-start').show();
             $('.list-ico-exit').hide();
         }
-    });
+}
 
-    const load = (()=>{
-        // прикрепление футера к окончанию страницы
-        if( $(document).height() <= $(window).height() ){		
-            $(".footer-area").addClass("fixed-bottom");
-        } else {
-            $(".footer-area").attr('class','footer-area');
-        }
-    });
+export function Mobile_list_button(){
+    useEffect(()=>{},);
 
-  return(
-    <button class="mobile_list_button" onClick={func} onLoad={load}>
+    return (
+        <button class="mobile_list_button" onClick={Mobile_list_button_function}>
             <div class="mobile_list_button_state" list_ico_state="true" hidden></div>
             <div class="list-ico-start">
                 <Image
@@ -47,7 +38,7 @@ export function Mobile_list_button(){
                     alt="list ico"
                 />
             </div>
-            <div class="list-ico-exit" style={{display: "none"}}>
+            <div class="list-ico-exit" style={{ display: "none" }}>
                 <Image
                     src={list_exit_ico}
                     className={"list-ico"}
@@ -55,9 +46,9 @@ export function Mobile_list_button(){
                     height={25}
                     alt="list ico"
                 />
-            </div>            
-    </button>
-  )
+            </div>
+        </button>
+    )
 }
 
 export function ChevronМenuButton ({selection_id, selection_name, chevrone, hide_section}) {
