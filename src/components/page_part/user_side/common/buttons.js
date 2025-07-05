@@ -85,9 +85,8 @@ export function ChevronМenuButton ({selection_id, selection_name, chevrone, hid
     useEffect(()=>{},);
 
     const func = (()=>{
-        let id = $(this).attr("id");
-        let hideTagClassName = "." + hide_section + "-" + id;
-        let chevronClassName = "." + chevrone + "-" + id;
+        let hideTagClassName = "." + hide_section + "-" + selection_id;
+        let chevronClassName = "." + chevrone + "-" + selection_id;
 
         if ( $(hideTagClassName).css("display") == "none" ){
             $(hideTagClassName).css("display","block");
