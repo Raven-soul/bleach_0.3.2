@@ -24,6 +24,28 @@ export function Mobile_list_button_function(){
         }
 }
 
+export function ClassMenuItem({link, name, latin_name, logo}){
+    
+    return (
+        <div class="grid-group-data-item">
+            <Link href={link}>
+                <div class="button-view">
+                    <div class="row-2 ps-2 cr-name">
+                        <div class="col cr-name-head">{name}</div>
+                            <div class="col cr-name-append">{latin_name}</div>
+                        </div>
+                        <Image
+                            src={require('@/../public/img/class/' + logo)}
+                            height={75}
+                            width={75}
+                            alt={latin_name}
+                        />
+                </div>
+            </Link>
+        </div>
+    )
+}
+
 export function Menu_stroke_link({link, logo, show, name, key}){
     
     var check_strike = (()=>{

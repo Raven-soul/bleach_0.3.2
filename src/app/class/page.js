@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { getPageTitleTemplate, getClassMenuGroupContent, getClassMenuContent } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
+import { ClassMenuItem } from "@/components/page_part/user_side/common/buttons"
+
 export default function Class(param) {
   const { data } = param;
 
@@ -27,23 +29,7 @@ export default function Class(param) {
                             <div class="grid-group-data">
                                 {group.content.map((element)=>{
                                     return(
-                                        <div class="grid-group-data-item">
-                                            <Link href={element.link}>
-                                                <div class="button-view">
-                                                    <div class="row-2 ps-2 cr-name">
-                                                        <div class="col cr-name-head">{element.name}</div>
-                                                            <div class="col cr-name-append">{element.latin_name}</div>
-                                                        </div>
-                                                        <Image
-                                                            src={"/img/class/" + element.logo}
-                                                            height={75}
-                                                            width={75}
-                                                            alt={element.latin_name}
-                                                        />
-                                                    {/* <img src="@@CLASSLOGO@@" alt="@@CLASSNAMEENG@@"> */}
-                                                </div>
-                                            </Link>
-                                        </div>
+                                        <ClassMenuItem link={element.link} name={element.name} latin_name={element.latin_name} logo={element.logo}/>
                                     )
                                 })}
                             </div>
