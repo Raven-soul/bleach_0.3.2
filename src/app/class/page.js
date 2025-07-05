@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { getPageTitleTemplate, getClassMenuGroupContent, getClassMenuContent } from "@/lib/ControllerDB/crud";
+import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
 export default function Class(param) {
   const { data } = param;
@@ -17,6 +18,7 @@ export default function Class(param) {
     <div class="row-2">
         <div class="col chapter-title-mobile">{pageTitle[0].name}</div>
         <div class="col">
+            <PageLoad/>
             <div class="row-2">
                 {menuTemplate.map((group)=>{
                     return (

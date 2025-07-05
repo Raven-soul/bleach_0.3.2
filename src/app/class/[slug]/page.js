@@ -1,10 +1,7 @@
 import Image from 'next/image'
 
 import { getClassContent } from "@/lib/ControllerDB/crud";
-
-// export function generateStaticParams() {
-//   return [{ slug: 'Shinigami' }, { slug: 'Quincy' }, { slug: 'Arrankar' }, { slug: 'Fullbringer' }, { slug: 'Bount' }]
-// }
+import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
 export function generateStaticParams() {
   const pages = ['Shinigami', 'Quincy', 'Arrankar', 'Fullbringer', 'Bount'];
@@ -22,6 +19,7 @@ export default async function Page({ params }) {
     <div class="row-2">
             <div class="col chapter-title-mobile">{classElement.title_name}</div>
             <div class="col">
+                <PageLoad/>
                 <div class="race-class-data-area">
                     <div class="back-image">
                         {/* <img src="@@CLASSBACKIMAGE@@" alt="back"> */}

@@ -4,14 +4,7 @@ import $ from "jquery"
 import { useEffect } from "react";
 
 export function FooterContent({sign, comment, comment_wide}){
-    useEffect(()=>{
-        // прикрепление футера к окончанию страницы
-        if( $(document).height() <= $(window).height() ){		
-            $(".footer-area").addClass("fixed-bottom");
-        } else {
-            $(".footer-area").attr('class','footer-area');
-        }
-    },);
+    useEffect(()=>{},);
 
     return(
         <div class="col-auto">
