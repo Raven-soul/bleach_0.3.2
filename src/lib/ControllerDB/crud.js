@@ -32,6 +32,39 @@ export const getFooterTemplate = () => {
 };
 
 //Content data -------------------------------------------------------------------------
+export const getClassTableContent = (class_id = 1) => {
+    const sql = `
+        select *
+          from content_class_table cct
+         where cct.head = ${class_id}
+         order by cct.id 
+    `;
+    return db.prepare(sql).all();
+};
+
+export const getClassTableHeadersContent = (class_name = 'Shinigami') => {
+    const sql = `
+        select ccth.*
+          from content_class_menu class_menu
+               inner join content_class class on class.class_id = class_menu.id
+               inner join content_class_table_headers ccth on ccth.class_id = class.id
+        where class_menu.latin_name = '${class_name}'
+    `;
+    return db.prepare(sql).all();
+};
+
+export const getClassContentData = (class_name = 'Shinigami') => {
+    const sql = `
+        select ccd.*
+          from content_class_menu class_menu
+               inner join content_class class on class.class_id = class_menu.id
+               inner join content_class_data ccd on ccd.class_id = class.id
+         where class_menu.latin_name = '${class_name}'
+         order by ccd.id
+      
+    `;
+    return db.prepare(sql).all();
+};
 
 export const getClassContent = (class_name = 'Shinigami') => {
     const sql = `
@@ -42,6 +75,7 @@ export const getClassContent = (class_name = 'Shinigami') => {
     `;
     return db.prepare(sql).all();
 };
+
 export const getClassMenuGroupContent = () => {
     const sql = `
         select *

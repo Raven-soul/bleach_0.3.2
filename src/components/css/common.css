@@ -397,6 +397,9 @@ a.read-all:hover{
 .race-class-data-area .content-block .sub-menu {
     margin-bottom: 8px;
 }
+.race-class-data-area .content-block .table tr {
+    --bs-table-bg: #ffffff00;
+}
 .race-class-data-area .content-block .table td {
     text-align: center;
     border: 1px solid rgba(168, 168, 168,.3);
