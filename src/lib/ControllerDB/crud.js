@@ -35,7 +35,7 @@ export const getFooterTemplate = () => {
 export const getClassTableContent = (class_id = 1) => {
     const sql = `
         select *
-          from content_class_table cct
+          from cnt_class_table cct
          where cct.head = ${class_id}
          order by cct.id 
     `;
@@ -45,9 +45,9 @@ export const getClassTableContent = (class_id = 1) => {
 export const getClassTableHeadersContent = (class_name = 'Shinigami') => {
     const sql = `
         select ccth.*
-          from content_class_menu class_menu
-               inner join content_class class on class.class_id = class_menu.id
-               inner join content_class_table_headers ccth on ccth.class_id = class.id
+          from cnt_class_menu class_menu
+               inner join cnt_class class on class.class_id = class_menu.id
+               inner join cnt_class_table_headers ccth on ccth.class_id = class.id
         where class_menu.latin_name = '${class_name}'
     `;
     return db.prepare(sql).all();
@@ -56,9 +56,9 @@ export const getClassTableHeadersContent = (class_name = 'Shinigami') => {
 export const getClassContentData = (class_name = 'Shinigami') => {
     const sql = `
         select ccd.*
-          from content_class_menu class_menu
-               inner join content_class class on class.class_id = class_menu.id
-               inner join content_class_data ccd on ccd.class_id = class.id
+          from cnt_class_menu class_menu
+               inner join cnt_class class on class.class_id = class_menu.id
+               inner join cnt_class_data ccd on ccd.class_id = class.id
          where class_menu.latin_name = '${class_name}'
          order by ccd.id
       
@@ -69,8 +69,8 @@ export const getClassContentData = (class_name = 'Shinigami') => {
 export const getClassContent = (class_name = 'Shinigami') => {
     const sql = `
         select class.*
-          from content_class_menu class_menu
-               inner join content_class class on class.class_id = class_menu.id
+          from cnt_class_menu class_menu
+               inner join cnt_class class on class.class_id = class_menu.id
          where class_menu.latin_name = '${class_name}'
     `;
     return db.prepare(sql).all();
@@ -79,7 +79,7 @@ export const getClassContent = (class_name = 'Shinigami') => {
 export const getClassMenuGroupContent = () => {
     const sql = `
         select *
-          from content_class_menu_group ccmg
+          from cnt_class_menu_group ccmg
     `;
     return db.prepare(sql).all();
 };
@@ -87,7 +87,7 @@ export const getClassMenuGroupContent = () => {
 export const getClassMenuContent = (group_id = 1) => {
     const sql = `
         select *
-          from content_class_menu ccm
+          from cnt_class_menu ccm
          where ccm.group_id = ${group_id}
     `;
     return db.prepare(sql).all();
@@ -96,7 +96,7 @@ export const getClassMenuContent = (group_id = 1) => {
 export const getMenuSectionlist = () => {
     const sql = `
         select *               
-          from content_menu_group cmg
+          from cnt_menu_group cmg
          order by cmg.id
     `;
     return db.prepare(sql).all();
@@ -112,8 +112,8 @@ export const getMenuContent = (group_id = 1) => {
                cm.logo,
                cm.show
                
-          from content_menu_group cmg
-               inner join content_menu cm on cm.group_id = cmg.id
+          from cnt_menu_group cmg
+               inner join cnt_menu cm on cm.group_id = cmg.id
          where case when cmg.id = ${group_id} isnull then 1 = 1 else cmg.id = ${group_id} end
          order by group_id, cm_id
     `;
