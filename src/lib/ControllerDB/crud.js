@@ -32,6 +32,29 @@ export const getFooterTemplate = () => {
 };
 
 //Content data -------------------------------------------------------------------------
+export const getClassSpoilersContent = (spoiler_id = 1) => {
+    const sql = `
+        select sp.*
+          from cnt_class_spoiler_headers sh 
+               inner join cnt_class_spoiler sp on sp.spoiler_id = sh.id
+         where sh.id = ${spoiler_id}
+         order by sp.id 
+    `;
+    return db.prepare(sql).all();
+};
+
+export const getClassSpoilersHead = (class_name = 'Shinigami') => {
+    const sql = `
+        select sh.*
+          from cnt_class_menu class_menu
+               inner join cnt_class class on class.class_id = class_menu.id
+               inner join cnt_class_spoiler_headers sh on sh.class_id = class.id
+         where class_menu.latin_name = '${class_name}'
+         order by sh.id 
+    `;
+    return db.prepare(sql).all();
+};
+
 export const getClassTableContent = (class_id = 1) => {
     const sql = `
         select *

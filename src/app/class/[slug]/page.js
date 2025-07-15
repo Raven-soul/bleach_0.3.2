@@ -5,7 +5,7 @@ import Image from 'next/image'
 // getClassTableContent - для получения основного тела таблицы класса
 // getClassContentData - для получения умений класса (идут сразу после таблицы)
 
-import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData } from "@/lib/ControllerDB/crud";
+import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
 export function generateStaticParams() {
@@ -30,14 +30,11 @@ function getTableHeaders(table){
 export default async function Page({ params }) {
     const { slug } = await params
 
-    const classContent = getClassContent(slug);
-    let classElement = classContent[0];
-
-    let tableContent = getClassTableHeadersContent(slug);    
-    let table = tableContent[0];
+    let classElement = getClassContent(slug)[0];
+    let table = getClassTableHeadersContent(slug)[0];
 
     table['content'] = getClassTableContent(table.id);
-    table['header'] = getTableHeaders(table);
+    table['header'] = getTableHeaders(table);    
 
     for(let i = 0; i<table.content.length; i++){
         let cnt = [];
@@ -53,6 +50,12 @@ export default async function Page({ params }) {
 
         table.content[i]['data'] = cnt;
     }
+
+    classElement['spoiler_list'] = getClassSpoilersHead(slug);
+
+    for(let i = 0; i < classElement.spoiler_list.length; i++){
+        classElement.spoiler_list[i]['content'] = getClassSpoilersContent(classElement.spoiler_list[i].id);
+    }    
 
     const classContentData = getClassContentData(slug);
 
@@ -129,43 +132,112 @@ export default async function Page({ params }) {
                             </div>
                             <div class="content">
                                 {classContentData.map((skill)=>{
-                                    if(skill.is_blue == 1) return(
-                                        <div class="data-content">
-                                            <h1>{skill.name}</h1>
-                                            <p>{skill.value}</p>
-                                            <div class="blue-data-area">
-                                                <h4>Хиты, владение и снаряжение</h4>
-                                                <div class="data-block">
-                                                    <h2>Хиты</h2>
-                                                    <p><strong class="feature-class">Кость Хитов:</strong> {classElement.hit_dice}</p>
-                                                    <p><strong class="feature-class">Хиты на 1 уровне:</strong> {classElement.hit_point_1_lvl}</p>
-                                                    <p><strong class="feature-class">Хиты на следующих уровнях:</strong> {classElement.hit_point_other}</p>
-                                                </div>
-                                                <div class="data-block">
-                                                    <h2 class="no-underlined-black">Владение</h2>
-                                                    <p><strong class="feature-class">Броня:</strong> {classElement.armor}</p>
-                                                    <p><strong class="feature-class">Оружие:</strong> {classElement.weapon}</p>
-                                                    <p><strong class="feature-class">Инструменты:</strong> {classElement.tools}</p>
-                                                    <p><strong class="feature-class">Спасброски:</strong> {classElement.savethrow}</p>
-                                                    <p><strong class="feature-class">Навыки:</strong> {classElement.skills}</p>
-                                                </div>
-                                                <div class="data-block">
-                                                    <h2 class="no-underlined-black">Cнаряжение</h2>
-                                                    <div dangerouslySetInnerHTML={{ __html: classElement.equipment }}></div>
+                                    //console.log('skill '+ skill);
+                                    console.log('skill.data_type '+ skill.data_type + ' id = ' + skill.id);
+
+                                    if(skill.data_type == 0)
+                                    {   
+                                        return(
+                                            <div class="data-content">
+                                                <h3>{skill.name}</h3>
+                                                <p class="level">{skill.requirements}</p>
+                                                <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
+                                            </div>
+                                        )
+                                    }
+                                    else if(skill.data_type == 1) 
+                                    {
+                                        //console.log('skill.data_type == 1 '+ skill.data_type);
+                                        return(
+                                            <div class="data-content">
+                                                <h1>{skill.name}</h1>
+                                                <p>{skill.value}</p>
+                                                <div class="blue-data-area">
+                                                    <h4>Хиты, владение и снаряжение</h4>
+                                                    <div class="data-block">
+                                                        <h2>Хиты</h2>
+                                                        <p><strong class="feature-class">Кость Хитов:</strong> {classElement.hit_dice}</p>
+                                                        <p><strong class="feature-class">Хиты на 1 уровне:</strong> {classElement.hit_point_1_lvl}</p>
+                                                        <p><strong class="feature-class">Хиты на следующих уровнях:</strong> {classElement.hit_point_other}</p>
+                                                    </div>
+                                                    <div class="data-block">
+                                                        <h2 class="no-underlined-black">Владение</h2>
+                                                        <p><strong class="feature-class">Броня:</strong> {classElement.armor}</p>
+                                                        <p><strong class="feature-class">Оружие:</strong> {classElement.weapon}</p>
+                                                        <p><strong class="feature-class">Инструменты:</strong> {classElement.tools}</p>
+                                                        <p><strong class="feature-class">Спасброски:</strong> {classElement.savethrow}</p>
+                                                        <p><strong class="feature-class">Навыки:</strong> {classElement.skills}</p>
+                                                    </div>
+                                                    <div class="data-block">
+                                                        <h2 class="no-underlined-black">Cнаряжение</h2>
+                                                        <div dangerouslySetInnerHTML={{ __html: classElement.equipment }}></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    )                                    
+                                        )
+                                    }
+                                    else if(skill.data_type == 2) {
+                                        console.log(classElement.spoiler_list);
+                                        return(
+                                            <div class="data-content">
+                                                <h1>{skill.name}</h1>
+                                                <p>{skill.value}</p>
+                                                { (()=>{
+                                                    let check = false;
+                                                    var spoiler;
+                                                    for(let i = 0; i<classElement.spoiler_list.length; i++){
+                                                        if(classElement.spoiler_list[i].id != skill.spoiler_id){}
+                                                        else {
+                                                            spoiler = classElement.spoiler_list[i];
+                                                            check = true;
+                                                        }
+                                                    }
+
+                                                    if(check == false) {
+                                                        return(
+                                                            <div></div>
+                                                        )
+                                                    }
+                                                    else {
+                                                        return(
+                                                            <div class="spoiler">
+                                                                <div class="spec-info-block">
+                                                                    <h1 class="hide-next" id={spoiler.id}>{/* onclick="specializationBlockHide('hb', this)" */}
+                                                                        {spoiler.name}
+                                                                    </h1>
+                                                                    <div class="hidden-data-item hb-@@CLASSSPOILERID@@">
+                                                                        <p>{spoiler.description}</p>
+                                                                        {spoiler.content.map((block)=>{
+                                                                            return(
+                                                                                <div class="data-content">
+                                                                                    {(()=>{
+                                                                                        if(block.h5_tag == 1) return(
+                                                                                            <h5>{block.name}</h5>
+                                                                                        )
+                                                                                        else return(
+                                                                                            <h4>{block.name}</h4>
+                                                                                        )
+                                                                                    })}
+                                                                                    <p class="level">{block.requirements}</p>
+                                                                                    <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
+                                                                                </div>
+                                                                            )
+                                                                        })}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    }                                                    
+                                                })}
+                                            </div>
+                                        )
+                                    }
                                     else return(
-                                        <div class="data-content">
-                                            <h3>{skill.name}</h3>
-                                            <p class="level">{skill.requirements}</p>
-                                            <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
-                                        </div>
+                                        <div></div>
                                     )
                                 })}
                                 
-                                @@CLASSSPOILERBLOCK@@
+                                {/* @@CLASSSPOILERBLOCK@@ */}
                             </div>
                         </div>
                     </div>
