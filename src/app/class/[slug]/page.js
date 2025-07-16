@@ -5,6 +5,9 @@ import Image from 'next/image'
 // getClassTableContent - для получения основного тела таблицы класса
 // getClassContentData - для получения умений класса (идут сразу после таблицы)
 
+// getClassSpoilersHead 
+// getClassSpoilersContent
+
 import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
@@ -58,6 +61,8 @@ export default async function Page({ params }) {
     }    
 
     const classContentData = getClassContentData(slug);
+
+//-----------------------------------------------------------------
 
     return (
         <div class="row-2">
@@ -205,19 +210,19 @@ export default async function Page({ params }) {
                                                                     <h1 class="hide-next" id={spoiler.id}>{/* onclick="specializationBlockHide('hb', this)" */}
                                                                         {spoiler.name}
                                                                     </h1>
-                                                                    <div class="hidden-data-item hb-@@CLASSSPOILERID@@">
+                                                                    <div class={"hidden-data-item hb-" + spoiler.id}>
                                                                         <p>{spoiler.description}</p>
                                                                         {spoiler.content.map((block)=>{
                                                                             return(
                                                                                 <div class="data-content">
-                                                                                    {(()=>{
+                                                                                    {(() => {
                                                                                         if(block.h5_tag == 1) return(
                                                                                             <h5>{block.name}</h5>
                                                                                         )
                                                                                         else return(
                                                                                             <h4>{block.name}</h4>
                                                                                         )
-                                                                                    })}
+                                                                                    })()}
                                                                                     <p class="level">{block.requirements}</p>
                                                                                     <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
                                                                                 </div>
@@ -228,7 +233,7 @@ export default async function Page({ params }) {
                                                             </div>
                                                         )
                                                     }                                                    
-                                                })}
+                                                })()}
                                             </div>
                                         )
                                     }
