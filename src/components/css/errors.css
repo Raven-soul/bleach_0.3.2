@@ -1,0 +1,14 @@
+.not-found{
+    height:80vh; 
+
+    text-align:center; 
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    justify-content:center
+}
+
+.logo-404{
+    height: 29.002vh;
+    width: 60vh;
+}
