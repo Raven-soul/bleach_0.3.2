@@ -10,6 +10,7 @@ import Image from 'next/image'
 
 import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { SpoilerHead } from "@/components/page_part/user_side/common/buttons";
 
 export function generateStaticParams() {
     const pages = ['Shinigami', 'Quincy', 'Arrankar', 'Fullbringer', 'Bount'];
@@ -32,8 +33,17 @@ function getTableHeaders(table){
 
 export default async function Page({ params }) {
     const { slug } = await params
-
+    
     let classElement = getClassContent(slug)[0];
+
+    classElement['ContentData'] = getClassContentData(slug);
+    classElement['SpoilerList'] = getClassSpoilersHead(slug);
+
+    for(let i = 0; i < classElement.SpoilerList.length; i++){
+        classElement.SpoilerList[i]['content'] = getClassSpoilersContent(classElement.SpoilerList[i].id);
+    }   
+
+    
     let table = getClassTableHeadersContent(slug)[0];
 
     table['content'] = getClassTableContent(table.id);
@@ -52,15 +62,7 @@ export default async function Page({ params }) {
         }
 
         table.content[i]['data'] = cnt;
-    }
-
-    classElement['spoiler_list'] = getClassSpoilersHead(slug);
-
-    for(let i = 0; i < classElement.spoiler_list.length; i++){
-        classElement.spoiler_list[i]['content'] = getClassSpoilersContent(classElement.spoiler_list[i].id);
-    }    
-
-    const classContentData = getClassContentData(slug);
+    }         
 
 //-----------------------------------------------------------------
 
@@ -136,10 +138,7 @@ export default async function Page({ params }) {
                                 </table>
                             </div>
                             <div class="content">
-                                {classContentData.map((skill)=>{
-                                    //console.log('skill '+ skill);
-                                    console.log('skill.data_type '+ skill.data_type + ' id = ' + skill.id);
-
+                                {classElement.ContentData.map((skill)=>{
                                     if(skill.data_type == 0)
                                     {   
                                         return(
@@ -152,7 +151,6 @@ export default async function Page({ params }) {
                                     }
                                     else if(skill.data_type == 1) 
                                     {
-                                        //console.log('skill.data_type == 1 '+ skill.data_type);
                                         return(
                                             <div class="data-content">
                                                 <h1>{skill.name}</h1>
@@ -182,7 +180,6 @@ export default async function Page({ params }) {
                                         )
                                     }
                                     else if(skill.data_type == 2) {
-                                        console.log(classElement.spoiler_list);
                                         return(
                                             <div class="data-content">
                                                 <h1>{skill.name}</h1>
@@ -190,10 +187,10 @@ export default async function Page({ params }) {
                                                 { (()=>{
                                                     let check = false;
                                                     var spoiler;
-                                                    for(let i = 0; i<classElement.spoiler_list.length; i++){
-                                                        if(classElement.spoiler_list[i].id != skill.spoiler_id){}
+                                                    for(let i = 0; i<classElement.SpoilerList.length; i++){
+                                                        if(classElement.SpoilerList[i].id != skill.spoiler_id){}
                                                         else {
-                                                            spoiler = classElement.spoiler_list[i];
+                                                            spoiler = classElement.SpoilerList[i];
                                                             check = true;
                                                         }
                                                     }
@@ -207,9 +204,7 @@ export default async function Page({ params }) {
                                                         return(
                                                             <div class="spoiler">
                                                                 <div class="spec-info-block">
-                                                                    <h1 class="hide-next" id={spoiler.id}>{/* onclick="specializationBlockHide('hb', this)" */}
-                                                                        {spoiler.name}
-                                                                    </h1>
+                                                                    <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
                                                                     <div class={"hidden-data-item hb-" + spoiler.id}>
                                                                         <p>{spoiler.description}</p>
                                                                         {spoiler.content.map((block)=>{
@@ -242,7 +237,38 @@ export default async function Page({ params }) {
                                     )
                                 })}
                                 
-                                {/* @@CLASSSPOILERBLOCK@@ */}
+                                <div class="spoiler">
+                                    <h1>{classElement.archetype_name}</h1>
+                                    <p>{classElement.archetype_description}</p>
+
+                                    {classElement.SpoilerList.map((spoiler)=>{
+                                        if(spoiler.is_special != 0) return(<></>)
+                                        else return(
+                                            <div class="spec-info-block">                                        
+                                                <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
+                                                <div class={"hidden-data-item hb-" + spoiler.id}>
+                                                    <p>{spoiler.description}</p>
+                                                    {spoiler.content.map((block)=>{
+                                                        return(
+                                                            <div class="data-content">
+                                                                {(() => {
+                                                                    if(block.h5_tag == 1) return(
+                                                                        <h5>{block.name}</h5>
+                                                                    )
+                                                                    else return(
+                                                                        <h4>{block.name}</h4>
+                                                                    )
+                                                                })()}
+                                                                <p class="level">{block.requirements}</p>
+                                                                <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </div>
