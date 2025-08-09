@@ -11,6 +11,11 @@ import Link from 'next/link'
 import home_logo from "@/../public/img/home/home_button_logo_white.png";
 import dnd_su_logo from "@/../public/img/home/dnd_su_logo.png";
 
+// import Font Awesome CSS
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 export const metadata = {
   title: "Bleach D&D 5e",
   description: "Rules for playing DND in the Bleach universe",
