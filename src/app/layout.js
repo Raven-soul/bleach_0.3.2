@@ -5,16 +5,12 @@ import {Menu} from "../components/page_part/server_side/index/menu";
 import {Footer} from "../components/page_part/server_side/index/footer";
 
 import {Mobile_list_button} from "../components/page_part/user_side/common/buttons.js";
+import {FontAwesome, Jquery} from "../components/page_part/user_side/scripts/header";
 import Image from 'next/image'
 import Link from 'next/link'
 
 import home_logo from "@/../public/img/home/home_button_logo_white.png";
 import dnd_su_logo from "@/../public/img/home/dnd_su_logo.png";
-
-// import Font Awesome CSS
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
-config.autoAddCss = false;
 
 export const metadata = {
   title: "Bleach D&D 5e",
@@ -27,8 +23,8 @@ export default function RootLayout({ children }) {
             <body> 
                 <div class="main-block">
                     <header>
-                        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-                        <script src="https://kit.fontawesome.com/a98fe6b196.js" crossOrigin="anonymous"></script>
+                        <Jquery/>
+                        <FontAwesome/>
                         <div class="stub-header">data</div>
                         <div class="header-area">
                             <div class="container">
