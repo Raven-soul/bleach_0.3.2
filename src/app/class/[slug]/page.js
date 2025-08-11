@@ -8,7 +8,7 @@ import Image from 'next/image'
 // getClassSpoilersHead 
 // getClassSpoilersContent
 
-import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/crud";
+import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/ClassRepository";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 import { SpoilerHead } from "@/components/page_part/user_side/common/buttons";
 

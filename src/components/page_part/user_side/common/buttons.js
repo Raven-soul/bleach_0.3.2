@@ -24,8 +24,7 @@ export function Mobile_list_button_function(){
         }
 }
 
-export function ClassMenuItem({link, name, latin_name, logo}){
-    
+export function PageMenuItem({link, name, latin_name, logo}){    
     return (
         <div class="grid-group-data-item">
             <Link href={link}>
@@ -35,7 +34,7 @@ export function ClassMenuItem({link, name, latin_name, logo}){
                             <div class="col cr-name-append">{latin_name}</div>
                         </div>
                         <Image
-                            src={require('@/../public/img/class/' + logo)}
+                            src={require(`@/../public/img/${logo}`)}
                             height={75}
                             width={75}
                             alt={latin_name}
