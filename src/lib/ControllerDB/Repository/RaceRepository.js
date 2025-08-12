@@ -16,3 +16,13 @@ export const getRaceMenuContent = (group_id = 1) => {
     `;
     return db.prepare(sql).all();
 };
+
+export const getRaceContent = (race_name = 'Gecon') => {
+    const sql = `
+        select race.*
+          from cnt_race_menu race_menu
+               inner join cnt_race race on race.race_id = race_menu.id
+         where race_menu.latin_name = '${race_name}'
+    `;
+    return db.prepare(sql).all();
+};
