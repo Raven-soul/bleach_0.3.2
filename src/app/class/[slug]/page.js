@@ -90,7 +90,7 @@ export default async function Page({ params }) {
                                 </div>
                             </div>
                         </div>
-                        <div class="content-block" dangerouslySetInnerHTML={{ __html: classElement.pretable_content }}>
+                        <div class="content-block" dangerouslySetInnerHTML={{ __html: classElement.preview_content }}>
                         </div>
                         <div class="content-block">
                             <div class="sub-menu" hidden>

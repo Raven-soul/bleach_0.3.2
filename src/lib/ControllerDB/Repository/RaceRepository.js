@@ -26,3 +26,16 @@ export const getRaceContent = (race_name = 'Gecon') => {
     `;
     return db.prepare(sql).all();
 };
+
+export const getRaceContentData = (race_name = 'Gecon') => {
+    const sql = `
+        select crd.*
+          from cnt_race_menu race_menu
+               inner join cnt_race race on race.race_id = race_menu.id
+               inner join cnt_race_data crd on crd.race_id = race.id
+         where race_menu.latin_name = '${race_name}'
+         order by crd.id
+      
+    `;
+    return db.prepare(sql).all();
+};

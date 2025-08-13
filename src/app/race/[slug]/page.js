@@ -2,9 +2,8 @@ import Image from 'next/image'
 
 import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/ClassRepository";
 
-import { getRaceContent } from "@/lib/ControllerDB/Repository/RaceRepository";
+import { getRaceContent, getRaceContentData } from "@/lib/ControllerDB/Repository/RaceRepository";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
-import { SpoilerHead } from "@/components/page_part/user_side/common/buttons";
 
 export function generateStaticParams() {
     const pages = ['Gecon', 'People', 'Soul', 'Hollow', 'Quincy', 'Fullbringer', 'Visored', 'Bount'];
@@ -15,6 +14,7 @@ export default async function Page({ params }) {
     const { slug } = await params
     
     let raceElement = getRaceContent(slug)[0];
+    raceElement['ContentData'] = getRaceContentData(slug);
 
 //-----------------------------------------------------------------
 
@@ -42,7 +42,7 @@ export default async function Page({ params }) {
                                 </div>
                             </div>
                         </div>
-                        <div class="content-block" dangerouslySetInnerHTML={{ __html: raceElement.pretable_content }}>
+                        <div class="content-block" dangerouslySetInnerHTML={{ __html: raceElement.preview_content }}>
                         </div>
                         <div class="content-block">
                             <div class="sub-menu" hidden>
@@ -53,7 +53,18 @@ export default async function Page({ params }) {
                                 <a href="#">data</a>
                             </div>
                             <div class="content">
-                                
+                                {raceElement.ContentData.map((skill)=>{
+                                    if(skill.data_type == 0)
+                                    {   
+                                        return(
+                                            <div class="data-content">
+                                                <h3>{skill.name}</h3>
+                                                <p class="level">{skill.requirements}</p>
+                                                <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
                     </div>
