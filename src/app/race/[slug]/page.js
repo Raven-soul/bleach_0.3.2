@@ -1,9 +1,8 @@
 import Image from 'next/image'
 
-import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/ClassRepository";
-
-import { getRaceContent, getRaceContentData } from "@/lib/ControllerDB/Repository/RaceRepository";
-import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { getRaceContent, getRaceContentData } from '@/lib/ControllerDB/Repository/RaceRepository';
+import { PageLoad } from '@/components/page_part/user_side/common/Load';
+import { Galary } from '@/components/page_part/user_side/common/galary';
 
 export function generateStaticParams() {
     const pages = ['Gecon', 'People', 'Soul', 'Hollow', 'Quincy', 'Fullbringer', 'Visored', 'Bount'];
@@ -69,15 +68,13 @@ export default async function Page({ params }) {
                         </div>
                     </div>
                 </div>
-                <div class="image-block" hidden>
+                <div class="image-block">
                     <div class="row-2">
                         <div class="col">
                             <h6>Галерея</h6>
                         </div>
                         <div class="col">
-                            <div class="image-gallery-data-set">
-                                @@CLASSIMAGEBLOCK@@
-                            </div>
+                            <Galary/>
                         </div>
                     </div>
                 </div>
