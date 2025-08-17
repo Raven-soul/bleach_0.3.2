@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { useEffect } from "react";
+import { Icon } from '@/components/page_part/server_side/common/fontawesome'
 
 import list_button_ico from "@/../public/img/home/list_button_ico.png";
 import list_exit_ico from "@/../public/img/home/list_exit_ico.png";
@@ -103,18 +104,23 @@ export function Mobile_list_button(){
 }
 
 export function ChevronМenuButton ({selection_id, selection_name, chevrone, hide_section}) {
-    useEffect(()=>{},);
+    let hideTagClassName = "." + hide_section + "-" + selection_id;
+        let chevronClassName_s = "." + chevrone + "-" + selection_id + "-show";
+        let chevronClassName_h = "." + chevrone + "-" + selection_id + "-hide";
+    
+    useEffect(()=>{
+        $(chevronClassName_h).toggle();
+    },);
 
     const func = (()=>{
-        let hideTagClassName = "." + hide_section + "-" + selection_id;
-        let chevronClassName = "." + chevrone + "-" + selection_id;
-
         if ( $(hideTagClassName).css("display") == "none" ){
             $(hideTagClassName).css("display","block");
-            $(chevronClassName).html( "<i class=\"fa-solid fa-chevron-down\"></i>" );
+            $(chevronClassName_s).css("display","block");
+            $(chevronClassName_h).css("display","none");
         } else {
             $(hideTagClassName).css("display","none");
-            $(chevronClassName).html( "<i class=\"fa-solid fa-chevron-left\"></i>" );
+            $(chevronClassName_s).css("display","none");
+            $(chevronClassName_h).css("display","block");
         }
     });
 
@@ -124,8 +130,9 @@ export function ChevronМenuButton ({selection_id, selection_name, chevrone, hid
                 <div class="col label">
                     {selection_name}
                 </div>
-                <div class={"col-auto d-flex align-items-center "+ chevrone +"-" + selection_id}>
-                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <div class={"col-auto d-flex align-items-center"}>
+                    <Icon name={'faChevronDown'} className={chevrone + "-" + selection_id + "-show"}/>
+                    <Icon name={'faChevronLeft'} className={chevrone + "-" + selection_id + "-hide"}/>
                 </div>
             </div>
         </button>

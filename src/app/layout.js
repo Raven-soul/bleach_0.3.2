@@ -1,11 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./../components/css/common.css";
 import "./../components/css/multiplatform.css";
+
 import {Menu} from "../components/page_part/server_side/index/menu";
 import {Footer} from "../components/page_part/server_side/index/footer";
-
 import {Mobile_list_button} from "../components/page_part/user_side/common/buttons.js";
-import {FontAwesome, Jquery} from "../components/page_part/user_side/scripts/header";
+
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
+//import {FontAwesome, Jquery} from "../components/page_part/user_side/scripts/header";
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -23,8 +28,6 @@ export default function RootLayout({ children }) {
             <body> 
                 <div class="main-block">
                     <header>
-                        <Jquery/>
-                        <FontAwesome/>
                         <div class="stub-header">data</div>
                         <div class="header-area">
                             <div class="container">
