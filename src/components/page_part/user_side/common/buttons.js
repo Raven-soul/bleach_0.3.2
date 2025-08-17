@@ -64,7 +64,7 @@ export function Menu_stroke_link({link, logo, show, name, key}){
             <Link href={link} class="w-100 p-0" onClick={func}>
                 <div class="row m-0">
                     <div class="col-1 p-0 image-data">
-                        <i class={logo} aria-hidden="true"></i>
+                        <Icon name={logo}/>
                     </div>
                     <div class="col content-data strike_line">
                         {check_strike()}
