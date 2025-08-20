@@ -22,12 +22,12 @@ export default function Race(param) {
             <div class="row-2">
                 {menuTemplate.map((group)=>{
                     return (
-                        <div class="grid-group">
+                        <div key={'group_' + group.id} class="grid-group">
                             <div class="grid-group-name">{group.name}</div>
                             <div class="grid-group-data">
                                 {group.content.map((element)=>{                                    
                                     return(
-                                        <PageMenuItem link={element.link} name={element.name} latin_name={element.latin_name} logo={element.logo}/>
+                                        <PageMenuItem link={element.link} name={element.name} latin_name={element.latin_name} logo={element.logo} key={'menu_item_' + element.id}/>
                                     )
                                 })}
                             </div>

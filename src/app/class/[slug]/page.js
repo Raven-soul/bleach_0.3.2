@@ -11,6 +11,7 @@ import Image from 'next/image'
 import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/ClassRepository";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 import { SpoilerHead } from "@/components/page_part/user_side/common/buttons";
+import { Gallary } from '@/components/page_part/server_side/common/gallary';
 
 export function generateStaticParams() {
     const pages = ['Shinigami', 'Quincy', 'Arrankar', 'Fullbringer', 'Bount'];
@@ -55,6 +56,7 @@ export default async function Page({ params }) {
         for(let j=1; j<=table.col_num; j++){
             var check = (j == 3)? true : false
             cnt.push({
+                key: 'col_' + j,
                 val: table.content[i]['col_' + j],
                 cls: 'left-content',
                 check: check
@@ -107,7 +109,7 @@ export default async function Page({ params }) {
                                         <tr class="tb-head-row">
                                             {table.header.map((head)=>{
                                                 return(
-                                                    <th>
+                                                    <th key={'head_' + head.head_name}>
                                                         <span class="long">{head.head_name}</span>
                                                         <span class="short" title={head.head_name}>{head.head_name_short}</span>
                                                     </th>
@@ -117,16 +119,16 @@ export default async function Page({ params }) {
                                         <tr class="tb-empty-row">
                                             {table.header.map((head)=>{
                                                 return(
-                                                    <td>{head.head_dash}</td>
+                                                    <td key={'head_dash_' + head.head_name}>{head.head_dash}</td>
                                                 )
                                             })}
                                         </tr>
                                         {table.content.map((row)=>{
                                             return(
-                                                <tr>
+                                                <tr key={'content_' + row.id}>
                                                     {row.data.map((line)=>{
                                                         return(
-                                                            <td class={(line.check)? line.cls : ""}>
+                                                            <td key={line.key} class={(line.check)? line.cls : ""}>
                                                                 {line.val}
                                                             </td>
                                                         )
@@ -142,7 +144,7 @@ export default async function Page({ params }) {
                                     if(skill.data_type == 0)
                                     {   
                                         return(
-                                            <div class="data-content">
+                                            <div key={'data_content_' + skill.id} class="data-content">
                                                 <h3>{skill.name}</h3>
                                                 <p class="level">{skill.requirements}</p>
                                                 <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
@@ -152,7 +154,7 @@ export default async function Page({ params }) {
                                     else if(skill.data_type == 1) 
                                     {
                                         return(
-                                            <div class="data-content">
+                                            <div key={'data_content_' + skill.id} class="data-content">
                                                 <h1>{skill.name}</h1>
                                                 <p>{skill.value}</p>
                                                 <div class="blue-data-area">
@@ -181,7 +183,7 @@ export default async function Page({ params }) {
                                     }
                                     else if(skill.data_type == 2) {
                                         return(
-                                            <div class="data-content">
+                                            <div key={'data_content_' + skill.id} class="data-content">
                                                 <h1>{skill.name}</h1>
                                                 <p>{skill.value}</p>
                                                 { (()=>{
@@ -244,13 +246,13 @@ export default async function Page({ params }) {
                                     {classElement.SpoilerList.map((spoiler)=>{
                                         if(spoiler.is_special != 0) return(<></>)
                                         else return(
-                                            <div class="spec-info-block">                                        
+                                            <div key={'spoiler_' + spoiler.id} class="spec-info-block">                                        
                                                 <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
                                                 <div class={"hidden-data-item hb-" + spoiler.id}>
                                                     <p>{spoiler.description}</p>
                                                     {spoiler.content.map((block)=>{
                                                         return(
-                                                            <div class="data-content">
+                                                            <div key={'spoiler_content_' + block.id} class="data-content">
                                                                 {(() => {
                                                                     if(block.h5_tag == 1) return(
                                                                         <h5>{block.name}</h5>
@@ -273,18 +275,7 @@ export default async function Page({ params }) {
                         </div>
                     </div>
                 </div>
-                <div class="image-block" hidden>
-                    <div class="row-2">
-                        <div class="col">
-                            <h6>Галерея</h6>
-                        </div>
-                        <div class="col">
-                            <div class="image-gallery-data-set">
-                                @@CLASSIMAGEBLOCK@@
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Gallary pageName={'class'} slug={slug}/>
             </div>
         </div>
     )

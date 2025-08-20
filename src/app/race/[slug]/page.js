@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import { getRaceContent, getRaceContentData } from '@/lib/ControllerDB/Repository/RaceRepository';
 import { PageLoad } from '@/components/page_part/user_side/common/Load';
-import { Galary } from '@/components/page_part/user_side/common/galary';
+import { Gallary } from '@/components/page_part/server_side/common/gallary';
 
 export function generateStaticParams() {
     const pages = ['Gecon', 'People', 'Soul', 'Hollow', 'Quincy', 'Fullbringer', 'Visored', 'Bount'];
@@ -56,7 +56,7 @@ export default async function Page({ params }) {
                                     if(skill.data_type == 0)
                                     {   
                                         return(
-                                            <div class="data-content">
+                                            <div key={'data_content_' + skill.id} class="data-content">
                                                 <h3>{skill.name}</h3>
                                                 <p class="level">{skill.requirements}</p>
                                                 <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
@@ -68,16 +68,7 @@ export default async function Page({ params }) {
                         </div>
                     </div>
                 </div>
-                <div class="image-block">
-                    <div class="row-2">
-                        <div class="col">
-                            <h6>Галерея</h6>
-                        </div>
-                        <div class="col">
-                            <Galary/>
-                        </div>
-                    </div>
-                </div>
+                <Gallary pageName={'race'} slug={slug}/>
             </div>
         </div>
     )
