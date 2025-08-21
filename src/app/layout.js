@@ -27,6 +27,9 @@ export default function RootLayout({ children }) {
         <html lang="ru" >
             <body> 
                 <div class="main-block">
+                    <gallery className={'gallery-data-block'}>
+                        <div className={'image-block'}></div>
+                    </gallery>
                     <header>
                         <div class="stub-header">data</div>
                         <div class="header-area">
