@@ -3,6 +3,7 @@ import { GetGallaryItem } from "@/components/page_part/user_side/common/gallary_
 
 export function Gallary({pageName, slug}){
     var list;
+    let res = true;
 
     switch (pageName) {
     case 'class':
@@ -11,19 +12,11 @@ export function Gallary({pageName, slug}){
         list = GetGalleryRace(slug); break;
     default:
         list = null;
+        res = false;
     }
 
-    console.log('slug = ' + slug);
-    console.log('pageName = ' + pageName);
-
-    // let galleryModel = {
-    //     pageName: name,
-    //     slug: slug
-    // }
-    // if(res == null) {return(<></>)}
-    // else 
-
-    return(
+    if(res == false) {return(<></>)}
+    else return(
         <div class="image-block">
             <div class="row-2">
                 <div class="col">

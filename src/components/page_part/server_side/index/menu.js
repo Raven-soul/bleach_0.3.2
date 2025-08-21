@@ -21,7 +21,7 @@ export async function MenuTemplateList() {
                             <ul key={"list_" + selection.id}>
                                 {selection.content.map((line) => {
                                     return(
-                                        <Menu_stroke_link link={line.link} logo={line.logo} show={line.show} name={line.name} key={'line_' + line.cm_id}/>
+                                        <Menu_stroke_link link={line.link} logo={line.logo} show={line.show} name={line.name} key={'line_' + line.cm_id} selection_id={selection.id} chevrone={chevrone} hide_section={hide_section}/>
                                     )
                                 })}
                             </ul>

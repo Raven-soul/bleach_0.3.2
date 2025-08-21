@@ -46,7 +46,9 @@ export function PageMenuItem({link, name, latin_name, logo}){
     )
 }
 
-export function Menu_stroke_link({link, logo, show, name, key}){
+export function Menu_stroke_link({link, logo, show, name, key, selection_id, chevrone, hide_section}){
+    let hideTagClassName = "." + hide_section + "-" + selection_id;
+    let chevronClassName_h = "." + chevrone + "-" + selection_id + "-hide";
     
     var check_strike = (()=>{
         if(show == 1) return (name)
@@ -54,6 +56,9 @@ export function Menu_stroke_link({link, logo, show, name, key}){
     });
 
     const func = (()=>{
+        if($(hideTagClassName).css("display") == "none"){
+            $(chevronClassName_h).css("display","none");
+        }
         if($('.menu-block-back').hasClass('active')){
             Mobile_list_button_function();
         }
@@ -105,8 +110,8 @@ export function Mobile_list_button(){
 
 export function ChevronМenuButton ({selection_id, selection_name, chevrone, hide_section}) {
     let hideTagClassName = "." + hide_section + "-" + selection_id;
-        let chevronClassName_s = "." + chevrone + "-" + selection_id + "-show";
-        let chevronClassName_h = "." + chevrone + "-" + selection_id + "-hide";
+    let chevronClassName_s = "." + chevrone + "-" + selection_id + "-show";
+    let chevronClassName_h = "." + chevrone + "-" + selection_id + "-hide";
     
     useEffect(()=>{
         $(chevronClassName_h).toggle();
