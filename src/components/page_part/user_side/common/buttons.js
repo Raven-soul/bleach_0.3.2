@@ -46,19 +46,13 @@ export function PageMenuItem({link, name, latin_name, logo}){
     )
 }
 
-export function Menu_stroke_link({link, logo, show, name, key, selection_id, chevrone, hide_section}){
-    let hideTagClassName = "." + hide_section + "-" + selection_id;
-    let chevronClassName_h = "." + chevrone + "-" + selection_id + "-hide";
-    
+export function Menu_stroke_link({link, logo, show, name, key}){    
     var check_strike = (()=>{
         if(show == 1) return (name)
         else return(<strike>{name}</strike>)
     });
 
     const func = (()=>{
-        if($(hideTagClassName).css("display") == "none"){
-            $(chevronClassName_h).css("display","none");
-        }
         if($('.menu-block-back').hasClass('active')){
             Mobile_list_button_function();
         }
@@ -112,10 +106,6 @@ export function ChevronМenuButton ({selection_id, selection_name, chevrone, hid
     let hideTagClassName = "." + hide_section + "-" + selection_id;
     let chevronClassName_s = "." + chevrone + "-" + selection_id + "-show";
     let chevronClassName_h = "." + chevrone + "-" + selection_id + "-hide";
-    
-    useEffect(()=>{
-        $(chevronClassName_h).toggle();
-    },);
 
     const func = (()=>{
         if ( $(hideTagClassName).css("display") == "none" ){
@@ -136,8 +126,8 @@ export function ChevronМenuButton ({selection_id, selection_name, chevrone, hid
                     {selection_name}
                 </div>
                 <div class={"col-auto d-flex align-items-center"}>
-                    <Icon name={'faChevronDown'} className={chevrone + "-" + selection_id + "-show"}/>
-                    <Icon name={'faChevronLeft'} className={chevrone + "-" + selection_id + "-hide"}/>
+                    <div className={chevrone + "-" + selection_id + "-show"}><Icon name={'faChevronDown'}/></div>
+                    <div className={chevrone + "-" + selection_id + "-hide"} style={{display: "none"}}><Icon name={'faChevronLeft'}/></div>
                 </div>
             </div>
         </button>
