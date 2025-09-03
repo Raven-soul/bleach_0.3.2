@@ -17,7 +17,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import { 
-    faFileLines 
+    faFileLines,
+    faCircleXmark
 } from '@fortawesome/free-regular-svg-icons'
 // import { faThumbsUp } from '@fortawesome/free-brands-svg-icons'
 
@@ -54,6 +55,9 @@ export function Icon({name, className, style}){
             icon = faFlag; break;
         case 'faEarthAmericas':
             icon = faEarthAmericas; break;
+            
+        case 'faCircleXmark':
+            icon = faCircleXmark; break;
         default:
             icon = faBan;
     }

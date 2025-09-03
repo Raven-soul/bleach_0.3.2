@@ -4,6 +4,7 @@ import "./../components/css/multiplatform.css";
 
 import {Menu} from "../components/page_part/server_side/index/menu";
 import {Footer} from "../components/page_part/server_side/index/footer";
+import {GallaryMain} from "../components/page_part/server_side/common/gallary";
 import {Mobile_list_button} from "../components/page_part/user_side/common/buttons.js";
 
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -27,9 +28,7 @@ export default function RootLayout({ children }) {
         <html lang="ru" >
             <body> 
                 <div class="main-block">
-                    <gallery className={'gallery-data-block'}>
-                        <div className={'image-block'}></div>
-                    </gallery>
+                    <GallaryMain/>
                     <header>
                         <div class="stub-header">data</div>
                         <div class="header-area">

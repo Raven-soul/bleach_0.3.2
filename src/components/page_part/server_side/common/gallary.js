@@ -1,5 +1,27 @@
 import { GetGalleryClass, GetGalleryRace } from "@/lib/ControllerDB/Repository/GalleryRepository"
 import { GetGallaryItem } from "@/components/page_part/user_side/common/gallary_user"
+import {Icon} from "@/components/page_part/server_side/common/fontawesome"
+
+export function GallaryMain(){
+    return(
+        <gallery className={'gallery-data-block'}>
+            <div style={{marginBottom: 20 + 'px', visibility: 'hidden'}}>data</div>
+            <div className="container">
+                <div className="row-2">
+                    <div className="col-auto">
+                        <button>
+                            <Icon name={'faCircleXmark'}/>
+                        </button>
+                    </div>
+                    <div className="col ">
+                        data
+                        <div className={'image-block'}></div>
+                    </div>
+                </div>
+            </div>                        
+        </gallery>
+    )
+}
 
 export function Gallary({pageName, slug}){
     var list;

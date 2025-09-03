@@ -77,9 +77,11 @@ html body{
     display: none;
 }
 .gallery-data-block .image-block img {
-    height: auto;
+    display: none;
+    /* height: auto;
     max-height: 90vh;
-    max-width: 90vw;
+    max-width: 90vw; */
+    /* будет стайл на теге, с вычислимыми пределами. нужно понять как взять размеры окна в jquery и проблема будет решена */
     background-color: aliceblue;
 }
 /* ------------------------------------------------------------- gallery end */

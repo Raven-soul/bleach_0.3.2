@@ -23,6 +23,8 @@ export function GetGallaryItem({list}){
                             $('.gallery-data-block .image-block').html(data);
                             $('.gallery-data-block .image-block img').attr('width', image.width);
                             $('.gallery-data-block .image-block img').attr('height', image.height);
+
+                            $('.gallery-data-block').addClass('active');
                          })}>
                         <Image
                             src={require(`@/../public/img/archive/${image.img_path}`)}
