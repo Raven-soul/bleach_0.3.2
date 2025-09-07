@@ -34,6 +34,11 @@ export function GetGallaryItem({list}){
                             if(image.width > image.height) {
                                 calc_width = window_w;
                                 calc_height = (window_w * image.height) / image.width;
+
+                                if(calc_height > window_h) {
+                                    calc_height = window_h;
+                                    calc_width = (window_h * image.width)  / image.height;
+                                }
                                 dt = 1;
                             } 
                             else if(image.width < image.height){
