@@ -1,6 +1,5 @@
 import { GetGalleryClass, GetGalleryRace } from "@/lib/ControllerDB/Repository/GalleryRepository"
-import { GetGallaryItem } from "@/components/page_part/user_side/common/gallary_user"
-import {Icon} from "@/components/page_part/server_side/common/fontawesome"
+import { GetGallaryItem, CloseButton } from "@/components/page_part/user_side/common/gallary_user"
 
 export function GallaryMain(){
     return(
@@ -9,13 +8,12 @@ export function GallaryMain(){
             <div className="container">
                 <div className="row-2">
                     <div className="col-auto close-button-area">
-                        <button className="close-button">
-                            <Icon name={'faCircleXmark'} className={'close-icon'}/>
-                        </button>
+                        <CloseButton/>
                     </div>
-                    <div className="col ">
-                        data
-                        <div className={'image-block'}></div>
+                    <div className="col">
+                        <div className={'image-main-block'}>
+                            <div style={{visibility: "hidden"}}>data</div>
+                        </div>
                     </div>
                 </div>
             </div>                        

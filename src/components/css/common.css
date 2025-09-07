@@ -63,21 +63,20 @@ html body{
     cursor: pointer;
     z-index: 6;
 }
-.gallery-data-block .image-block {
+.gallery-data-block .image-main-block {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     top: 0;
     right: 0;
     width: 100%;
-    padding-top: 40px;
+    /* padding-top: 10px; */
 }
 .gallery-data-block:not(.active){
     display: none;
 }
-.gallery-data-block .image-block img {
-    display: none;
+.gallery-data-block .image-main-block img {
+    /* display: none; */
     /* height: auto;
     max-height: 90vh;
     max-width: 90vw; */
@@ -98,7 +97,6 @@ html body{
 .gallery-data-block .close-button-area .close-button{
     width: auto;
     height: auto;
-
     background: none;
     border: none;
 }
