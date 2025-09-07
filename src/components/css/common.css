@@ -84,6 +84,25 @@ html body{
     /* будет стайл на теге, с вычислимыми пределами. нужно понять как взять размеры окна в jquery и проблема будет решена */
     background-color: aliceblue;
 }
+
+.gallery-data-block .close-button-area {
+    display: flex;
+    justify-content: right;
+}
+
+.gallery-data-block .close-button-area .close-icon {
+    font-size: 30px;
+    color: white;
+}
+
+.gallery-data-block .close-button-area .close-button{
+    width: auto;
+    height: auto;
+
+    background: none;
+    border: none;
+}
+
 /* ------------------------------------------------------------- gallery end */
 /* ------------------------------------------------------------- tags start */
 li {

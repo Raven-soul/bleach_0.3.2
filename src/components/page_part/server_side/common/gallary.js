@@ -5,12 +5,12 @@ import {Icon} from "@/components/page_part/server_side/common/fontawesome"
 export function GallaryMain(){
     return(
         <gallery className={'gallery-data-block'}>
-            <div style={{marginBottom: 20 + 'px', visibility: 'hidden'}}>data</div>
+            <div style={{marginBottom: 30 + 'px', visibility: 'hidden'}}>data</div>
             <div className="container">
                 <div className="row-2">
-                    <div className="col-auto">
-                        <button>
-                            <Icon name={'faCircleXmark'}/>
+                    <div className="col-auto close-button-area">
+                        <button className="close-button">
+                            <Icon name={'faCircleXmark'} className={'close-icon'}/>
                         </button>
                     </div>
                     <div className="col ">
@@ -37,12 +37,12 @@ export function Gallary({pageName, slug}){
 
     if(list.length == 0) {return(<></>)}
     else return(
-        <div class="image-block">
-            <div class="row-2">
-                <div class="col">
+        <div className="image-block">
+            <div className="row-2">
+                <div className="col">
                     <h6>Галерея</h6>
                 </div>
-                <div class="col">
+                <div className="col">
                     <GetGallaryItem list={list}/>
                 </div>
             </div>
