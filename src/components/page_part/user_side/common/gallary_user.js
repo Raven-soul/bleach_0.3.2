@@ -6,11 +6,16 @@ import { useEffect, useState } from "react";
 import {Icon} from "@/components/page_part/server_side/common/fontawesome"
 
 export function GetGallaryItem({list}){
+    useEffect(()=>{
+        const area_width1 = getAreaWidth($(window).width());
+        alert(area_width1);
+    }, []);
+
     return(
         <div class="image-gallery-data-set">
             {(()=>{
                 const area_width = getAreaWidth(useWindowSize().width);
-                alert(area_width);
+                
                 let row_gallary = [];
                 let row_element_list = [];
                 let preview_width = 0;
