@@ -40,7 +40,7 @@ export function Gallary({pageName, slug}){
                 <div className="col">
                     <h6>Галерея</h6>
                 </div>
-                <div className="col">
+                <div className="col gallary-area">
                     <GetGallaryItem list={list}/>
                 </div>
             </div>

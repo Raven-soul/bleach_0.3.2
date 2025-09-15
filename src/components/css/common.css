@@ -543,8 +543,8 @@ a.read-all:hover{
 }
 .image-block .image-gallery-data-set .image-data img{
     position: relative;
-    width: 100%;
-    height: 100%;    
+    /* width: 100%;
+    height: 100%;     */
     border-radius: 5px;
 }
 .image-block .image-gallery-data-set .image-data img:hover{
