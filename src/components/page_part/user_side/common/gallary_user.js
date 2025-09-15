@@ -10,7 +10,7 @@ export function GetGallaryItem({list}){
         <div class="image-gallery-data-set">
             {(()=>{
                 const area_width = getAreaWidth(useWindowSize().width);
-                
+                alert(area_width);
                 let row_gallary = [];
                 let row_element_list = [];
                 let preview_width = 0;
