@@ -6,15 +6,16 @@ import { useEffect, useState } from "react";
 import {Icon} from "@/components/page_part/server_side/common/fontawesome"
 
 export function GetGallaryItem({list}){
-    useEffect(()=>{
-        const area_width1 = getAreaWidth($(window).width());
-        alert(area_width1);
-    }, []);
+    // useEffect(()=>{
+    //     const area_width1 = getAreaWidth($(window).width());
+    //     alert(area_width1);
+    // }, []);
 
     return(
         <div class="image-gallery-data-set">
             {(()=>{
-                const area_width = getAreaWidth(useWindowSize().width);
+                const window_w = useWindowSize().width;
+                const area_width = getAreaWidth(window_w);
                 
                 let row_gallary = [];
                 let row_element_list = [];
@@ -93,9 +94,19 @@ export function GetGallaryItem({list}){
                         end_height = (start_height * end_width) / start_width;
 
                         row_gallary[i]['end_height'] = end_height;
+
+                        row_gallary[i]['area_percent'] = (100 * end_height) / area_width; 
+                            //получаю процентное соотношение к принятой ширине экрана -- результат h%
+                        row_gallary[i]['window_percent'] = (row_gallary[i].area_percent * window_w) / area_width; 
+                            //получаю процентное соотношение к реальной ширине экрана -- результат h%
                     }
                     else{
                         row_gallary[i]['end_height'] = 200;
+
+                        row_gallary[i]['area_percent'] = (100 * row_gallary[i].end_height) / area_width; 
+                            //получаю процентное соотношение к принятой ширине экрана -- результат h%
+                        row_gallary[i]['window_percent'] = (row_gallary[i].area_percent * window_w) / area_width; 
+                            //получаю процентное соотношение к реальной ширине экрана -- результат h%
                     }
 
                     /*
@@ -105,6 +116,9 @@ export function GetGallaryItem({list}){
                             is_last: false,               -- заключающие элементы в строке
 
                             end_height: 200,              -- итоговая высота строки, чтобы изображения были по размеру страницы
+
+                            area_percent:                 -- процентное соотношение к принятой ширине экрана
+                            window_percent:               -- процентное соотношение к реальной ширине экрана
                         }
                     */
                 }
@@ -167,13 +181,39 @@ export function GetGallaryItem({list}){
                                                     $('.gallery-data-block').addClass('active');
                                                 })}
                                             >
-                                                <Image
+                                                {(()=>{
+                                                    if(area_width <= 720) {
+                                                        return(
+                                                            <Image
+                                                                src={require(`@/../public/img/archive/${image.img_path}`)}
+                                                                height={0}//{row.end_height}
+                                                                width={0}//{((image.width * row.end_height) / image.height)}
+                                                                alt={image.name}
+                                                                quality={100}
+                                                                style={{height: `${row.window_percent}%`, width: `${((row.window_percent * image.width) / image.height)}%`}}
+                                                            />
+                                                        )
+                                                    }
+                                                    else {
+                                                        return(
+                                                            <Image
+                                                                src={require(`@/../public/img/archive/${image.img_path}`)}
+                                                                height={row.end_height}
+                                                                width={((image.width * row.end_height) / image.height)}
+                                                                alt={image.name}
+                                                                quality={100}
+                                                            />
+                                                        )
+                                                    }
+                                                })()}
+                                                {/* <Image
                                                     src={require(`@/../public/img/archive/${image.img_path}`)}
-                                                    height={row.end_height}
-                                                    width={((image.width * row.end_height) / image.height)}
+                                                    height={0}//{row.end_height}
+                                                    width={0}//{((image.width * row.end_height) / image.height)}
                                                     alt={image.name}
                                                     quality={100}
-                                                />
+                                                    style={{height: `${row.window_percent}%`, width: `${((row.window_percent * image.width) / image.height)}%`}}
+                                                /> */}
                                             </div>
                                         )
                                     })}
@@ -199,30 +239,30 @@ export function CloseButton() {
 
 // Hook
 function useWindowSize() {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
-  });
-  useEffect(() => {
-    // only execute all the code below in client side
-    // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
-  return windowSize;
+    // Initialize state with undefined width/height so server and client renders match
+    // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+    const [windowSize, setWindowSize] = useState({
+        width: undefined,
+        height: undefined,
+    });
+    useEffect(() => {
+        // only execute all the code below in client side
+        // Handler to call on window resize
+        function handleResize() {
+        // Set window width/height to state
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
+        }
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+        // Call handler right away so state gets updated with initial window size
+        handleResize();
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+    }, []); // Empty array ensures that effect is only run on mount
+    return windowSize;
 }
 
 const getAreaWidth = ((window_w)=>{
