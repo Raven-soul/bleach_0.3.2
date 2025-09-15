@@ -6,15 +6,11 @@ import { useEffect, useState } from "react";
 import {Icon} from "@/components/page_part/server_side/common/fontawesome"
 
 export function GetGallaryItem({list}){
-    // useEffect(()=>{
-    //     const area_width1 = getAreaWidth($(window).width());
-    //     alert(area_width1);
-    // }, []);
 
     return(
         <div class="image-gallery-data-set">
             {(()=>{
-                const window_w = useWindowSize().width;
+                const window_w = useWindowSize().width - 15;
                 const area_width = getAreaWidth(window_w);
                 
                 let row_gallary = [];
@@ -34,8 +30,6 @@ export function GetGallaryItem({list}){
                             is_last: false,
                             id: index
                         }
-                        
-                        index++;
 
                         row_gallary.push(row_data); 
 
@@ -44,6 +38,19 @@ export function GetGallaryItem({list}){
 
                         preview_width = preview_width + img_w + 5;
                         row_element_list.push(list[i]);
+
+                        if((i + 1) == list.length){
+                            index++;
+
+                            let row_data = {
+                                row_width_200: preview_width,
+                                list: row_element_list,
+                                is_last: true,
+                                id: index
+                            }
+
+                            row_gallary.push(row_data);
+                        }
 
                     }
                     else if((i + 1) == list.length){
@@ -75,8 +82,8 @@ export function GetGallaryItem({list}){
                     // console.log('img_w = ' + img_w);
                     // console.log('area_width = ' + area_width);                   
                     // console.log('(i + 1) == list.length = ' + ((i + 1) == list.length));                   
-                    // console.log('index = ' + index);                   
-                    // console.log('row_gallary.is_last = ' + row_gallary[0].is_last);                   
+                    // console.log('index = ' + index);     
+                                      
                     // console.log('row_gallary.list = ' + row_gallary[0].list);                   
 
                 }
@@ -127,7 +134,7 @@ export function GetGallaryItem({list}){
                     <div className="image-set">
                         {row_gallary.map((row)=>{
                             return(
-                                <div className="image-set-row my-2" key={'image_set_row_' + row.id}>
+                                <div className="image-set-row my-1" key={'image_set_row_' + row.id}>
                                     {row.list.map((image)=>{
                                         return(
                                             <div id={'image_' + image.id} key={'image_' + image.id} class="image-data" 
@@ -182,7 +189,8 @@ export function GetGallaryItem({list}){
                                                 })}
                                             >
                                                 {(()=>{
-                                                    if(area_width <= 720) {
+                                                    if(area_width < 540) {
+                                                        
                                                         return(
                                                             <Image
                                                                 src={require(`@/../public/img/archive/${image.img_path}`)}
@@ -206,14 +214,6 @@ export function GetGallaryItem({list}){
                                                         )
                                                     }
                                                 })()}
-                                                {/* <Image
-                                                    src={require(`@/../public/img/archive/${image.img_path}`)}
-                                                    height={0}//{row.end_height}
-                                                    width={0}//{((image.width * row.end_height) / image.height)}
-                                                    alt={image.name}
-                                                    quality={100}
-                                                    style={{height: `${row.window_percent}%`, width: `${((row.window_percent * image.width) / image.height)}%`}}
-                                                /> */}
                                             </div>
                                         )
                                     })}
@@ -265,8 +265,9 @@ function useWindowSize() {
     return windowSize;
 }
 
-const getAreaWidth = ((window_w)=>{
+const getAreaWidth = ((window_width)=>{
         let result;
+        let window_w = window_width + 15;
 
         if(window_w >= 1400){ 
             result = 1040; 
@@ -280,8 +281,11 @@ const getAreaWidth = ((window_w)=>{
         else if(window_w >= 770){ 
             result = 720;
         }
-        else { 
+        else if(window_w >= 576){ 
             result = 540;
+        }
+        else {
+            result = window_w;
         }
 
         return result;
