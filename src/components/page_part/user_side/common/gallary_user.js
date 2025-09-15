@@ -70,7 +70,13 @@ export function GetGallaryItem({list}){
                         // console.log('index = ' + i);
                         // console.log('type last');
 
-                        list[i]['margin_left'] = 0;
+                        if(row_element_list.length == 0){
+                            list[i]['margin_left'] = 0;
+                        }
+                        else {
+                            list[i]['margin_left'] = 5;
+                        }
+                        
 
                         preview_width = preview_width + img_w + list[i].margin_left;
                         row_element_list.push(list[i]);
