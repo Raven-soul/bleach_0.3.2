@@ -23,7 +23,13 @@ export function GetGallaryItem({list}){
                 for(let i = 0; i<list.length; i++){
                     var img_w = (list[i]['width'] * common_h_new)/list[i]['height'];                    
 
-                    if((preview_width + img_w + 5) > area_width){
+                    if((preview_width + img_w) > area_width){
+                        // console.log('---------------------');
+                        // console.log('image_name = ' + list[i].name);
+                        // console.log('margin = ' + list[i].margin_left);
+                        // console.log('index = ' + i);
+                        // console.log('type row');
+
                         let row_data = {
                             row_width_200: preview_width,
                             list: row_element_list,
@@ -36,7 +42,9 @@ export function GetGallaryItem({list}){
                         row_element_list = [];
                         preview_width = 0;
 
-                        preview_width = preview_width + img_w + 5;
+                        list[i]['margin_left'] = 0;
+
+                        preview_width = preview_width + img_w + list[i].margin_left;
                         row_element_list.push(list[i]);
 
                         if((i + 1) == list.length){
@@ -52,9 +60,19 @@ export function GetGallaryItem({list}){
                             row_gallary.push(row_data);
                         }
 
+                        index++;
+
                     }
                     else if((i + 1) == list.length){
-                        preview_width = preview_width + img_w + 5;
+                        // console.log('---------------------');
+                        // console.log('image_name = ' + list[i].name);
+                        // console.log('margin = ' + list[i].margin_left);
+                        // console.log('index = ' + i);
+                        // console.log('type last');
+
+                        list[i]['margin_left'] = 0;
+
+                        preview_width = preview_width + img_w + list[i].margin_left;
                         row_element_list.push(list[i]);
 
                         let row_data = {
@@ -63,29 +81,26 @@ export function GetGallaryItem({list}){
                             is_last: true,
                             id: index
                         }
-                        
-                        index++;
 
                         row_gallary.push(row_data);
                     }
-                    else {
-                        preview_width = preview_width + img_w + 5;
+                    else {                        
+                        if(i != 0){
+                            list[i]['margin_left'] = 5;
+                        }
+                        else {
+                            list[i]['margin_left'] = 0;
+                        }                        
+                        
+                        // console.log('---------------------');
+                        // console.log('image_name = ' + list[i].name);
+                        // console.log('margin = ' + list[i].margin_left);
+                        // console.log('index = ' + i);
+                        // console.log('type just');
+
+                        preview_width = preview_width + img_w + list[i].margin_left;
                         row_element_list.push(list[i]);
                     }
-
-                    // console.log('---------');
-                    // console.log('index = ' + index);
-                    // console.log('img_name = ' + list[i].name);
-
-                    // console.log('preview_width + img_w + 5 = ' + (preview_width + img_w + 5));
-                    // console.log('preview_width = ' + preview_width);
-                    // console.log('img_w = ' + img_w);
-                    // console.log('area_width = ' + area_width);                   
-                    // console.log('(i + 1) == list.length = ' + ((i + 1) == list.length));                   
-                    // console.log('index = ' + index);     
-                                      
-                    // console.log('row_gallary.list = ' + row_gallary[0].list);                   
-
                 }
 
                 for(var i = 0; i<row_gallary.length;i++){
@@ -138,6 +153,7 @@ export function GetGallaryItem({list}){
                                     {row.list.map((image)=>{
                                         return(
                                             <div id={'image_' + image.id} key={'image_' + image.id} class="image-data" 
+                                                style={{marginLeft: `${image.margin_left}px`}}
                                                 onClick={(()=>{
                                                     var data = $('#image_' + image.id).html();
                                                     var image_main_block = $('.gallery-data-block .image-main-block');
@@ -185,6 +201,8 @@ export function GetGallaryItem({list}){
                                                     $('.gallery-data-block .image-main-block img').attr('width', `${calc_width} px`);
                                                     $('.gallery-data-block .image-main-block img').attr('height', `${calc_height} px`);
                                                     $('.gallery-data-block .image-main-block img').css(`aspect-ratio`,`${image.width} / ${image.height}`);
+                                                    $('.gallery-data-block .image-main-block img').css({width: ''});
+                                                    $('.gallery-data-block .image-main-block img').css({height: ''});
                                                     $('.gallery-data-block').addClass('active');
                                                 })}
                                             >
@@ -285,7 +303,7 @@ const getAreaWidth = ((window_width)=>{
             result = 540;
         }
         else {
-            result = window_w;
+            result = window_w - 15;
         }
 
         return result;
