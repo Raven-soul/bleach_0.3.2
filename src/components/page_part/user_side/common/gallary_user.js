@@ -9,8 +9,8 @@ export function GetGallaryItem({list}){
     return(
         <div class="image-gallery-data-set">
             {(()=>{
-                let area_w = () => { return getAreaWidth($(window).width()) }; 
-                let area_width = area_w();
+                const area_width = getAreaWidth(useWindowSize().width);
+                
                 let row_gallary = [];
                 let row_element_list = [];
                 let preview_width = 0;
@@ -22,13 +22,14 @@ export function GetGallaryItem({list}){
                     var img_w = (list[i]['width'] * common_h_new)/list[i]['height'];                    
 
                     if((preview_width + img_w + 5) > area_width){
-                        index++;
-
                         let row_data = {
                             row_width_200: preview_width,
                             list: row_element_list,
-                            is_last: false
+                            is_last: false,
+                            id: index
                         }
+                        
+                        index++;
 
                         row_gallary.push(row_data); 
 
@@ -40,23 +41,23 @@ export function GetGallaryItem({list}){
 
                     }
                     else if((i + 1) == list.length){
-                        index++;
-
                         preview_width = preview_width + img_w + 5;
                         row_element_list.push(list[i]);
 
                         let row_data = {
                             row_width_200: preview_width,
                             list: row_element_list,
-                            is_last: true
+                            is_last: true,
+                            id: index
                         }
+                        
+                        index++;
 
                         row_gallary.push(row_data);
                     }
                     else {
                         preview_width = preview_width + img_w + 5;
                         row_element_list.push(list[i]);
-                        
                     }
 
                     // console.log('---------');
@@ -92,12 +93,6 @@ export function GetGallaryItem({list}){
                         row_gallary[i]['end_height'] = 200;
                     }
 
-                    // console.log(
-                    //     ' ---------------- row_gallary = ' + row_gallary[i].row_width_200 
-                    //     + ', window = ' + area_width 
-                    //     + ', old_h = 200, new_h = ' + row_gallary[i].end_height
-                    // );
-
                     /*
                         row_gallary: {
                             row_width_200: preview_width, -- ширина изображения при высоте 200px
@@ -105,7 +100,6 @@ export function GetGallaryItem({list}){
                             is_last: false,               -- заключающие элементы в строке
 
                             end_height: 200,              -- итоговая высота строки, чтобы изображения были по размеру страницы
-                            converted_height: 75          -- итоговая высота строки при учете, что 200px = 75pt для image
                         }
                     */
                 }
@@ -114,7 +108,7 @@ export function GetGallaryItem({list}){
                     <div className="image-set">
                         {row_gallary.map((row)=>{
                             return(
-                                <div className="image-set-row my-2">
+                                <div className="image-set-row my-2" key={'image_set_row_' + row.id}>
                                     {row.list.map((image)=>{
                                         return(
                                             <div id={'image_' + image.id} key={'image_' + image.id} class="image-data" 
@@ -198,24 +192,52 @@ export function CloseButton() {
     )
 }
 
-function getAreaWidth(window_w){
-    let result;
-
-    if(window_w >= 1400){ 
-        result = 1040; 
+// Hook
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // only execute all the code below in client side
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
     }
-    else if(window_w >= 1200){ 
-        result = 860;
-    }
-    else if(window_w >= 1000){ 
-        result = 680;
-    }
-    else if(window_w >= 770){ 
-        result = 720;
-    }
-    else { 
-        result = 540;
-    }
-
-    return result;
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
 }
+
+const getAreaWidth = ((window_w)=>{
+        let result;
+
+        if(window_w >= 1400){ 
+            result = 1040; 
+        }
+        else if(window_w >= 1200){ 
+            result = 860;
+        }
+        else if(window_w >= 1000){ 
+            result = 680;
+        }
+        else if(window_w >= 770){ 
+            result = 720;
+        }
+        else { 
+            result = 540;
+        }
+
+        return result;
+    });
