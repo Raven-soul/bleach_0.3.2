@@ -24,6 +24,9 @@ export function GetGallaryItem({list}){
                     var img_w = (list[i]['width'] * common_h_new)/list[i]['height'];                    
 
                     if((preview_width + img_w) > area_width){
+                        // Сноска полной строки по ширене экрана!!
+                        // записывает изображение сверх строки на следующую
+
                         // console.log('---------------------');
                         // console.log('image_name = ' + list[i].name);
                         // console.log('margin = ' + list[i].margin_left);
@@ -64,6 +67,8 @@ export function GetGallaryItem({list}){
 
                     }
                     else if((i + 1) == list.length){
+                        // Ловец, принимает и выводит незавершенную строку изображений. длина строки не обязательно должна быть по размеру экрана!
+
                         // console.log('---------------------');
                         // console.log('image_name = ' + list[i].name);
                         // console.log('margin = ' + list[i].margin_left);
@@ -90,7 +95,9 @@ export function GetGallaryItem({list}){
 
                         row_gallary.push(row_data);
                     }
-                    else {                        
+                    else {
+                        // Наполнитель, наполняет строку изображениями, по очереди
+
                         if(i != 0){
                             list[i]['margin_left'] = 5;
                         }
