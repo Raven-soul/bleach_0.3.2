@@ -19,17 +19,22 @@ export function GetGallaryItem({list}){
 
                 let index = 0;
                 const common_h_new = 200;
+
+                //console.log('----------------------------------------');
                 
                 for(let i = 0; i<list.length; i++){
                     var img_w = (list[i]['width'] * common_h_new)/list[i]['height'];                    
 
-                    if((preview_width + img_w) > area_width){
+                    if((preview_width + img_w + 5) > area_width){
                         // Сноска полной строки по ширене экрана!!
                         // записывает изображение сверх строки на следующую
 
                         // console.log('---------------------');
                         // console.log('image_name = ' + list[i].name);
                         // console.log('margin = ' + list[i].margin_left);
+                        // console.log('width + img = ' + (preview_width + img_w));
+                        // console.log('width = ' + preview_width);
+                        // console.log('area_width = ' + area_width);
                         // console.log('index = ' + i);
                         // console.log('type row');
 
@@ -72,6 +77,9 @@ export function GetGallaryItem({list}){
                         // console.log('---------------------');
                         // console.log('image_name = ' + list[i].name);
                         // console.log('margin = ' + list[i].margin_left);
+                        // console.log('width + img = ' + (preview_width + img_w));
+                        // console.log('width = ' + preview_width);
+                        // console.log('area_width = ' + area_width);
                         // console.log('index = ' + i);
                         // console.log('type last');
 
@@ -108,6 +116,9 @@ export function GetGallaryItem({list}){
                         // console.log('---------------------');
                         // console.log('image_name = ' + list[i].name);
                         // console.log('margin = ' + list[i].margin_left);
+                        // console.log('width + img = ' + (preview_width + img_w));
+                        // console.log('width = ' + preview_width);
+                        // console.log('area_width = ' + area_width);
                         // console.log('index = ' + i);
                         // console.log('type just');
 
@@ -192,6 +203,12 @@ export function GetGallaryItem({list}){
                                                     else if(image.width < image.height){
                                                         calc_height = window_h;
                                                         calc_width = (window_h * image.width)  / image.height;
+
+                                                        if(calc_width > window_w) {
+                                                            calc_width = window_w;
+                                                            calc_height = (window_w * image.height) / image.width;
+                                                        }
+
                                                         dt = 2;
                                                     }
                                                     else {
@@ -235,12 +252,21 @@ export function GetGallaryItem({list}){
                                                     }
                                                     else {
                                                         return(
+                                                            // <Image
+                                                            //     src={require(`@/../public/img/archive/${image.img_path}`)}
+                                                            //     height={row.end_height}
+                                                            //     width={((image.width * row.end_height) / image.height)}
+                                                            //     alt={image.name}
+                                                            //     quality={100}
+                                                            // />
+
                                                             <Image
                                                                 src={require(`@/../public/img/archive/${image.img_path}`)}
-                                                                height={row.end_height}
-                                                                width={((image.width * row.end_height) / image.height)}
+                                                                height={0}
+                                                                width={0}
                                                                 alt={image.name}
                                                                 quality={100}
+                                                                style={{height: `${row.area_percent}%`, width: `${((row.area_percent * image.width) / image.height)}%`}}
                                                             />
                                                         )
                                                     }
