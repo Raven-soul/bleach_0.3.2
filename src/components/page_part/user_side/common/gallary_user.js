@@ -252,14 +252,6 @@ export function GetGallaryItem({list}){
                                                     }
                                                     else {
                                                         return(
-                                                            // <Image
-                                                            //     src={require(`@/../public/img/archive/${image.img_path}`)}
-                                                            //     height={row.end_height}
-                                                            //     width={((image.width * row.end_height) / image.height)}
-                                                            //     alt={image.name}
-                                                            //     quality={100}
-                                                            // />
-
                                                             <Image
                                                                 src={require(`@/../public/img/archive/${image.img_path}`)}
                                                                 height={0}
