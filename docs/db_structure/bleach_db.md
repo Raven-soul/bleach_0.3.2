@@ -5,14 +5,14 @@
 [[cnt_content_gallery]]
 
 **menu**
-cnt_menu
-cnt_menu_group
+[[cnt_menu]]
+[[cnt_menu_group]]
 
 **class**
-cnt_class
+[[cnt_class]]
 cnt_class_data
-cnt_class_menu
-cnt_class_menu_group
+[[cnt_class_menu]]
+[[cnt_class_menu_group]]
 cnt_class_spoiler
 cnt_class_spoiler_headers
 cnt_class_table
