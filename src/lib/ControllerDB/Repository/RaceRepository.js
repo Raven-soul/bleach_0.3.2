@@ -2,8 +2,13 @@ import db from './../db_connection';
 
 export const getRaceMenuGroupContent = () => {
     const sql = `
-        select *
-          from cnt_race_menu_group ccmg
+        select mg.id,
+               mg.ticket_type,
+               mg.name
+          from c_ticket_menu_group mg
+               inner join c_ticket_type type on type.id = mg.ticket_type
+                          and type.name = 'race'
+         order by mg.id
     `;
     return db.prepare(sql).all();
 };
@@ -11,31 +16,34 @@ export const getRaceMenuGroupContent = () => {
 export const getRaceMenuContent = (group_id = 1) => {
     const sql = `
         select *
-          from cnt_race_menu ccm
-         where ccm.group_id = ${group_id}
+          from c_ticket_menu tm
+          where tm.group_id = ${group_id}
     `;
     return db.prepare(sql).all();
 };
 
 export const getRaceContent = (race_name = 'Gecon') => {
     const sql = `
-        select race.*
-          from cnt_race_menu race_menu
-               inner join cnt_race race on race.race_id = race_menu.id
-         where race_menu.latin_name = '${race_name}'
+        select rt.*
+          from c_ticket_menu tm
+               inner join c_race_ticket rt on rt.race_id = tm.id
+         where tm.latin_name = '${race_name}'
     `;
     return db.prepare(sql).all();
 };
 
 export const getRaceContentData = (race_name = 'Gecon') => {
     const sql = `
-        select crd.*
-          from cnt_race_menu race_menu
-               inner join cnt_race race on race.race_id = race_menu.id
-               inner join cnt_race_data crd on crd.race_id = race.id
-         where race_menu.latin_name = '${race_name}'
-         order by crd.id
-      
+        select td.*
+          from c_ticket_menu tm
+               inner join c_ticket_menu_group mg on mg.id = tm.group_id
+               inner join c_ticket_type type on type.id = mg.ticket_type
+                          and type.name = 'race'
+               inner join c_race_ticket rt on rt.race_id = tm.id
+               inner join c_ticket_data td on td.ticket_id = rt.ticket_id
+            
+         where tm.latin_name = '${race_name}'
+         order by td.id      
     `;
     return db.prepare(sql).all();
 };

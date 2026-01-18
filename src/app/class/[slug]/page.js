@@ -8,7 +8,9 @@ import Image from 'next/image'
 // getClassSpoilersHead 
 // getClassSpoilersContent
 
-import { getClassContent, getClassTableHeadersContent, getClassTableContent, getClassContentData, getClassSpoilersHead, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/ClassRepository";
+import { getClassContent, getClassContentData } from "@/lib/ControllerDB/Repository/ClassRepository";
+import { getClassTable, getClassTableContent, } from "@/lib/ControllerDB/Repository/TableRepository";
+import { getClassSpoilers, getClassSpecialSpoilers, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/SpoilerRepository";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 import { SpoilerHead } from "@/components/page_part/user_side/common/buttons";
 import { Gallary } from '@/components/page_part/server_side/common/gallary';
@@ -37,15 +39,22 @@ export default async function Page({ params }) {
     
     let classElement = getClassContent(slug)[0];
 
-    classElement['ContentData'] = getClassContentData(slug);
-    classElement['SpoilerList'] = getClassSpoilersHead(slug);
+    classElement['ContentData'] = getClassContentData(slug);    
+    
+    classElement['SpecialSpoilerList'] = getClassSpecialSpoilers(slug);
+    classElement['SpoilerList'] = getClassSpoilers(slug);
 
+    // блок обработки спойлеров в теле страницы среди информации
+    for(let i = 0; i < classElement.SpecialSpoilerList.length; i++){
+        classElement.SpecialSpoilerList[i]['content'] = getClassSpoilersContent(classElement.SpecialSpoilerList[i].id);
+    } 
+
+    // блок обработки спойлеров в конце тела страницы, где основа архитипов
     for(let i = 0; i < classElement.SpoilerList.length; i++){
         classElement.SpoilerList[i]['content'] = getClassSpoilersContent(classElement.SpoilerList[i].id);
-    }   
-
+    }  
     
-    let table = getClassTableHeadersContent(slug)[0];
+    let table = getClassTable(slug)[0];
 
     table['content'] = getClassTableContent(table.id);
     table['header'] = getTableHeaders(table);    
@@ -189,10 +198,10 @@ export default async function Page({ params }) {
                                                 { (()=>{
                                                     let check = false;
                                                     var spoiler;
-                                                    for(let i = 0; i<classElement.SpoilerList.length; i++){
-                                                        if(classElement.SpoilerList[i].id != skill.spoiler_id){}
+                                                    for(let i = 0; i<classElement.SpecialSpoilerList.length; i++){
+                                                        if(classElement.SpecialSpoilerList[i].id != skill.spoiler_id){}
                                                         else {
-                                                            spoiler = classElement.SpoilerList[i];
+                                                            spoiler = classElement.SpecialSpoilerList[i];
                                                             check = true;
                                                         }
                                                     }
@@ -244,8 +253,7 @@ export default async function Page({ params }) {
                                     <p>{classElement.archetype_description}</p>
 
                                     {classElement.SpoilerList.map((spoiler)=>{
-                                        if(spoiler.is_special != 0) return(<></>)
-                                        else return(
+                                        return(
                                             <div key={'spoiler_' + spoiler.id} class="spec-info-block">                                        
                                                 <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
                                                 <div class={"hidden-data-item hb-" + spoiler.id}>

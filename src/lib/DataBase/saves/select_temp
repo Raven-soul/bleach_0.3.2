@@ -1,0 +1,104 @@
+select sp.*
+  from c_ticket_menu tm
+       inner join c_ticket_menu_group mg on mg.id = tm.group_id
+       inner join c_ticket_type type on type.id = mg.ticket_type
+                  and type.name = 'class'
+       inner join c_class_ticket ct on ct.class_id = tm.id
+       inner join c_spoiler sp on sp.ticket_id = ct.ticket_id
+ where 1=1
+       and tm.latin_name = 'Fullbringer'
+       and sp.is_special = 0 
+ order by sp.id 
+
+/*select sd.*
+  from c_spoiler sp 
+       inner join c_spoiler_data sd on sd.spoiler_id = sp.id
+       
+ where sp.id = 1
+ order by sd.id 
+ 
+select sp.*
+          from cnt_class_spoiler_headers sh 
+               inner join cnt_class_spoiler sp on sp.spoiler_id = sh.id
+         where sh.id =1
+         order by sp.id */
+
+
+         
+/*select sh.*
+          from cnt_class_menu class_menu
+               inner join cnt_class class on class.class_id = class_menu.id
+               inner join cnt_class_spoiler_headers sh on sh.class_id = class.id
+         where class_menu.latin_name = 'Shinigami'
+         order by sh.id*/
+
+/*select *
+          from c_table_data td
+         where td.head = 1
+         order by td.id */
+
+/*select tb.*
+  from c_ticket_menu tm
+       inner join c_ticket_menu_group mg on mg.id = tm.group_id
+       inner join c_ticket_type type on type.id = mg.ticket_type
+                  and type.name = 'class'
+       inner join c_class_ticket ct on ct.class_id = tm.id
+       inner join c_table tb on tb.ticket_id = ct.ticket_id
+       
+ where tm.latin_name = 'Shinigami'*/
+
+/*select ccth.*
+  from cnt_class_menu class_menu
+       inner join cnt_class class on class.class_id = class_menu.id
+       inner join cnt_class_table_headers ccth on ccth.class_id = class.id
+       
+ where class_menu.latin_name = 'Shinigami'*/
+
+/*select td.*
+  from c_ticket_menu tm
+       inner join c_ticket_menu_group mg on mg.id = tm.group_id
+       inner join c_ticket_type type on type.id = mg.ticket_type
+                  and type.name = 'race'
+       inner join c_race_ticket rt on rt.race_id = tm.id
+       inner join c_ticket_data td on td.ticket_id = rt.ticket_id
+       
+ where tm.latin_name = 'Gecon'
+ order by td.id*/
+--
+--select crd.*
+--          from cnt_race_menu race_menu
+--               inner join cnt_race race on race.race_id = race_menu.id
+--               inner join cnt_race_data crd on crd.race_id = race.id
+--         where race_menu.latin_name = 'Gecon'
+--         order by crd.id
+--
+
+
+
+/*select rt.*
+  from c_ticket_menu tm
+       inner join c_race_ticket rt on rt.race_id = tm.id
+ where tm.latin_name = 'Gecon'
+          
+cnt_race_menu race_menu
+               inner join cnt_race race on race.race_id = race_menu.id
+         where race_menu.latin_name = 'Gecon'*/
+
+/*select *
+  from c_ticket_menu tm
+ where tm.group_id = 2
+ 
+select *
+          from cnt_race_menu ccm
+         where ccm.group_id = 2*/
+               /*cnt_race_menu ccm
+         where ccm.group_id = 1*/
+         
+
+/*select mg.id,
+               mg.ticket_type,
+               mg.name
+          from c_ticket_menu_group mg
+               inner join c_ticket_type type on type.id = mg.ticket_type
+                          and type.name = 'class'
+         order by mg.id*/

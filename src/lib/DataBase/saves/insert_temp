@@ -1,0 +1,109 @@
+insert into c_ticket_data(
+    ticket_id,
+    data_type,
+    name,
+    requirements,
+    value,
+    spoiler_id
+)
+select rt.ticket_id,
+       rd.data_type,
+       rd.name,
+       rd.requirements,
+       rd.value,
+       rd.spoiler_id
+  from c_class_ticket rt
+       inner join cnt_class_data rd on rd.class_id = rt.id
+
+/*update c_race_ticket
+   set ticket_id = t.id
+  from (
+      select *
+        from c_ticket tk
+       where tk.ticket_type = 2
+       ) t
+   where t.ticket = c_race_ticket.id
+*/
+
+/*insert into c_table_data(
+    head,
+    col_1,
+    col_2,
+    col_3,
+    col_4,
+    col_5,
+    col_6,
+    col_7,
+    synonim
+)
+select t.id as head,
+       ct.col_1,
+       ct.col_2,
+       ct.col_3,
+       ct.col_4,
+       ct.col_5,
+       ct.col_6,
+       ct.col_7,
+       ct.synonim
+       
+  from cnt_class_table ct
+       left join c_table t on t.id = ct.head*/
+
+/*insert into c_table(
+    ticket_id,
+    col_num,
+    col_1,
+    col_1_short,
+    col_2,
+    col_2_short,
+    col_3,
+    col_3_short,
+    col_4,
+    col_4_short,
+    col_5,
+    col_5_short,
+    col_6,
+    col_6_short,
+    col_7,
+    col_7_short
+)
+select t.id,
+       tb.col_num,
+       tb.col_1,
+       tb.col_1_short,
+       tb.col_2,
+       tb.col_2_short,
+       tb.col_3,
+       tb.col_3_short,
+       tb.col_4,
+       tb.col_4_short,
+       tb.col_5,
+       tb.col_5_short,
+       tb.col_6,
+       tb.col_6_short,
+       tb.col_7,
+       tb.col_7_short
+        
+  from cnt_class_table_headers tb
+       left join c_ticket t on t.ticket = cast(tb.class_id as varchar) and t.ticket_type = 1*/
+/*insert into c_spoiler_data(spoiler_id,h5_tag,name,requirements,value)
+select s.id as spoiler_id,
+       cs.h5_tag,
+       cs.name,
+       cs.requirements,
+       cs.value
+       
+  from cnt_class_spoiler cs
+       left join c_spoiler s on s.id = cs.spoiler_id*/
+
+/*insert into c_spoiler(ticket_id,name,description,is_special)
+select ticket.id as ticket_id,
+       s.name,
+       s.description,
+       s.is_special
+       
+  from c_ticket_type t
+       left join c_ticket ticket on ticket.ticket_type = t.id
+       left join cnt_class_spoiler_headers s on cast(s.class_id as varchar) = ticket.ticket
+ where t.name = 'class'*/
+         --cnt_class_spoiler s
