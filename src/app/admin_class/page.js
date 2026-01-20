@@ -5,13 +5,13 @@ import { insertTicketType } from "@/lib/ControllerDB/Repository/AdminRepository"
 
 import Form from 'next/form'
 
-export async function insertVal(data) {
-    'use server';
+// export async function insertVal(data) {
+//     'use server';
 
-    var a = await insertTicketType(data);
-    console.log(a);
-    return false;
-}
+//     var a = await insertTicketType(data);
+//     console.log(a);
+//     return false;
+// }
 
 export default function Class(param) {
     const { data } = param;
@@ -27,7 +27,7 @@ export default function Class(param) {
                     <div class="col">
                         <div class="race-class-data-area">
                             <div class="main-content-block">
-                                <Form action={insertVal}>                                    
+                                {/* <Form action={insertVal}>                                    
                                     <div>
                                         <label htmlFor="name">Enter your name: </label>
                                         <input name="name" id="name"/>
@@ -39,7 +39,7 @@ export default function Class(param) {
                                     <div>
                                         <button type="submit">Submit</button>
                                     </div>
-                                </Form>
+                                </Form> */}
                             </div>
                         </div>
                     </div>
