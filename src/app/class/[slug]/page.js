@@ -9,7 +9,7 @@ import Image from 'next/image'
 // getClassSpoilersContent
 
 import { getClassContent, getClassContentData } from "@/lib/ControllerDB/Repository/ClassRepository";
-import { getClassTable, getClassTableContent, } from "@/lib/ControllerDB/Repository/TableRepository";
+import { getClassTable, getClassTableContent } from "@/lib/ControllerDB/Repository/TableRepository";
 import { getClassSpoilers, getClassSpecialSpoilers, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/SpoilerRepository";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 import { SpoilerHead } from "@/components/page_part/user_side/common/buttons";

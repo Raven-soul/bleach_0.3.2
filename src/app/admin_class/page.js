@@ -1,8 +1,17 @@
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
-import { getClassMenuGroupContent, getClassMenuContent } from "@/lib/ControllerDB/Repository/ClassRepository";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
-import { PageMenuItem } from "@/components/page_part/user_side/common/buttons"
+import { insertTicketType } from "@/lib/ControllerDB/Repository/AdminRepository";
+
+import Form from 'next/form'
+
+export async function insertVal(data) {
+    'use server';
+
+    var a = await insertTicketType(data);
+    console.log(a);
+    return false;
+}
 
 export default function Class(param) {
     const { data } = param;
@@ -18,22 +27,22 @@ export default function Class(param) {
                     <div class="col">
                         <div class="race-class-data-area">
                             <div class="main-content-block">
-                                <form action="" method="get" class="form-example">
-                                    <div class="form-example">
-                                        <label for="name">Enter your name: </label>
-                                        <input type="text" name="name" id="name" required />
+                                <Form action={insertVal}>                                    
+                                    <div>
+                                        <label htmlFor="name">Enter your name: </label>
+                                        <input name="name" id="name"/>
                                     </div>
-                                    <div class="form-example">
-                                        <label for="email">Enter your email: </label>
-                                        <input type="email" name="email" id="email" required />
+                                    <div>
+                                        <label htmlFor="discription">Enter your discription: </label>
+                                        <input name="discription" id="discription"/>
                                     </div>
-                                    <div class="form-example">
-                                        <input type="submit" value="Subscribe!" />
+                                    <div>
+                                        <button type="submit">Submit</button>
                                     </div>
-                                </form>
+                                </Form>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
