@@ -5,13 +5,13 @@ import { insertTicketType, getTicketMenuGroup } from "@/lib/ControllerDB/Reposit
 
 import Form from 'next/form'
 
-export async function insertVal(data) {
-    'use server';
+// export async function insertVal(data) {
+//     'use server';
 
-    var a = await data;// insertTicketType(data);
-    console.log(a);
-    return false;
-}
+//     var a = await data;// insertTicketType(data);
+//     console.log(a);
+//     return false;
+// }
 
 export default function Class(param) {
     const { data } = param;
@@ -28,7 +28,7 @@ export default function Class(param) {
                     <div class="col">
                         <div class="race-class-data-area">
                             <div class="main-content-block container">
-                                <Form action={insertVal} className="row-2 form-insert">
+                                <Form action="" className="row-2 form-insert">{/* action={insertVal} */}
                                     <div>
                                         <label htmlFor="group_id" className="col-4">1. Enter your name: </label>
                                         <select name="group_id" id="group_id" className="col-8">
