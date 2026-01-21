@@ -1,21 +1,22 @@
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
-import { insertTicketType } from "@/lib/ControllerDB/Repository/AdminRepository";
+import { insertTicketType, getTicketMenuGroup } from "@/lib/ControllerDB/Repository/AdminRepository";
 
 import Form from 'next/form'
 
-// export async function insertVal(data) {
-//     'use server';
+export async function insertVal(data) {
+    'use server';
 
-//     var a = await insertTicketType(data);
-//     console.log(a);
-//     return false;
-// }
+    var a = await data;// insertTicketType(data);
+    console.log(a);
+    return false;
+}
 
 export default function Class(param) {
     const { data } = param;
     const pageTitle = getPageTitleTemplate('admin_class');
+    const ticketMenu = getTicketMenuGroup();
 
     return (
         <div class="row-2">
@@ -23,23 +24,43 @@ export default function Class(param) {
             <div class="col">
                 <PageLoad page_title={pageTitle[0].name} />
                 <div class="row-2">
-                    <div class="col chapter-title-mobile">{pageTitle[0].name}</div>
+                    {/* <div class="col chapter-title-mobile">{pageTitle[0].name}</div> */}
                     <div class="col">
                         <div class="race-class-data-area">
-                            <div class="main-content-block">
-                                {/* <Form action={insertVal}>                                    
+                            <div class="main-content-block container">
+                                <Form action={insertVal} className="row-2 form-insert">
                                     <div>
-                                        <label htmlFor="name">Enter your name: </label>
-                                        <input name="name" id="name"/>
+                                        <label htmlFor="group_id" className="col-4">1. Enter your name: </label>
+                                        <select name="group_id" id="group_id" className="col-8">
+                                            <option value="" className="null-dt">Выберете значение</option>
+                                            {ticketMenu.map((element)=>{
+                                                return(
+                                                    <option value={element.id} key={element.id}>{element.name}</option>
+                                                )
+                                            })}
+                                        </select>
                                     </div>
                                     <div>
-                                        <label htmlFor="discription">Enter your discription: </label>
-                                        <input name="discription" id="discription"/>
+                                        <label htmlFor="name" className="col-4">2. Name: </label>
+                                        <input name="name" id="name" className="col-8"/>
                                     </div>
                                     <div>
-                                        <button type="submit">Submit</button>
+                                        <label htmlFor="latin_name" className="col-4">3. latin_name: </label>
+                                        <input name="latin_name" id="latin_name" className="col-8"/>
                                     </div>
-                                </Form> */}
+                                    <div>
+                                        <label htmlFor="logo" className="col-4">4. logo: </label>
+                                        <input name="logo" id="logo" className="col-8" placeholder="class/"/>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="link" className="col-4">5. link: </label>
+                                        <input name="link" id="link" className="col-8" placeholder="/class/"/>
+                                    </div>
+                                    <hr/>
+                                    <div className="submit-button">
+                                        <button type="submit">Записать</button>
+                                    </div>
+                                </Form>
                             </div>
                         </div>
                     </div>

@@ -703,3 +703,42 @@ a.read-all:hover{
     color: rgba(0, 0, 0, 0.7);
 }
 /* ------------------------------------------------------------- armament abilities end */
+
+/* ------------------------------------------------------------- form start */
+.form-insert {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.form-insert div{
+    margin-bottom: 5px;
+}
+.form-insert input{
+    border-radius: 5px;
+    border-color: rgb(47, 83, 43);
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.form-insert select{
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.form-insert .submit-button{
+    display: flex;
+    justify-content: right;
+}
+.form-insert .submit-button button{
+    width: 200px;
+    border-radius: 5px;
+    background-color: #867258;
+    color:white;
+}
+.form-insert hr{
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    margin: 20px 0px 10px 0px;
+}
+/* ------------------------------------------------------------- form end */

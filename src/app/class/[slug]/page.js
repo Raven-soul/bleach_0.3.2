@@ -10,7 +10,7 @@ import Image from 'next/image'
 
 import { getClassContent, getClassContentData } from "@/lib/ControllerDB/Repository/ClassRepository";
 import { getClassTable, getClassTableContent } from "@/lib/ControllerDB/Repository/TableRepository";
-import { getClassSpoilers, getClassSpecialSpoilers, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/SpoilerRepository";
+import { getClassSpoilers, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/SpoilerRepository";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 import { SpoilerHead } from "@/components/page_part/user_side/common/buttons";
 import { Gallary } from '@/components/page_part/server_side/common/gallary';
@@ -41,7 +41,7 @@ export default async function Page({ params }) {
 
     classElement['ContentData'] = getClassContentData(slug);    
     
-    classElement['SpecialSpoilerList'] = getClassSpecialSpoilers(slug);
+    classElement['SpecialSpoilerList'] = getClassSpoilers(slug, 1);
     classElement['SpoilerList'] = getClassSpoilers(slug);
 
     // блок обработки спойлеров в теле страницы среди информации
