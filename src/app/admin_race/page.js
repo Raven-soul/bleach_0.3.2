@@ -17,8 +17,8 @@ import Form from 'next/form'
 
 export default function Class(param) {
     const { data } = param;
-    const pageTitle = getPageTitleTemplate('admin_class');
-    const ticketMenu = getTicketMenuGroup();
+    const pageTitle = getPageTitleTemplate('admin_race');
+    const ticketMenu = getTicketMenuGroup('race');
 
     return (
         <div class="row-2">
@@ -59,11 +59,11 @@ export default function Class(param) {
                                         </div>
                                         <div>
                                             <label htmlFor="logo" className="col-4">4. logo: </label>
-                                            <input name="logo" id="logo" className="col-8" placeholder="class/"/>
+                                            <input name="logo" id="logo" className="col-8" placeholder="race/"/>
                                         </div>
                                         <div>
                                             <label htmlFor="link" className="col-4">5. link: </label>
-                                            <input name="link" id="link" className="col-8" placeholder="/class/"/>
+                                            <input name="link" id="link" className="col-8" placeholder="/race/"/>
                                         </div>
                                         <hr/>
                                         <div className="submit-button">

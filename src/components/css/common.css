@@ -709,6 +709,9 @@ a.read-all:hover{
     margin-top: 5px;
     margin-bottom: 15px;
 }
+.form-insert .hide{
+    display: none;
+}
 .form-insert div{
     margin-bottom: 5px;
 }
@@ -740,5 +743,20 @@ a.read-all:hover{
     border-color: black;
     border-width: 1px;
     margin: 20px 0px 10px 0px;
+}
+
+.form-area .hide-button{
+    border-radius: 5px;
+    background-color: #867258;
+    color:white;
+}
+.form-area .hide-button-area{
+    padding:2px;
+    border-radius: 5px;
+    background-color: #c5ab89;
+}
+.form-area .hide-button-name{
+    margin-left: 10px;
+    font-weight: 600;
 }
 /* ------------------------------------------------------------- form end */
