@@ -36,6 +36,7 @@ export const getMenuSectionlist = () => {
     const sql = `
         select *               
           from cnt_menu_group cmg
+         where cmg.show >= 0
          order by cmg.id
     `;
     return db.prepare(sql).all();
@@ -53,7 +54,9 @@ export const getMenuContent = (group_id = 1) => {
                
           from cnt_menu_group cmg
                inner join cnt_menu cm on cm.group_id = cmg.id
-         where case when cmg.id = ${group_id} isnull then 1 = 1 else cmg.id = ${group_id} end
+         where 1=1
+               and case when cmg.id = ${group_id} isnull then 1 = 1 else cmg.id = ${group_id} end
+               and cm.show >= 0
          order by group_id, cm_id
     `;
     return db.prepare(sql).all();
