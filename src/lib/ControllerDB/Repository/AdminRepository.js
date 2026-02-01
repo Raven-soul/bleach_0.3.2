@@ -51,8 +51,10 @@ export const insertParam = (data) => {
 
 export const getParamType = () => {
     const sql = `
-        select *
-          from c_param_type
+        select c.id,
+               c.name,
+               c.latin_name
+          from c_param_type c
     `;
     return db.prepare(sql).all();
 };
@@ -153,6 +155,128 @@ export const getParamListByType = (type_id = 1) => {
         select *
           from c_param p
          where p.type = ${type_id}
+    `;
+    return db.prepare(sql).all();
+};
+
+export const getAdditionalParamList = (group_id = 1) => {
+    const sql = `
+        with t as (
+            select 1 as group_id,
+                   'rules' as value,
+                   'по правилам' as name
+            union all
+            
+            select 1 as group_id,
+                   'for_summon' as value,
+                   'для призыва' as name 
+            union all
+            
+            select 2 as group_id,
+                   'verbal' as value,
+                   'вербальный' as name
+            union all
+            
+            select 2 as group_id,
+                   'somatic' as value,
+                   'соматический' as name
+            union all
+            
+            select 2 as group_id,
+                   'material' as value,
+                   'материальный' as name
+            union all
+            
+            select 2 as group_id,
+                   'released' as value,
+                   'высвобождение' as name
+            union all
+            
+            select 3 as group_id,
+                   'until_saled' as value,
+                   'до отмены' as name
+            union all
+            
+            select 3 as group_id,
+                   'concentration' as value,
+                   'концентрация' as name
+            union all
+            
+            select 3 as group_id,
+                   'minute_1' as value,
+                   '1 минута' as name
+            union all
+            
+            select 3 as group_id,
+                   'minute_2' as value,
+                   '2 минуты' as name
+            union all
+            
+            select 3 as group_id,
+                   'minute_5' as value,
+                   '5 минут' as name
+            union all
+            
+            select 3 as group_id,
+                   'minute_10' as value,
+                   '10 минут' as name
+            union all
+            
+            select 3 as group_id,
+                   'round_1' as value,
+                   '1 раунд' as name
+            union all
+            
+            select 3 as group_id,
+                   'round_2' as value,
+                   '2 раунда' as name
+            union all
+            
+            select 3 as group_id,
+                   'round_5' as value,
+                   '5 раундов' as name
+            union all
+            
+            select 3 as group_id,
+                   'instantly' as value,
+                   'мгновенно' as name
+            union all
+            
+            select 3 as group_id,
+                   'hour' as value,
+                   'час' as name
+            union all
+            
+            select 3 as group_id,
+                   'day_2' as value,
+                   '2 дня' as name
+            union all
+            
+            select 3 as group_id,
+                   'special' as value,
+                   'особый промежуток' as name 
+        )
+
+        select row_number() over(order BY t.group_id) as id,               
+               t.*
+          from t t
+         where t.group_id = ${group_id}
+    `;
+    return db.prepare(sql).all();
+};
+
+export const getAdditionalGroupList = () => {
+    const sql = `
+        select 1 as id,
+               'Определение' as name 
+        union all
+        
+        select 2 as id,
+               'Компоненты' as name 
+        union all
+        
+        select 3 as id,
+               'Длительность' as name 
     `;
     return db.prepare(sql).all();
 };

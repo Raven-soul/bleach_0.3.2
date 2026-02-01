@@ -39,54 +39,54 @@ export default function Class(param) {
                                             </span>
                                         </div>                                        
                                         <Form action="" className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
-                                        <div>
-                                            <label htmlFor="type" className="col-4">1. Тип: </label>
-                                            {(()=>{
-                                                if(lastParam[0].id == null){
-                                                    return(
-                                                        <select name="type" id="type" className="col-8">
-                                                            <option value="" className="null-dt">Выберете значение</option>
-                                                            {paramType.map((element)=>{
-                                                                return(
-                                                                    <option value={element.id} key={element.id}>{element.name}</option>
-                                                                )
-                                                            })}
-                                                        </select>
-                                                    )
-                                                }
-                                                else {
-                                                    return(
-                                                        <select name="type" id="type" className="col-8">
-                                                            {paramType.map((element)=>{
-                                                                if(element.id == parseInt(lastParam[0].type)) {
-                                                                    return(
-                                                                        <option value={element.id} key={element.id} selected={true}>{element.name}</option>
-                                                                    )
-                                                                } else {
+                                            <div>
+                                                <label htmlFor="type" className="col-4">1. Тип: </label>
+                                                {(()=>{
+                                                    if(lastParam[0].id == null){
+                                                        return(
+                                                            <select name="type" id="type" className="col-8">
+                                                                <option value="" className="null-dt">Выберете значение</option>
+                                                                {paramType.map((element)=>{
                                                                     return(
                                                                         <option value={element.id} key={element.id}>{element.name}</option>
                                                                     )
-                                                                }                                                                
-                                                            })}
-                                                        </select>
-                                                    )                                                    
-                                                }
-                                            })()}
-                                            
-                                        </div>
-                                        <div>
-                                            <label htmlFor="name" className="col-4">2. Название: </label>
-                                            <input name="name" id="name" className="col-8"/>                                            
-                                        </div>
-                                        <div>
-                                            <label htmlFor="value" className="col-4">3. Значение: </label>
-                                            <input name="value" id="value" className="col-8"/>                                            
-                                        </div>
-                                        <hr/>
-                                        <div className="submit-button">
-                                            <button type="submit">Записать</button>
-                                        </div>
-                                    </Form>
+                                                                })}
+                                                            </select>
+                                                        )
+                                                    }
+                                                    else {
+                                                        return(
+                                                            <select name="type" id="type" className="col-8">
+                                                                {paramType.map((element)=>{
+                                                                    if(element.id == parseInt(lastParam[0].type)) {
+                                                                        return(
+                                                                            <option value={element.id} key={element.id} selected={true}>{element.name}</option>
+                                                                        )
+                                                                    } else {
+                                                                        return(
+                                                                            <option value={element.id} key={element.id}>{element.name}</option>
+                                                                        )
+                                                                    }                                                                
+                                                                })}
+                                                            </select>
+                                                        )                                                    
+                                                    }
+                                                })()}
+                                                
+                                            </div>
+                                            <div>
+                                                <label htmlFor="name" className="col-4">2. Название: </label>
+                                                <input name="name" id="name" className="col-8"/>                                            
+                                            </div>
+                                            <div>
+                                                <label htmlFor="value" className="col-4">3. Значение: </label>
+                                                <input name="value" id="value" className="col-8"/>                                            
+                                            </div>
+                                            <hr/>
+                                            <div className="submit-button">
+                                                <button type="submit">Записать</button>
+                                            </div>
+                                        </Form>
                                     </div>
                                 </div>                                
                             </div>
