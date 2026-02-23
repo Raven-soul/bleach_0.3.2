@@ -800,3 +800,18 @@ a.read-all:hover{
     height: 50px;
 }
 /* ------------------------------------------------------------- form checker end */
+
+/* ------------------------------------------------------------- armament_update start*/
+table.armament_update{
+    background-color: #fff;
+    
+    font-style: normal;
+}
+table.armament_update th{
+    border: 1px solid #141414;
+    font-weight: normal;
+}
+table.armament_update td{
+    border: 1px solid #141414;
+}
+/* ------------------------------------------------------------- armament_update start*/

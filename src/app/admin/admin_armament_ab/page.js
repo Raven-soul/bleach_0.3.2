@@ -3,14 +3,14 @@ import $ from "jquery"
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
-import { insertParam, getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
+import { insertArmament, getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
 
 import Form from 'next/form'
 
 // export async function insertVal(data) {
 //     'use server';
 
-//     var a = await insertParam(data);
+//     var a = await insertArmament(data);
 //     console.log(a);
 //     return false;
 // }
@@ -49,11 +49,11 @@ export default function Class(param) {
                                                 Добавление способности вооружения
                                             </span>
                                         </div>                                        
-                                        <Form action="" className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
+                                        <Form action={insertVal} className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
                                             {paramType.map((type)=>{
                                                 return(
                                                     <div key={'type_' + type.id}>
-                                                        <label htmlFor={type.latin_name} className="col-4">{type.id} {type.name}</label>
+                                                        <label htmlFor={type.latin_name} className="col-4">{type.ord} - {type.name}</label>
                                                         <select name={type.latin_name} id={type.latin_name} className="col-8">
                                                             <option value="" className="null-dt">Выберете значение</option>
                                                             {type.param_list.map((element)=>{
@@ -81,18 +81,32 @@ export default function Class(param) {
                                                             </div>
                                                             <div className="row" key={'check_' + group.id}>
                                                                 {group.checkList.map((element)=>{
-                                                                    return(
-                                                                        <div className="col-auto check_item" key={'check_list_' + element.id}> 
-                                                                            <label htmlFor={element.value}>{element.name}</label>
-                                                                            <input type="checkbox" id={element.value} name={element.value}/>
-                                                                        </div>
-                                                                    )
+                                                                    if(element.value == 'rules'){
+                                                                        return(
+                                                                            <div className="col-auto check_item" key={'check_list_' + element.id}> 
+                                                                                <label htmlFor={element.value}>{element.name}</label>
+                                                                                <input type="checkbox" id={element.value} name={element.value} defaultChecked/>
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                    else {
+                                                                        return(
+                                                                            <div className="col-auto check_item" key={'check_list_' + element.id}> 
+                                                                                <label htmlFor={element.value}>{element.name}</label>
+                                                                                <input type="checkbox" id={element.value} name={element.value}/>
+                                                                            </div>
+                                                                        )
+                                                                    }                                                                     
                                                                 })}
                                                             </div>
                                                         </div>
                                                     )
                                                 })}
-                                            </div>                                                                                         
+                                            </div>
+                                            <div>
+                                                <label htmlFor="material_data" className="col-4">Материалы: </label>
+                                                <input name="material_data" id="material_data" className="col-8"/>                                            
+                                            </div>                                                                                                                                     
                                             <div>
                                                 <label htmlFor="name" className="col-4">Название: </label>
                                                 <input name="name" id="name" className="col-8"/>                                            
