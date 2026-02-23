@@ -78,7 +78,8 @@ export const getLastParam = () => {
             select -1 as id,
                    '' as type,
                    '' as name,
-                   '' as value
+                   '' as value,
+                   '' as logo
         )
 
         select *
