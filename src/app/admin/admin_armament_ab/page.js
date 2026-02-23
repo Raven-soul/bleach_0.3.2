@@ -49,7 +49,7 @@ export default function Class(param) {
                                                 Добавление способности вооружения
                                             </span>
                                         </div>                                        
-                                        <Form action={insertVal} className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
+                                        <Form action="" className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
                                             {paramType.map((type)=>{
                                                 return(
                                                     <div key={'type_' + type.id}>
