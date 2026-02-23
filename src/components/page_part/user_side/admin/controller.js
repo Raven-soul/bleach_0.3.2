@@ -9,7 +9,7 @@ export function ArmamentTable({list}){
             </tr>
             {list.map((element) => {
                 return(
-                    <tr onClick={((this)=>{alert(element.id)})}>
+                    <tr>
                         <td>{element.id}</td>
                         <td>{element.latin_name}</td>
                     </tr>
