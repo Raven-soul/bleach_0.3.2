@@ -13,7 +13,6 @@ import { useCallback } from 'react'
 // }
 
 export default async function fetch_data(id) {
-    console.log('armament_id = ' + id);
     let response = await fetch('/api/admin/ability',{
             method: 'POST',
             headers: {  
@@ -24,7 +23,10 @@ export default async function fetch_data(id) {
             })
         });
     let result = await response.json();
-    await console.log(result);
+    console.log('-----------------------------------------------------22');
+    console.log('fetch_answer');
+    console.log(result);
+    console.log('-----------------------------------------------------22');
     return result;
 }
 
@@ -49,10 +51,16 @@ export function ArmamentTable({list}){
 export function TableRow({element_id, element_latin_name}){
     let id = element_id;
 
-    const func = (()=>{
-        let res = fetch_data(id); 
-        console.log(res);  
-        alert(JSON.stringify(res));     
+    const func = (async ()=>{
+        let ress = await fetch_data(id).then((res)=>{
+            return res
+        });         
+        console.log('-----------------------------------------------------11');
+        console.log(ress);
+        console.log('-----------------------------------------------------11');
+        //alert(JSON.stringify());     
+
+        console.log('id = ' + ress.armament_id);
     });
 
     return (
