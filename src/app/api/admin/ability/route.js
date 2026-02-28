@@ -1,10 +1,3 @@
-// export async function POST(request) {
-//   const formData = request.formData();
-//   const name = formData.get('key');
-//   const email = formData.get('a');
-//   return Response.json({ name, email });
-// }
-
 export async function POST(request) {
   const body = await request.json();
   console.log('-----------------------------------------------------');
