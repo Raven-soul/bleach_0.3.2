@@ -803,7 +803,7 @@ a.read-all:hover{
 
 /* ------------------------------------------------------------- armament_update start*/
 .armament_update_area{
-    max-height: 1200px;
+    max-height: 900px;
     overflow-y: scroll;
 
     border-top: 1px solid #141414;    

@@ -21,21 +21,20 @@ import Form from 'next/form'
 
 export default function Class(param) {
     const { data } = param;
-    const pageTitle = getPageTitleTemplate('admin_armament_ab_update');
-    // const paramType = getParamType();
-    // const checkGroup = getAdditionalGroupList();
-    // //const checkList = getAdditionalParamList();
-
-    // for(let i = 0; i < paramType.length; i++){
-    //     paramType[i]['last_element'] = getLastAbilityParam(paramType[i].latin_name);//classElement.SpecialSpoilerList[i].id);
-    //     paramType[i]['param_list'] = getParamListByType(paramType[i].id);//classElement.SpecialSpoilerList[i].id);
-    // } 
-
-    // for(let i = 0; i < checkGroup.length; i++){
-    //     checkGroup[i]['checkList'] = getAdditionalParamList(checkGroup[i].id);
-    // }
 
     const aList = getArmamentList();
+    const pageTitle = getPageTitleTemplate('admin_armament_ab_update');
+    const paramType = getParamType();
+    const checkGroup = getAdditionalGroupList();
+    
+    for(let i = 0; i < paramType.length; i++){
+        paramType[i]['param_list'] = getParamListByType(paramType[i].id);
+    } 
+    for(let i = 0; i < checkGroup.length; i++){
+        checkGroup[i]['checkList'] = getAdditionalParamList(checkGroup[i].id);
+    }
+
+    
 
     return (
         <div class="row-2">
@@ -58,8 +57,75 @@ export default function Class(param) {
                                             <div className="col-3">
                                                 <ArmamentTable list={aList}/>
                                             </div>
-                                            <div className="col-auto">
-
+                                            <div className="col-9">
+                                                <Form action="" className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
+                                                     {paramType.map((type)=>{
+                                                        return(
+                                                            <div key={'type_' + type.id}>
+                                                                <label htmlFor={type.latin_name} className="col-4">{type.ord} - {type.name}</label>
+                                                                <select name={type.latin_name} id={type.latin_name} className="col-8">
+                                                                    <option value="" className="null-dt">Выберете значение</option>
+                                                                    {type.param_list.map((element)=>{
+                                                                        return(
+                                                                            <option value={element.id} key={'param_' + element.id}>{element.name}</option>
+                                                                        )                                                                
+                                                                    })}
+                                                                </select>
+                                                            </div> 
+                                                        )
+                                                    })}  
+                                                    <div className="row-2" style={{'margin-top': '10px'}}>
+                                                        {checkGroup.map((group)=>{
+                                                            return(
+                                                                <div className="checkbox-area" key={'check_group_' + group.id}>
+                                                                    <div className="col-3">
+                                                                        <p>{group.name}</p>
+                                                                    </div>
+                                                                    <div className="row" key={'check_' + group.id}>
+                                                                        {group.checkList.map((element)=>{
+                                                                            if(element.value == 'rules'){
+                                                                                return(
+                                                                                    <div className="col-auto check_item" key={'check_list_' + element.id}> 
+                                                                                        <label htmlFor={element.value}>{element.name}</label>
+                                                                                        <input type="checkbox" id={element.value} name={element.value} defaultChecked/>
+                                                                                    </div>
+                                                                                )
+                                                                            }
+                                                                            else {
+                                                                                return(
+                                                                                    <div className="col-auto check_item" key={'check_list_' + element.id}> 
+                                                                                        <label htmlFor={element.value}>{element.name}</label>
+                                                                                        <input type="checkbox" id={element.value} name={element.value}/>
+                                                                                    </div>
+                                                                                )
+                                                                            }                                                                     
+                                                                        })}
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                    <div>
+                                                        <label htmlFor="material_data" className="col-4">Материалы: </label>
+                                                        <input name="material_data" id="material_data" className="col-8"/>                                            
+                                                    </div>                                                                                                                                     
+                                                    <div>
+                                                        <label htmlFor="name" className="col-4">Название: </label>
+                                                        <input name="name" id="name" className="col-8"/>                                            
+                                                    </div>
+                                                    <div>
+                                                        <label htmlFor="requirements" className="col-4" style={{'display': 'block'}}>Требования: </label>
+                                                        <textarea name="requirements" id="requirements" className="requirements"></textarea>                                            
+                                                    </div>
+                                                    <div>
+                                                        <label htmlFor="data" className="col-4" style={{'display': 'block'}}>Контент: </label>
+                                                        <textarea name="data" id="data" className="data"></textarea>                                           
+                                                    </div>
+                                                    <hr/>
+                                                    <div className="submit-button">
+                                                        <button type="submit">Записать</button>
+                                                    </div>
+                                                </Form>
                                             </div>
                                         </div>
                                     </div>

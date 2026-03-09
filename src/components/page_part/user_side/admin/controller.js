@@ -33,16 +33,20 @@ export default async function fetch_data(id) {
 export function ArmamentTable({list}){
     return (
         <div className='armament_update_area'>
-            <table className="armament_update">
-                <tr>
-                    <th>id</th>
-                    <th>ab_name</th>
-                </tr>
-                {list.map((element) => {
-                    return(
-                        <TableRow element_id={element.id} element_latin_name={element.latin_name}/>
-                    )
-                })}
+            <table className="armament_update" key={'armament_table'}>
+                <thead>
+                    <tr key={'tr_head'}>
+                        <th key={'th_head_id'}>id</th>
+                        <th key={'th_head_name'}>ab_name</th>
+                    </tr>
+                </thead>  
+                <tbody>
+                    {list.map((element) => {
+                        return(
+                            <TableRow element_id={element.id} element_latin_name={element.latin_name} key={'armament_table_row' + element.id}/>
+                        )
+                    })}
+                </tbody>
             </table>
         </div>
     )
@@ -60,13 +64,13 @@ export function TableRow({element_id, element_latin_name}){
         console.log('-----------------------------------------------------11');
         //alert(JSON.stringify());     
 
-        console.log('id = ' + ress.armament_id);
+        console.log(ress);
     });
 
     return (
-        <tr onClick={func}>
-            <td>{element_id}</td>
-            <td>{element_latin_name}</td>
+        <tr onClick={func} key={'tr_' + element_id + '_' + element_latin_name}>
+            <td key={'td_element_id' + element_id}>{element_id}</td>
+            <td key={'td_element_name' + element_id}>{element_latin_name}</td>
         </tr>
     )
 }

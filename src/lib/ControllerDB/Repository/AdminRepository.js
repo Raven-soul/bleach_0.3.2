@@ -424,3 +424,46 @@ select ab.id,
 `;
     return db.prepare(sql).all();
 };
+
+export const getArmamentItemAsync = (id) => {
+    const sql = `
+select ab.id,
+       additional.id as additional_id,
+       additional.rules,
+       additional.for_summon,
+       additional.verbal,
+       additional.somatic,
+       additional.material,
+       additional.released,
+       additional.material_data,
+       additional.until_saled,
+       additional.concentration,
+       additional.minute_1,
+       additional.minute_2,
+       additional.minute_5,
+       additional.minute_10,
+       additional.round_1,
+       additional.round_2,
+       additional.round_5,
+       additional.instantly,
+       additional.hour,
+       additional.day_2,
+       additional.special,
+       ab.name,
+       ab.requirements,
+       ab.data,
+       ab.type,
+       ab.cost,
+       ab.hd_hollow,
+       ab.kind,
+       ab.casting_time,
+       ab.range,
+       ab.recharge
+       
+ 
+  from c_armament_ab ab
+       left join c_param_addition additional on additional.id = ab.additional_param
+ where ab.id = ${id}
+`;
+    return db.prepare(sql).all();
+};
