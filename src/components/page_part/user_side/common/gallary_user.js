@@ -8,7 +8,7 @@ import {Icon} from "@/components/page_part/server_side/common/fontawesome"
 export function GetGallaryItem({list}){
 
     return(
-        <div class="image-gallery-data-set">
+        <div className="image-gallery-data-set">
             {(()=>{
                 const window_w = useWindowSize().width - 15;
                 const area_width = getAreaWidth(window_w);
@@ -176,7 +176,7 @@ export function GetGallaryItem({list}){
                                 <div className="image-set-row my-1" key={'image_set_row_' + row.id}>
                                     {row.list.map((image)=>{
                                         return(
-                                            <div id={'image_' + image.id} key={'image_' + image.id} class="image-data" 
+                                            <div id={'image_' + image.id} key={'image_' + image.id} className="image-data" 
                                                 style={{marginLeft: `${image.margin_left}px`}}
                                                 onClick={(()=>{
                                                     var data = $('#image_' + image.id).html();

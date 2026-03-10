@@ -27,19 +27,19 @@ export default function RootLayout({ children }) {
     return (
         <html lang="ru" >
             <body> 
-                <div class="main-block">
+                <div className="main-block">
                     <GallaryMain/>
                     <header>
-                        <div class="stub-header">data</div>
-                        <div class="header-area">
-                            <div class="container">
-                                <div class="row-2">
-                                    <div class="col">
-                                        <div class="row d-flex justify-content-between">
-                                            <div class="col-auto d-flex align-items-center">
-                                                <div class="row">
-                                                    <div class="col-auto p-0 d-flex align-items-center">
-                                                        <Link href="/" class="home-link d-flex align-items-center">
+                        <div className="stub-header">data</div>
+                        <div className="header-area">
+                            <div className="container">
+                                <div className="row-2">
+                                    <div className="col">
+                                        <div className="row d-flex justify-content-between">
+                                            <div className="col-auto d-flex align-items-center">
+                                                <div className="row">
+                                                    <div className="col-auto p-0 d-flex align-items-center">
+                                                        <Link href="/" className="home-link d-flex align-items-center">
                                                             <Image
                                                                 src={home_logo}
                                                                 className={"home-link_ico"}
@@ -49,17 +49,17 @@ export default function RootLayout({ children }) {
                                                             />
                                                         </Link>
                                                     </div>
-                                                    <div class="col-auto chapter-title">
-                                                        <div class="chapter-title-label">
+                                                    <div className="col-auto chapter-title">
+                                                        <div className="chapter-title-label">
                                                             Онлайн-справочник Bleach D&D 5e
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-auto p-0 d-flex align-items-center">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <a href="https://dnd.su" class="dnd-su-link">
+                                            <div className="col-auto p-0 d-flex align-items-center">
+                                                <div className="row">
+                                                    <div className="col">
+                                                        <a href="https://dnd.su" className="dnd-su-link">
                                                             <Image
                                                                 src={dnd_su_logo}
                                                                 className={"dnd-su-ico"}
@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
                                                             />
                                                         </a>
                                                     </div>
-                                                    <div class="col list-button">
+                                                    <div className="col list-button">
                                                         <Mobile_list_button />
                                                     </div>
                                                 </div>
@@ -81,13 +81,13 @@ export default function RootLayout({ children }) {
                         </div>
                     </header>
                     <content>
-                        <div class="content-area my-2">
-                            <div class="container content-container">
-                                <div class="row">
-                                    <div class="col menu-block-back"></div>
+                        <div className="content-area my-2">
+                            <div className="container content-container">
+                                <div className="row">
+                                    <div className="col menu-block-back"></div>
                                     <Menu />
-                                    <div class="col p-0 info-block">
-                                        <div class="row-2">
+                                    <div className="col p-0 info-block">
+                                        <div className="row-2">
                                             {children}
                                         </div>
                                     </div>

@@ -78,54 +78,54 @@ export default async function Page({ params }) {
 //-----------------------------------------------------------------
 
     return (
-        <div class="row-2">
-            <div class="col chapter-title-mobile">{classElement.title_name}</div>
-            <div class="col">
+        <div className="row-2">
+            <div className="col chapter-title-mobile">{classElement.title_name}</div>
+            <div className="col">
                 <PageLoad page_title={classElement.title_name} />
-                <div class="race-class-data-area">
-                    <div class="back-image">
+                <div className="race-class-data-area">
+                    <div className="back-image">
                         {/* <img src="@@CLASSBACKIMAGE@@" alt="back"> */}
                     </div>
-                    <div class="main-content-block">
-                        <div class="title-block">
-                            <div class="row-3">
-                                <div class="col race-class-name">
+                    <div className="main-content-block">
+                        <div className="title-block">
+                            <div className="row-3">
+                                <div className="col race-class-name">
                                     <p>{classElement.class_name}</p>
                                 </div>
-                                <div class="col race-class-source">
+                                <div className="col race-class-source">
                                     <p><strong>Источник:</strong> {'"' + classElement.sorce_name + '"'}</p>
                                 </div>
-                                <div class="col race-class-citation">
+                                <div className="col race-class-citation">
                                     <p>{classElement.comment}</p>
                                     <p>{classElement.comment_author}, <strong>{classElement.comment_author_rank}</strong></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="content-block" dangerouslySetInnerHTML={{ __html: classElement.preview_content }}>
+                        <div className="content-block" dangerouslySetInnerHTML={{ __html: classElement.preview_content }}>
                         </div>
-                        <div class="content-block">
-                            <div class="sub-menu" hidden>
+                        <div className="content-block">
+                            <div className="sub-menu" hidden>
                                 <h5>Меню</h5>
                                 <a href="#">data</a>
                                 <a href="#">data</a>
                                 <a href="#">data</a>
                                 <a href="#">data</a>
                             </div>
-                            <div class="table">
+                            <div className="table">
                                 <h2>{classElement.class_short_name}</h2>
-                                <table class="class-progress-table">
+                                <table className="class-progress-table">
                                     <tbody>
-                                        <tr class="tb-head-row">
+                                        <tr className="tb-head-row">
                                             {table.header.map((head)=>{
                                                 return(
                                                     <th key={'head_' + head.head_name}>
-                                                        <span class="long">{head.head_name}</span>
-                                                        <span class="short" title={head.head_name}>{head.head_name_short}</span>
+                                                        <span className="long">{head.head_name}</span>
+                                                        <span className="short" title={head.head_name}>{head.head_name_short}</span>
                                                     </th>
                                                 )
                                             })}
                                         </tr>
-                                        <tr class="tb-empty-row">
+                                        <tr className="tb-empty-row">
                                             {table.header.map((head)=>{
                                                 return(
                                                     <td key={'head_dash_' + head.head_name}>{head.head_dash}</td>
@@ -137,7 +137,7 @@ export default async function Page({ params }) {
                                                 <tr key={'content_' + row.id}>
                                                     {row.data.map((line)=>{
                                                         return(
-                                                            <td key={line.key} class={(line.check)? line.cls : ""}>
+                                                            <td key={line.key} className={(line.check)? line.cls : ""}>
                                                                 {line.val}
                                                             </td>
                                                         )
@@ -148,14 +148,14 @@ export default async function Page({ params }) {
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="content">
+                            <div className="content">
                                 {classElement.ContentData.map((skill)=>{
                                     if(skill.data_type == 0)
                                     {   
                                         return(
-                                            <div key={'data_content_' + skill.id} class="data-content">
+                                            <div key={'data_content_' + skill.id} className="data-content">
                                                 <h3>{skill.name}</h3>
-                                                <p class="level">{skill.requirements}</p>
+                                                <p className="level">{skill.requirements}</p>
                                                 <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
                                             </div>
                                         )
@@ -163,27 +163,27 @@ export default async function Page({ params }) {
                                     else if(skill.data_type == 1) 
                                     {
                                         return(
-                                            <div key={'data_content_' + skill.id} class="data-content">
+                                            <div key={'data_content_' + skill.id} className="data-content">
                                                 <h1>{skill.name}</h1>
                                                 <p>{skill.value}</p>
-                                                <div class="blue-data-area">
+                                                <div className="blue-data-area">
                                                     <h4>Хиты, владение и снаряжение</h4>
-                                                    <div class="data-block">
+                                                    <div className="data-block">
                                                         <h2>Хиты</h2>
-                                                        <p><strong class="feature-class">Кость Хитов:</strong> {classElement.hit_dice}</p>
-                                                        <p><strong class="feature-class">Хиты на 1 уровне:</strong> {classElement.hit_point_1_lvl}</p>
-                                                        <p><strong class="feature-class">Хиты на следующих уровнях:</strong> {classElement.hit_point_other}</p>
+                                                        <p><strong className="feature-class">Кость Хитов:</strong> {classElement.hit_dice}</p>
+                                                        <p><strong className="feature-class">Хиты на 1 уровне:</strong> {classElement.hit_point_1_lvl}</p>
+                                                        <p><strong className="feature-class">Хиты на следующих уровнях:</strong> {classElement.hit_point_other}</p>
                                                     </div>
-                                                    <div class="data-block">
-                                                        <h2 class="no-underlined-black">Владение</h2>
-                                                        <p><strong class="feature-class">Броня:</strong> {classElement.armor}</p>
-                                                        <p><strong class="feature-class">Оружие:</strong> {classElement.weapon}</p>
-                                                        <p><strong class="feature-class">Инструменты:</strong> {classElement.tools}</p>
-                                                        <p><strong class="feature-class">Спасброски:</strong> {classElement.savethrow}</p>
-                                                        <p><strong class="feature-class">Навыки:</strong> {classElement.skills}</p>
+                                                    <div className="data-block">
+                                                        <h2 className="no-underlined-black">Владение</h2>
+                                                        <p><strong className="feature-class">Броня:</strong> {classElement.armor}</p>
+                                                        <p><strong className="feature-class">Оружие:</strong> {classElement.weapon}</p>
+                                                        <p><strong className="feature-class">Инструменты:</strong> {classElement.tools}</p>
+                                                        <p><strong className="feature-class">Спасброски:</strong> {classElement.savethrow}</p>
+                                                        <p><strong className="feature-class">Навыки:</strong> {classElement.skills}</p>
                                                     </div>
-                                                    <div class="data-block">
-                                                        <h2 class="no-underlined-black">Cнаряжение</h2>
+                                                    <div className="data-block">
+                                                        <h2 className="no-underlined-black">Cнаряжение</h2>
                                                         <div dangerouslySetInnerHTML={{ __html: classElement.equipment }}></div>
                                                     </div>
                                                 </div>
@@ -192,7 +192,7 @@ export default async function Page({ params }) {
                                     }
                                     else if(skill.data_type == 2) {
                                         return(
-                                            <div key={'data_content_' + skill.id} class="data-content">
+                                            <div key={'data_content_' + skill.id} className="data-content">
                                                 <h1>{skill.name}</h1>
                                                 <p>{skill.value}</p>
                                                 { (()=>{
@@ -213,14 +213,14 @@ export default async function Page({ params }) {
                                                     }
                                                     else {
                                                         return(
-                                                            <div class="spoiler">
-                                                                <div class="spec-info-block">
+                                                            <div className="spoiler">
+                                                                <div className="spec-info-block">
                                                                     <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
-                                                                    <div class={"hidden-data-item hb-" + spoiler.id}>
+                                                                    <div className={"hidden-data-item hb-" + spoiler.id}>
                                                                         <p>{spoiler.description}</p>
                                                                         {spoiler.content.map((block)=>{
                                                                             return(
-                                                                                <div class="data-content">
+                                                                                <div className="data-content">
                                                                                     {(() => {
                                                                                         if(block.h5_tag == 1) return(
                                                                                             <h5>{block.name}</h5>
@@ -229,7 +229,7 @@ export default async function Page({ params }) {
                                                                                             <h4>{block.name}</h4>
                                                                                         )
                                                                                     })()}
-                                                                                    <p class="level">{block.requirements}</p>
+                                                                                    <p className="level">{block.requirements}</p>
                                                                                     <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
                                                                                 </div>
                                                                             )
@@ -248,19 +248,19 @@ export default async function Page({ params }) {
                                     )
                                 })}
                                 
-                                <div class="spoiler">
+                                <div className="spoiler">
                                     <h1>{classElement.archetype_name}</h1>
                                     <p>{classElement.archetype_description}</p>
 
                                     {classElement.SpoilerList.map((spoiler)=>{
                                         return(
-                                            <div key={'spoiler_' + spoiler.id} class="spec-info-block">                                        
+                                            <div key={'spoiler_' + spoiler.id} className="spec-info-block">                                        
                                                 <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
-                                                <div class={"hidden-data-item hb-" + spoiler.id}>
+                                                <div className={"hidden-data-item hb-" + spoiler.id}>
                                                     <p>{spoiler.description}</p>
                                                     {spoiler.content.map((block)=>{
                                                         return(
-                                                            <div key={'spoiler_content_' + block.id} class="data-content">
+                                                            <div key={'spoiler_content_' + block.id} className="data-content">
                                                                 {(() => {
                                                                     if(block.h5_tag == 1) return(
                                                                         <h5>{block.name}</h5>
@@ -269,7 +269,7 @@ export default async function Page({ params }) {
                                                                         <h4>{block.name}</h4>
                                                                     )
                                                                 })()}
-                                                                <p class="level">{block.requirements}</p>
+                                                                <p className="level">{block.requirements}</p>
                                                                 <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
                                                             </div>
                                                         )

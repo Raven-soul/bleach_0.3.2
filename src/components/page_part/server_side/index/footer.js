@@ -10,9 +10,9 @@ export async function Footer() {
 
     return (
         <footer suppressHydrationWarning>
-          <div class="footer-area">
-            <div class="container">
-              <div class="row-2 d-flex justify-content-center">
+          <div className="footer-area">
+            <div className="container">
+              <div className="row-2 d-flex justify-content-center">
                 <FooterContent sign={sign} comment={comment} comment_wide={comment_wide}/>                      
               </div>
             </div>

@@ -15,16 +15,16 @@ export default function Class(param) {
   }
 
   return (
-    <div class="row-2">
-        <div class="col chapter-title-mobile">{pageTitle[0].name}</div>
-        <div class="col">
+    <div className="row-2">
+        <div className="col chapter-title-mobile">{pageTitle[0].name}</div>
+        <div className="col">
             <PageLoad page_title={pageTitle[0].name}/>
-            <div class="row-2">
+            <div className="row-2">
                 {menuTemplate.map((group)=>{
                     return (
-                        <div key={'group_' + group.id} class="grid-group">
-                            <div class="grid-group-name">{group.name}</div>
-                            <div class="grid-group-data">
+                        <div key={'group_' + group.id} className="grid-group">
+                            <div className="grid-group-name">{group.name}</div>
+                            <div className="grid-group-data">
                                 {group.content.map((element)=>{                                    
                                     return(
                                         <PageMenuItem link={element.link} name={element.name} latin_name={element.latin_name} logo={element.logo} key={'menu_item_' + element.id}/>

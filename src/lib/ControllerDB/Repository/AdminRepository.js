@@ -308,11 +308,8 @@ export const insertArmament = (data) => {
               day_2: !data.get('day_2') ? 0 : 1,
               special: !data.get('special') ? 0 : 1
        }
-       console.log(data);
        var a = set_additional_param(list, data.get('material_data'));
-       console.log(a);
        set_armament_ability(data, a[0].id);
-       console.log(data);
        return true;
 };
 
@@ -466,4 +463,129 @@ select ab.id,
  where ab.id = ${id}
 `;
     return db.prepare(sql).all();
+};
+
+export function upateArmament(){
+       var list = {
+              rules: !data.get('rules') ? 0 : 1,
+              for_summon: !data.get('for_summon') ? 0 : 1,
+              verbal: !data.get('verbal') ? 0 : 1,
+              somatic: !data.get('somatic') ? 0 : 1,
+              material: !data.get('material') ? 0 : 1,
+              released: !data.get('released') ? 0 : 1,
+              until_saled: !data.get('until_saled') ? 0 : 1,
+              concentration: !data.get('concentration') ? 0 : 1,
+              minute_1: !data.get('minute_1') ? 0 : 1,
+              minute_2: !data.get('minute_2') ? 0 : 1,
+              minute_5: !data.get('minute_5') ? 0 : 1,
+              minute_10: !data.get('minute_10') ? 0 : 1,
+              round_1: !data.get('round_1') ? 0 : 1,
+              round_2: !data.get('round_2') ? 0 : 1,
+              round_5: !data.get('round_5') ? 0 : 1,
+              instantly: !data.get('instantly') ? 0 : 1,
+              hour: !data.get('hour') ? 0 : 1,
+              day_2: !data.get('day_2') ? 0 : 1,
+              special: !data.get('special') ? 0 : 1
+       }
+       update_additional_param(list, data.get('material_data'));
+       update_armament_ability(data, id);
+       return true;
+};
+
+const update_additional_param = (list, material_data) => {
+       var md = material_data.replace(/'/g,"''");
+    const sql = `
+insert into c_param_addition(
+       rules,
+       for_summon,
+        
+       verbal,
+       somatic,
+       material,
+       material_data,
+       released,
+        
+       until_saled,
+       concentration,
+       minute_1,
+       minute_2,
+       minute_5,
+       minute_10,
+       round_1,
+       round_2,
+       round_5,
+       instantly,
+       hour,
+       day_2,
+       special
+)
+
+select ${list.rules} as rules,
+       ${list.for_summon} as for_summon,
+        
+       ${list.verbal} as verbal,
+       ${list.somatic} as somatic,
+       ${list.material} as material,
+       ${!material_data? null : "'"+ md +"'"} as material_data,
+       ${list.released} as released,
+        
+       ${list.until_saled} as until_saled,
+       ${list.concentration} as concentration,
+       ${list.minute_1} as minute_1,
+       ${list.minute_2} as minute_2,
+       ${list.minute_5} as minute_5,
+       ${list.minute_10} as minute_10,
+       ${list.round_1} as round_1,
+       ${list.round_2} as round_2,
+       ${list.round_5} as round_5,
+       ${list.instantly} as instantly,
+       ${list.hour} as hour,
+       ${list.day_2} as day_2,
+       ${list.special} as special
+
+RETURNING id       
+`;
+    console.log(sql);
+    return db.prepare(sql).all();
+};
+
+const update_armament_ability = (data, additional_id) => {
+       var name = data.get('name').replace(/'/g,"''");
+       var requirements = data.get('requirements').replace(/'/g,"''");
+       var dt = data.get('data').replace(/'/g,"''");
+
+    const sql = `
+insert into c_armament_ab(
+       additional_param,
+       
+       type,       
+       cost,
+       hd_hollow,
+       kind,
+       casting_time,
+       range,
+       recharge,
+
+       name,
+       requirements,
+       data
+)
+
+select ${additional_id} as additional_param,
+       ${!data.get('type')? null:data.get('type')} as type,       
+       ${!data.get('cost')? null:data.get('cost')} as cost,
+       ${!data.get('hd')? null:data.get('hd')} as hd_hollow,
+       ${!data.get('kind')? null:data.get('kind')} as kind,
+       ${!data.get('cast_time')? null:data.get('cast_time')} as casting_time,
+       ${!data.get('range')? null:data.get('range')} as range,
+       ${!data.get('recharge')? null:data.get('recharge')} as recharge,              
+
+       ${!data.get('name')? null : "'" + name + "'"} as name,
+       ${!data.get('requirements')? null : "'" + requirements + "'"} as requirements,
+       ${!data.get('data')? null : "'" + dt + "'"} as data
+`;
+
+console.log(sql);
+    db.exec(sql);
+    return true;
 };

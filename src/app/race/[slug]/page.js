@@ -18,47 +18,47 @@ export default async function Page({ params }) {
 //-----------------------------------------------------------------
 
     return (
-        <div class="row-2">
-            <div class="col chapter-title-mobile">{raceElement.title_name}</div>
-            <div class="col">
+        <div className="row-2">
+            <div className="col chapter-title-mobile">{raceElement.title_name}</div>
+            <div className="col">
                 <PageLoad page_title={raceElement.title_name} />
-                <div class="race-class-data-area">
-                    <div class="back-image">
+                <div className="race-class-data-area">
+                    <div className="back-image">
                         {/* <img src="@@CLASSBACKIMAGE@@" alt="back"> */}
                     </div>
-                    <div class="main-content-block">
-                        <div class="title-block">
-                            <div class="row-3">
-                                <div class="col race-class-name">
+                    <div className="main-content-block">
+                        <div className="title-block">
+                            <div className="row-3">
+                                <div className="col race-class-name">
                                     <p>{raceElement.race_name}</p>
                                 </div>
-                                <div class="col race-class-source">
+                                <div className="col race-class-source">
                                     <p><strong>Источник:</strong> {'"' + raceElement.sorce_name + '"'}</p>
                                 </div>
-                                <div class="col race-class-citation">
+                                <div className="col race-class-citation">
                                     <p>{raceElement.comment}</p>
                                     <p>{raceElement.comment_author}, <strong>{raceElement.comment_author_rank}</strong></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="content-block" dangerouslySetInnerHTML={{ __html: raceElement.preview_content }}>
+                        <div className="content-block" dangerouslySetInnerHTML={{ __html: raceElement.preview_content }}>
                         </div>
-                        <div class="content-block">
-                            <div class="sub-menu" hidden>
+                        <div className="content-block">
+                            <div className="sub-menu" hidden>
                                 <h5>Меню</h5>
                                 <a href="#">data</a>
                                 <a href="#">data</a>
                                 <a href="#">data</a>
                                 <a href="#">data</a>
                             </div>
-                            <div class="content">
+                            <div className="content">
                                 {raceElement.ContentData.map((skill)=>{
                                     if(skill.data_type == 0)
                                     {   
                                         return(
-                                            <div key={'data_content_' + skill.id} class="data-content">
+                                            <div key={'data_content_' + skill.id} className="data-content">
                                                 <h3>{skill.name}</h3>
-                                                <p class="level">{skill.requirements}</p>
+                                                <p className="level">{skill.requirements}</p>
                                                 <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
                                             </div>
                                         )

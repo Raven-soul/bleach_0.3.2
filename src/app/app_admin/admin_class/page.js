@@ -21,14 +21,14 @@ export default function Class(param) {
     const ticketMenu = getTicketMenuGroup();
 
     return (
-        <div class="row-2">
-            <div class="col chapter-title-mobile">{pageTitle[0].name}</div>
-            <div class="col">
+        <div className="row-2">
+            <div className="col chapter-title-mobile">{pageTitle[0].name}</div>
+            <div className="col">
                 <PageLoad page_title={pageTitle[0].name} />
-                <div class="row-2">
-                    <div class="col">
-                        <div class="race-class-data-area">
-                            <div class="main-content-block container">
+                <div className="row-2">
+                    <div className="col">
+                        <div className="race-class-data-area">
+                            <div className="main-content-block container">
                                 <div className="row-2">
                                     <div className="col form-area">
                                         <div className="hide-button-area" hidden>

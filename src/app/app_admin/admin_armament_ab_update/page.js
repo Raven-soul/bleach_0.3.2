@@ -6,14 +6,14 @@ import { PageLoad } from "@/components/page_part/user_side/common/Load";
 import { ArmamentTable } from "@/components/page_part/user_side/admin/controller";
 
 import { getArmamentList } from "@/lib/ControllerDB/Repository/AdminRepository";
-import { insertArmament, getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
+import { upateArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
 
 import Form from 'next/form'
 
 // export async function insertVal(data) {
 //     'use server';
 
-//     var a = await insertArmament(data);
+//     var a = await upateArmament(data);
 //     console.log(a);
 //     return false;
 // }
@@ -37,14 +37,14 @@ export default function Class(param) {
     
 
     return (
-        <div class="row-2">
-            <div class="col chapter-title-mobile">{pageTitle[0].name}</div>
-            <div class="col">
+        <div className="row-2">
+            <div className="col chapter-title-mobile">{pageTitle[0].name}</div>
+            <div className="col">
                 <PageLoad page_title={pageTitle[0].name} />
-                <div class="row-2">
-                    <div class="col">
-                        <div class="race-class-data-area">
-                            <div class="main-content-block container">
+                <div className="row-2">
+                    <div className="col">
+                        <div className="race-class-data-area">
+                            <div className="main-content-block container">
                                 <div className="row-2">
                                     <div className="col form-area">
                                         <div className="hide-button-area" hidden>
@@ -83,22 +83,12 @@ export default function Class(param) {
                                                                     </div>
                                                                     <div className="row" key={'check_' + group.id}>
                                                                         {group.checkList.map((element)=>{
-                                                                            if(element.value == 'rules'){
-                                                                                return(
-                                                                                    <div className="col-auto check_item" key={'check_list_' + element.id}> 
-                                                                                        <label htmlFor={element.value}>{element.name}</label>
-                                                                                        <input type="checkbox" id={element.value} name={element.value} defaultChecked/>
-                                                                                    </div>
-                                                                                )
-                                                                            }
-                                                                            else {
-                                                                                return(
-                                                                                    <div className="col-auto check_item" key={'check_list_' + element.id}> 
-                                                                                        <label htmlFor={element.value}>{element.name}</label>
-                                                                                        <input type="checkbox" id={element.value} name={element.value}/>
-                                                                                    </div>
-                                                                                )
-                                                                            }                                                                     
+                                                                            return(
+                                                                                <div className="col-auto check_item" key={'check_list_' + element.id}> 
+                                                                                    <label htmlFor={element.value}>{element.name}</label>
+                                                                                    <input type="checkbox" id={element.value} name={element.value}/>
+                                                                                </div>
+                                                                            )                                                                     
                                                                         })}
                                                                     </div>
                                                                 </div>

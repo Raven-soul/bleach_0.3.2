@@ -1,4 +1,5 @@
 'use client';
+import $ from "jquery"
 import { useCallback } from 'react'
 
 // export default async function get(){
@@ -52,6 +53,82 @@ export function ArmamentTable({list}){
     )
 }
 
+function formRedresh(content){
+    formClear();
+
+    $(`#type option[value="${content.type}"]`).prop('selected', true);
+    $(`#cost option[value="${content.cost}"]`).prop('selected', true);
+    $(`#hd option[value="${content.hd_hollow}"]`).prop('selected', true);
+    $(`#kind option[value="${content.kind}"]`).prop('selected', true);
+    $(`#cast_time option[value="${content.casting_time}"]`).prop('selected', true);
+    $(`#range option[value="${content.range}"]`).prop('selected', true);
+    $(`#recharge option[value="${content.recharge}"]`).prop('selected', true);
+
+    if(content.rules == 1) $("#rules").prop('checked', true);
+    if(content.for_summon == 1) $("#for_summon").prop('checked', true);
+    if(content.verbal == 1) $("#verbal").prop('checked', true);
+    if(content.somatic == 1) $("#somatic").prop('checked', true);
+    if(content.material == 1) $("#material").prop('checked', true);
+    if(content.released == 1) $("#released").prop('checked', true);
+    if(content.until_saled == 1) $("#until_saled").prop('checked', true);
+    if(content.concentration == 1) $("#concentration").prop('checked', true);
+    if(content.minute_1 == 1) $("#minute_1").prop('checked', true);
+    if(content.minute_2 == 1) $("#minute_2").prop('checked', true);
+    if(content.minute_5 == 1) $("#minute_5").prop('checked', true);
+    if(content.minute_10 == 1) $("#minute_10").prop('checked', true);
+    if(content.round_1 == 1) $("#round_1").prop('checked', true);
+    if(content.round_2 == 1) $("#round_2").prop('checked', true);
+    if(content.round_5 == 1) $("#round_5").prop('checked', true);
+    if(content.instantly == 1) $("#instantly").prop('checked', true);
+    if(content.hour == 1) $("#hour").prop('checked', true);
+    if(content.day_2 == 1) $("#day_2").prop('checked', true);
+    if(content.special == 1) $("#special").prop('checked', true);
+
+    //text
+    $('#material_data').val(content.material_data);
+    $('#name').val(content.name);
+    $('#requirements').val(content.requirements);
+    $('#data').val(content.data);
+}
+
+function formClear(){
+    //select
+    $('#type option').prop('selected', false);
+    $('#cost option').prop('selected', false);
+    $('#hd option').prop('selected', false);
+    $('#kind option').prop('selected', false);
+    $('#cast_time option').prop('selected', false);
+    $('#range option').prop('selected', false);
+    $('#recharge option').prop('selected', false);
+
+    //checkbox
+    $("#rules").prop('checked', false);
+    $("#for_summon").prop('checked', false);
+    $("#verbal").prop('checked', false);
+    $("#somatic").prop('checked', false);
+    $("#material").prop('checked', false);
+    $("#released").prop('checked', false);
+    $("#until_saled").prop('checked', false);
+    $("#concentration").prop('checked', false);
+    $("#minute_1").prop('checked', false);
+    $("#minute_2").prop('checked', false);
+    $("#minute_5").prop('checked', false);
+    $("#minute_10").prop('checked', false);
+    $("#round_1").prop('checked', false);
+    $("#round_2").prop('checked', false);
+    $("#round_5").prop('checked', false);
+    $("#instantly").prop('checked', false);
+    $("#hour").prop('checked', false);
+    $("#day_2").prop('checked', false);
+    $("#special").prop('checked', false);
+
+    //text
+    $('#material_data').val('');
+    $('#name').val('');
+    $('#requirements').val('');
+    $('#data').val('');
+}
+
 export function TableRow({element_id, element_latin_name}){
     let id = element_id;
 
@@ -62,9 +139,8 @@ export function TableRow({element_id, element_latin_name}){
         console.log('-----------------------------------------------------11');
         console.log(ress);
         console.log('-----------------------------------------------------11');
-        //alert(JSON.stringify());     
 
-        console.log(ress);
+        formRedresh(ress[0]);
     });
 
     return (

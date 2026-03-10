@@ -12,12 +12,12 @@ export async function MenuTemplateList() {
     }
 
     return (
-        <div class="row-2 menu-block-load-area">
+        <div className="row-2 menu-block-load-area">
             {selections.map((selection) => {
                 return (
-                    <div class="col menu-block-section" key={"section_" + selection.id}>
+                    <div className="col menu-block-section" key={"section_" + selection.id}>
                         <ChevronМenuButton selection_id={selection.id} selection_name={selection.name} chevrone={chevrone} hide_section={hide_section}/>
-                        <div class={"col " + hide_section + " " + hide_section + "-" + selection.id} style={{display: "block"}}>
+                        <div className={"col " + hide_section + " " + hide_section + "-" + selection.id} style={{display: "block"}}>
                             <ul key={"list_" + selection.id}>
                                 {selection.content.map((line) => {
                                     return(
@@ -35,8 +35,8 @@ export async function MenuTemplateList() {
 
 export function Menu(){
     return (
-        <div class="col-auto menu-block px-1">
-            <div class="container p-0">
+        <div className="col-auto menu-block px-1">
+            <div className="container p-0">
                 <MenuTemplateList/>
             </div>
         </div>         
