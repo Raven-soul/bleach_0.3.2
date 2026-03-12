@@ -814,6 +814,9 @@ table.armament_update{
     font-style: normal;
     width: 100%;
 }
+table.armament_update .row_edited{
+    background-color: #22a0327c;
+}
 table.armament_update th{
     border: 1px solid #141414;
     font-weight: normal;

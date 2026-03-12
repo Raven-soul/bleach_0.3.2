@@ -44,7 +44,7 @@ export function ArmamentTable({list}){
                 <tbody>
                     {list.map((element) => {
                         return(
-                            <TableRow element_id={element.id} element_latin_name={element.latin_name} key={'armament_table_row' + element.id}/>
+                            <TableRow element_id={element.id} element_latin_name={element.latin_name} element_edited={element.edited} key={'armament_table_row' + element.id}/>
                         )
                     })}
                 </tbody>
@@ -55,7 +55,11 @@ export function ArmamentTable({list}){
 
 function formRedresh(content){
     formClear();
+    //id
+    $('#armament_id').val(content.armament_id);
+    $('#additional_id').val(content.additional_id);
 
+    //select
     $(`#type option[value="${content.type}"]`).prop('selected', true);
     $(`#cost option[value="${content.cost}"]`).prop('selected', true);
     $(`#hd option[value="${content.hd_hollow}"]`).prop('selected', true);
@@ -64,6 +68,7 @@ function formRedresh(content){
     $(`#range option[value="${content.range}"]`).prop('selected', true);
     $(`#recharge option[value="${content.recharge}"]`).prop('selected', true);
 
+    //checkbox
     if(content.rules == 1) $("#rules").prop('checked', true);
     if(content.for_summon == 1) $("#for_summon").prop('checked', true);
     if(content.verbal == 1) $("#verbal").prop('checked', true);
@@ -92,6 +97,10 @@ function formRedresh(content){
 }
 
 function formClear(){
+    //id
+    $('#armament_id').val('');
+    $('#additional_id').val('');
+
     //select
     $('#type option').prop('selected', false);
     $('#cost option').prop('selected', false);
@@ -129,22 +138,21 @@ function formClear(){
     $('#data').val('');
 }
 
-export function TableRow({element_id, element_latin_name}){
+export function TableRow({element_id, element_latin_name, element_edited}){
     let id = element_id;
 
     const func = (async ()=>{
         let ress = await fetch_data(id).then((res)=>{
             return res
         });         
-        console.log('-----------------------------------------------------11');
-        console.log(ress);
-        console.log('-----------------------------------------------------11');
 
         formRedresh(ress[0]);
     });
 
+    var edited = element_edited == 1? 'row_edited' : ''
+
     return (
-        <tr onClick={func} key={'tr_' + element_id + '_' + element_latin_name}>
+        <tr onClick={func} key={'tr_' + element_id + '_' + element_latin_name} className={edited}>
             <td key={'td_element_id' + element_id}>{element_id}</td>
             <td key={'td_element_name' + element_id}>{element_latin_name}</td>
         </tr>
