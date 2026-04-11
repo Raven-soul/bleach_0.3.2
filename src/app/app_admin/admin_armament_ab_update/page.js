@@ -57,7 +57,7 @@ export default function Class(param) {
                                                 <ArmamentTable list={aList}/>
                                             </div>
                                             <div className="col-9">
-                                                <Form action={update} className="row-2 form-insert" id="add_group">{/* action={update} */}
+                                                <Form action="" className="row-2 form-insert" id="add_group">{/* action={update} */}
                                                     <div>
                                                         <input name="armament_id" id="armament_id" hidden/>
                                                         <input name="additional_id" id="additional_id" hidden/>
