@@ -10,13 +10,13 @@ import { upateArmament, getParamType, getParamListByType, getAdditionalParamList
 
 import Form from 'next/form'
 
-export async function update(data) {
-    'use server';
+// export async function update(data) {
+//     'use server';
 
-    var a = await upateArmament(data);
-    console.log(a);
-    return false;
-}
+//     var a = await upateArmament(data);
+//     console.log(a);
+//     return false;
+// }
 
 export default function Class(param) {
     const { data } = param;

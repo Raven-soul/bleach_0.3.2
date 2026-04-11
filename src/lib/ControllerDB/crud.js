@@ -35,7 +35,7 @@ export const getFooterTemplate = () => {
 export const getMenuSectionlist = () => {
     const sql = `
         select *               
-          from cnt_menu_group cmg
+          from c_menu_group cmg
          where cmg.show >= 0
          order by cmg.id
     `;
@@ -52,8 +52,8 @@ export const getMenuContent = (group_id = 1) => {
                cm.logo,
                cm.show
                
-          from cnt_menu_group cmg
-               inner join cnt_menu cm on cm.group_id = cmg.id
+          from c_menu_group cmg
+               inner join c_menu cm on cm.group_id = cmg.id
          where 1=1
                and case when cmg.id = ${group_id} isnull then 1 = 1 else cmg.id = ${group_id} end
                and cm.show >= 0
