@@ -105,5 +105,26 @@ select ticket.id as ticket_id,
   from c_ticket_type t
        left join c_ticket ticket on ticket.ticket_type = t.id
        left join cnt_class_spoiler_headers s on cast(s.class_id as varchar) = ticket.ticket
- where t.name = 'class'*/
+ where t.name = 'class'
          --cnt_class_spoiler s
+
+
+
+         insert into c_armament_ab_filter_item(filter, value, name, logo)
+select *
+  from (
+select 9 as filter, 'discard'       as value, 'Отменить фильтр' as name, null  as logo union all
+select 9 as filter, 'until_sealed'  as value, 'До отмены'       as name, null  as logo union all
+select 9 as filter, 'concentration' as value, 'Концентрация'    as name, null  as logo union all
+select 9 as filter, 'minute1'       as value, '1 Минута'        as name, null  as logo union all
+select 9 as filter, 'minute2'       as value, '2 Минуты'        as name, null  as logo union all
+select 9 as filter, 'minute5'       as value, '5 Минут'         as name, null  as logo union all
+select 9 as filter, 'minute10'      as value, '10 Минут'        as name, null  as logo union all
+select 9 as filter, 'round1'        as value, '1 Раунд'         as name, null  as logo union all
+select 9 as filter, 'round2'        as value, '2 Раунда'        as name, null  as logo union all
+select 9 as filter, 'round5'        as value, '5 Раундов'       as name, null  as logo union all
+select 9 as filter, 'instantaneous' as value, 'Мгновенно'       as name, null  as logo union all
+select 9 as filter, 'hour1'         as value, '1 Час'           as name, null  as logo union all
+select 9 as filter, 'special'       as value, 'Особенное'       as name, null  as logo union all
+select 9 as filter, 'day2'          as value, '2 Дня'           as name, null  as logo
+) t*/

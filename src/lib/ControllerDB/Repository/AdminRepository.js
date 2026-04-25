@@ -35,12 +35,12 @@ export const getTicketMenuGroup = (ticket_type = 'class') => {
 export const insertParam = (data) => {
     console.log(data.get('name'));
     const sql = `
-        insert into c_param (
-            type,
+        insert into c_armament_ab_filter_item (
+            filter,
             name,
             value
         )
-        select ${data.get('type')} as type,
+        select ${data.get('type')} as filter,
                '${data.get('name')}' as name,
                '${data.get('value')}' as value
     `;    
@@ -53,9 +53,10 @@ export const getParamType = () => {
     const sql = `
         select c.id,
                c.ord + 1 as ord,
-               c.name,
-               c.latin_name
-          from c_param_type c
+               c.translate as name,
+               c.name as latin_name
+          from c_armament_ab_filter c
+         where c.ord not null
          order by c.ord
     `;
     return db.prepare(sql).all();
@@ -65,7 +66,7 @@ export const getLastParam = () => {
     const sql = `
         with t as (
             select *
-              from c_param p
+              from c_armament_ab_filter_item p
              order by p.id desc
              limit 1
         ),
@@ -127,13 +128,13 @@ export const getLastAbilityParam = (param_name = 'type') => {
                    
               from (select '${param_name}' as name) p 
                    left join c_armament_ab ab on true                     
-                   left join c_param ptype on ptype.id = ab.type
-                   left join c_param pcost on pcost.id = ab.cost
-                   left join c_param phd on phd.id = ab.hd_hollow
-                   left join c_param pkind on pkind.id = ab.kind
-                   left join c_param pc_time on pc_time.id = ab.casting_time
-                   left join c_param prange on prange.id = ab.range
-                   left join c_param precharge on precharge.id = ab.recharge
+                   left join c_armament_ab_filter_item ptype on ptype.id = ab.type
+                   left join c_armament_ab_filter_item pcost on pcost.id = ab.cost
+                   left join c_armament_ab_filter_item phd on phd.id = ab.hd_hollow
+                   left join c_armament_ab_filter_item pkind on pkind.id = ab.kind
+                   left join c_armament_ab_filter_item pc_time on pc_time.id = ab.casting_time
+                   left join c_armament_ab_filter_item prange on prange.id = ab.range
+                   left join c_armament_ab_filter_item precharge on precharge.id = ab.recharge
         ),
 
         t_all as (
@@ -158,8 +159,10 @@ export const getLastAbilityParam = (param_name = 'type') => {
 export const getParamListByType = (type_id = 1) => {
     const sql = `
         select *
-          from c_param p
-         where p.type = ${type_id}
+          from c_armament_ab_filter_item p
+         where 1 = 1
+               and p.filter = ${type_id}
+               and p.value <> 'discard'
     `;
     return db.prepare(sql).all();
 };

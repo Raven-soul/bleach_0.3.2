@@ -1,9 +1,16 @@
 import Image from 'next/image'
+
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
-import { getArmamentFilterList } from "@/lib/ControllerDB/Repository/ArmamentRepository";
+import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt } from "@/lib/ControllerDB/Repository/ArmamentRepository";
+import { ArmamentFilter, FiltersPrompt, ArmamentAbilitiesList} from "./user_side";
 
 export default async function Page({ params }) {
     let filterList = getArmamentFilterList();
+    let filterPromptData = getArmamentTypePrompt();
+
+    for(let i = 0; i < filterList.length; i++){
+        filterList[i]["content"] = getArmamentFilterItems(filterList[i].id);
+    }
     
     //-----------------------------------------------------------------
 
@@ -23,13 +30,7 @@ export default async function Page({ params }) {
                             <div className="grid-group-data">    
                                 {filterList.map((element)=>{
                                     return(
-                                        <div class="filter-grid-group-data-item">
-                                            <div class="col">
-                                                <select name={element.name} id={element.name + "_selector_id"} onchange="">
-                                                    @@SELECTORBODY@@                            
-                                                </select>
-                                            </div>                                                        
-                                        </div>
+                                        <ArmamentFilter element={element} key={'filter_' + element.id}/>
                                     )
                                 })}
                             </div>
@@ -50,14 +51,7 @@ export default async function Page({ params }) {
                                     </div>
                                 </div>
                                 <div className="col" style={{marginBottom: "15px"}}>
-                                    <div className="prompt-area">
-                                        <div className="prompt">
-                                            <div className="prompt-data prompt-type">
-                                                @@ARMAMENTPROMPTDATACONTENT@@
-                                            </div>
-                                            <hr/>
-                                        </div>                                      
-                                    </div>
+                                    <FiltersPrompt promptData={filterPromptData}/>
                                 </div>
                                 <div className="col">
                                     <div className="armament-abilities-content-data">                                                            
@@ -67,6 +61,7 @@ export default async function Page({ params }) {
                                             </div>
                                             <div className="col">
                                                 <div className="grid-abilities-data">
+                                                    {/* <ArmamentAbilitiesList abilitiesList={abilitiesList}/> */}
                                                 </div>                                                                    
                                             </div>
                                             

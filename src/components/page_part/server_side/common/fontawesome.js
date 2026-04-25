@@ -13,14 +13,40 @@ import {
     faToolbox,
     faFlag,
     faEarthAmericas,
-    faBan
+    faBan,
+
+    faSoap,
+    faDroplet,
+    faDownLeftAndUpRightToCenter,
+    faCircle,
+    faCube,
+    faMaximize,
+    faWeightHanging,
+    faHeartPulse,
+    faMoon,
+    faEye,
+    faSun,
+    faBolt,
+    faArrowsDownToLine,
+    faSkull,
+    faCrosshairs,
+    faBell,
+    faPaw,
+    faWater,
+    faThermometer,
+    faWind
+
 } from '@fortawesome/free-solid-svg-icons'
 
 import { 
     faFileLines,
-    faCircleXmark
+    faCircleXmark,
+    faSnowflake
 } from '@fortawesome/free-regular-svg-icons'
-// import { faThumbsUp } from '@fortawesome/free-brands-svg-icons'
+
+import { 
+    faDrupal 
+} from '@fortawesome/free-brands-svg-icons'
 
 export function Icon({name, className, style}){
     let icon;
@@ -58,6 +84,52 @@ export function Icon({name, className, style}){
             
         case 'faCircleXmark':
             icon = faCircleXmark; break;
+
+        case 'faSoap': 
+            icon = faSoap; break;    
+        case 'faDroplet': 
+            icon = faDroplet; break;
+        case 'faDownLeftAndUpRightToCenter': 
+            icon = faDownLeftAndUpRightToCenter; break;  
+        case 'faCircle': 
+            icon = faCircle; break;   
+        case 'faCube': 
+            icon = faCube; break;    
+        case 'faMaximize': 
+            icon = faMaximize; break;  
+        case 'faWeightHanging': 
+            icon = faWeightHanging; break; 
+        case 'faHeartPulse': 
+            icon = faHeartPulse; break;  
+        case 'faMoon': 
+            icon = faMoon; break;    
+        case 'faEye': 
+            icon = faEye; break;      
+        case 'faDrupal': 
+            icon = faDrupal; break;   
+        case 'faSun': 
+            icon = faSun; break;     
+        case 'faBolt': 
+            icon = faBolt; break;     
+        case 'faArrowsDownToLine': 
+            icon = faArrowsDownToLine; break;
+        case 'faSkull': 
+            icon = faSkull; break; 
+        case 'faCrosshairs': 
+            icon = faCrosshairs; break;
+        case 'faBell': 
+            icon = faBell; break;    
+        case 'faPaw': 
+            icon = faPaw; break;      
+        case 'faWater': 
+            icon = faWater; break;
+        case 'faThermometer': 
+            icon = faThermometer; break;
+        case 'faSnowflake': 
+            icon = faSnowflake; break;
+        case 'faWind': 
+            icon = faWind; break;
+
         default:
             icon = faBan;
     }
