@@ -1,12 +1,13 @@
 import Image from 'next/image'
 
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
-import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt } from "@/lib/ControllerDB/Repository/ArmamentRepository";
-import { ArmamentFilter, FiltersPrompt, ArmamentAbilitiesList} from "./user_side";
+import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt, getArmamentGridList } from "@/lib/ControllerDB/Repository/ArmamentRepository";
+import { ArmamentFilter, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";
 
 export default async function Page({ params }) {
     let filterList = getArmamentFilterList();
     let filterPromptData = getArmamentTypePrompt();
+    let armamentGridList = getArmamentGridList();
 
     for(let i = 0; i < filterList.length; i++){
         filterList[i]["content"] = getArmamentFilterItems(filterList[i].id);
@@ -60,9 +61,7 @@ export default async function Page({ params }) {
                                                 <p className="vertical-group-name">data</p>
                                             </div>
                                             <div className="col">
-                                                <div className="grid-abilities-data">
-                                                    {/* <ArmamentAbilitiesList abilitiesList={abilitiesList}/> */}
-                                                </div>                                                                    
+                                                <ArmamentAbilitiesGridList abilitiesList={armamentGridList}/>                                                                                                                 
                                             </div>
                                             
                                         </div>                                                      

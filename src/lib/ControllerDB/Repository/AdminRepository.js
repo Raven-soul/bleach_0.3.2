@@ -319,7 +319,7 @@ export const insertArmament = (data) => {
 const set_additional_param = (list, material_data) => {
        var md = material_data.replace(/'/g,"''");
     const sql = `
-insert into c_param_addition(
+insert into c_armament_ab_addition(
        rules,
        for_summon,
         
@@ -463,7 +463,7 @@ select ab.id as armament_id,
        
  
   from c_armament_ab ab
-       left join c_param_addition additional on additional.id = ab.additional_param
+       left join c_armament_ab_addition additional on additional.id = ab.additional_param
  where ab.id = ${id}
 `;
     return db.prepare(sql).all();
@@ -494,7 +494,7 @@ export function upateArmament(data){
        
        update_armament_ability(data);
        update_additional_param(list, data);
-
+       
        return true;
 };
 
@@ -532,7 +532,7 @@ const update_additional_param = (list, data) => {
        var md = material_data.replace(/'/g,"''");       
 
     const sql = `
-update c_param_addition
+update c_armament_ab_addition
    set rules = ${list.rules},
        for_summon = ${list.for_summon},
         
