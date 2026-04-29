@@ -1,30 +1,53 @@
 'use client';
 
 import $ from "jquery"
+
 import { Icon } from '@/components/page_part/server_side/common/fontawesome'
 
-export function ArmamentFilter({element}){
+// function getFilter() {
+//     var filter = new Map();
+//     var filterTags = $(".filter-grid-group-data-item select");
+//     var armamentItems = $(".grid-abilities-data .grid-abilities-item");
+
+//     alert(armamentItems.length);
+
+//     for (var i = 0; i < filterTags.length; i++) {
+//         filter.set(filterTags[i].getAttribute("id").split('_')[0], filterTags[i].options[filterTags[i].selectedIndex].value);
+//     }
+
+//     return filter;
+// }
+
+export function ArmamentFilter({filter_list}){
     const func = (()=>{
         var selector = '#' + element.name + '_selector_id';
 
         if($(selector + ' option:selected').val() == 'discard') {//$().prop('selectedIndex');
             $(selector).prop('selectedIndex', 0); 
         }
+
     });
 
     return (
-        <div className='filter-grid-group-data-item'>
-            <div className='col'>
-                <select name={element.name} id={element.name + '_selector_id'} onChange={func}>
-                <option value='all' disabled selected>{element.translate}</option>
-                {element.content.map((item)=>{
-                    return(
-                        <option value={item.value} armtype={element.item_type} key={'filter_option_' + item.id}>{item.name}</option>
-                    )
-                })}                        
-            </select>
-            </div>                                                        
-        </div>        
+        <div className="grid-group-data">   
+            {(()=>{console.log(filter_list[0])})()} 
+            {filter_list.map((element)=>{                
+                return(
+                    <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
+                        <div className='col'>
+                            <select name={element.name} id={element.name + '_selector_id'} onChange={func}>
+                                <option value='all' disabled selected>{element.translate}</option>
+                                {element.content.map((item)=>{
+                                    return(
+                                        <option value={item.value} armtype={element.item_type} key={'filter_option_' + item.id}>{item.name}</option>
+                                    )
+                                })}                        
+                            </select>
+                        </div>                                                        
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 
@@ -50,8 +73,8 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
         <div className="grid-abilities-data">
             {abilitiesList.map((element)=>{
                 return(
-                    <div class="grid-abilities-item px-1">
-                        <a href="#" class="abilities-info-block">  
+                    <div className="grid-abilities-item px-1">
+                        <a href="#" className="abilities-info-block">  
                             <div hidden className='type'>{element.type_value}</div>
                             <div hidden className='cost'>{element.cost_value}</div>
 
@@ -79,19 +102,19 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
                             <div hidden className='material'>{element.material}</div>
                             <div hidden className='released'>{element.released}</div>
 
-                            <div class="row abilities-info-block-data">
-                                <div class="col left-align-data">                                                                                            
-                                    <span class="level">
-                                        <span class="gray-font">[</span>{element.cost_name}<span class="gray-font">]</span>
+                            <div className="row abilities-info-block-data">
+                                <div className="col left-align-data">                                                                                            
+                                    <span className="level">
+                                        <span className="gray-font">[</span>{element.cost_name}<span className="gray-font">]</span>
                                     </span>
-                                    <span class="school-logo">
+                                    <span className="school-logo">
                                         <Icon name={element.type_logo}/>
                                     </span>
-                                    <span class="name">{element.ab_name}</span>
+                                    <span className="name">{element.ab_name}</span>
                                 </div>
-                                <div class="col-auto components">{element.components}</div>
+                                <div className="col-auto components">{element.components}</div>
                             </div>  
-                            <hr class="abilities-hr-gradient"/>
+                            <hr className="abilities-hr-gradient"/>
                         </a>
                     </div>
                 )

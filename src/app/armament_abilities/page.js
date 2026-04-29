@@ -1,10 +1,12 @@
 import Image from 'next/image'
 
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
 import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt, getArmamentGridList } from "@/lib/ControllerDB/Repository/ArmamentRepository";
 import { ArmamentFilter, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";
 
 export default async function Page({ params }) {
+    let pageTitle = getPageTitleTemplate('armament_abilities');
     let filterList = getArmamentFilterList();
     let filterPromptData = getArmamentTypePrompt();
     let armamentGridList = getArmamentGridList();
@@ -17,9 +19,9 @@ export default async function Page({ params }) {
 
     return (
         <div className="row-2">
-            <div className="col chapter-title-mobile">//</div>
+            <div className="col chapter-title-mobile">{pageTitle[0].name}</div>
             <div className="col">
-                <PageLoad page_title=''/>
+                <PageLoad page_title={pageTitle[0].name}/>
                 <div className="row-2">
                     <div className="col">
                         <div className="filter-above-grig-oficial">
@@ -28,13 +30,7 @@ export default async function Page({ params }) {
                     </div>
                     <div className="col">
                         <div className="filter-grid-group">
-                            <div className="grid-group-data">    
-                                {filterList.map((element)=>{
-                                    return(
-                                        <ArmamentFilter element={element} key={'filter_' + element.id}/>
-                                    )
-                                })}
-                            </div>
+                            <ArmamentFilter filter_list={filterList}/>                            
                         </div>
                     </div>
                     <div className="col abilities-grid">
