@@ -3,17 +3,17 @@ import $ from "jquery"
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
-import { ArmamentTable } from "@/components/page_part/user_side/admin/controller";
+import { ArmamentTable } from "./user_side";
 
 import { getArmamentList } from "@/lib/ControllerDB/Repository/AdminRepository";
-import { upateArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
+import { insertArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
 
 import Form from 'next/form'
 
 // export async function update(data) {
 //     'use server';
 
-//     var a = await upateArmament(data);
+//     var a = await insertArmament(data);
 //     console.log(a);
 //     return false;
 // }
@@ -88,8 +88,8 @@ export default function Class(param) {
                                                                         {group.checkList.map((element)=>{
                                                                             return(
                                                                                 <div className="col-auto check_item" key={'check_list_' + element.id}> 
-                                                                                    <label htmlFor={element.value}>{element.name}</label>
-                                                                                    <input type="checkbox" id={element.value} name={element.value}/>
+                                                                                    <label htmlFor={'checkbox_' + element.id}>{element.name}</label>
+                                                                                    <input type="checkbox" id={'checkbox_' + element.id} name={element.value} className="checkbox_element"/>
                                                                                 </div>
                                                                             )                                                                     
                                                                         })}

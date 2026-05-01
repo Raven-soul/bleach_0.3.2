@@ -11,7 +11,6 @@ import Form from 'next/form'
 //     'use server';
 
 //     var a = await insertArmament(data);
-//     console.log(a);
 //     return false;
 // }
 
@@ -21,7 +20,6 @@ export default function Class(param) {
     const pageTitle = getPageTitleTemplate('admin_armament_ab');
     const paramType = getParamType();
     const checkGroup = getAdditionalGroupList();
-    //const checkList = getAdditionalParamList();
 
     for(let i = 0; i < paramType.length; i++){
         paramType[i]['last_element'] = getLastAbilityParam(paramType[i].latin_name);//classElement.SpecialSpoilerList[i].id);

@@ -18,24 +18,79 @@ import { Icon } from '@/components/page_part/server_side/common/fontawesome'
 //     return filter;
 // }
 
+function getFilterValues(){
+    var filterValues = [];
+    // беру список активных фильтров, чтобы получить их значения
+    var filterTags = $(".filter-grid-group-data-item select");
+    // получаю значения фильтров
+    for(var i = 0; i < filterTags.length; i++){
+        let filter = filterTags[i];
+
+        filterValues.push({
+            name : filter.getAttribute('name'),
+            type : filter.getAttribute('type'),
+            value : filter.options[filter.selectedIndex].value
+        });
+    }
+
+    // беру список способностей для фильтрации
+    var armamentItems = $(".grid-abilities-data .grid-abilities-item");
+
+    for(var j = 0; j < armamentItems.length; j++){
+        var armament = armamentItems[j];
+        var result = true;
+
+        filterValues.forEach(filter => {
+            if(filter.type == 'value'){
+                if(filter.value == 'all') {}
+                else if(armament.querySelector('div.' + filter.name).textContent == filter.value) {}
+                else {
+                    result = false;
+                    return;
+                }
+            }
+            else {
+                if(filter.value == 'all') {}
+                else if(armament.querySelector('div.' + filter.value).textContent == 1) {}
+                else {
+                    result = false;
+                    return;
+                }
+            }
+        });
+        
+        if(result == true) { 
+            armament.style.visibility = "visible"; 
+        }
+        else {
+            armament.style.visibility = "hidden"; 
+        }
+    }
+}
+
 export function ArmamentFilter({filter_list}){
-    const func = (()=>{
-        var selector = '#' + element.name + '_selector_id';
+    const func = ((element)=>{
+        var selector = '#' + element.target.getAttribute("id");
 
         if($(selector + ' option:selected').val() == 'discard') {//$().prop('selectedIndex');
-            $(selector).prop('selectedIndex', 0); 
+            $(element.target).prop('selectedIndex', 0); 
         }
 
+        console.log("------------------------------element");
+        console.log(element);
+        console.log("------------------------------element");
+
+        getFilterValues();
     });
 
     return (
         <div className="grid-group-data">   
-            {(()=>{console.log(filter_list[0])})()} 
+            {/* {(()=>{console.log(filter_list[2])})()}  */}
             {filter_list.map((element)=>{                
                 return(
                     <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
                         <div className='col'>
-                            <select name={element.name} id={element.name + '_selector_id'} onChange={func}>
+                            <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={func}>
                                 <option value='all' disabled selected>{element.translate}</option>
                                 {element.content.map((item)=>{
                                     return(
@@ -73,7 +128,7 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
         <div className="grid-abilities-data">
             {abilitiesList.map((element)=>{
                 return(
-                    <div className="grid-abilities-item px-1">
+                    <div className="grid-abilities-item px-1" id={'armament_ability_' + element.id} key={'armament_ability_key_' + element.id}>
                         <a href="#" className="abilities-info-block">  
                             <div hidden className='type'>{element.type_value}</div>
                             <div hidden className='cost'>{element.cost_value}</div>

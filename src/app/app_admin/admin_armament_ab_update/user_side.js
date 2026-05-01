@@ -69,25 +69,18 @@ function formRedresh(content){
     $(`#recharge option[value="${content.recharge}"]`).prop('selected', true);
 
     //checkbox
-    if(content.rules == 1) $("#rules").prop('checked', true);
-    if(content.for_summon == 1) $("#for_summon").prop('checked', true);
-    if(content.verbal == 1) $("#verbal").prop('checked', true);
-    if(content.somatic == 1) $("#somatic").prop('checked', true);
-    if(content.material == 1) $("#material").prop('checked', true);
-    if(content.released == 1) $("#released").prop('checked', true);
-    if(content.until_saled == 1) $("#until_saled").prop('checked', true);
-    if(content.concentration == 1) $("#concentration").prop('checked', true);
-    if(content.minute_1 == 1) $("#minute_1").prop('checked', true);
-    if(content.minute_2 == 1) $("#minute_2").prop('checked', true);
-    if(content.minute_5 == 1) $("#minute_5").prop('checked', true);
-    if(content.minute_10 == 1) $("#minute_10").prop('checked', true);
-    if(content.round_1 == 1) $("#round_1").prop('checked', true);
-    if(content.round_2 == 1) $("#round_2").prop('checked', true);
-    if(content.round_5 == 1) $("#round_5").prop('checked', true);
-    if(content.instantly == 1) $("#instantly").prop('checked', true);
-    if(content.hour == 1) $("#hour").prop('checked', true);
-    if(content.day_2 == 1) $("#day_2").prop('checked', true);
-    if(content.special == 1) $("#special").prop('checked', true);
+    var components = content.components.split(',');
+    components.forEach(element_id => {
+        $('input#checkbox_' + element_id).prop('checked', true);  
+    });    
+
+    var durations = content.duration.split(',');
+    durations.forEach(element_id => {
+        $('input#checkbox_' + element_id).prop('checked', true);  
+    });    
+
+    if(content.rules == 1) $("input#checkbox_-2").prop('checked', true);
+    if(content.summon == 1) $("input#checkbox_-1").prop('checked', true);
 
     //text
     $('#material_data').val(content.material_data);
@@ -111,25 +104,7 @@ function formClear(){
     $('#recharge option').prop('selected', false);
 
     //checkbox
-    $("#rules").prop('checked', false);
-    $("#for_summon").prop('checked', false);
-    $("#verbal").prop('checked', false);
-    $("#somatic").prop('checked', false);
-    $("#material").prop('checked', false);
-    $("#released").prop('checked', false);
-    $("#until_saled").prop('checked', false);
-    $("#concentration").prop('checked', false);
-    $("#minute_1").prop('checked', false);
-    $("#minute_2").prop('checked', false);
-    $("#minute_5").prop('checked', false);
-    $("#minute_10").prop('checked', false);
-    $("#round_1").prop('checked', false);
-    $("#round_2").prop('checked', false);
-    $("#round_5").prop('checked', false);
-    $("#instantly").prop('checked', false);
-    $("#hour").prop('checked', false);
-    $("#day_2").prop('checked', false);
-    $("#special").prop('checked', false);
+    $("input.checkbox_element").prop('checked', false);    
 
     //text
     $('#material_data').val('');

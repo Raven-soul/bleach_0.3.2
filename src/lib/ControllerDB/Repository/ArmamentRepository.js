@@ -35,7 +35,8 @@ select item.id,
 
 export const getArmamentGridList = () => {
     const sql = `
-select ab.name as ab_name,
+select ab.id,
+       ab.name as ab_name,
        
        case when addition.verbal = 1 then 'В' else '.' end ||
        case when addition.somatic = 1 then 'С' else '.' end ||
