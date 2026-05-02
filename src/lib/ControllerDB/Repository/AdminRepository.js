@@ -63,7 +63,11 @@ export const getParamType = () => {
 export const getLastParam = () => {
     const sql = `
         with t as (
-            select *
+            select p.id,
+                   p.filter as type,
+                   p.name,
+                   p.value,
+                   p.logo
               from c_armament_ab_filter_item p
              order by p.id desc
              limit 1
