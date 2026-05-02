@@ -418,7 +418,6 @@ update c_armament_ab
  where case when ${armament_id} notnull then id = ${armament_id} else false end
 `;
 
-console.log(sql);
     db.exec(sql);
     return true;
 };
