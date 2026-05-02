@@ -62,7 +62,7 @@ export function ArmamentFilter({filter_list}){
         if($(selector + ' option:selected').val() == 'discard') {//$().prop('selectedIndex');
             $(element.target).prop('selectedIndex', 0); 
         }
-        
+
         getFilterValues();
     });
 
@@ -73,8 +73,8 @@ export function ArmamentFilter({filter_list}){
                 return(
                     <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
                         <div className='col'>
-                            <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={func}>
-                                <option value='all' disabled selected>{element.translate}</option>
+                            <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={func} defaultValue={'all'}>
+                                <option value='all' disabled>{element.translate}</option>
                                 {element.content.map((item)=>{
                                     return(
                                         <option value={item.id} armtype={element.item_type} key={'filter_option_' + item.id}>{item.name}</option>
@@ -115,7 +115,7 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
                         <a href="#" className="abilities-info-block">  
                             {element.param_list.map(param =>{
                                 return(
-                                    <div hidden className={param.name} value={param.value}></div>
+                                    <div hidden className={param.name} value={param.value} key={'key_' + param.name + '_' + param.value}></div>
                                 )
                             })}
 

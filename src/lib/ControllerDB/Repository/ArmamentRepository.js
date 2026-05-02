@@ -74,7 +74,6 @@ select ab.id,
        cost.value as cost_value
        
   from c_armament_ab ab
-       left join c_armament_ab_addition addition on addition.id = ab.additional_param
        left join c_armament_ab_filter_item type on type.id = ab.type
        left join c_armament_ab_filter_item cost on cost.id = ab.cost
     `;
