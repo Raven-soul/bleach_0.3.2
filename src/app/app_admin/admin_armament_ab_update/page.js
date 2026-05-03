@@ -116,7 +116,7 @@ export default function Class(param) {
                                                     </div>
                                                     <hr/>
                                                     <div className="submit-button">
-                                                        <button type="submit">Записать</button>
+                                                        <button type="submit">Обновить</button>
                                                     </div>
                                                 </Form>
                                             </div>

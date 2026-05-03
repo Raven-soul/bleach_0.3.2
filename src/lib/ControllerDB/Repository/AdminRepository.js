@@ -185,25 +185,33 @@ export const getAdditionalParamList = (group_id = 1) => {
                    'для призыва' as name 
             union all
             
-            select 2 as group_id,
-                   item.id,
-                   item.value,
-                   item.name
-              from c_armament_ab_filter_item item
-             where 1=1
-                   and item.filter = 6
-                   and item.value <> 'discard'
+            select *
+              from (
+                        select 2 as group_id,
+                            item.id,
+                            item.value,
+                            item.name
+                       from c_armament_ab_filter_item item
+                      where 1=1
+                            and item.filter = 6
+                            and item.value <> 'discard'
+                      order by item.ord
+                    ) t
             
             union all
             
-            select 3 as group_id,
-                   item.id,
-                   item.value,
-                   item.name
-              from c_armament_ab_filter_item item
-             where 1=1
-                   and item.filter = 7
-                   and item.value <> 'discard'
+            select *
+              from (
+                        select 3 as group_id,
+                            item.id,
+                            item.value,
+                            item.name
+                       from c_armament_ab_filter_item item
+                      where 1=1
+                            and item.filter = 7
+                            and item.value <> 'discard'
+                      order by item.ord
+                    ) t
         )
 
         select t.*
@@ -263,7 +271,8 @@ export const insertArmament = (data) => {
         round_2: !data.get('round2') ? 0 : 1,
         round_5: !data.get('round5') ? 0 : 1,
         instantly: !data.get('instantaneous') ? 0 : 1,
-        hour: !data.get('hour1') ? 0 : 1,
+        hour1: !data.get('hour1') ? 0 : 1,
+        hour10: !data.get('hour10') ? 0 : 1,
         day_2: !data.get('day2') ? 0 : 1,
         special: !data.get('special') ? 0 : 1
     }
@@ -340,7 +349,8 @@ select ${!data.get('type') ? null : data.get('type')} as type,
                               select ${list.round_2} as value, 'round2' as name union all
                               select ${list.round_5} as value, 'round5' as name union all
                               select ${list.instantly} as value, 'instantaneous' as name union all
-                              select ${list.hour} as value, 'hour1' as name union all                              
+                              select ${list.hour1} as value, 'hour1' as name union all                              
+                              select ${list.hour10} as value, 'hour10' as name union all                              
                               select ${list.day_2} as value, 'day2' as name union all
                               select ${list.special} as value, 'special' as name
                             ) t
@@ -411,7 +421,8 @@ update c_armament_ab
                               select ${list.round_2} as value, 'round2' as name union all
                               select ${list.round_5} as value, 'round5' as name union all
                               select ${list.instantly} as value, 'instantaneous' as name union all
-                              select ${list.hour} as value, 'hour1' as name union all                              
+                              select ${list.hour1} as value, 'hour1' as name union all                              
+                              select ${list.hour10} as value, 'hour10' as name union all                              
                               select ${list.day_2} as value, 'day2' as name union all
                               select ${list.special} as value, 'special' as name
                             ) t

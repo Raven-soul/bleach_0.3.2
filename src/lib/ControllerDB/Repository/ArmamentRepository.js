@@ -21,6 +21,7 @@ select case when item.value = 'discard'
   from c_armament_ab_filter filter
        inner join c_armament_ab_filter_item item on item.filter = filter.id
  where filter.id = ${filter_id}    
+ order by item.ord
     `;
     return db.prepare(sql).all();
 };
@@ -36,6 +37,7 @@ select item.id,
  where 1=1 
        and filter.name = 'type'
        and item.value <> 'discard'  
+ order by item.ord
     `;
     return db.prepare(sql).all();
 };

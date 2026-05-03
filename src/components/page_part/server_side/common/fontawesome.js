@@ -35,7 +35,9 @@ import {
     faWater,
     faThermometer,
     faWind,
-    faStar as solid_star
+    faStar as solid_star,
+    faExplosion,
+    faSquareFull
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -131,11 +133,15 @@ export function Icon({name, className, style}){
             icon = faSnowflake; break;
         case 'faWind': 
             icon = faWind; break;
+        case 'faSquareFull': 
+            icon = faSquareFull; break;
         
         case 'solid_star': 
             icon = solid_star; break;
         case 'regular_star': 
             icon = regular_star; break;
+        case 'faExplosion':
+            icon = faExplosion; break;
 
         default:
             icon = faBan;

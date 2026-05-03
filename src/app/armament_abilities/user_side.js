@@ -96,6 +96,7 @@ export function FirstFiltersPrompt(){
                 <div className="prompt-data">
                     <span>[0] - уровень</span>
                     <span><span className="components">ВСМВ</span> - компоненты</span>
+                    <span><Icon name={'faExplosion'}/> - врожденная</span>
                     <span><Icon name={'regular_star'}/> - возвышенная</span>
                     <span><Icon name={'solid_star'}/> - ультимативная</span>
                 </div>
@@ -150,6 +151,9 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
                                             }
                                             else if(element.kind_value == 'ascended') {
                                                 return(<Icon name={'regular_star'}/>)
+                                            }
+                                            else if(element.kind_value == 'innate') {
+                                                return(<Icon name={'faExplosion'}/>)
                                             }
                                             else {return(<div hidden></div>)}
                                         })()}
