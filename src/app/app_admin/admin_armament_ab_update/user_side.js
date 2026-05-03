@@ -36,9 +36,9 @@ export function ArmamentTable({list}){
         <div className='armament_update_area'>
             <table className="armament_update" key={'armament_table'}>
                 <thead>
-                    <tr key={'tr_head'}>
-                        <th key={'th_head_id'}>id</th>
-                        <th key={'th_head_name'}>ab_name</th>
+                    <tr>
+                        <th>id</th>
+                        <th>ab_name</th>
                     </tr>
                 </thead>  
                 <tbody>
@@ -69,15 +69,19 @@ function formRedresh(content){
     $(`#recharge option[value="${content.recharge}"]`).prop('selected', true);
 
     //checkbox
-    var components = content.components.split(',');
-    components.forEach(element_id => {
-        $('input#checkbox_' + element_id).prop('checked', true);  
-    });    
+    if(content.components != null){
+        var components = content.components.split(',');
+        components.forEach(element_id => {
+            $('input#checkbox_' + element_id).prop('checked', true);  
+        }); 
+    }
 
-    var durations = content.duration.split(',');
-    durations.forEach(element_id => {
-        $('input#checkbox_' + element_id).prop('checked', true);  
-    });    
+    if(content.duration != null){
+        var durations = content.duration.split(',');
+        durations.forEach(element_id => {
+            $('input#checkbox_' + element_id).prop('checked', true);  
+        }); 
+    }       
 
     if(content.rules == 1) $("input#checkbox_-2").prop('checked', true);
     if(content.summon == 1) $("input#checkbox_-1").prop('checked', true);

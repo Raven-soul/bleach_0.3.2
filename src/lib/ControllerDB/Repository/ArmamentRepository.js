@@ -67,15 +67,28 @@ select ab.id,
           from components cm
        ) as components,
 
+       type.id as type_id,
+       type.ord as type_order,
        type.name as type_name,
        type.value as type_value,
        type.logo as type_logo,
+
+       cost.id as cost_id,
+       cost.ord as cost_order,
        cost.name as cost_name,
-       cost.value as cost_value
+       cost.value as cost_value,
+
+       kind.id as kind_id,
+       kind.ord as kind_order,
+       kind.name as kind_name,
+       kind.value as kind_value
        
   from c_armament_ab ab
        left join c_armament_ab_filter_item type on type.id = ab.type
        left join c_armament_ab_filter_item cost on cost.id = ab.cost
+       left join c_armament_ab_filter_item kind on kind.id = ab.kind
+ where ab.show = 1
+ order by type_order, kind_order, cost_order, ab.name
     `;
     return db.prepare(sql).all();
 };

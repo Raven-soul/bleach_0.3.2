@@ -3,7 +3,7 @@ import $ from "jquery"
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 
-import { insertArmament, getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
+import { insertArmament, getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList, getArmamentInfo } from "@/lib/ControllerDB/Repository/AdminRepository";
 
 import Form from 'next/form'
 
@@ -20,6 +20,7 @@ export default function Class(param) {
     const pageTitle = getPageTitleTemplate('admin_armament_ab');
     const paramType = getParamType();
     const checkGroup = getAdditionalGroupList();
+    const info = getArmamentInfo()[0];
 
     for(let i = 0; i < paramType.length; i++){
         paramType[i]['last_element'] = getLastAbilityParam(paramType[i].latin_name);//classElement.SpecialSpoilerList[i].id);
@@ -48,6 +49,10 @@ export default function Class(param) {
                                             </span>
                                         </div>                                        
                                         <Form action="" className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
+                                            <div>
+                                                <p>Всего способностей: <b>{info.ab_length}</b>, последний тип: <b>{info.type_name}</b>,</p> 
+                                                <p>последнее название: <b>{info.name}</b></p>
+                                            </div>
                                             {paramType.map((type)=>{
                                                 return(
                                                     <div key={'type_' + type.id}>

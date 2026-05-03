@@ -89,6 +89,22 @@ export function ArmamentFilter({filter_list}){
     )
 }
 
+export function FirstFiltersPrompt(){
+    return (
+        <div className="prompt-area">
+            <div className="prompt">
+                <div className="prompt-data">
+                    <span>[0] - уровень</span>
+                    <span><span className="components">ВСМВ</span> - компоненты</span>
+                    <span><Icon name={'regular_star'}/> - возвышенная</span>
+                    <span><Icon name={'solid_star'}/> - ультимативная</span>
+                </div>
+                <hr/> 
+            </div>                                      
+        </div>
+    )
+}
+
 export function FiltersPrompt({promptData}){
     return (
         <div className="prompt-area">
@@ -126,6 +142,17 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
                                     </span>
                                     <span className="school-logo">
                                         <Icon name={element.type_logo}/>
+                                    </span>
+                                    <span className="kind-logo">
+                                        {(()=>{
+                                            if(element.kind_value == 'ultimate') {
+                                                return(<Icon name={'solid_star'}/>)
+                                            }
+                                            else if(element.kind_value == 'ascended') {
+                                                return(<Icon name={'regular_star'}/>)
+                                            }
+                                            else {return(<div hidden></div>)}
+                                        })()}
                                     </span>
                                     <span className="name">{element.ab_name}</span>
                                 </div>

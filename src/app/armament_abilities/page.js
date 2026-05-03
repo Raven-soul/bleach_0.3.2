@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { PageLoad } from "@/components/page_part/user_side/common/Load";
 import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
 import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt, getArmamentGridList, getArmamentParamGridList } from "@/lib/ControllerDB/Repository/ArmamentRepository";
-import { ArmamentFilter, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";
+import { ArmamentFilter, FirstFiltersPrompt, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";
 
 export default async function Page({ params }) {
     let pageTitle = getPageTitleTemplate('armament_abilities');
@@ -40,15 +40,7 @@ export default async function Page({ params }) {
                         <div className="armament-abilities-content">
                             <div className="row-2">
                                 <div className="col">
-                                    <div className="prompt-area">
-                                        <div className="prompt">
-                                            <div className="prompt-data">
-                                                <span>[0] - уровень</span>
-                                                <span><span className="components">ВСМР</span> - компоненты</span>
-                                            </div>
-                                            <hr/> 
-                                        </div>                                      
-                                    </div>
+                                    <FirstFiltersPrompt/>
                                 </div>
                                 <div className="col" style={{marginBottom: "15px"}}>
                                     <FiltersPrompt promptData={filterPromptData}/>

@@ -672,6 +672,12 @@ a.read-all:hover{
     font-size: 12px;
 }
 
+.grid-abilities-item .kind-logo {
+    vertical-align: middle;
+    line-height: 100%;  
+    font-size: 12px;
+}
+
 .left-align-data {
     overflow: hidden;
     -webkit-mask-image: linear-gradient(270deg, transparent 8px, #141414 24px);
@@ -820,6 +826,7 @@ table.armament_update .row_edited{
 table.armament_update th{
     border: 1px solid #141414;
     font-weight: normal;
+    background-color: #280dbd7c;
 }
 table.armament_update td{
     border: 1px solid #141414;

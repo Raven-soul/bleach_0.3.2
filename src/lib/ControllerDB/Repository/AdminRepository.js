@@ -161,10 +161,11 @@ export const getLastAbilityParam = (param_name = 'type') => {
 export const getParamListByType = (type_id = 1) => {
     const sql = `
         select *
-          from c_armament_ab_filter_item p
+          from c_armament_ab_filter_item item
          where 1 = 1
-               and p.filter = ${type_id}
-               and p.value <> 'discard'
+               and item.filter = ${type_id}
+               and item.value <> 'discard'
+         order by coalesce(item.ord, item.id)
     `;
     return db.prepare(sql).all();
 };
@@ -228,6 +229,20 @@ export const getAdditionalGroupList = () => {
     return db.prepare(sql).all();
 };
 
+export const getArmamentInfo = () => {
+    const sql = `
+        select (select count(t.id) as val from c_armament_ab t) as ab_length,
+               ab.name,
+               item.name as type_name
+          from c_armament_ab ab
+               left join c_armament_ab_filter_item item on item.id = ab.type
+         where ab.show = 1
+         order by ab.id desc
+         limit 1
+    `;
+    return db.prepare(sql).all();
+};
+
 export const insertArmament = (data) => {
     var list = {
         rules: !data.get('rules') ? 0 : 1,
@@ -238,7 +253,7 @@ export const insertArmament = (data) => {
         material: !data.get('material') ? 0 : 1,
         released: !data.get('released') ? 0 : 1,
 
-        until_saled: !data.get('until_saled') ? 0 : 1,
+        until_saled: !data.get('until_sealed') ? 0 : 1,
         concentration: !data.get('concentration') ? 0 : 1,
         minute_1: !data.get('minute1') ? 0 : 1,
         minute_2: !data.get('minute2') ? 0 : 1,
@@ -287,9 +302,9 @@ insert into c_armament_ab(
        name,
        requirements,
        data,
-
-       components,
+       
        duration,
+       components,
 
        rules,
        summon
@@ -421,7 +436,7 @@ update c_armament_ab
        summon = ${list.summon}
  where case when ${armament_id} notnull then id = ${armament_id} else false end
 `;
-
+    console.log(sql);
     db.exec(sql);
     return true;
 };
@@ -434,6 +449,8 @@ select ab.id,
        substring(ab.name, instr(ab.name, '[') + 1, instr(ab.name, ']') - (instr(ab.name, '[') + 1)) as latin_name
  
   from c_armament_ab ab
+ where ab.show = 1
+ order by ab.id desc
 `;
     return db.prepare(sql).all();
 };
