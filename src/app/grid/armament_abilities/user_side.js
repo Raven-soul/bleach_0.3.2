@@ -68,7 +68,6 @@ export function ArmamentFilter({filter_list}){
 
     return (
         <div className="grid-group-data">   
-            {/* {(()=>{console.log(filter_list[2])})()}  */}
             {filter_list.map((element)=>{                
                 return(
                     <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
@@ -129,7 +128,7 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
             {abilitiesList.map((element)=>{
                 return(
                     <div className="grid-abilities-item px-1" id={'armament_ability_' + element.id} key={'armament_ability_key_' + element.id}>
-                        <a href="#" className="abilities-info-block">  
+                        <a href={element.link + '/' + element.id} className="abilities-info-block">  
                             {element.param_list.map(param =>{
                                 return(
                                     <div hidden className={param.name} value={param.value} key={'key_' + param.name + '_' + param.value}></div>

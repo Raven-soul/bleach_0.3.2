@@ -169,3 +169,22 @@ select filter.name,
     */
     return db.prepare(sql).all();
 };
+
+export const getArmamentIdList = () => {
+    const sql = `
+select ab.id,
+       ab.name as ab_name
+       
+  from c_armament_ab ab
+ where ab.show = 1
+    `;
+    
+    var sql_result = db.prepare(sql).all();
+    var array_result = [];
+
+    for(var i=0; i < sql_result.length; i++){
+        array_result.push(sql_result[i].id.toString());
+    }
+
+    return array_result; 
+};

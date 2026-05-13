@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { PageLoad } from "@/components/page_part/common/user_side/Load";
 import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
 import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt, getArmamentGridList, getArmamentParamGridList } from "@/lib/ControllerDB/Repository/ArmamentRepository";
+import { getMenuLink } from "@/lib/ControllerDB/Repository/DomainRepository";
 import { ArmamentFilter, FirstFiltersPrompt, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";
 
 export default async function Page({ params }) {
@@ -16,6 +17,7 @@ export default async function Page({ params }) {
     }
     for(let i = 0; i < armamentGridList.length; i++){
         armamentGridList[i]["param_list"] = getArmamentParamGridList(armamentGridList[i].id);
+        armamentGridList[i]["link"] = getMenuLink('armament_abilities');
     }
     
     //-----------------------------------------------------------------
