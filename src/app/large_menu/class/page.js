@@ -1,17 +1,17 @@
 import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
-import { getRaceMenuGroupContent, getRaceMenuContent } from "@/lib/ControllerDB/Repository/RaceRepository";
-import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { getClassMenuGroupContent, getClassMenuContent } from "@/lib/ControllerDB/Repository/ClassRepository";
+import { PageLoad } from "@/components/page_part/common/user_side/Load";
 
-import { PageMenuItem } from "@/components/page_part/user_side/common/buttons"
+import { PageMenuItem } from "./../user_side"
 
-export default function Race(param) {
+export default function Class(param) {
   const { data } = param;
 
-  const pageTitle = getPageTitleTemplate('race');
-  const menuTemplate = getRaceMenuGroupContent();  
+  const pageTitle = getPageTitleTemplate();
+  const menuTemplate = getClassMenuGroupContent();  
 
   for(let i = 0; i < menuTemplate.length; i++){
-        menuTemplate[i]["content"] = getRaceMenuContent(menuTemplate[i].id);
+        menuTemplate[i]["content"] = getClassMenuContent(menuTemplate[i].id);
   }
 
   return (

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { PageLoad } from "@/components/page_part/common/user_side/Load";
 import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
 import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt, getArmamentGridList, getArmamentParamGridList } from "@/lib/ControllerDB/Repository/ArmamentRepository";
 import { ArmamentFilter, FirstFiltersPrompt, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";

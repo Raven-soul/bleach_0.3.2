@@ -1,7 +1,7 @@
 import $ from "jquery"
 
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
-import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { PageLoad } from "@/components/page_part/common/user_side/Load";
 
 import { ArmamentTable } from "./user_side";
 
@@ -10,13 +10,13 @@ import { insertArmament, getParamType, getParamListByType, getAdditionalParamLis
 
 import Form from 'next/form'
 
-// export async function update(data) {
-//     'use server';
+export async function update(data) {
+    'use server';
 
-//     var a = await insertArmament(data);
-//     console.log(a);
-//     return false;
-// }
+    var a = await insertArmament(data);
+    console.log(a);
+    return false;
+}
 
 export default function Class(param) {
     const { data } = param;
@@ -57,7 +57,7 @@ export default function Class(param) {
                                                 <ArmamentTable list={aList}/>
                                             </div>
                                             <div className="col-9">
-                                                <Form action="" className="row-2 form-insert" id="add_group">{/* action={update} */}
+                                                <Form action={update} className="row-2 form-insert" id="add_group">{/* action={update} */}
                                                     <div>
                                                         <input name="armament_id" id="armament_id" hidden/>
                                                         <input name="additional_id" id="additional_id" hidden/>

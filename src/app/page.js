@@ -1,4 +1,4 @@
-import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { PageLoad } from "@/components/page_part/common/user_side/Load";
 
 export default function Home(param) {
   const { data } = param;

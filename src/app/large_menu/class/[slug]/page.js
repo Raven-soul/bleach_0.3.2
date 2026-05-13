@@ -11,9 +11,11 @@ import Image from 'next/image'
 import { getClassContent, getClassContentData } from "@/lib/ControllerDB/Repository/ClassRepository";
 import { getClassTable, getClassTableContent } from "@/lib/ControllerDB/Repository/TableRepository";
 import { getClassSpoilers, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/SpoilerRepository";
-import { PageLoad } from "@/components/page_part/user_side/common/Load";
-import { SpoilerHead } from "@/components/page_part/user_side/common/buttons";
-import { Gallary } from '@/components/page_part/server_side/common/gallary';
+
+import { PageLoad } from "@/components/page_part/common/user_side/Load";
+import { Gallary } from '@/components/page_part/common/server_side/gallary';
+
+import { SpoilerHead } from "../../user_side";
 
 export function generateStaticParams() {
     const pages = ['Shinigami', 'Quincy', 'Arrankar', 'Fullbringer', 'Bount'];

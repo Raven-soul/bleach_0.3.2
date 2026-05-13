@@ -1,7 +1,7 @@
 import $ from "jquery"
 
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
-import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { PageLoad } from "@/components/page_part/common/user_side/Load";
 
 import { insertTicketGroup, getTicketMenuGroup } from "@/lib/ControllerDB/Repository/AdminRepository";
 

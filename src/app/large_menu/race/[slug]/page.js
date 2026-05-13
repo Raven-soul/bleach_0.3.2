@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
 import { getRaceContent, getRaceContentData } from '@/lib/ControllerDB/Repository/RaceRepository';
-import { PageLoad } from '@/components/page_part/user_side/common/Load';
-import { Gallary } from '@/components/page_part/server_side/common/gallary';
+import { PageLoad } from '@/components/page_part/common/user_side/Load';
+import { Gallary } from '@/components/page_part/common/server_side/gallary';
 
 export function generateStaticParams() {
     const pages = ['Gecon', 'People', 'Soul', 'Hollow', 'Quincy', 'Fullbringer', 'Visored', 'Bount'];

@@ -41,9 +41,17 @@ export const getClassMenuGroupContent = () => {
 
 export const getClassMenuContent = (group_id = 1) => {
     const sql = `
-        select *
+        select tm.id,
+               tm.group_id,
+               tm.name,
+               tm.latin_name,
+               tm.logo,
+               menu.link || tm.link as link
           from c_ticket_menu tm
-          where tm.group_id = ${group_id}
+               left join c_ticket_menu_group menu_group on menu_group.id = tm.group_id
+               left join c_menu menu on menu.id = menu_group.menu_id
+               
+         where menu_group.id = ${group_id}
     `;
     return db.prepare(sql).all();
 };

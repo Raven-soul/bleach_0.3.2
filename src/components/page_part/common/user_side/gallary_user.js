@@ -3,7 +3,7 @@
 import $ from "jquery"
 import Image from 'next/image'
 import { useEffect, useState } from "react";
-import {Icon} from "@/components/page_part/server_side/common/fontawesome"
+import {Icon} from "@/components/page_part/common/server_side/fontawesome"
 
 export function GetGallaryItem({list}){
 

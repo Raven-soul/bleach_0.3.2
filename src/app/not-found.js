@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import "@/components/css/errors.css";
 
-import { PageLoad } from "@/components/page_part/user_side/common/Load";
+import { PageLoad } from "@/components/page_part/common/user_side/Load";
 
 import logo_404 from "@/../public/img/home/errors/logo_404.png";
 
