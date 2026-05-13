@@ -2,6 +2,8 @@
 
 import $ from "jquery"
 
+import Link from 'next/link'
+
 import { Icon } from '@/components/page_part/common/server_side/fontawesome'
 
 function getFilterValues(){
@@ -128,7 +130,7 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
             {abilitiesList.map((element)=>{
                 return(
                     <div className="grid-abilities-item px-1" id={'armament_ability_' + element.id} key={'armament_ability_key_' + element.id}>
-                        <a href={element.link + '/' + element.id} className="abilities-info-block">  
+                        <Link href={element.link + '/' + element.id} className="abilities-info-block">
                             {element.param_list.map(param =>{
                                 return(
                                     <div hidden className={param.name} value={param.value} key={'key_' + param.name + '_' + param.value}></div>
@@ -162,7 +164,8 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
                                 <div className="col-auto components">{element.components}</div>
                             </div>  
                             <hr className="abilities-hr-gradient"/>
-                        </a>
+
+                        </Link>
                     </div>
                 )
             })}
