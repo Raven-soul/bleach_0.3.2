@@ -8,11 +8,11 @@ import logo_404 from "@/../public/img/home/errors/logo_404.png";
 
 export default function NotFound() {
   return (
-    <div class="not-found">
+    <div ClassName="not-found">
       <PageLoad/>
-      <div class="container">
-        <div class="row-2">
-            <div class="col">
+      <div ClassName="container">
+        <div ClassName="row-2">
+            <div ClassName="col">
                 <Image
                     src={logo_404}
                     className={"logo-404"}

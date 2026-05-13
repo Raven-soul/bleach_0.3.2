@@ -65,16 +65,3 @@ export function ChevronМenuButton ({selection_id, selection_name, chevrone, hid
         </button>
     )
 }
-
-export function SpoilerHead({spoiler_id, spoiler_name}) {
-    const func = (()=>{
-        $('#spoiler-'+ spoiler_id).toggleClass('active');
-        $('.hb-' + spoiler_id).toggleClass('active');
-    });
-
-    return (
-        <h1 className="hide-next" id={spoiler_id} onClick={func}>
-            {spoiler_name}
-        </h1>
-    )
-}
