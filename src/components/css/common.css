@@ -828,7 +828,7 @@ content .armament-content div ul li::marker {
     color: rgba(48, 25, 25, 0.9);
     overflow-y: scroll;
 }
-.form-area textarea.data{
+.form-area textarea.translate, .form-area textarea.data{
     display: block;
     width: 100%;
     height: 140px;

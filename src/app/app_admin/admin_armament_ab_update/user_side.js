@@ -90,7 +90,7 @@ function formRedresh(content){
     $('#material_data').val(content.material_data);
     $('#name').val(content.name);
     $('#requirements').val(content.requirements);
-    $('#data').val(content.translate);
+    $('#translate').val(content.translate);
 }
 
 function formClear(){
@@ -114,7 +114,7 @@ function formClear(){
     $('#material_data').val('');
     $('#name').val('');
     $('#requirements').val('');
-    $('#data').val('');
+    $('#translate').val('');
 }
 
 export function TableRow({element_id, element_latin_name, element_edited}){

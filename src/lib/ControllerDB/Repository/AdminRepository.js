@@ -386,7 +386,7 @@ const update_armament_ability = (data, list) => {
     var md = data.get('material_data').replace(/'/g, "''");
     var name = data.get('name').replace(/'/g, "''");
     var requirements = data.get('requirements').replace(/'/g, "''");
-    var dt = data.get('data').replace(/'/g, "''");
+    var dt = data.get('translate').replace(/'/g, "''");
 
     const sql = `
 update c_armament_ab
@@ -394,7 +394,7 @@ update c_armament_ab
        material_data = ${!data.get('material_data') ? null : "'" + md + "'"},
        name = ${!data.get('name') ? null : "'" + name + "'"},
        requirements = ${!data.get('requirements') ? null : "'" + requirements + "'"},
-       data = ${!data.get('data') ? null : "'" + dt + "'"},
+       translate = ${!data.get('translate') ? null : "'" + dt + "'"},
 
        type = ${!data.get('type') ? null : data.get('type')},
        cost = ${!data.get('cost') ? null : data.get('cost')},

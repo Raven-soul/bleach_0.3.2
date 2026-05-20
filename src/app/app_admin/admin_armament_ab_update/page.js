@@ -111,8 +111,8 @@ export default function Class(param) {
                                                         <textarea name="requirements" id="requirements" className="requirements"></textarea>                                            
                                                     </div>
                                                     <div>
-                                                        <label htmlFor="data" className="col-4" style={{'display': 'block'}}>Контент: </label>
-                                                        <textarea name="data" id="data" className="data"></textarea>                                           
+                                                        <label htmlFor="translate" className="col-4" style={{'display': 'block'}}>Контент: </label>
+                                                        <textarea name="translate" id="translate" className="translate"></textarea>                                           
                                                     </div>
                                                     <hr/>
                                                     <div className="submit-button">
