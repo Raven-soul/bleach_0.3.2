@@ -90,7 +90,7 @@ function formRedresh(content){
     $('#material_data').val(content.material_data);
     $('#name').val(content.name);
     $('#requirements').val(content.requirements);
-    $('#data').val(content.data);
+    $('#data').val(content.translate);
 }
 
 function formClear(){
