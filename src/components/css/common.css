@@ -692,7 +692,7 @@ a.read-all:hover{
     margin-bottom: 20px;
 }
 
-.armament-data .name {
+.armament-data .name span {
     font-weight: 600;
     font-size: 30px;
 }
@@ -703,6 +703,39 @@ a.read-all:hover{
 
 .armament-data .param {
     font-weight: 600;
+}
+
+.armament-data span, .armament-content {    
+    font-size: 14px;
+}
+
+.armament-content table td {    
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 5px;
+
+    font-style: italic;
+    font-weight: 500;
+}
+
+.armament-content table {    
+    border: 0;
+}
+
+.armament-content p, .armament-content table {    
+    margin-bottom: 5px;
+}
+
+content .armament-content div ul {    
+    list-style-type: none;
+    padding-left: 0;
+}
+content .armament-content div ul li{    
+    margin-bottom: 20px;
+}
+content .armament-content div ul li::marker {
+    content: none;
+    display: none;
 }
 
 .armament-data .half-gray {

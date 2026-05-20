@@ -10,6 +10,9 @@ export default async function Page({ params }) {
     const { slug } = await params
 
     const Armament = getArmamentData(slug)[0];
+
+    var display_property = (Armament.translate != null)? "none" : "display";
+
 //-----------------------------------------------------------------
 
     return (
@@ -52,11 +55,11 @@ export default async function Page({ params }) {
                             <span className="half-gray">{Armament.recharge_name}</span>
                         </p>
                     </div>
-                    <div className="col">
-                        {Armament.data}
+                    <div className="col armament-content">
+                        <div dangerouslySetInnerHTML={{ __html: Armament.translate }}></div>
                     </div>
-                    <div className="col" style={{visibility: "hidden"}}>
-                        <p>data</p>
+                    <div className="col armament-content" style={{display: display_property}}>
+                        <div dangerouslySetInnerHTML={{ __html: Armament.data }}></div>
                     </div>
                 </div>
             </div>

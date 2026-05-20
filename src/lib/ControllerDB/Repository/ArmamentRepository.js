@@ -261,7 +261,8 @@ select ab.id,
        ab.rules,
        ab.requirements,
        ab.material_data,
-       ab.data
+       ab.data,
+       ab.translate
        
   from c_armament_ab ab
        left join c_armament_ab_filter_item type on type.id = ab.type
