@@ -5,6 +5,7 @@ import $ from "jquery"
 import Link from 'next/link'
 
 import { Icon } from '@/components/page_part/common/server_side/fontawesome'
+import { futer_fix } from "@/components/page_part/common/user_side/Load";
 
 function getFilterValues(){
     var filterValues = [];
@@ -66,6 +67,7 @@ export function ArmamentFilter({filter_list}){
         }
 
         getFilterValues();
+        futer_fix();
     });
 
     return (

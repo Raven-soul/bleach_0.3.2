@@ -3,7 +3,7 @@ import $ from "jquery"
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/common/user_side/Load";
 
-import { ArmamentTable } from "./user_side";
+import { ArmamentTable, FormLoad } from "./user_side";
 
 import { getArmamentList } from "@/lib/ControllerDB/Repository/AdminRepository";
 import { insertArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
@@ -37,6 +37,7 @@ export default function Class(param) {
 
     return (
         <div className="row-2">
+            <FormLoad id_element={"submit_button"}/>
             <div className="col chapter-title-mobile">{pageTitle[0].name}</div>
             <div className="col">
                 <PageLoad page_title={pageTitle[0].name} />
@@ -111,12 +112,16 @@ export default function Class(param) {
                                                         <textarea name="requirements" id="requirements" className="requirements"></textarea>                                            
                                                     </div>
                                                     <div>
-                                                        <label htmlFor="translate" className="col-4" style={{'display': 'block'}}>Контент: </label>
+                                                        <label htmlFor="translate" className="col-4" style={{'display': 'block'}}>Контент перевод: </label>
                                                         <textarea name="translate" id="translate" className="translate"></textarea>                                           
+                                                    </div>
+                                                    <div>
+                                                        <label htmlFor="data" className="col-4" style={{'display': 'block'}}>Контент: </label>
+                                                        <textarea name="data" id="data" className="data"></textarea>                                           
                                                     </div>
                                                     <hr/>
                                                     <div className="submit-button">
-                                                        <button type="submit">Обновить</button>
+                                                        <button type="submit" id={"submit_button"}>Обновить</button>
                                                     </div>
                                                 </Form>
                                             </div>

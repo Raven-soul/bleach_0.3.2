@@ -1,17 +1,6 @@
 'use client';
 import $ from "jquery"
-import { useCallback } from 'react'
-
-// export default async function get(){
-//     await fetch('/api/admin/ability', {
-//       method: 'GET',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: { a : 10},
-//     }).then((res) => {
-//       alert('true ' + res)
-//     })
-
-// }
+import { useEffect } from "react";
 
 export default async function fetch_data(id) {
     let response = await fetch('/api/admin/ability',{
@@ -53,6 +42,23 @@ export function ArmamentTable({list}){
     )
 }
 
+export function FormLoad({id_element}){
+    const load = (()=>{
+        $("#" + id_element).click(function (){
+            var id = $('#armament_id').val();
+            $("#t_row_" + id).addClass('row_edited');
+        });
+    });
+
+    useEffect(()=>{
+        load();
+    },);    
+
+    return (
+        <div hidden></div>
+    )
+}
+
 function formRedresh(content){
     formClear();
     //id
@@ -91,6 +97,7 @@ function formRedresh(content){
     $('#name').val(content.name);
     $('#requirements').val(content.requirements);
     $('#translate').val(content.translate);
+    $('#data').val(content.data);
 }
 
 function formClear(){
@@ -115,6 +122,7 @@ function formClear(){
     $('#name').val('');
     $('#requirements').val('');
     $('#translate').val('');
+    $('#data').val('');
 }
 
 export function TableRow({element_id, element_latin_name, element_edited}){
@@ -131,7 +139,7 @@ export function TableRow({element_id, element_latin_name, element_edited}){
     var edited = element_edited == 1? 'row_edited' : ''
 
     return (
-        <tr onClick={func} key={'tr_' + element_id + '_' + element_latin_name} className={edited}>
+        <tr onClick={func} key={'tr_' + element_id + '_' + element_latin_name} className={edited} id={"t_row_" + element_id}>
             <td key={'td_element_id' + element_id}>{element_id}</td>
             <td key={'td_element_name' + element_id}>{element_latin_name}</td>
         </tr>
