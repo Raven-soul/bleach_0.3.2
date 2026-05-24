@@ -220,10 +220,13 @@ select ab.id,
        
        (select string_agg(
                case when (instr(ab.components, cm.id) > 0)
-                    then substring(cm.name, 1, 1)
-                    else '.'
+                    then case when substring(cm.name, 1, 1) in ('В','С')
+                              then cm.name
+                              else cm.name || ' (' || ab.material_data || ')'
+                         end
+                    else null
                end,
-               ''
+               ', '
                )
           from components cm
        ) as components,
@@ -251,6 +254,15 @@ select ab.id,
 
        kind.id as kind_id,
        kind.name as kind_name,
+
+       case when kind.value = 'ascended'
+                 then 'ascended'
+            when kind.value = 'ultimate'
+                 then 'ultimate'
+            when kind.value = 'innate'
+                 then 'innate'
+            else 'classic'
+        end as kind_class_name,
        
        distance.id as distance_id,
        distance.name as distance_name,

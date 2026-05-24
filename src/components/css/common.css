@@ -709,21 +709,41 @@ a.read-all:hover{
     font-size: 14px;
 }
 
+.armament-data span, .armament-data-type {    
+    display: inline;
+}
+
 .armament-content table td {    
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 5px;
 
     font-style: italic;
-    font-weight: 500;
 }
 
 .armament-content table {    
     border: 0;
 }
 
+.armament-content .armament-feature-card{
+    display: flex;
+    justify-content: center;
+}
+
+.armament-content .armament-feature-card table td,
+.armament-content .armament-feature-card table th{    
+    border: 1px solid black;
+    text-align: center;
+}
+
 .armament-content p, .armament-content table {    
     margin-bottom: 5px;
+}
+
+.armament-content .armament-feature-reselect{
+    background-color: #fff8ef;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 content .armament-content div ul {    
@@ -740,6 +760,30 @@ content .armament-content div ul li::marker {
 
 .armament-data .half-gray {
     color: rgba(0, 0, 0, 0.7);
+}
+
+.race-class-data-area.innate{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(188, 16, 211, 0.5), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(188, 16, 211, 0.5), transparent);
+}
+
+.race-class-data-area.classic{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(17, 161, 53, 0.5), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(17, 161, 53, 0.5), transparent);
+}
+
+.race-class-data-area.ultimate{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(212, 11, 11, 0.5), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(212, 11, 11, 0.5), transparent);
+}
+
+.race-class-data-area.ascended{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(12, 77, 161, 0.5), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(12, 77, 161, 0.5), transparent);
 }
 /* ------------------------------------------------------------- armament abilities end */
 
