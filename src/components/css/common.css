@@ -713,6 +713,14 @@ a.read-all:hover{
     display: inline;
 }
 
+.armament-data .requirements{
+    margin-top: 5px;
+}
+
+.armament-data .requirements span{
+    font-size: 18px;
+}
+
 .armament-content table td {    
     padding-bottom: 5px;
     padding-left: 10px;

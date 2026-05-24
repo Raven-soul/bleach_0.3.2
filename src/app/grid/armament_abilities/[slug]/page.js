@@ -69,7 +69,23 @@ export default async function Page({ params }) {
                                 <div></div>
                             }
                         })()}
-                        
+                        <p className={"requirements"}>
+                            <span className="param">Требования:</span>
+                            <span> </span>
+                            {(()=>{
+                                    if(Armament.requirements != null){
+                                        return(
+                                            <span className="half-gray">{Armament.requirements}</span>
+                                        )
+                                    }
+                                    else {
+                                        return(
+                                            <span className="half-gray">Нет</span>
+                                        )
+                                    }
+                            })()}
+                            
+                        </p>
                     </div>
                     <div className="col armament-content">
                         <div dangerouslySetInnerHTML={{ __html: Armament.translate }}></div>
