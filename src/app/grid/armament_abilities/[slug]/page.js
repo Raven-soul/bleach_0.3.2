@@ -66,25 +66,21 @@ export default async function Page({ params }) {
                                 )
                             }
                             else {
-                                <div></div>
+                                return(
+                                    <div>
+                                        <p>
+                                            <span className="param">Длительность:</span>
+                                            <span> </span>
+                                            <span className="half-gray">{(Armament.durations != null)? Armament.durations : 'Нет'}</span>
+                                        </p>
+                                    </div>
+                                )
                             }
                         })()}
                         <p className={"requirements"}>
                             <span className="param">Требования:</span>
                             <span> </span>
-                            {(()=>{
-                                    if(Armament.requirements != null){
-                                        return(
-                                            <span className="half-gray">{Armament.requirements}</span>
-                                        )
-                                    }
-                                    else {
-                                        return(
-                                            <span className="half-gray">Нет</span>
-                                        )
-                                    }
-                            })()}
-                            
+                            <span className="half-gray">{(Armament.requirements != null)? Armament.requirements : 'Нет'}</span>                            
                         </p>
                     </div>
                     <div className="col armament-content">
