@@ -23,8 +23,7 @@ export default async function Page({ params }) {
                 <PageLoad page_title={Armament.ab_name} />
                 <div className={"race-class-data-area " + Armament.kind_class_name}>
                     <div className="col armament-data">
-                        <div className={"armament-feature-head"}>
-                            <p  className="name">
+                        <p  className="name">
                                 <span>{Armament.ab_name}</span>
                             </p>
                             <p className="cost-type half-gray">
@@ -83,7 +82,6 @@ export default async function Page({ params }) {
                                 <span> </span>
                                 <span className="half-gray">{(Armament.requirements != null)? Armament.requirements : 'Нет'}</span>                            
                             </p>
-                        </div>
                     </div>
                     <div className="col armament-content">
                         <div dangerouslySetInnerHTML={{ __html: Armament.translate }}></div>

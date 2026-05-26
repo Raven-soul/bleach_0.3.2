@@ -748,22 +748,22 @@ a.read-all:hover{
     margin-top: 5px;
 }
 
-.armament-data .armament-feature-head,
-.armament-content .armament-feature-reselect, 
-.armament-content .armament-feature-description{
-    background-color: #fff8ef6c;
-    border-radius: 10px;
-    padding: 10px;
-}
-
 content .armament-content div ul {    
     list-style-type: none;
     padding-left: 0;
 }
 
+.armament-data{
+    margin-top: 5px;
+}
+
 .armament-data,
 content .armament-content div ul li{    
     margin-bottom: 15px;
+
+    background-color: #fff8ef6c;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 content .armament-content div ul li::marker {
