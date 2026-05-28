@@ -274,7 +274,7 @@ select ab.id,
        ab.requirements,
        ab.material_data,
        ab.data,
-       ab.translate
+       '<ul>' || ab.translate || '</ul>' as translate
        
   from c_armament_ab ab
        left join c_armament_ab_filter_item type on type.id = ab.type
