@@ -607,6 +607,34 @@ a.read-all:hover{
     color: gray;
 }
 
+.prompt-data .selected-prompt {
+    color: rgb(5, 124, 41);
+}
+
+.prompt-description-data {
+    padding: 5px;
+    padding-top: 5px;
+}
+
+.prompt-description-data div ul li::marker {
+    content: none;
+    display: none;
+}
+
+.prompt-description-data div ul {    
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.prompt-description-data  li{    
+    margin-bottom: 10px;
+}
+
+.prompt-description-data  p{    
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
 .vertical-group-name {
     writing-mode: tb-rl;
     transform: rotate(-180deg);

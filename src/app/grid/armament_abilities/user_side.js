@@ -116,9 +116,52 @@ export function FiltersPrompt({promptData}){
                 <div className="prompt-data prompt-type">
                     {promptData.map((element)=>{
                         return(
-                            <span key={'type_' + element.id}><Icon name={element.logo}/> - {element.name}</span>
+                            <span 
+                                className=""
+                                id={'prompt_type_' + element.id}
+                                key={'type_' + element.id} 
+                                onClick={(()=>{
+                                    // блок с цветом логотипа
+                                    if($('#prompt_type_' + element.id).hasClass('selected-prompt')){
+                                        $('#prompt_type_' + element.id).toggleClass('selected-prompt');
+                                    }
+                                    else {
+                                        $('.prompt-type span').removeClass('selected-prompt');
+                                        $('#prompt_type_' + element.id).toggleClass('selected-prompt');
+                                    }                                    
+                                    
+                                    // блок видимости блока описания этого типа
+                                    $('.prompt-description-data div').hide();
+                                    
+                                    if($('#prompt_type_' + element.id).hasClass('selected-prompt')){
+                                        $('#prompt_description_' + element.id).show();
+                                    }
+
+                                    // блок видимости всего блока описания
+                                    if($('.prompt-type span').hasClass('selected-prompt')){
+                                        $('.prompt-description').show();
+                                    }
+                                    else {
+                                        $('.prompt-description').hide();
+                                    }                                    
+                                })}
+                            ><Icon name={element.logo}/> - {element.name}</span>
                         )
                     })}
+                </div>
+                <hr/>
+            </div>
+            <div className="prompt-description" style={{ display: "none"}}>
+                <div className="prompt-description-data row-2">                    
+                    {promptData.map((element)=>{
+                        return(
+                            <div 
+                                id={'prompt_description_' + element.id}
+                                className="col" 
+                                dangerouslySetInnerHTML={{ __html: element.description }}
+                            ></div>
+                        )
+                    })}                    
                 </div>
                 <hr/>
             </div>

@@ -31,7 +31,8 @@ export const getArmamentTypePrompt = () => {
 select item.id,
        item.name,
        item.value,
-       item.logo
+       item.logo,
+       item.description
   from c_armament_ab_filter filter
        inner join c_armament_ab_filter_item item on item.filter = filter.id
  where 1=1 
