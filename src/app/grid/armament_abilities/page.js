@@ -4,7 +4,7 @@ import { PageLoad } from "@/components/page_part/common/user_side/Load";
 import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
 import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt, getArmamentGridList, getArmamentParamGridList } from "@/lib/ControllerDB/Repository/ArmamentRepository";
 import { getMenuLink } from "@/lib/ControllerDB/Repository/DomainRepository";
-import { ArmamentFilter, FirstFiltersPrompt, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";
+import { ArmamentFilter, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";
 
 export default async function Page({ params }) {
     let pageTitle = getPageTitleTemplate('armament_abilities');
@@ -41,10 +41,7 @@ export default async function Page({ params }) {
                     <div className="col abilities-grid">
                         <div className="armament-abilities-content">
                             <div className="row-2">
-                                <div className="col">
-                                    <FirstFiltersPrompt/>
-                                </div>
-                                <div className="col" style={{marginBottom: "15px"}}>
+                                <div className="col" style={{marginBottom: "15px"}}>                                    
                                     <FiltersPrompt promptData={filterPromptData}/>
                                 </div>
                                 <div className="col">

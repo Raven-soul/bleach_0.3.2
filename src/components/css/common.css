@@ -599,6 +599,7 @@ a.read-all:hover{
 .prompt-data span {
     padding-left: 4px;
     padding-right: 4px;
+    cursor: pointer;
 }
 
 .prompt-data .components {

@@ -37,7 +37,9 @@ import {
     faWind,
     faStar as solid_star,
     faExplosion,
-    faSquareFull
+    faSquareFull,
+    faUpLong,
+    faCircleUp
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -142,6 +144,10 @@ export function Icon({name, className, style}){
             icon = regular_star; break;
         case 'faExplosion':
             icon = faExplosion; break;
+        case 'faUpLong':
+            icon = faUpLong; break;
+        case 'faCircleUp':
+            icon = faCircleUp; break;
 
         default:
             icon = faBan;

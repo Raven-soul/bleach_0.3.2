@@ -3,7 +3,8 @@ import db from './../db_connection';
 export const getArmamentFilterList = () => {
     const sql = `
 select *
-  from c_armament_ab_filter
+  from c_armament_ab_filter ft
+ where ft.show = 1
 `;
     return db.prepare(sql).all();
 };
@@ -32,11 +33,12 @@ select item.id,
        item.name,
        item.value,
        item.logo,
-       item.description
+       item.description,
+       filter.name as filter_name
   from c_armament_ab_filter filter
        inner join c_armament_ab_filter_item item on item.filter = filter.id
  where 1=1 
-       and filter.name = 'type'
+       and (filter.name = 'type' or filter.name = 'info')
        and item.value <> 'discard'  
  order by item.ord
     `;

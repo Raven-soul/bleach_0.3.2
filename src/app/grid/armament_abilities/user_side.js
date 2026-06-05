@@ -92,80 +92,106 @@ export function ArmamentFilter({filter_list}){
     )
 }
 
-export function FirstFiltersPrompt(){
-    return (
-        <div className="prompt-area">
-            <div className="prompt">
-                <div className="prompt-data">
-                    <span>[0] - уровень</span>
-                    <span><span className="components">ВСМВ</span> - компоненты</span>
-                    <span><Icon name={'faExplosion'}/> - врожденная</span>
-                    <span><Icon name={'regular_star'}/> - возвышенная</span>
-                    <span><Icon name={'solid_star'}/> - ультимативная</span>
-                </div>
-                <hr/> 
-            </div>                                      
-        </div>
-    )
-}
-
 export function FiltersPrompt({promptData}){
-    return (
-        <div className="prompt-area">
-            <div className="prompt">
-                <div className="prompt-data prompt-type">
-                    {promptData.map((element)=>{
-                        return(
-                            <span 
-                                className=""
-                                id={'prompt_type_' + element.id}
-                                key={'type_' + element.id} 
-                                onClick={(()=>{
-                                    // блок с цветом логотипа
-                                    if($('#prompt_type_' + element.id).hasClass('selected-prompt')){
-                                        $('#prompt_type_' + element.id).toggleClass('selected-prompt');
-                                    }
-                                    else {
-                                        $('.prompt-type span').removeClass('selected-prompt');
-                                        $('#prompt_type_' + element.id).toggleClass('selected-prompt');
-                                    }                                    
-                                    
-                                    // блок видимости блока описания этого типа
-                                    $('.prompt-description-data div').hide();
-                                    
-                                    if($('#prompt_type_' + element.id).hasClass('selected-prompt')){
-                                        $('#prompt_description_' + element.id).show();
-                                    }
+    const func = ((id)=>{
+        // блок с цветом логотипа
+        if($('#prompt_type_' + id).hasClass('selected-prompt')){
+            $('#prompt_type_' + id).toggleClass('selected-prompt');
+        }
+        else {
+            $('.prompt-type span').removeClass('selected-prompt');
+            $('#prompt_type_' + id).toggleClass('selected-prompt');
+        }                                    
+        
+        // блок видимости блока описания этого типа
+        $('.prompt-description-data div').hide();
+        
+        if($('#prompt_type_' + id).hasClass('selected-prompt')){
+            $('#prompt_description_' + id).show();
+        }
 
-                                    // блок видимости всего блока описания
-                                    if($('.prompt-type span').hasClass('selected-prompt')){
-                                        $('.prompt-description').show();
-                                    }
-                                    else {
-                                        $('.prompt-description').hide();
-                                    }                                    
-                                })}
-                            ><Icon name={element.logo}/> - {element.name}</span>
-                        )
-                    })}
+        // блок видимости всего блока описания
+        if($('.prompt-type span').hasClass('selected-prompt')){
+            $('.prompt-description').show();
+        }
+        else {
+            $('.prompt-description').hide();
+        }     
+    });
+
+    return (
+        <div className="row-2">
+            <div className="col">
+                <div className="prompt-area">
+                    <div className="prompt">
+                        <div className="prompt-data prompt-type py-1">
+                            {promptData.map((element)=>{
+                                if(element.filter_name == 'info'){
+                                    return(
+                                        <span
+                                            key={'info_' + element.id} 
+                                            id={'prompt_type_' + element.id}
+                                            onClick={(()=>{func(element.id)})}
+                                        >
+                                            {(()=>{
+                                                if(element.logo == null){
+                                                    if(element.id == 136){
+                                                        return(<><span className="components">ВСМВ</span> - компоненты</>)
+                                                    }
+                                                    else {
+                                                        return(<>{element.name}</>)
+                                                    }                                                
+                                                }
+                                                else {
+                                                    return(<><Icon name={element.logo}/> - {element.name}</>)
+                                                }
+                                            })()}
+                                        </span>
+                                    )
+                                }                                
+                            })}
+                        </div>
+                        <hr/> 
+                    </div>
                 </div>
-                <hr/>
-            </div>
-            <div className="prompt-description" style={{ display: "none"}}>
-                <div className="prompt-description-data row-2">                    
-                    {promptData.map((element)=>{
-                        return(
-                            <div 
-                                id={'prompt_description_' + element.id}
-                                className="col" 
-                                dangerouslySetInnerHTML={{ __html: element.description }}
-                            ></div>
-                        )
-                    })}                    
+            </div>   
+            <div className="col">
+                <div className="prompt-area">
+                    <div className="prompt">
+                        <div className="prompt-data prompt-type py-1">
+                            {promptData.map((element)=>{
+                                if(element.filter_name == 'type'){
+                                    return(
+                                        <span 
+                                            className=""
+                                            id={'prompt_type_' + element.id}
+                                            key={'type_' + element.id} 
+                                            onClick={(()=>{func(element.id)})}
+                                        ><Icon name={element.logo}/> - {element.name}</span>
+                                    )
+                                }                                
+                            })}
+                        </div>
+                        <hr/>
+                    </div>
+                    <div className="prompt-description" style={{ display: "none"}}>
+                        <div className="prompt-description-data row-2">                    
+                            {promptData.map((element)=>{
+                                return(
+                                    <div 
+                                        id={'prompt_description_' + element.id}
+                                        className="col" 
+                                        key={'description_' + element.id} 
+                                        dangerouslySetInnerHTML={{ __html: element.description }}
+                                    ></div>
+                                )
+                            })}                    
+                        </div>
+                        <hr/>
+                    </div>
                 </div>
-                <hr/>
-            </div>
-        </div>
+            </div>            
+        </div>        
     )
 }
 

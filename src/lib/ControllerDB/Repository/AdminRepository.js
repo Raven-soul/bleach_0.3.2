@@ -269,6 +269,7 @@ export const insertArmament = (data) => {
         minute_10: !data.get('minute10') ? 0 : 1,
         round_1: !data.get('round1') ? 0 : 1,
         round_2: !data.get('round2') ? 0 : 1,
+        round_4: !data.get('round4') ? 0 : 1,
         round_5: !data.get('round5') ? 0 : 1,
         instantly: !data.get('instantaneous') ? 0 : 1,
         hour1: !data.get('hour1') ? 0 : 1,
@@ -347,6 +348,7 @@ select ${!data.get('type') ? null : data.get('type')} as type,
                               select ${list.minute_10} as value, 'minute10' as name union all
                               select ${list.round_1} as value, 'round1' as name union all                              
                               select ${list.round_2} as value, 'round2' as name union all
+                              select ${list.round_4} as value, 'round4' as name union all
                               select ${list.round_5} as value, 'round5' as name union all
                               select ${list.instantly} as value, 'instantaneous' as name union all
                               select ${list.hour1} as value, 'hour1' as name union all                              
@@ -406,7 +408,8 @@ update c_armament_ab
        range = ${!data.get('range') ? null : data.get('range')},
        recharge = ${!data.get('recharge') ? null : data.get('recharge')},
        edited = 1,
-       duration = (select string_agg(item.id, ',') as val
+       duration = (
+            select string_agg(item.id, ',') as val
               from c_armament_ab_filter_item item
              where 1=1
                    and item.filter = 7
@@ -421,6 +424,7 @@ update c_armament_ab
                               select ${list.minute_10} as value, 'minute10' as name union all
                               select ${list.round_1} as value, 'round1' as name union all                              
                               select ${list.round_2} as value, 'round2' as name union all
+                              select ${list.round_4} as value, 'round4' as name union all
                               select ${list.round_5} as value, 'round5' as name union all
                               select ${list.instantly} as value, 'instantaneous' as name union all
                               select ${list.hour1} as value, 'hour1' as name union all                              
