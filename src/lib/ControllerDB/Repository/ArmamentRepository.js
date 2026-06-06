@@ -72,6 +72,11 @@ select ab.id,
           from components cm
        ) as components,
 
+       case when ab.requirements isnull
+            then true
+            else false
+       end as is_requirements,
+
        type.id as type_id,
        type.ord as type_order,
        type.name as type_name,

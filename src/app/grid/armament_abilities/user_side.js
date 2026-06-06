@@ -136,7 +136,7 @@ export function FiltersPrompt({promptData}){
                                             {(()=>{
                                                 if(element.logo == null){
                                                     if(element.id == 136){
-                                                        return(<><span className="components">ВСМВ</span> - компоненты</>)
+                                                        return(<><span className="components">ВСМВ</span> - Компоненты</>)
                                                     }
                                                     else {
                                                         return(<>{element.name}</>)
@@ -219,20 +219,29 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
                                     <span className="kind-logo">
                                         {(()=>{
                                             if(element.kind_value == 'ultimate') {
-                                                return(<Icon name={'solid_star'}/>)
+                                                return(<Icon name={'faSquareCaretUp'}/>)
                                             }
                                             else if(element.kind_value == 'ascended') {
-                                                return(<Icon name={'regular_star'}/>)
+                                                return(<Icon name={'faSquareBluesky'}/>)
                                             }
                                             else if(element.kind_value == 'innate') {
                                                 return(<Icon name={'faExplosion'}/>)
                                             }
-                                            else {return(<div hidden></div>)}
                                         })()}
                                     </span>
                                     <span className="name">{element.ab_name}</span>
                                 </div>
-                                <div className="col-auto components">{element.components}</div>
+                                <div className="col-auto components">
+                                    {(()=>{
+                                        if(element.is_requirements == true){
+                                            return(<><Icon name={'faBookmark'}/>{element.components}</>)
+                                        }
+                                        else {
+                                            return(<>{element.components}</>)
+                                        }
+                                    })()}
+                                    
+                                </div>
                             </div>  
                             <hr className="abilities-hr-gradient"/>
 

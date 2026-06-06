@@ -39,7 +39,8 @@ import {
     faExplosion,
     faSquareFull,
     faUpLong,
-    faCircleUp
+    faCircleUp,
+    faSquareCaretUp
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -47,11 +48,13 @@ import {
     faFileLines,
     faCircleXmark,
     faSnowflake,
-    faStar as regular_star
+    faStar as regular_star,
+    faBookmark
 } from '@fortawesome/free-regular-svg-icons'
 
 import { 
-    faDrupal 
+    faDrupal,
+    faSquareBluesky
 } from '@fortawesome/free-brands-svg-icons'
 
 export function Icon({name, className, style}){
@@ -148,6 +151,12 @@ export function Icon({name, className, style}){
             icon = faUpLong; break;
         case 'faCircleUp':
             icon = faCircleUp; break;
+        case 'faSquareCaretUp':
+            icon = faSquareCaretUp; break;
+        case 'faSquareBluesky':
+            icon = faSquareBluesky; break;
+        case 'faBookmark':
+            icon = faBookmark; break;
 
         default:
             icon = faBan;
