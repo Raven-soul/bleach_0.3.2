@@ -71,24 +71,33 @@ export function ArmamentFilter({filter_list}){
     });
 
     return (
-        <div className="grid-group-data">   
-            {filter_list.map((element)=>{                
-                return(
-                    <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
-                        <div className='col'>
-                            <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={func} defaultValue={'all'}>
-                                <option value='all' disabled>{element.translate}</option>
-                                {element.content.map((item)=>{
-                                    return(
-                                        <option value={item.id} armtype={element.item_type} key={'filter_option_' + item.id}>{item.name}</option>
-                                    )
-                                })}                        
-                            </select>
-                        </div>                                                        
-                    </div>
-                )
-            })}
-        </div>
+        <div className="filter-grid-group">
+            <div className="grid-group-data">   
+                {filter_list.map((element)=>{                
+                    return(
+                        <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
+                            <div className='col'>
+                                <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={func} defaultValue={'all'}>
+                                    <option value='all' disabled>{element.translate}</option>
+                                    {element.content.map((item)=>{
+                                        return(
+                                            <option value={item.id} armtype={element.item_type} key={'filter_option_' + item.id}>{item.name}</option>
+                                        )
+                                    })}                        
+                                </select>
+                            </div>                                                        
+                        </div>
+                    )
+                })}
+            </div> 
+            <div className="filter-search-item">
+                <input type="text" 
+                       name="username"
+                       placeholder="Поиск по названию (пока в разработке)"
+                       onChange={(()=>{alert('ready')})}>
+                </input>
+            </div>                                                    
+        </div>        
     )
 }
 

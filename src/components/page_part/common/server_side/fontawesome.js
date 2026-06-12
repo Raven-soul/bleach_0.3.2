@@ -40,7 +40,8 @@ import {
     faSquareFull,
     faUpLong,
     faCircleUp,
-    faSquareCaretUp
+    faSquareCaretUp,
+    faFan
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -160,6 +161,8 @@ export function Icon({name, className, style}){
             icon = faBookmark; break;
         case 'faItunesNote':
             icon = faItunesNote; break;
+        case 'faFan':
+            icon = faFan; break;
 
         default:
             icon = faBan;

@@ -34,9 +34,7 @@ export default async function Page({ params }) {
                         </div>
                     </div>
                     <div className="col">
-                        <div className="filter-grid-group">
-                            <ArmamentFilter filter_list={filterList}/>                            
-                        </div>
+                        <ArmamentFilter filter_list={filterList}/>
                     </div>
                     <div className="col abilities-grid">
                         <div className="armament-abilities-content">

@@ -552,7 +552,15 @@ a.read-all:hover{
 /* ------------------------------------------------------------- RACE-CLASS DATA PAGE end */
 /* ------------------------------------------------------------- armament abilities start */
 .filter-grid-group{
-    margin-bottom: 0px;
+    margin-bottom: 10px;
+}
+.filter-grid-group .filter-search-item input {
+    height: 30px;
+    width: 100%;    
+    border-radius: 5px;
+    background-color: rgb(236,228,217);
+    padding-left: 10px;
+    padding-right: 5px;
 }
 .filter-grid-group-data-item select {
     height: 30px;
