@@ -54,7 +54,8 @@ import {
 
 import { 
     faDrupal,
-    faSquareBluesky
+    faSquareBluesky,
+    faItunesNote
 } from '@fortawesome/free-brands-svg-icons'
 
 export function Icon({name, className, style}){
@@ -157,6 +158,8 @@ export function Icon({name, className, style}){
             icon = faSquareBluesky; break;
         case 'faBookmark':
             icon = faBookmark; break;
+        case 'faItunesNote':
+            icon = faItunesNote; break;
 
         default:
             icon = faBan;
