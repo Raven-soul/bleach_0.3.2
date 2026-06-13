@@ -7,10 +7,15 @@ import Link from 'next/link'
 import { Icon } from '@/components/page_part/common/server_side/fontawesome'
 import { futer_fix } from "@/components/page_part/common/user_side/Load";
 
-function getFilterValues(){
+function usingFilters(){
     var filterValues = [];
+
     // беру список активных фильтров, чтобы получить их значения
     var filterTags = $(".filter-grid-group-data-item select");
+    var searchTagValue = ($(".filter-search-item input").length > 0)? 
+        $(".filter-search-item input").val() :
+        null;
+
     // получаю значения фильтров
     for(var i = 0; i < filterTags.length; i++){
         let filter = filterTags[i];
@@ -49,6 +54,16 @@ function getFilterValues(){
                 }
             }
         });
+
+        // применение поиска (введене с клавиатуры)
+        if(searchTagValue != null && searchTagValue != ""){
+            var armament_name = armament.querySelector('div.name').getAttribute('value');
+
+            if(!armament_name.toLowerCase().includes(searchTagValue.toLowerCase())){
+                result = false;
+            }
+        }
+
         if(result == true) { 
             $('#' + armament.getAttribute('id')).show(); 
         }
@@ -59,14 +74,19 @@ function getFilterValues(){
 }
 
 export function ArmamentFilter({filter_list}){
-    const func = ((element)=>{
+    const filters = ((element)=>{
         var selector = '#' + element.target.getAttribute("id");
 
         if($(selector + ' option:selected').val() == 'discard') {//$().prop('selectedIndex');
             $(element.target).prop('selectedIndex', 0); 
         }
 
-        getFilterValues();
+        usingFilters();
+        futer_fix();
+    });
+
+    const search = (()=>{
+        usingFilters();
         futer_fix();
     });
 
@@ -77,7 +97,7 @@ export function ArmamentFilter({filter_list}){
                     return(
                         <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
                             <div className='col'>
-                                <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={func} defaultValue={'all'}>
+                                <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={filters} defaultValue={'all'}>
                                     <option value='all' disabled>{element.translate}</option>
                                     {element.content.map((item)=>{
                                         return(
@@ -93,8 +113,8 @@ export function ArmamentFilter({filter_list}){
             <div className="filter-search-item">
                 <input type="text" 
                        name="username"
-                       placeholder="Поиск по названию (пока в разработке)"
-                       onChange={(()=>{alert('ready')})}>
+                       placeholder="Поиск по названию"
+                       onChange={search}>
                 </input>
             </div>                                                    
         </div>        

@@ -106,7 +106,8 @@ select ab.id,
 export const getArmamentParamGridList = (armament_id = 1) => {
     const sql = `
 with armament_data as (
-        select ab.type, 
+        select ab.name,
+               ab.type, 
                ab.cost,
                ab.hd_hollow,
                ab.kind,
@@ -132,6 +133,12 @@ non_bool_props as (
            )
 )
 
+select 'name' as name,
+       ad.name as value
+  from armament_data ad
+ 
+union all
+
 -- такая сложность нужня для того, чтобы получить названия фильтров напрямую из таблицы фильтров
 -- так я избегаю ошибок в названиях и могу разграничить данные фильтров для спасобностей
 select filter.name,
@@ -141,7 +148,7 @@ select filter.name,
                  and item.value <> 'discard'
                  and item.id in (select * from non_bool_props)
  where filter.item_type <> 'bool'
- 
+
 union all
 
 select filter.name,
