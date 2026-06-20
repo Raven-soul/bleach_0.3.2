@@ -24,64 +24,64 @@ export default async function Page({ params }) {
                 <div className={"race-class-data-area " + Armament.kind_class_name}>
                     <div className="col armament-data">
                         <p  className="name">
-                                <span>{Armament.ab_name}</span>
-                            </p>
-                            <p className="cost-type half-gray">
-                                <span>стоимость {Armament.cost_name}, </span>
-                                <span>
-                                    <span>тип {Armament.type_name}  </span> 
-                                    <Logo name={Armament.type_logo}/>
-                                </span>
-                            </p>
-                            {(()=>{
-                                if(Armament.rules == 1){
-                                    return(
-                                        <div>
-                                            <p>
-                                                <span className="param">Время накладывания:</span>
-                                                <span> </span>
-                                                <span className="half-gray">{Armament.cast_time_name}</span>
-                                            </p>
-                                            <p>
-                                                <span className="param">Дистанция:</span>
-                                                <span> </span>
-                                                <span className="half-gray">{Armament.distance_name}</span>
-                                            </p>
-                                            <p>
-                                                <span className="param">Компоненты:</span>
-                                                <span> </span>
-                                                <span className="half-gray">{Armament.components} {Armament.material_data}</span>
-                                            </p>
-                                            <p>
-                                                <span className="param">Длительность:</span>
-                                                <span> </span>
-                                                <span className="half-gray">{Armament.durations}</span>
-                                            </p>
-                                            <p>
-                                                <span className="param">Перезарядка:</span>
-                                                <span> </span>
-                                                <span className="half-gray">{Armament.recharge_name}</span>
-                                            </p>
-                                        </div>
-                                    )
-                                }
-                                else {
-                                    return(
-                                        <div>
-                                            <p>
-                                                <span className="param">Длительность:</span>
-                                                <span> </span>
-                                                <span className="half-gray">{(Armament.durations != null)? Armament.durations : 'Нет'}</span>
-                                            </p>
-                                        </div>
-                                    )
-                                }
-                            })()}
-                            <p className={"requirements"}>
-                                <span className="param">Требования:</span>
-                                <span> </span>
-                                <span className="half-gray">{(Armament.requirements != null)? Armament.requirements : 'Нет'}</span>                            
-                            </p>
+                            <span>{Armament.ab_name}</span>
+                        </p>
+                        <p className="cost-type half-gray">
+                            <span>стоимость {Armament.cost_name}, </span>
+                            <span>
+                                <span>тип {Armament.type_name}  </span> 
+                                <Logo name={Armament.type_logo}/>
+                            </span>
+                        </p>
+                        {(()=>{
+                            if(Armament.rules == 1){
+                                return(
+                                    <div>
+                                        <p>
+                                            <span className="param">Время накладывания:</span>
+                                            <span> </span>
+                                            <span className="half-gray">{Armament.cast_time_name}</span>
+                                        </p>
+                                        <p>
+                                            <span className="param">Дистанция:</span>
+                                            <span> </span>
+                                            <span className="half-gray">{Armament.distance_name}</span>
+                                        </p>
+                                        <p>
+                                            <span className="param">Компоненты:</span>
+                                            <span> </span>
+                                            <span className="half-gray">{Armament.components} {Armament.material_data}</span>
+                                        </p>
+                                        <p>
+                                            <span className="param">Длительность:</span>
+                                            <span> </span>
+                                            <span className="half-gray">{Armament.durations}</span>
+                                        </p>
+                                        <p>
+                                            <span className="param">Перезарядка:</span>
+                                            <span> </span>
+                                            <span className="half-gray">{Armament.recharge_name}</span>
+                                        </p>
+                                    </div>
+                                )
+                            }
+                            else {
+                                return(
+                                    <div>
+                                        <p>
+                                            <span className="param">Длительность:</span>
+                                            <span> </span>
+                                            <span className="half-gray">{(Armament.durations != null)? Armament.durations : 'Нет'}</span>
+                                        </p>
+                                    </div>
+                                )
+                            }
+                        })()}
+                        <p className={"requirements"}>
+                            <span className="param">Требования:</span>
+                            <span> </span>
+                            <span className="half-gray">{(Armament.requirements != null)? Armament.requirements : 'Нет'}</span>                            
+                        </p>
                     </div>
                     <div className="col armament-content">
                         <div dangerouslySetInnerHTML={{ __html: Armament.translate }}></div>
