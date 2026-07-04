@@ -27,9 +27,10 @@ export default async function Page({ params }) {
                             <span>{Armament.ab_name}</span>
                         </p>
                         <p className="cost-type half-gray">
-                            <span>стоимость {Armament.cost_name}, </span>
+                            <span>Стоимость <b>{Armament.cost_name}</b>, </span>
+                            <span>Вид <b>{Armament.kind_name}</b>, </span>
                             <span>
-                                <span>тип {Armament.type_name}  </span> 
+                                <span>Тип {Armament.type_name}  </span> 
                                 <Logo name={Armament.type_logo}/>
                             </span>
                         </p>
