@@ -777,6 +777,11 @@ a.read-all:hover{
     text-align: center;
 }
 
+.armament-content .armament-feature-card table td.text-data{    
+    border: 1px solid black;
+    text-align: left;
+}
+
 .armament-content p, .armament-content table {    
     margin-bottom: 5px;
 }
