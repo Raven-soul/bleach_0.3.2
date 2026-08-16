@@ -98,7 +98,7 @@ export default async function Page({ params }) {
                         <div>
                             <ul>
                                 <li>
-                                    <div dangerouslySetInnerHTML={{ __html: Armament.data }}></div>
+                                    <textarea name="textarea" className="textarea" value={Armament.data} readOnly/>
                                 </li>
                             </ul>
                         </div>                   

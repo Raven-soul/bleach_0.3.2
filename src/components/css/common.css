@@ -752,6 +752,13 @@ a.read-all:hover{
     font-size: 14px;
 }
 
+.armament-data span, .eng-content-data .textarea {    
+    width: 100%;
+    display: inline-table;
+    background: none;
+    border: none;
+}
+
 .armament-data span, .armament-data-type {    
     display: inline;
 }
