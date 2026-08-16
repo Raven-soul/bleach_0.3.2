@@ -730,6 +730,16 @@ a.read-all:hover{
     font-size: 30px;
 }
 
+.armament-data .show-armament-data-btn{
+    background: none;
+    border: none;
+}
+
+.armament-data .show-armament-data-btn .armament-data-type{
+    font-size: 18px;
+    opacity: 30%;
+}
+
 .armament-data .cost-type {
     font-style: italic;
 }

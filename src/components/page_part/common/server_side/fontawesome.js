@@ -25,6 +25,7 @@ import {
     faHeartPulse,
     faMoon,
     faEye,
+    faEyeSlash,
     faSun,
     faBolt,
     faArrowsDownToLine,
@@ -50,7 +51,10 @@ import {
     faCircleXmark,
     faSnowflake,
     faStar as regular_star,
-    faBookmark
+    faBookmark,
+    faEye as regular_eye,
+    faEyeSlash as regular_eye_slash,
+
 } from '@fortawesome/free-regular-svg-icons'
 
 import { 
@@ -115,7 +119,13 @@ export function Icon({name, className, style}){
         case 'faMoon': 
             icon = faMoon; break;    
         case 'faEye': 
-            icon = faEye; break;      
+            icon = faEye; break;   
+        case 'faEyeSlash':
+            icon = faEyeSlash; break;
+        case 'regular_faEye': 
+            icon = regular_eye; break;   
+        case 'regular_faEyeSlash':
+            icon = regular_eye_slash; break; 
         case 'faDrupal': 
             icon = faDrupal; break;   
         case 'faSun': 

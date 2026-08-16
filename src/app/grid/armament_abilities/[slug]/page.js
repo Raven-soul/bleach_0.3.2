@@ -1,6 +1,6 @@
 import { getArmamentIdList, getArmamentData } from "@/lib/ControllerDB/Repository/ArmamentRepository";
 import { PageLoad } from '@/components/page_part/common/user_side/Load';
-import { Logo } from './user_side';
+import { Logo, DataShowButton } from './user_side';
 
 export function generateStaticParams() {
     const pages = getArmamentIdList();
@@ -23,9 +23,16 @@ export default async function Page({ params }) {
                 <PageLoad page_title={Armament.ab_name} />
                 <div className={"race-class-data-area " + Armament.kind_class_name}>
                     <div className="col armament-data">
-                        <p  className="name">
-                            <span>{Armament.ab_name}</span>
-                        </p>
+                        <div className="name">
+                            <div className="row">
+                                <div className="col">
+                                    <span>{Armament.ab_name}</span>
+                                </div>
+                                <div className="col-auto">
+                                    <DataShowButton/>
+                                </div>
+                            </div>
+                        </div>
                         <p className="cost-type half-gray">
                             <span>Стоимость <b>{Armament.cost_name}</b>, </span>
                             <span>Вид <b>{Armament.kind_name}</b>, </span>
@@ -87,8 +94,14 @@ export default async function Page({ params }) {
                     <div className="col armament-content">
                         <div dangerouslySetInnerHTML={{ __html: Armament.translate }}></div>
                     </div>
-                    <div className="col armament-content" style={{display: display_property}}>
-                        <div dangerouslySetInnerHTML={{ __html: Armament.data }}></div>
+                    <div className="col armament-content eng-content-data" style={{display: display_property}}>
+                        <div>
+                            <ul>
+                                <li>
+                                    <div dangerouslySetInnerHTML={{ __html: Armament.data }}></div>
+                                </li>
+                            </ul>
+                        </div>                   
                     </div>
                 </div>
             </div>
