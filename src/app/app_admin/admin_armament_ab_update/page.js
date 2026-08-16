@@ -116,6 +116,10 @@ export default function Class(param) {
                                                         <textarea name="translate" id="translate" className="translate"></textarea>                                           
                                                     </div>
                                                     <div>
+                                                        <label htmlFor="material_data" className="col-4">id способности: </label>
+                                                        <input name="armament_id_lbl" id="armament_id_lbl" className="col-8" readOnly/>  
+                                                    </div>
+                                                    <div>
                                                         <label htmlFor="data" className="col-4" style={{'display': 'block'}}>Контент: </label>
                                                         <textarea name="data" id="data" className="data"></textarea>                                           
                                                     </div>

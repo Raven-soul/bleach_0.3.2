@@ -63,6 +63,7 @@ function formRedresh(content){
     formClear();
     //id
     $('#armament_id').val(content.armament_id);
+    $('#armament_id_lbl').val(content.armament_id);
     $('#additional_id').val(content.additional_id);
 
     //select
@@ -103,6 +104,7 @@ function formRedresh(content){
 function formClear(){
     //id
     $('#armament_id').val('');
+    $('#armament_id_lbl').val('');
     $('#additional_id').val('');
 
     //select
