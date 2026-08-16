@@ -2,6 +2,7 @@
 
 import $ from "jquery"
 import { Icon } from '@/components/page_part/common/server_side/fontawesome'
+import { futer_fix } from "@/components/page_part/common/user_side/Load";
 
 
 export function Logo({name}){
@@ -16,6 +17,7 @@ export function DataShowButton({name}){
     const func = (()=>{
         $('.eye-logo').toggle();
         $('.eng-content-data').toggle();
+        futer_fix();
     });
 
     return (
