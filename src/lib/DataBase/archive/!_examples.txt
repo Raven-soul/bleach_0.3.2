@@ -1,0 +1,26 @@
+-- поиск нечетного количества указанных символов в способностях
+
+select ab.id,
+       (SELECT (LENGTH(ab.translate) - LENGTH(REPLACE(ab.translate, 'b>', '')))/2) cnt,
+       (SELECT LENGTH(ab.translate)) len,
+       (SELECT LENGTH(REPLACE(ab.translate, 'b>', ''))) len_replace
+  from c_armament_ab ab
+ where 1=1
+       and ab.translate like '%b>%'
+ order by ab.id desc
+
+
+-- поиск всех вхождений данных словаря c_xdirectory в data абилок
+ select ab.id,
+       t.name,
+       t.value
+  from c_armament_ab ab
+       inner join(
+        select *
+          from c_xdirectory dir
+         where dir.edited is null
+         order by cnt_data desc
+         limit 1
+) t on ab.data like '%' || t.name || '%'
+ where ab.edited = 0
+ order by ab.id desc
