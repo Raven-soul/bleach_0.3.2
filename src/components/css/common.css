@@ -610,7 +610,7 @@ a.read-all:hover{
 }
 
 .prompt-area-main .prompt-top-button-area .prompt-top-button{
-    border: 1 solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     height: 35px;
     border-radius: 5px;
     background: none;
