@@ -169,7 +169,7 @@ export function FiltersPrompt({promptData}){
             <div className="col prompt-area">
                 <div className="prompt-area-main disable">
                     <div className="prompt-top-button-area prompt-button-area">
-                        <button className="prompt-top-button prompt-button" onClick={SchowPromptArea}>
+                        <button className="prompt-top-button" onClick={SchowPromptArea}>
                             <Icon name={"faChevronDown"}/>
                         </button>
                     </div>
