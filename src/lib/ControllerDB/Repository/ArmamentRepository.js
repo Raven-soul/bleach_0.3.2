@@ -38,7 +38,9 @@ select item.id,
   from c_armament_ab_filter filter
        inner join c_armament_ab_filter_item item on item.filter = filter.id
  where 1=1 
-       and (filter.name = 'type' or filter.name = 'info')
+       and (filter.name = 'type' or 
+            filter.name = 'info' or
+            filter.name = 'hollow')
        and item.value <> 'discard'  
  order by item.ord
     `;

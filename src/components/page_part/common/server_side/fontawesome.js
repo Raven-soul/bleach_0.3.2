@@ -2,9 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
     faChevronDown, 
     faChevronLeft, 
+    faChevronUp, 
     faCircleNotch, 
     faUserGroup,
     faPersonDigging,
+    faPerson,
     faLightbulb,
     faGhost,
     faFire,
@@ -29,6 +31,7 @@ import {
     faSun,
     faBolt,
     faArrowsDownToLine,
+    faArrowsSplitUpAndLeft,
     faSkull,
     faCrosshairs,
     faBell,
@@ -42,7 +45,10 @@ import {
     faUpLong,
     faCircleUp,
     faSquareCaretUp,
-    faFan
+    faFan,
+    faSplotch,
+    faHandBackFist,
+    faPersonWalking
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -60,7 +66,8 @@ import {
 import { 
     faDrupal,
     faSquareBluesky,
-    faItunesNote
+    faItunesNote,
+    faSith
 } from '@fortawesome/free-brands-svg-icons'
 
 export function Icon({name, className, style}){
@@ -71,6 +78,8 @@ export function Icon({name, className, style}){
             icon = faChevronDown;break;
         case 'faChevronLeft':
             icon = faChevronLeft; break;
+        case 'faChevronUp':
+            icon = faChevronUp;break;
 
         case 'faCircleNotch':
             icon = faCircleNotch; break;
@@ -173,6 +182,19 @@ export function Icon({name, className, style}){
             icon = faItunesNote; break;
         case 'faFan':
             icon = faFan; break;
+            
+        case 'faSplotch':
+            icon = faSplotch; break;
+        case 'faPerson':
+            icon = faPerson; break;
+        case 'faSith':
+            icon = faSith; break;
+        case 'faArrowsSplitUpAndLeft':
+            icon = faArrowsSplitUpAndLeft; break;
+        case 'faHandBackFist':
+            icon = faHandBackFist; break;
+        case 'faPersonWalking':
+            icon = faPersonWalking; break;
 
         default:
             icon = faBan;

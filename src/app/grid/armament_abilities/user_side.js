@@ -122,37 +122,58 @@ export function ArmamentFilter({filter_list}){
 }
 
 export function FiltersPrompt({promptData}){
-    const func = ((id)=>{
-        // блок с цветом логотипа
-        if($('#prompt_type_' + id).hasClass('selected-prompt')){
-            $('#prompt_type_' + id).toggleClass('selected-prompt');
-        }
-        else {
+    const SchowPromptData = ((id)=>{
+        if(id == 0){
             $('.prompt-type span').removeClass('selected-prompt');
-            $('#prompt_type_' + id).toggleClass('selected-prompt');
-        }                                    
-        
-        // блок видимости блока описания этого типа
-        $('.prompt-description-data div').hide();
-        
-        if($('#prompt_type_' + id).hasClass('selected-prompt')){
-            $('#prompt_description_' + id).show();
+            $('.prompt-description-data div').hide();
+            $('.prompt-description').hide();
         }
 
-        // блок видимости всего блока описания
-        if($('.prompt-type span').hasClass('selected-prompt')){
-            $('.prompt-description').show();
-        }
-        else {
-            $('.prompt-description').hide();
-        }     
+        if(!$('.prompt-area-main').hasClass('disable')){
+
+            // блок с цветом логотипа
+            if($('#prompt_type_' + id).hasClass('selected-prompt')){
+                $('#prompt_type_' + id).toggleClass('selected-prompt');
+            }
+            else {
+                $('.prompt-type span').removeClass('selected-prompt');
+                $('#prompt_type_' + id).toggleClass('selected-prompt');
+            }                                    
+            
+            // блок видимости блока описания этого типа
+            $('.prompt-description-data div').hide();
+            
+            if($('#prompt_type_' + id).hasClass('selected-prompt')){
+                $('#prompt_description_' + id).show();
+            }
+
+            // блок видимости всего блока описания
+            if($('.prompt-type span').hasClass('selected-prompt')){
+                $('.prompt-description').show();
+            }
+            else {
+                $('.prompt-description').hide();
+            } 
+        }    
+    });
+
+    const SchowPromptArea = (()=>{
+        $('.prompt-area-main').toggleClass('disable');
+        $('.prompt-button-area').toggle();
+
+        SchowPromptData(0);
     });
 
     return (
         <div className="row-2">
-            <div className="col">
-                <div className="prompt-area">
-                    <div className="prompt">
+            <div className="col prompt-area">
+                <div className="prompt-area-main disable">
+                    <div className="prompt-top-button-area prompt-button-area">
+                        <button className="prompt-top-button prompt-button" onClick={SchowPromptArea}>
+                            <Icon name={"faChevronDown"}/>
+                        </button>
+                    </div>
+                    <div className="prompt prompt-follower">
                         <div className="prompt-data prompt-type py-1">
                             {promptData.map((element)=>{
                                 if(element.filter_name == 'info'){
@@ -160,7 +181,7 @@ export function FiltersPrompt({promptData}){
                                         <span
                                             key={'info_' + element.id} 
                                             id={'prompt_type_' + element.id}
-                                            onClick={(()=>{func(element.id)})}
+                                            onClick={(()=>{SchowPromptData(element.id)})}
                                         >
                                             {(()=>{
                                                 if(element.logo == null){
@@ -179,14 +200,14 @@ export function FiltersPrompt({promptData}){
                                     )
                                 }                                
                             })}
-                        </div>
-                        <hr/> 
+                        </div>                        
                     </div>
                 </div>
+                <hr/> 
             </div>   
-            <div className="col">
-                <div className="prompt-area">
-                    <div className="prompt">
+            <div className="col prompt-area">
+                <div className="prompt-area-main disable prompt-follower">
+                    <div className="prompt" >
                         <div className="prompt-data prompt-type py-1">
                             {promptData.map((element)=>{
                                 if(element.filter_name == 'type'){
@@ -195,31 +216,59 @@ export function FiltersPrompt({promptData}){
                                             className=""
                                             id={'prompt_type_' + element.id}
                                             key={'type_' + element.id} 
-                                            onClick={(()=>{func(element.id)})}
+                                            onClick={(()=>{SchowPromptData(element.id)})}
                                         ><Icon name={element.logo}/> - {element.name}</span>
                                     )
                                 }                                
                             })}
                         </div>
-                        <hr/>
-                    </div>
-                    <div className="prompt-description" style={{ display: "none"}}>
-                        <div className="prompt-description-data row-2">                    
-                            {promptData.map((element)=>{
-                                return(
-                                    <div 
-                                        id={'prompt_description_' + element.id}
-                                        className="col" 
-                                        key={'description_' + element.id} 
-                                        dangerouslySetInnerHTML={{ __html: element.description }}
-                                    ></div>
-                                )
-                            })}                    
-                        </div>
-                        <hr/>
                     </div>
                 </div>
-            </div>            
+                <hr/> 
+            </div> 
+            <div className="col prompt-area">
+                <div className="prompt-area-main disable prompt-follower">
+                    <div className="prompt" >
+                        <div className="prompt-data prompt-type py-1">
+                            {promptData.map((element)=>{
+                                if(element.filter_name == 'hollow'){
+                                    return(
+                                        <span 
+                                            className=""
+                                            id={'prompt_type_' + element.id}
+                                            key={'type_' + element.id} 
+                                            onClick={(()=>{SchowPromptData(element.id)})}
+                                        ><Icon name={element.logo}/> - {element.name}</span>
+                                    )
+                                }                                
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div className="col prompt-area">
+                <div className="prompt-description" style={{ display: "none"}}>
+                    <hr/>
+                    <div className="prompt-description-data row-2">                    
+                        {promptData.map((element)=>{
+                            return(
+                                <div 
+                                    id={'prompt_description_' + element.id}
+                                    className="col" 
+                                    key={'description_' + element.id} 
+                                    dangerouslySetInnerHTML={{ __html: element.description }}
+                                ></div>
+                            )
+                        })}                    
+                    </div>
+                </div>
+                <hr/>
+            </div> 
+            <div className="prompt-bottom-button-area prompt-button-area" style={{display:"none"}}>
+                <button className="prompt-bottom-button" onClick={SchowPromptArea}>
+                    <Icon name={"faChevronUp"}/>
+                </button>
+            </div>           
         </div>        
     )
 }
