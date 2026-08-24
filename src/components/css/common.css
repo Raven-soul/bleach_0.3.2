@@ -600,7 +600,7 @@ a.read-all:hover{
 
 .prompt-area-main.disable.prompt-follower, 
 .prompt-area-main.disable .prompt-follower {
-    height: 40px;
+    max-height: 35px;
     overflow: hidden;
     mask-image: linear-gradient(0deg, #0000 8px, #141414 24px); 
 }
