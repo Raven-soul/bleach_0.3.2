@@ -32,6 +32,7 @@ export const getArmamentTypePrompt = () => {
 select item.id,
        item.name,
        item.value,
+       item.class,
        item.logo,
        item.description,
        filter.name as filter_name

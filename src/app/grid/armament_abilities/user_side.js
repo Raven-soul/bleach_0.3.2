@@ -74,7 +74,7 @@ function usingFilters(){
 }
 
 export function ArmamentFilter({filter_list}){
-    const filters = ((element)=>{
+    const SetFilter = ((element)=>{
         var selector = '#' + element.target.getAttribute("id");
 
         if($(selector + ' option:selected').val() == 'discard') {//$().prop('selectedIndex');
@@ -85,10 +85,18 @@ export function ArmamentFilter({filter_list}){
         futer_fix();
     });
 
-    const search = (()=>{
+    const ResetFilters = (()=>{        
+        $(".filter-search-item input").val('');
+        $(".filter-grid-group-data-item select").prop('selectedIndex', 0); //.val('discard');
+
         usingFilters();
         futer_fix();
-    });
+    })
+
+    const CommonSearch = (()=>{
+        usingFilters();
+        futer_fix();
+    });    
 
     return (
         <div className="filter-grid-group">
@@ -97,7 +105,7 @@ export function ArmamentFilter({filter_list}){
                     return(
                         <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
                             <div className='col'>
-                                <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={filters} defaultValue={'all'}>
+                                <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={SetFilter} defaultValue={'all'}>
                                     <option value='all' disabled>{element.translate}</option>
                                     {element.content.map((item)=>{
                                         return(
@@ -109,12 +117,29 @@ export function ArmamentFilter({filter_list}){
                         </div>
                     )
                 })}
+                <div className='filter-grid-group-data-item'>
+                    <div className='col'>
+                        <div onClick={ResetFilters} 
+                            className="filter-grid-group-button">
+                            <span style={{
+                                paddingLeft: "5px",
+                                paddingTop: "2px",
+                                verticalAlign: "bottom"
+                            }}>
+                                Очистить фильтры
+                            </span>
+                            <span className="x-lbl">
+                                <Icon name={'faX'}/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div> 
             <div className="filter-search-item">
                 <input type="text" 
                        name="username"
                        placeholder="Поиск по названию"
-                       onChange={search}>
+                       onChange={CommonSearch}>
                 </input>
             </div>                                                    
         </div>        
@@ -193,7 +218,7 @@ export function FiltersPrompt({promptData}){
                                                     }                                                
                                                 }
                                                 else {
-                                                    return(<><Icon name={element.logo}/> - {element.name}</>)
+                                                    return(<><Icon name={element.logo} className={element.class}/> - {element.name}</>)
                                                 }
                                             })()}
                                         </span>
@@ -245,7 +270,7 @@ export function FiltersPrompt({promptData}){
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div className="col prompt-area">
                 <div className="prompt-description" style={{ display: "none"}}>
                     <hr/>

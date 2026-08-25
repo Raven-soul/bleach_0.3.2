@@ -572,6 +572,31 @@ a.read-all:hover{
     padding: 0 4px 8px 4px;
     position: relative;
 }
+.filter-grid-group-data-item .filter-grid-group-button {
+    height: 30px;
+    border: 1px solid rgb(118, 118, 118);    
+    border-radius: 5px;
+    background-color: rgb(236,228,217);
+    overflow: hidden;
+    text-align: left;
+
+    display: flex;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+
+.filter-grid-group-data-item .filter-grid-group-button:hover{
+    background-color: rgb(218, 209, 197);
+}
+
+.filter-grid-group-data-item .x-lbl {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    opacity: 50%;
+}
+
 .filter-above-grig-oficial {
     padding: 0 4px 0 4px;
     width: 100%;
@@ -903,6 +928,21 @@ content .armament-content div ul li::marker {
         radial-gradient(250px at 100% 100%, rgba(12, 77, 161, 0.5), transparent);
 }
 /* ------------------------------------------------------------- armament abilities end */
+
+/* ------------------------------------------------------------- prompt colors */
+.prompt-image-innate {
+    color: rgba(188, 16, 211, 0.5);
+}
+.prompt-image-classic {
+    color: rgba(17, 161, 53, 0.5);
+}
+.prompt-image-ultimate {
+    color: rgba(212, 11, 11, 0.5);
+}
+.prompt-image-ascended {
+    color: rgba(12, 77, 161, 0.5);
+}
+/* ------------------------------------------------------------- end */
 
 /* ------------------------------------------------------------- form start */
 .form-insert {

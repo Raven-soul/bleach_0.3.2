@@ -16,7 +16,7 @@ import {
     faFlag,
     faEarthAmericas,
     faBan,
-
+    faX,
     faSoap,
     faDroplet,
     faDownLeftAndUpRightToCenter,
@@ -195,6 +195,8 @@ export function Icon({name, className, style}){
             icon = faHandBackFist; break;
         case 'faPersonWalking':
             icon = faPersonWalking; break;
+        case 'faX':
+            icon = faX; break;
 
         default:
             icon = faBan;
