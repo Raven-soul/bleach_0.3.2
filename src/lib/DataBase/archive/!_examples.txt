@@ -49,3 +49,23 @@ select ab.id,
 ) t on ab.data like '%' || t.name || ':%'
  where ab.edited = 0
  order by ab.id desc;
+
+ select ab.id,
+       t.name,
+       t.value,
+       case when ab.data like '%' || t.name || ':%' then 'd_:'
+            when ab.data like '% ' || t.name || ' %' then 'd'
+            else '' 
+        end as check_dt
+  from c_armament_ab ab
+       inner join(
+        select dir.*
+          from c_xdirectory dir
+         where 1=1 
+               and dir.edited is null
+               and dir.cnt_data = 1
+               and dir.value not null
+         order by cnt_data desc
+) t on ab.data like '%' || t.name || '%' or ab.data like '% ' || t.name || ' %'
+ where ab.edited = 0
+ order by t.name, ab.id desc;

@@ -779,7 +779,8 @@ a.read-all:hover{
     font-size: 12px;
 }
 
-.grid-abilities-item .kind-logo {
+.grid-abilities-item .kind-logo,
+.grid-abilities-item .summon-logo {
     vertical-align: middle;
     line-height: 100%;  
     font-size: 14px;

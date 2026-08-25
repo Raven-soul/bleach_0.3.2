@@ -256,7 +256,7 @@ export function FiltersPrompt({promptData}){
                     <div className="prompt" >
                         <div className="prompt-data prompt-type py-1">
                             {promptData.map((element)=>{
-                                if(element.filter_name == 'hollow'){
+                                if(element.parent_name == 'hollow'){
                                     return(
                                         <span 
                                             className=""
@@ -321,14 +321,15 @@ export function ArmamentAbilitiesGridList({abilitiesList}){
                                     </span>
                                     <span className="kind-logo">
                                         {(()=>{
-                                            if(element.kind_value == 'ultimate') {
-                                                return(<Icon name={'faSquareCaretUp'}/>)
+                                            if(element.kind_value_logo != 'null') {
+                                                return(<Icon name={element.kind_value_logo}/>)
                                             }
-                                            else if(element.kind_value == 'ascended') {
-                                                return(<Icon name={'faSquareBluesky'}/>)
-                                            }
-                                            else if(element.kind_value == 'innate') {
-                                                return(<Icon name={'faExplosion'}/>)
+                                        })()}
+                                    </span>
+                                    <span className="summon-logo">
+                                        {(()=>{
+                                            if(element.is_summon == '1') {
+                                                return(<Icon name={'faPaw'}/>)
                                             }
                                         })()}
                                     </span>

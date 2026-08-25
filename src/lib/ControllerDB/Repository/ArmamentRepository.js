@@ -16,12 +16,17 @@ select case when item.value = 'discard'
             else item.id
        end as id,
        item.filter,
-       item.name,
+       case when item.parent not null 
+            then (select '(' || ft.short_translate || ') ' from c_armament_ab_filter ft where ft.id = item.parent) || item.name
+            else item.name
+        end as name,
        item.value,
        item.logo
   from c_armament_ab_filter filter
        inner join c_armament_ab_filter_item item on item.filter = filter.id
- where filter.id = ${filter_id}    
+ where 1=1
+       and filter.id = ${filter_id}    
+       and item.show = 1
  order by item.ord
     `;
     return db.prepare(sql).all();
@@ -31,6 +36,8 @@ export const getArmamentTypePrompt = () => {
     const sql = `
 select item.id,
        item.name,
+       item.parent,
+       parent.name as parent_name,
        item.value,
        item.class,
        item.logo,
@@ -38,10 +45,11 @@ select item.id,
        filter.name as filter_name
   from c_armament_ab_filter filter
        inner join c_armament_ab_filter_item item on item.filter = filter.id
+       left join (select ft.name, ft.id from c_armament_ab_filter ft) as parent on parent.id = item.parent
  where 1=1 
        and (filter.name = 'type' or 
             filter.name = 'info' or
-            filter.name = 'hollow')
+            parent.name not null)
        and item.value <> 'discard'  
  order by item.ord
     `;
@@ -64,6 +72,7 @@ with components as (
 
 select ab.id,
        ab.name as ab_name,
+       ab.summon as is_summon,
        
        (select string_agg(
                case when (instr(ab.components, cm.id) > 0)
@@ -94,7 +103,13 @@ select ab.id,
        kind.id as kind_id,
        kind.ord as kind_order,
        kind.name as kind_name,
-       kind.value as kind_value
+       kind.value as kind_value,
+       
+       case when kind.value = 'innate' then 'faExplosion'
+            when kind.value = 'ultimate' then 'faSquareCaretUp'
+            when kind.value = 'ascended' then 'faSquareBluesky'
+            else 'null'
+       end as kind_value_logo
        
   from c_armament_ab ab
        left join c_armament_ab_filter_item type on type.id = ab.type
