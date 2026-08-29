@@ -48,7 +48,10 @@ import {
     faFan,
     faSplotch,
     faHandBackFist,
-    faPersonWalking
+    faPersonWalking,
+    faRocket,
+    faInfinity,
+    faLeaf
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -70,137 +73,163 @@ import {
     faSith
 } from '@fortawesome/free-brands-svg-icons'
 
-export function Icon({name, className, style}){
-    let icon;
+export function Icon({name, className = '', style}){
+    
+    let map = new Map([
+        //#region Chevron
+        ['faChevronDown', faChevronDown],
+        ['faChevronLeft', faChevronLeft],
+        ['faChevronUp', faChevronUp],
+        //#endregion
 
-    switch (name) {
-        case 'faChevronDown':
-            icon = faChevronDown;break;
-        case 'faChevronLeft':
-            icon = faChevronLeft; break;
-        case 'faChevronUp':
-            icon = faChevronUp;break;
+        //#region Circle
+        // круг с разрывом сверху
+        ['faCircleNotch', faCircleNotch],
+        // круг с крестиком внутри
+        ['faCircleXmark', faCircleXmark],
+        // круг закрашеный со стрелочкой внутри, стрелка смотрит вверх
+        ['faCircleUp', faCircleUp],
+        // круг закрашеный
+        ['faCircle', faCircle],
+        //#endregion
 
-        case 'faCircleNotch':
-            icon = faCircleNotch; break;
-        case 'faUserGroup':
-            icon = faUserGroup; break;
-        case 'faPersonDigging':
-            icon = faPersonDigging; break;
-        case 'faFileLines':
-            icon = faFileLines; break;
-        case 'faLightbulb':
-            icon = faLightbulb; break;
-        case 'faGhost':
-            icon = faGhost; break;
-        case 'faFire':
-            icon = faFire; break;
-        case 'faHexagonNodes':
-            icon = faHexagonNodes; break;
-        case 'faShieldHalved':
-            icon = faShieldHalved; break;
-        case 'faToolbox':
-            icon = faToolbox; break;
-        case 'faFlag':
-            icon = faFlag; break;
-        case 'faEarthAmericas':
-            icon = faEarthAmericas; break;
-            
-        case 'faCircleXmark':
-            icon = faCircleXmark; break;
+        //#region Arrows
+        // две стрелочки смотрят в центр из углов диагонали
+        ['faDownLeftAndUpRightToCenter', faDownLeftAndUpRightToCenter],
+        // 4 стрелочки смотрят в углы квадрата из центра
+        ['faMaximize', faMaximize],
+        // две стрелочки смотрят вниз в горизонтальную линию
+        ['faArrowsDownToLine', faArrowsDownToLine],
+        // жирная стрелочка смотрит вверх
+        ['faUpLong', faUpLong],
+        // изогнутые стрелочки идут из одной точки, поворачивают вверх и влево
+        ['faArrowsSplitUpAndLeft', faArrowsSplitUpAndLeft],
+        //#endregion
 
-        case 'faSoap': 
-            icon = faSoap; break;    
-        case 'faDroplet': 
-            icon = faDroplet; break;
-        case 'faDownLeftAndUpRightToCenter': 
-            icon = faDownLeftAndUpRightToCenter; break;  
-        case 'faCircle': 
-            icon = faCircle; break;   
-        case 'faCube': 
-            icon = faCube; break;    
-        case 'faMaximize': 
-            icon = faMaximize; break;  
-        case 'faWeightHanging': 
-            icon = faWeightHanging; break; 
-        case 'faHeartPulse': 
-            icon = faHeartPulse; break;  
-        case 'faMoon': 
-            icon = faMoon; break;    
-        case 'faEye': 
-            icon = faEye; break;   
-        case 'faEyeSlash':
-            icon = faEyeSlash; break;
-        case 'regular_faEye': 
-            icon = regular_eye; break;   
-        case 'regular_faEyeSlash':
-            icon = regular_eye_slash; break; 
-        case 'faDrupal': 
-            icon = faDrupal; break;   
-        case 'faSun': 
-            icon = faSun; break;     
-        case 'faBolt': 
-            icon = faBolt; break;     
-        case 'faArrowsDownToLine': 
-            icon = faArrowsDownToLine; break;
-        case 'faSkull': 
-            icon = faSkull; break; 
-        case 'faCrosshairs': 
-            icon = faCrosshairs; break;
-        case 'faBell': 
-            icon = faBell; break;    
-        case 'faPaw': 
-            icon = faPaw; break;      
-        case 'faWater': 
-            icon = faWater; break;
-        case 'faThermometer': 
-            icon = faThermometer; break;
-        case 'faSnowflake': 
-            icon = faSnowflake; break;
-        case 'faWind': 
-            icon = faWind; break;
-        case 'faSquareFull': 
-            icon = faSquareFull; break;
+        //#region Eye
+        // глаз закрашенный
+        ['faEye', faEye],
+        // глаз закрашенный перечекнутый
+        ['faEyeSlash', faEyeSlash],
+        // глаз
+        ['regular_faEye', regular_eye],
+        // глаз перечеркнутый
+        ['regular_faEyeSlash', regular_eye_slash],
+        //#endregion
         
-        case 'solid_star': 
-            icon = solid_star; break;
-        case 'regular_star': 
-            icon = regular_star; break;
-        case 'faExplosion':
-            icon = faExplosion; break;
-        case 'faUpLong':
-            icon = faUpLong; break;
-        case 'faCircleUp':
-            icon = faCircleUp; break;
-        case 'faSquareCaretUp':
-            icon = faSquareCaretUp; break;
-        case 'faSquareBluesky':
-            icon = faSquareBluesky; break;
-        case 'faBookmark':
-            icon = faBookmark; break;
-        case 'faItunesNote':
-            icon = faItunesNote; break;
-        case 'faFan':
-            icon = faFan; break;
-            
-        case 'faSplotch':
-            icon = faSplotch; break;
-        case 'faPerson':
-            icon = faPerson; break;
-        case 'faSith':
-            icon = faSith; break;
-        case 'faArrowsSplitUpAndLeft':
-            icon = faArrowsSplitUpAndLeft; break;
-        case 'faHandBackFist':
-            icon = faHandBackFist; break;
-        case 'faPersonWalking':
-            icon = faPersonWalking; break;
-        case 'faX':
-            icon = faX; break;
+        //#region Elements
+        // пламя
+        ['faFire', faFire],
+        // три волнообразных полоски друг под другом, волны
+        ['faWater', faWater],
+        // три горизонтальные полоски, загнуты справа, ветер
+        ['faWind', faWind],
+        // луна
+        ['faMoon', faMoon],
+        // солнце
+        ['faSun', faSun],
+        // молния
+        ['faBolt', faBolt],
+        //#endregion
 
-        default:
-            icon = faBan;
-    }
+        //#region People
+        // два человечка портреты
+        ['faUserGroup', faUserGroup],
+        // копатель
+        ['faPersonDigging', faPersonDigging],
+        // человечек целиком (мальчик)
+        ['faPerson', faPerson],
+        // бегущий человечек
+        ['faPersonWalking', faPersonWalking],
+        //#endregion
+        
+        //#region Square
+        // закрашенный квадрат
+        ['faSquareFull', faSquareFull],
+        // квадрат закрашенный с треугольником внутри
+        ['faSquareCaretUp', faSquareCaretUp],
+        // квадрат закрашенный с бабочкой внутри
+        ['faSquareBluesky', faSquareBluesky],        
+        // трехмерный кубик
+        ['faCube', faCube],
+        //#endregion
+
+        //#region Simple
+        // лампочка закрашенная
+        ['faLightbulb', faLightbulb],
+        // призрак закрашенный
+        ['faGhost', faGhost],
+        // документ со строками
+        ['faFileLines', faFileLines],
+        // щит
+        ['faShieldHalved', faShieldHalved],
+        // коробка с инструментами
+        ['faToolbox', faToolbox],
+        // флаг
+        ['faFlag', faFlag],
+        //капля закрашенная
+        ['faDroplet', faDroplet],
+        // гиря (груз)
+        ['faWeightHanging', faWeightHanging],
+        // череп
+        ['faSkull', faSkull],
+        // закрашенный колокол
+        ['faBell', faBell],
+        // лапка
+        ['faPaw', faPaw],
+        // снежинка
+        ['faSnowflake', faSnowflake],        
+        // звезда закрашенная 
+        ['solid_star', solid_star],
+        // звезда
+        ['regular_star', regular_star],
+        // закладка
+        ['faBookmark', faBookmark],
+        // нота
+        ['faItunesNote', faItunesNote],
+        // крестик
+        ['faX', faX],
+        // бесконечность
+        ['faInfinity', faInfinity],
+        //#endregion
+
+        //#region Complex
+        // модель молекулы с палочками и шариками в виде шестиугольника
+        ['faHexagonNodes', faHexagonNodes],
+        // планета
+        ['faEarthAmericas', faEarthAmericas],
+        // мыло
+        ['faSoap', faSoap],
+        // капля с прожилками внутри
+        ['faDrupal', faDrupal],
+        // сердце с пульсом внутри
+        ['faHeartPulse', faHeartPulse],
+        // перекрестие прицела
+        ['faCrosshairs', faCrosshairs],
+        // термометр
+        ['faThermometer', faThermometer],
+        // взрыв
+        ['faExplosion', faExplosion],
+        // крыльчатка венилятора (используется как лезвие)
+        ['faFan', faFan],
+        // клякса
+        ['faSplotch', faSplotch],
+        // ситх
+        ['faSith', faSith],
+        // кулак закрашенный
+        ['faHandBackFist', faHandBackFist],
+        // ракета
+        ['faRocket', faRocket],
+        // древесный листик
+        ['faLeaf', faLeaf],
+        //#endregion
+        
+        ['default', faBan]
+    ])
+    
+    let icon = map.get(name); 
+    
+    if(typeof icon === 'undefined') icon = map.get('default');
 
     return(
         <FontAwesomeIcon icon={icon} className={className} style={style}/>

@@ -105,11 +105,7 @@ select ab.id,
        kind.name as kind_name,
        kind.value as kind_value,
        
-       case when kind.value = 'innate' then 'faExplosion'
-            when kind.value = 'ultimate' then 'faSquareCaretUp'
-            when kind.value = 'ascended' then 'faSquareBluesky'
-            else 'null'
-       end as kind_value_logo
+       coalesce(kind.logo, 'null') as kind_value_logo
        
   from c_armament_ab ab
        left join c_armament_ab_filter_item type on type.id = ab.type

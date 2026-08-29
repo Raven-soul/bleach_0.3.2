@@ -160,7 +160,11 @@ export const getLastAbilityParam = (param_name = 'type') => {
 
 export const getParamListByType = (type_id = 1) => {
     const sql = `
-        select *
+        select item.id,
+               concat_ws(' ',
+                    (select '(' || ft.short_translate || ')' from c_armament_ab_filter ft where ft.id = item.parent),
+                    item.name
+               ) as name
           from c_armament_ab_filter_item item
          where 1 = 1
                and item.filter = ${type_id}
