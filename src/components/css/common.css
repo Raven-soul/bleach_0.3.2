@@ -928,6 +928,65 @@ content .armament-content div ul li::marker {
         radial-gradient(250px at 0 0, rgba(12, 77, 161, 0.5), transparent), 
         radial-gradient(250px at 100% 100%, rgba(12, 77, 161, 0.5), transparent);
 }
+
+.race-class-data-area.hollow{
+    background-color:  rgb(27, 27, 27);    
+}
+
+.race-class-data-area.hollow .armament-data .half-gray {
+    color: rgba(223, 223, 223, 0.7);
+}
+
+.race-class-data-area.hollow .armament-data,
+.race-class-data-area.hollow .armament-content div ul li,
+.race-class-data-area.hollow .armament-content.eng-content-data textarea{ 
+    color: rgb(196, 196, 196);
+}
+
+.race-class-data-area.hollow .armament-data,
+.race-class-data-area.hollow .armament-content div ul li{ 
+    background-color: #91919138;
+}
+
+.race-class-data-area.hollow .armament-data-type.eye-logo {
+    color: #fff;
+}
+
+.race-class-data-area.passive{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(6, 116, 15, 0.226), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(6, 116, 15, 0.226), transparent);
+}
+
+.race-class-data-area.traits{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(9, 6, 133, 0.226), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(9, 6, 133, 0.226), transparent);
+}
+
+.race-class-data-area.appendages{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(182, 182, 187, 0.226), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(182, 182, 187, 0.226), transparent);
+}
+
+.race-class-data-area.strikes{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(143, 5, 5, 0.226), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(143, 5, 5, 0.226), transparent);
+}
+
+.race-class-data-area.action{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(150, 187, 15, 0.226), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(150, 187, 15, 0.226), transparent);
+}
+
+.race-class-data-area.speed{
+    background-image: 
+        radial-gradient(250px at 0 0, rgba(187, 15, 173, 0.226), transparent), 
+        radial-gradient(250px at 100% 100%, rgba(187, 15, 173, 0.226), transparent);
+}
 /* ------------------------------------------------------------- armament abilities end */
 
 /* ------------------------------------------------------------- prompt colors */

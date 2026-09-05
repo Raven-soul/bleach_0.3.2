@@ -284,12 +284,10 @@ select ab.id,
        kind.id as kind_id,
        kind.name as kind_name,
 
-       case when kind.value = 'ascended'
-                 then 'ascended'
-            when kind.value = 'ultimate'
-                 then 'ultimate'
-            when kind.value = 'innate'
-                 then 'innate'
+       case when kind.value in ('ascended', 'ultimate','innate')
+                 then kind.value
+            when kind.value in ('passive','traits','appendages','strikes','action','speed')
+                 then 'hollow ' || kind.value
             else 'classic'
         end as kind_class_name,
        
