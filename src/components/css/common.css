@@ -389,7 +389,7 @@ a.read-all:hover{
 .race-class-data-area {
     background-color:  rgb(236,228,217);
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 10px 10px;
     position: relative;
 }
 .race-class-name p {
@@ -884,12 +884,13 @@ content .armament-content div ul {
 }
 
 .armament-data{
-    margin-top: 5px;
+    background-color: #fff8ef6c;
+    border-radius: 10px;
+    padding: 10px;
 }
 
-.armament-data,
 content .armament-content div ul li{    
-    margin-bottom: 15px;
+    margin-top: 15px;
 
     background-color: #fff8ef6c;
     border-radius: 10px;
@@ -930,7 +931,7 @@ content .armament-content div ul li::marker {
 }
 
 .race-class-data-area.hollow{
-    background-color:  rgb(27, 27, 27);    
+    background-color:  rgb(48, 48, 48);    
 }
 
 .race-class-data-area.hollow .armament-data .half-gray {
