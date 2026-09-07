@@ -315,7 +315,7 @@ a.read-all:hover{
 
 /* ------------------------------------------------------------- RACE-CLASS DATA PAGE start */
 /* ------------------------------------------------------------- h start*/
-.race-class-data-area h1{
+.main-brown-data-area h1{
     /* Крупный красный заглавный без подчеркивания */
     font-size: 22px;
     font-weight: 600;
@@ -326,7 +326,7 @@ a.read-all:hover{
     display: block;
     margin: 0 0 8px;
 }
-.race-class-data-area h2{
+.main-brown-data-area h2{
     /* черный заглавный без подчеркивания */
     font-size: 17px;
     font-weight: 600;
@@ -336,7 +336,7 @@ a.read-all:hover{
     display: block;
     margin: 0 0 8px;
 }
-.race-class-data-area h3{
+.main-brown-data-area h3{
     /* красный заглавный с подчеркиванием */
     font-size: 17px;
     font-weight: 600;
@@ -348,7 +348,7 @@ a.read-all:hover{
     display: block;
     margin: 0 0 8px;
 }
-.race-class-data-area h4 {
+.main-brown-data-area h4 {
     /* красный заглавный без подчеркивания */
     font-size: 17px;
     font-weight: 600;
@@ -359,7 +359,7 @@ a.read-all:hover{
     display: block;
     margin: 0 0 8px;
 }
-.race-class-data-area h5 {
+.main-brown-data-area h5 {
     /* красный без подчеркивания */
     font-size: 17px;
     font-weight: 600;
@@ -371,22 +371,22 @@ a.read-all:hover{
 }
 /* ------------------------------------------------------------- h end*/
 /* ------------------------------------------------------------- p start*/
-.race-class-data-area .content-block p{
+.main-brown-data-area .content-block p{
     margin-top: 0px;
     margin-bottom: 8px;
     line-height: 1.3;
     font-weight: 350;
 }
-.race-class-data-area .content-block p.level{
+.main-brown-data-area .content-block p.level{
     margin-top: -5px;
     font-style: italic;
 }
 /* ------------------------------------------------------------- p end */
-/* ------------------------------------------------------------- race-class-data-area start */
-.race-class-data-area strong {
+/* ------------------------------------------------------------- main-brown-data-area start */
+.main-brown-data-area strong {
     font-weight: 500;
 }
-.race-class-data-area {
+.main-brown-data-area {
     background-color:  rgb(236,228,217);
     border-radius: 5px;
     padding: 10px 10px;
@@ -404,47 +404,47 @@ a.read-all:hover{
     text-align: right;
     font-style: italic;
 }
-.race-class-data-area .content-block{
+.main-brown-data-area .content-block{
     padding-top: 10px;
 }
-.race-class-data-area .feature-race {
+.main-brown-data-area .feature-race {
     font-weight: 500;
     font-style: italic;
 }
-.race-class-data-area .empty-line {
+.main-brown-data-area .empty-line {
     visibility: hidden;
 }
-.race-class-data-area .content-block .sub-menu {
+.main-brown-data-area .content-block .sub-menu {
     margin-bottom: 8px;
 }
-.race-class-data-area .content-block .table tr {
+.main-brown-data-area .content-block .table tr {
     --bs-table-bg: #ffffff00;
 }
-.race-class-data-area .content-block .table td {
+.main-brown-data-area .content-block .table td {
     text-align: center;
     border: 1px solid rgba(168, 168, 168,.3);
 }
-.race-class-data-area .content-block .table th {
+.main-brown-data-area .content-block .table th {
     padding: 4px 8px;
     font-weight: 600;
 }
-.race-class-data-area .content-block .table th, .race-class-data-area .content-block .table td {
+.main-brown-data-area .content-block .table th, .main-brown-data-area .content-block .table td {
     text-align: center;
     border: 1px solid rgba(168, 168, 168,.3);
 }
-.race-class-data-area .content-block .table td.left-content {
+.main-brown-data-area .content-block .table td.left-content {
     text-align: left;
 }
-.race-class-data-area .content-block .table td {
+.main-brown-data-area .content-block .table td {
     padding: 0px 5px;
 }
-.race-class-data-area .content-block .table tr:not(.tb-head-row):not(.tb-empty-row):hover {
+.main-brown-data-area .content-block .table tr:not(.tb-head-row):not(.tb-empty-row):hover {
     background-color: rgba(255,165,0,.2);
 }
-.race-class-data-area .content-block .table tr:nth-child(odd) {
+.main-brown-data-area .content-block .table tr:nth-child(odd) {
     background-color: rgba(20,20,20,.05);
 }
-.race-class-data-area .content-block .blue-data-area {
+.main-brown-data-area .content-block .blue-data-area {
     background: rgba(89,192,184,.1);
     border: 1px solid rgb(202, 202, 202);
     margin: 16px;
@@ -452,66 +452,66 @@ a.read-all:hover{
     padding: 8px;
     box-shadow: 2px 2px 0 0 rgb(179, 179, 179);
 }
-.race-class-data-area .content-block .blue-data-area .data-block {
+.main-brown-data-area .content-block .blue-data-area .data-block {
     margin-top: 20px;
 }
-.race-class-data-area .content-block .spec-info-block .hide-next:hover {
+.main-brown-data-area .content-block .spec-info-block .hide-next:hover {
     cursor: pointer;
 }
-.race-class-data-area .content-block .spec-info-block .hidden-data-item.active {
+.main-brown-data-area .content-block .spec-info-block .hidden-data-item.active {
     display: block;
 }
-.race-class-data-area h1.hide-next:not(.active) {
+.main-brown-data-area h1.hide-next:not(.active) {
     margin: 0;
 }
-.race-class-data-area .content-block .spec-info-block .hidden-data-item:not(.active) {
+.main-brown-data-area .content-block .spec-info-block .hidden-data-item:not(.active) {
     display: none;
 }
-.race-class-data-area .content-block .spec-info-block {
+.main-brown-data-area .content-block .spec-info-block {
     padding: 8px;
     border: 1px solid rgba(20,20,20,.1);
     border-radius: 5px;
     background-color: rgba(20,20,20,.05);
     margin-bottom: 10px;
 }
-.race-class-data-area .content-block .spec-info-block b {
+.main-brown-data-area .content-block .spec-info-block b {
     font-style: italic;
 }
 
-.race-class-data-area .content-block .spec-info-block .data-content{
+.main-brown-data-area .content-block .spec-info-block .data-content{
     margin-top: 30px;
 }
 
-.race-class-data-area .content-block .sub-data{
+.main-brown-data-area .content-block .sub-data{
     margin-top: 15px;
 }
 
-.race-class-data-area .content-block .spec-info-block .data-content .sub-data{
+.main-brown-data-area .content-block .spec-info-block .data-content .sub-data{
     margin-top: 15px;
 }
-.race-class-data-area .back-image {
+.main-brown-data-area .back-image {
     position: absolute;
     top: 0px;
     right: 0px;
     width: 100%;
     z-index: 0;
 }
-.race-class-data-area .back-image img {
+.main-brown-data-area .back-image img {
     max-width: 50%;
     max-height: 50%;
     float: right;
     opacity: 40%;
     
 } 
-.race-class-data-area .main-content-block {
+.main-brown-data-area .main-content-block {
     position: relative;
     z-index: 2;
 } 
 
-.race-class-data-area .spoiler {
+.main-brown-data-area .spoiler {
     margin-top: 30px;
 }
-/* ------------------------------------------------------------- race-class-data-area end */
+/* ------------------------------------------------------------- main-brown-data-area end */
 /* ------------------------------------------------------------- image-block start */
 /* ------------------------------------------------------------- h start */
 .image-block h6 {
@@ -906,84 +906,84 @@ content .armament-content div ul li::marker {
     color: rgba(0, 0, 0, 0.7);
 }
 
-.race-class-data-area.innate{
+.main-brown-data-area.innate{
     background-image: 
         radial-gradient(250px at 0 0, rgba(188, 16, 211, 0.5), transparent), 
         radial-gradient(250px at 100% 100%, rgba(188, 16, 211, 0.5), transparent);
 }
 
-.race-class-data-area.classic{
+.main-brown-data-area.classic{
     background-image: 
         radial-gradient(250px at 0 0, rgba(17, 161, 53, 0.5), transparent), 
         radial-gradient(250px at 100% 100%, rgba(17, 161, 53, 0.5), transparent);
 }
 
-.race-class-data-area.ultimate{
+.main-brown-data-area.ultimate{
     background-image: 
         radial-gradient(250px at 0 0, rgba(212, 11, 11, 0.5), transparent), 
         radial-gradient(250px at 100% 100%, rgba(212, 11, 11, 0.5), transparent);
 }
 
-.race-class-data-area.ascended{
+.main-brown-data-area.ascended{
     background-image: 
         radial-gradient(250px at 0 0, rgba(12, 77, 161, 0.5), transparent), 
         radial-gradient(250px at 100% 100%, rgba(12, 77, 161, 0.5), transparent);
 }
 
-.race-class-data-area.hollow{
+.main-brown-data-area.hollow{
     background-color:  rgb(48, 48, 48);    
 }
 
-.race-class-data-area.hollow .armament-data .half-gray {
+.main-brown-data-area.hollow .armament-data .half-gray {
     color: rgba(223, 223, 223, 0.7);
 }
 
-.race-class-data-area.hollow .armament-data,
-.race-class-data-area.hollow .armament-content div ul li,
-.race-class-data-area.hollow .armament-content.eng-content-data textarea{ 
+.main-brown-data-area.hollow .armament-data,
+.main-brown-data-area.hollow .armament-content div ul li,
+.main-brown-data-area.hollow .armament-content.eng-content-data textarea{ 
     color: rgb(196, 196, 196);
 }
 
-.race-class-data-area.hollow .armament-data,
-.race-class-data-area.hollow .armament-content div ul li{ 
+.main-brown-data-area.hollow .armament-data,
+.main-brown-data-area.hollow .armament-content div ul li{ 
     background-color: #91919138;
 }
 
-.race-class-data-area.hollow .armament-data-type.eye-logo {
+.main-brown-data-area.hollow .armament-data-type.eye-logo {
     color: #fff;
 }
 
-.race-class-data-area.passive{
+.main-brown-data-area.passive{
     background-image: 
         radial-gradient(250px at 0 0, rgba(6, 116, 15, 0.226), transparent), 
         radial-gradient(250px at 100% 100%, rgba(6, 116, 15, 0.226), transparent);
 }
 
-.race-class-data-area.traits{
+.main-brown-data-area.traits{
     background-image: 
         radial-gradient(250px at 0 0, rgba(9, 6, 133, 0.226), transparent), 
         radial-gradient(250px at 100% 100%, rgba(9, 6, 133, 0.226), transparent);
 }
 
-.race-class-data-area.appendages{
+.main-brown-data-area.appendages{
     background-image: 
         radial-gradient(250px at 0 0, rgba(182, 182, 187, 0.226), transparent), 
         radial-gradient(250px at 100% 100%, rgba(182, 182, 187, 0.226), transparent);
 }
 
-.race-class-data-area.strikes{
+.main-brown-data-area.strikes{
     background-image: 
         radial-gradient(250px at 0 0, rgba(143, 5, 5, 0.226), transparent), 
         radial-gradient(250px at 100% 100%, rgba(143, 5, 5, 0.226), transparent);
 }
 
-.race-class-data-area.action{
+.main-brown-data-area.action{
     background-image: 
         radial-gradient(250px at 0 0, rgba(150, 187, 15, 0.226), transparent), 
         radial-gradient(250px at 100% 100%, rgba(150, 187, 15, 0.226), transparent);
 }
 
-.race-class-data-area.speed{
+.main-brown-data-area.speed{
     background-image: 
         radial-gradient(250px at 0 0, rgba(187, 15, 173, 0.226), transparent), 
         radial-gradient(250px at 100% 100%, rgba(187, 15, 173, 0.226), transparent);
@@ -1131,4 +1131,31 @@ table.armament_update th{
 table.armament_update td{
     border: 1px solid #141414;
 }
-/* ------------------------------------------------------------- armament_update start*/
+/* ------------------------------------------------------------- armament_update end*/
+
+/* ------------------------------------------------------------- news start*/
+
+.news-chapter-title{
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+}
+.news-area{
+    margin-bottom: 10px;
+}
+.news-name {
+    font-size: 24px;
+    font-weight: 600;
+}
+.news-description {
+    margin-bottom: 10px;
+}
+.news-image-area {
+    display: flex;
+    justify-content:center;
+}
+.news-content p{
+    margin-top: 15px;
+}
+
+/* ------------------------------------------------------------- news end*/

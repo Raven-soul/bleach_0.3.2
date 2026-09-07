@@ -27,7 +27,7 @@ export default function Class(param) {
                 <PageLoad page_title={pageTitle[0].name} />
                 <div className="row-2">
                     <div className="col">
-                        <div className="race-class-data-area">
+                        <div className="main-brown-data-area">
                             <div className="main-content-block container">
                                 <div className="row-2">
                                     <div className="col form-area">

@@ -21,7 +21,7 @@ export default async function Page({ params }) {
             <div className="col chapter-title-mobile">{Armament.ab_name}</div>
             <div className="col">
                 <PageLoad page_title={Armament.ab_name} />
-                <div className={"race-class-data-area " + Armament.kind_class_name}>
+                <div className={"main-brown-data-area " + Armament.kind_class_name}>
                     <div className="col armament-data">
                         <div className="name">
                             <div className="row">

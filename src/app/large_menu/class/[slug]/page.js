@@ -84,7 +84,7 @@ export default async function Page({ params }) {
             <div className="col chapter-title-mobile">{classElement.title_name}</div>
             <div className="col">
                 <PageLoad page_title={classElement.title_name} />
-                <div className="race-class-data-area">
+                <div className="main-brown-data-area">
                     <div className="back-image">
                         {/* <img src="@@CLASSBACKIMAGE@@" alt="back"> */}
                     </div>
