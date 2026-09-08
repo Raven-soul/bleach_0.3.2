@@ -13,7 +13,7 @@ export const getClassSpoilersContent = (spoiler_id = 1) => {
                inner join c_spoiler_element se on se.spoiler_id = sp.id
               
          where sp.id = ${spoiler_id}
-         order by sd.id
+         order by se.id
     `;
     return db.prepare(sql).all();
 };
@@ -29,7 +29,7 @@ export const getClassSpoilers = (class_name = 'Shinigami',is_special = 0) => {
                sp.name,
                sp.description,
                sp.is_special
-               
+
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
