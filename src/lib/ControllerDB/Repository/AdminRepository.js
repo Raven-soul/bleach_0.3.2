@@ -191,7 +191,7 @@ export const getAdditionalParamList = (group_id = 1) => {
             
             select *
               from (
-                        select 2 as group_id,
+                     select 2 as group_id,
                             item.id,
                             item.value,
                             item.name
@@ -206,7 +206,7 @@ export const getAdditionalParamList = (group_id = 1) => {
             
             select *
               from (
-                        select 3 as group_id,
+                     select 3 as group_id,
                             item.id,
                             item.value,
                             item.name
@@ -218,7 +218,10 @@ export const getAdditionalParamList = (group_id = 1) => {
                     ) t
         )
 
-        select t.*
+        select t.group_id,
+               t.id,
+               t.value,
+               t.name
           from t t
          where t.group_id = ${group_id}
     `;

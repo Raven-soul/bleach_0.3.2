@@ -2,13 +2,19 @@ import db from './../db_connection';
 
 export const getClassContentData = (class_name = 'Shinigami') => {
     const sql = `
-        select td.*
+        select td.id,
+               td.ticket_id,
+               td.data_type,
+               td.name,
+               td.requirements,
+               td.value,
+               td.spoiler_id
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
                           and type.name = 'class'
-               inner join c_class_ticket ct on ct.class_id = tm.id
-               inner join c_ticket_data td on td.ticket_id = ct.ticket_id
+               inner join c_ticket_record_class ct on ct.class_id = tm.id
+               inner join c_ticket_element td on td.ticket_id = ct.ticket_id
             
          where tm.latin_name = '${class_name}'
          order by td.id      
@@ -18,9 +24,28 @@ export const getClassContentData = (class_name = 'Shinigami') => {
 
 export const getClassContent = (class_name = 'Shinigami') => {
     const sql = `
-        select rt.*
+        select rc.id,
+               rc.title_name,        
+               rc.sorce_name,
+               rc.class_name,
+               rc.class_short_name,
+               rc.comment,
+               rc.comment_author,
+               rc.comment_author_rank,
+               rc.preview_content,               
+               rc.hit_dice,
+               rc.hit_point_1_lvl,
+               rc.hit_point_other,
+               rc.armor,
+               rc.weapon,
+               rc.tools,
+               rc.savethrow,
+               rc.skills,
+               rc.equipment,
+               rc.archetype_name,
+               rc.archetype_description
           from c_ticket_menu tm
-               inner join c_class_ticket rt on rt.class_id = tm.id
+               inner join c_ticket_record_class rc on rc.class_id = tm.id
          where tm.latin_name = '${class_name}'
     `;
     return db.prepare(sql).all();

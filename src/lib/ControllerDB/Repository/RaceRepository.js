@@ -33,9 +33,16 @@ export const getRaceMenuContent = (group_id = 1) => {
 
 export const getRaceContent = (race_name = 'Gecon') => {
     const sql = `
-        select rt.*
+        select rr.title_name,
+               rr.sorce_name,
+               rr.race_name,
+               rr.race_short_name,
+               rr.comment,
+               rr.comment_author,
+               rr.comment_author_rank,
+               rr.preview_content
           from c_ticket_menu tm
-               inner join c_race_ticket rt on rt.race_id = tm.id
+               inner join c_ticket_record_race rr on rr.race_id = tm.id
          where tm.latin_name = '${race_name}'
     `;
     return db.prepare(sql).all();
@@ -43,16 +50,22 @@ export const getRaceContent = (race_name = 'Gecon') => {
 
 export const getRaceContentData = (race_name = 'Gecon') => {
     const sql = `
-        select td.*
+        select te.id,
+               te.ticket_id,
+               te.data_type,
+               te.name,
+               te.requirements,
+               te.value,
+               te.spoiler_id
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
                           and type.name = 'race'
-               inner join c_race_ticket rt on rt.race_id = tm.id
-               inner join c_ticket_data td on td.ticket_id = rt.ticket_id
+               inner join c_ticket_record_race rr on rr.race_id = tm.id
+               inner join c_ticket_element te on te.ticket_id = rr.ticket_id
             
          where tm.latin_name = '${race_name}'
-         order by td.id      
+         order by te.id      
     `;
     return db.prepare(sql).all();
 };
