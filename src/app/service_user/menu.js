@@ -3,7 +3,7 @@
 import $ from "jquery"
 import Link from 'next/link'
 
-import { Icon } from '@/components/page_part/common/server_side/fontawesome'
+import { Icon } from '@/components/page_part/service_server/fontawesome'
 
 
 export function Menu_stroke_link({link, logo, show, name, key}){    

@@ -1,5 +1,5 @@
-import { PageLoad } from "@/components/page_part/common/user_side/Load";
-import { NewsImage } from "./user_side/news_articles"
+import { PageLoad } from "@/components/page_part/service_user/Load";
+import { NewsImage } from "./service_user/news_articles"
 
 export default function Home(param) {
   const { data } = param;

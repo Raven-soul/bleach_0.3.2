@@ -1,5 +1,5 @@
 import { getMenuTemplate, getMenuContent, getMenuSectionlist } from "@/lib/ControllerDB/crud";
-import { ChevronМenuButton, Menu_stroke_link } from "../user_side/menu"
+import { ChevronМenuButton, Menu_stroke_link } from "../service_user/menu"
 
 export async function MenuTemplateList() {
     let selections = await getMenuSectionlist();    

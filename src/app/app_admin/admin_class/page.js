@@ -1,9 +1,9 @@
 import $ from "jquery"
 
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
-import { PageLoad } from "@/components/page_part/common/user_side/Load";
+import { PageLoad } from "@/components/page_part/service_user/Load";
 
-import { insertTicketGroup, getTicketMenuGroup } from "@/lib/ControllerDB/Repository/AdminRepository";
+import { insertTicketGroup, getTicketMenuGroup } from "@/lib/ControllerDB/Repository/admin/AdminRepository";
 
 import Form from 'next/form'
 

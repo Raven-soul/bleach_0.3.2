@@ -4,8 +4,8 @@ import $ from "jquery"
 
 import Link from 'next/link'
 
-import { Icon } from '@/components/page_part/common/server_side/fontawesome'
-import { futer_fix } from "@/components/page_part/common/user_side/Load";
+import { Icon } from '@/components/page_part/service_server/fontawesome'
+import { futer_fix } from "@/components/page_part/service_user/Load";
 
 function usingFilters(){
     var filterValues = [];

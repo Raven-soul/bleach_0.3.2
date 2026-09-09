@@ -1,10 +1,10 @@
 import Image from 'next/image'
 
-import { PageLoad } from "@/components/page_part/common/user_side/Load";
+import { PageLoad } from "@/components/page_part/service_user/Load";
 import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
 import { getArmamentFilterList, getArmamentFilterItems, getArmamentTypePrompt, getArmamentGridList, getArmamentParamGridList } from "@/lib/ControllerDB/Repository/ArmamentRepository";
 import { getMenuLink } from "@/lib/ControllerDB/Repository/DomainRepository";
-import { ArmamentFilter, FiltersPrompt, ArmamentAbilitiesGridList} from "./user_side";
+import { ArmamentFilter, FiltersPrompt, ArmamentAbilitiesGridList} from "./service_user";
 
 export default async function Page({ params }) {
     let pageTitle = getPageTitleTemplate('armament_abilities');

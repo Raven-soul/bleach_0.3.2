@@ -1,12 +1,12 @@
 import $ from "jquery"
 
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
-import { PageLoad } from "@/components/page_part/common/user_side/Load";
+import { PageLoad } from "@/components/page_part/service_user/Load";
 
 import { ArmamentTable, FormLoad } from "./user_side";
 
-import { getArmamentList } from "@/lib/ControllerDB/Repository/AdminRepository";
-import { insertArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/AdminRepository";
+import { getArmamentList } from "@/lib/ControllerDB/Repository/admin/AdminRepository";
+import { insertArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/admin/AdminRepository";
 
 import Form from 'next/form'
 

@@ -2,10 +2,19 @@ import db from './../db_connection';
 
 export const getClassTableContent = (class_id = 1) => {
     const sql = `
-        select *
-          from c_table_element td
-         where td.head = ${class_id}
-         order by td.id
+        select te.id,
+               te.head,
+               te.col_1,
+               te.col_2,
+               te.col_3,
+               te.col_4,
+               te.col_5,
+               te.col_6,
+               te.col_7,
+               te.synonim
+          from c_table_element te
+         where te.head = ${class_id}
+         order by te.id
     `;
     return db.prepare(sql).all();
 };

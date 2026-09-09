@@ -1,4 +1,4 @@
-import db from './../db_connection';
+import db from '../../db_connection';
 
 export const insertTicketGroup = (data) => {
     const sql = `

@@ -1,8 +1,8 @@
 'use client';
 
 import $ from "jquery"
-import { Icon } from '@/components/page_part/common/server_side/fontawesome'
-import { futer_fix } from "@/components/page_part/common/user_side/Load";
+import { Icon } from '@/components/page_part/service_server/fontawesome'
+import { futer_fix } from "@/components/page_part/service_user/Load";
 
 
 export function Logo({name}){

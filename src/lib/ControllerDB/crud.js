@@ -15,7 +15,11 @@ export const getPageTitleTemplate = (synonym = 'class') => {
 
 export const getMenuTemplate = () => {
     const sql = `
-        select *
+        select tm.id,
+               tm.name,
+               tm.parent,
+               tm.value,
+               tm.synonim
           from template_menu tm
     `;
     return template.prepare(sql).all();
@@ -34,7 +38,9 @@ export const getFooterTemplate = () => {
 //Content data -------------------------------------------------------------------------
 export const getMenuSectionlist = () => {
     const sql = `
-        select *               
+        select cmg.id,
+               cmg.name,
+               cmg.show
           from c_menu_group cmg
          where cmg.show >= 0
          order by cmg.id

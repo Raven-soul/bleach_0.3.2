@@ -12,10 +12,10 @@ import { getClassContent, getClassContentData } from "@/lib/ControllerDB/Reposit
 import { getClassTable, getClassTableContent } from "@/lib/ControllerDB/Repository/TableRepository";
 import { getClassSpoilers, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/SpoilerRepository";
 
-import { PageLoad } from "@/components/page_part/common/user_side/Load";
-import { Gallary } from '@/components/page_part/common/server_side/gallary';
+import { PageLoad } from "@/components/page_part/service_user/Load";
+import { Gallary } from '@/components/page_part/service_server/gallary';
 
-import { SpoilerHead } from "../../user_side";
+import { SpoilerHead } from "../../service_user";
 
 export function generateStaticParams() {
     const pages = ['Shinigami', 'Quincy', 'Arrankar', 'Fullbringer', 'Bount'];

@@ -2,10 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./../components/css/common.css";
 import "./../components/css/multiplatform.css";
 
-import {Menu} from "./server_side/menu";
-import {Footer} from "./server_side/footer";
-import {GallaryMain} from "../components/page_part/common/server_side/gallary";
-import {Mobile_list_button} from "./user_side/buttons";
+import {Menu} from "./service_server/menu";
+import {Footer} from "./service_server/footer";
+import {GallaryMain} from "../components/page_part/service_server/gallary";
+import {Mobile_list_button} from "./service_user/buttons";
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'

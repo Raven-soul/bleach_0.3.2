@@ -1,5 +1,5 @@
 import { getFooterTemplate } from "@/lib/ControllerDB/crud"
-import { FooterContent } from "../user_side/footer"
+import { FooterContent } from "../service_user/footer"
 
 export async function Footer() {
     const footerTemplate = getFooterTemplate();

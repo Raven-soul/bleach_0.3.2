@@ -1,5 +1,5 @@
 import { GetGalleryClass, GetGalleryRace } from "@/lib/ControllerDB/Repository/GalleryRepository"
-import { GetGallaryItem, CloseButton } from "../user_side/gallary_user"
+import { GetGallaryItem, CloseButton } from "../service_user/gallary_user"
 
 export function GallaryMain(){
     return(
