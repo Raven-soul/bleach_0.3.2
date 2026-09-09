@@ -420,18 +420,21 @@ a.read-all:hover{
     flex-flow: wrap;
 
     background-color: #86725842;
-    padding: 4px;
+    padding: 4px 2px;
     border-radius: 5px;
 }
 
 .anchor-menu .anchor{
-    background-color: rgba(0, 128, 0, 0.24);
-    text-decoration: none;
-    color: #212529;
-    margin-right: 5px;
+    margin-right: 2px;
+    margin-left: 2px;
     padding: 1px 5px;
     border-radius: 5px;
+
+    background-color: rgba(0, 128, 0, 0.24);
     flex:auto;
+    
+    text-decoration: none;
+    color: #212529;
     text-align: center;
 }
 .main-brown-data-area .content-block .table tr {
