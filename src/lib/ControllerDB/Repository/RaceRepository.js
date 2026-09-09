@@ -65,7 +65,9 @@ export const getRaceContentData = (race_name = 'Gecon') => {
                inner join c_ticket_element te on te.ticket_id = rr.ticket_id
                 left join c_ticket_element_type te_type on te_type.id = te.type
             
-         where tm.latin_name = '${race_name}'
+         where 1=1
+               and te.show = 1
+               and tm.latin_name = '${race_name}'
          order by te.id      
     `;
     return db.prepare(sql).all();

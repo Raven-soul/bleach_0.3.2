@@ -15,7 +15,7 @@ export const getClassContentData = (class_name = 'Shinigami') => {
                           and type.name = 'class'
                inner join c_ticket_record_class ct on ct.class_id = tm.id
                inner join c_ticket_element te on te.ticket_id = ct.ticket_id
-                left join t_ticket_element_type te_type on te_type.id = te.type
+                left join c_ticket_element_type te_type on te_type.id = te.type
             
          where tm.latin_name = '${class_name}'
          order by te.id      

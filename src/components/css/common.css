@@ -420,13 +420,12 @@ a.read-all:hover{
     flex-flow: wrap;
 
     background-color: #86725842;
-    padding: 4px 2px;
+    padding: 2px;
     border-radius: 5px;
 }
 
 .anchor-menu .anchor{
-    margin-right: 2px;
-    margin-left: 2px;
+    margin: 2px;
     padding: 1px 5px;
     border-radius: 5px;
 
