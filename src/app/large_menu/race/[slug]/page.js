@@ -23,9 +23,6 @@ export default async function Page({ params }) {
             <div className="col">
                 <PageLoad page_title={raceElement.title_name} />
                 <div className="main-brown-data-area">
-                    <div className="back-image">
-                        {/* <img src="@@CLASSBACKIMAGE@@" alt="back"> */}
-                    </div>
                     <div className="main-content-block">
                         <div className="title-block">
                             <div className="row-3">
@@ -44,22 +41,27 @@ export default async function Page({ params }) {
                         <div className="content-block" dangerouslySetInnerHTML={{ __html: raceElement.preview_content }}>
                         </div>
                         <div className="content-block">
-                            <div className="sub-menu" hidden>
-                                <h5>Меню</h5>
-                                <a href="#">data</a>
-                                <a href="#">data</a>
-                                <a href="#">data</a>
-                                <a href="#">data</a>
-                            </div>
-                            <div className="content">
-                                {raceElement.ContentData.map((skill)=>{
-                                    if(skill.data_type == 0)
+                            <div className="anchor-menu">
+                                {raceElement.ContentData.map((block)=>{
+                                    if(block.data_type == 0)
                                     {   
                                         return(
-                                            <div key={'data_content_' + skill.id} className="data-content">
-                                                <h3>{skill.name}</h3>
-                                                <p className="level">{skill.requirements}</p>
-                                                <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
+                                            <a href={'#data_content_' + block.id} key={'anchor_' + block.id} className='anchor'>
+                                                    {block.name}
+                                                </a>
+                                        )
+                                    }
+                                })}
+                            </div>
+                            <div className="content">
+                                {raceElement.ContentData.map((block)=>{
+                                    if(block.data_type == 0)
+                                    {   
+                                        return(
+                                            <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
+                                                <h3>{block.name}</h3>
+                                                <p className="level">{block.requirements}</p>
+                                                <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
                                             </div>
                                         )
                                     }

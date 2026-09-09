@@ -414,8 +414,25 @@ a.read-all:hover{
 .main-brown-data-area .empty-line {
     visibility: hidden;
 }
-.main-brown-data-area .content-block .sub-menu {
-    margin-bottom: 8px;
+.anchor-menu {
+    margin-bottom: 20px;
+    display: flex;
+    flex-flow: wrap;
+
+    background-color: #86725842;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.anchor-menu .anchor{
+    background-color: rgba(0, 128, 0, 0.24);
+    text-decoration: none;
+    color: #212529;
+    margin-right: 5px;
+    padding: 1px 5px;
+    border-radius: 5px;
+    flex:auto;
+    text-align: center;
 }
 .main-brown-data-area .content-block .table tr {
     --bs-table-bg: #ffffff00;
