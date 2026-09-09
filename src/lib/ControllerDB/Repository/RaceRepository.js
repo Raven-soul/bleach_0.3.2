@@ -52,7 +52,7 @@ export const getRaceContentData = (race_name = 'Gecon') => {
     const sql = `
         select te.id,
                te.ticket_id,
-               te.data_type,
+               te_type.synonim as type_name,
                te.name,
                te.requirements,
                te.value,
@@ -63,6 +63,7 @@ export const getRaceContentData = (race_name = 'Gecon') => {
                           and type.name = 'race'
                inner join c_ticket_record_race rr on rr.race_id = tm.id
                inner join c_ticket_element te on te.ticket_id = rr.ticket_id
+                left join c_ticket_element_type te_type on te_type.id = te.type
             
          where tm.latin_name = '${race_name}'
          order by te.id      

@@ -2,22 +2,23 @@ import db from './../db_connection';
 
 export const getClassContentData = (class_name = 'Shinigami') => {
     const sql = `
-        select td.id,
-               td.ticket_id,
-               td.data_type,
-               td.name,
-               td.requirements,
-               td.value,
-               td.spoiler_id
+        select te.id,
+               te.ticket_id,
+               te_type.synonim as type_name,
+               te.name,
+               te.requirements,
+               te.value,
+               te.spoiler_id
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
                           and type.name = 'class'
                inner join c_ticket_record_class ct on ct.class_id = tm.id
-               inner join c_ticket_element td on td.ticket_id = ct.ticket_id
+               inner join c_ticket_element te on te.ticket_id = ct.ticket_id
+                left join t_ticket_element_type te_type on te_type.id = te.type
             
          where tm.latin_name = '${class_name}'
-         order by td.id      
+         order by te.id      
     `;
     return db.prepare(sql).all();
 };

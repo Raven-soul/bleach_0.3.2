@@ -43,19 +43,16 @@ export default async function Page({ params }) {
                         <div className="content-block">
                             <div className="anchor-menu">
                                 {raceElement.ContentData.map((block)=>{
-                                    if(block.data_type == 0)
-                                    {   
+                                    if(block.type_name == 'common_block'){   
                                         return(
-                                            <a href={'#data_content_' + block.id} key={'anchor_' + block.id} className='anchor'>
-                                                    {block.name}
-                                                </a>
+                                            <a href={'#data_content_' + block.id} key={'anchor_' + block.id} className='anchor'>{block.name}</a>
                                         )
                                     }
                                 })}
                             </div>
                             <div className="content">
                                 {raceElement.ContentData.map((block)=>{
-                                    if(block.data_type == 0)
+                                    if(block.type_name == 'common_block')
                                     {   
                                         return(
                                             <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">

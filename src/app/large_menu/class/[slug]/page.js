@@ -151,23 +151,23 @@ export default async function Page({ params }) {
                                 </table>
                             </div>
                             <div className="content">
-                                {classElement.ContentData.map((skill)=>{
-                                    if(skill.data_type == 0)
+                                {classElement.ContentData.map((block)=>{
+                                    if(block.type_name == 'common_block')
                                     {   
                                         return(
-                                            <div key={'data_content_' + skill.id} className="data-content">
-                                                <h3>{skill.name}</h3>
-                                                <p className="level">{skill.requirements}</p>
-                                                <div dangerouslySetInnerHTML={{ __html: skill.value }}></div>
+                                            <div key={'data_content_' + block.id} className="data-content">
+                                                <h3>{block.name}</h3>
+                                                <p className="level">{block.requirements}</p>
+                                                <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
                                             </div>
                                         )
                                     }
-                                    else if(skill.data_type == 1) 
+                                    else if(block.type_name == 'blue_block') 
                                     {
                                         return(
-                                            <div key={'data_content_' + skill.id} className="data-content">
-                                                <h1>{skill.name}</h1>
-                                                <p>{skill.value}</p>
+                                            <div key={'data_content_' + block.id} className="data-content">
+                                                <h1>{block.name}</h1>
+                                                <p>{block.value}</p>
                                                 <div className="blue-data-area">
                                                     <h4>Хиты, владение и снаряжение</h4>
                                                     <div className="data-block">
@@ -182,7 +182,7 @@ export default async function Page({ params }) {
                                                         <p><strong className="feature-class">Оружие:</strong> {classElement.weapon}</p>
                                                         <p><strong className="feature-class">Инструменты:</strong> {classElement.tools}</p>
                                                         <p><strong className="feature-class">Спасброски:</strong> {classElement.savethrow}</p>
-                                                        <p><strong className="feature-class">Навыки:</strong> {classElement.skills}</p>
+                                                        <p><strong className="feature-class">Навыки:</strong> {classElement.blocks}</p>
                                                     </div>
                                                     <div className="data-block">
                                                         <h2 className="no-underlined-black">Cнаряжение</h2>
@@ -192,16 +192,16 @@ export default async function Page({ params }) {
                                             </div>
                                         )
                                     }
-                                    else if(skill.data_type == 2) {
+                                    else if(block.type_name == 'spoiler_block') {
                                         return(
-                                            <div key={'data_content_' + skill.id} className="data-content">
-                                                <h1>{skill.name}</h1>
-                                                <p>{skill.value}</p>
+                                            <div key={'data_content_' + block.id} className="data-content">
+                                                <h1>{block.name}</h1>
+                                                <p>{block.value}</p>
                                                 { (()=>{
                                                     let check = false;
                                                     var spoiler;
                                                     for(let i = 0; i<classElement.SpecialSpoilerList.length; i++){
-                                                        if(classElement.SpecialSpoilerList[i].id != skill.spoiler_id){}
+                                                        if(classElement.SpecialSpoilerList[i].id != block.spoiler_id){}
                                                         else {
                                                             spoiler = classElement.SpecialSpoilerList[i];
                                                             check = true;
