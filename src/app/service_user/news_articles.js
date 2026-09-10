@@ -13,7 +13,7 @@ export function NewsImage({image, height, width, name}){
                 quality={100}
                 height={height}
                 width={width}
-                //style={{height: `50%`, width: `50%`}}
+                style={{maxWidth: `100%`, height:'auto'}}
             />
         </div>
     )
