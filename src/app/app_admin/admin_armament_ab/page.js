@@ -3,7 +3,7 @@ import $ from "jquery"
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/service_user/Load";
 
-import { insertArmament, getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList, getArmamentInfo } from "@/lib/ControllerDB/Repository/admin/AdminRepository";
+import { insertArmament, getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList, getArmamentInfo } from "@/app/app_admin/AdminRepository/AdminRepository";
 
 import Form from 'next/form'
 

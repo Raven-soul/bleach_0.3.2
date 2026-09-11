@@ -3,7 +3,7 @@ import $ from "jquery"
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/service_user/Load";
 
-import { insertTicketGroup, getTicketMenuGroup } from "@/lib/ControllerDB/Repository/admin/AdminRepository";
+import { insertTicketGroup, getTicketMenuGroup } from "@/app/app_admin/AdminRepository/AdminRepository";
 
 import Form from 'next/form'
 

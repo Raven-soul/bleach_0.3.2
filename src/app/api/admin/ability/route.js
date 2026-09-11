@@ -1,4 +1,4 @@
-import { getArmamentItemAsync } from "@/lib/ControllerDB/Repository/admin/AdminRepository";
+import { getArmamentItemAsync } from "@/app/app_admin/AdminRepository/AdminRepository";
 
 export async function POST(request) {
   const body = await request.json();

@@ -5,8 +5,8 @@ import { PageLoad } from "@/components/page_part/service_user/Load";
 
 import { ArmamentTable, FormLoad } from "./user_side";
 
-import { getArmamentList } from "@/lib/ControllerDB/Repository/admin/AdminRepository";
-import { insertArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/lib/ControllerDB/Repository/admin/AdminRepository";
+import { getArmamentList } from "@/app/app_admin/AdminRepository/AdminRepository";
+import { insertArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/app/app_admin/AdminRepository/AdminRepository";
 
 import Form from 'next/form'
 
