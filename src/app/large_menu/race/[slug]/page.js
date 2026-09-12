@@ -1,11 +1,13 @@
 import Image from 'next/image'
 
-import { getRaceContent, getRaceContentData } from '@/lib/ControllerDB/Repository/RaceRepository';
+import { getRaceContent, getRaceContentData, getRaceSlagList, getRaceSpoilerData } from './../service_repository/RaceRepository';
 import { PageLoad } from '@/components/page_part/service_user/Load';
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
+import { SpoilerBlock } from './../../service_user';
+
 export function generateStaticParams() {
-    const pages = ['Gecon', 'People', 'Soul', 'Hollow', 'Quincy', 'Fullbringer', 'Visored', 'Bount'];
+    const pages = getRaceSlagList();
     return pages.map((page) => ({ slug: page }));
 }
 
@@ -14,6 +16,10 @@ export default async function Page({ params }) {
     
     let raceElement = getRaceContent(slug)[0];
     raceElement['ContentData'] = getRaceContentData(slug);
+
+    for(let i = 0; i < raceElement.ContentData.length; i++){
+        raceElement.ContentData[i]['Spoiler'] = getRaceSpoilerData(raceElement.ContentData[i].id)
+    }
 
 //-----------------------------------------------------------------
 
@@ -59,6 +65,18 @@ export default async function Page({ params }) {
                                                 <h3>{block.name}</h3>
                                                 <p className="level">{block.requirements}</p>
                                                 <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
+                                            </div>
+                                        )
+                                    }
+                                    else if(block.type_name == 'spoiler_block')
+                                    {   
+                                        return(
+                                            <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
+                                                {block.Spoiler.map((spoiler => {
+                                                    return(
+                                                       <SpoilerBlock spoiler_id={spoiler.id} spoiler_name={spoiler.name} description={spoiler.description} spoiler_list_exist={spoiler.spoiler_list_exist}/> 
+                                                    )
+                                                }))}
                                             </div>
                                         )
                                     }

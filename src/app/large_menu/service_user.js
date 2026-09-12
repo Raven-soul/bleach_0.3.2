@@ -37,3 +37,25 @@ export function SpoilerHead({spoiler_id, spoiler_name}) {
         </h1>
     )
 }
+
+export function SpoilerBlock({spoiler_id, spoiler_name, description, spoiler_list_exist}){    
+    return (
+        <div className="spoiler">
+            <div className="spec-info-block">
+                <SpoilerHead spoiler_id={spoiler_id} spoiler_name={spoiler_name}/>
+                <div className={"hidden-data-item hb-" + spoiler_id}>
+                    <div style={{marginTop: '15px'}} dangerouslySetInnerHTML={{ __html: description }}></div>
+                    {(()=>{
+                        if(spoiler_list_exist == 1){
+                            // пока таких не было, просто поставил заглушку
+                            return(<div className="data-content">data empty</div>)
+                        }
+                        else {
+                            return(<></>)
+                        }
+                    })()}
+                </div>
+            </div>
+        </div>
+    )
+}

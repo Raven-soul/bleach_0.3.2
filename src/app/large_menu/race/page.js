@@ -1,6 +1,6 @@
-import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
-import { getRaceMenuGroupContent, getRaceMenuContent } from "@/lib/ControllerDB/Repository/RaceRepository";
-import { PageLoad } from "@/components/page_part/service_user/Load";
+import { getPageTitleTemplate} from '@/lib/ControllerDB/crud';
+import { getRaceMenuGroupContent, getRaceMenuContent } from './service_repository/RaceRepository';
+import { PageLoad } from '@/components/page_part/service_user/Load';
 
 import { PageMenuItem } from "../service_user"
 

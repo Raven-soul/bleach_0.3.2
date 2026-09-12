@@ -18,17 +18,16 @@ export const getClassSpoilersContent = (spoiler_id = 1) => {
     return db.prepare(sql).all();
 };
 
-export const getClassSpoilers = (class_name = 'Shinigami',is_special = 0) => {
-    // is_special - определяет особые спойлеры, которые находятся в теле страницы
-    // 0 - обычные спойлеры в конце страницы
-    // 1 - особые спойлеры в теле страницы
+export const getClassSpoilers = (class_name = 'Shinigami', type_name = 'common') => {
+    // common - обычные спойлеры в конце страницы
+    // special - особые спойлеры в теле страницы
     
     const sql = `
         select sp.id,
                sp.ticket_id,
                sp.name,
                sp.description,
-               sp.is_special
+               sp_type.name as type_name
 
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
@@ -36,10 +35,11 @@ export const getClassSpoilers = (class_name = 'Shinigami',is_special = 0) => {
                           and type.name = 'class'
                inner join c_ticket_record_class ct on ct.class_id = tm.id
                inner join c_spoiler sp on sp.ticket_id = ct.ticket_id
+                left join c_spoiler_type sp_type on sp_type.id = sp.spoiler_type
                
          where 1=1
                and tm.latin_name = '${class_name}'
-               and sp.is_special = ${is_special}
+               and sp_type.name = '${type_name}'
          order by sp.id 
     `;
     return db.prepare(sql).all();

@@ -43,7 +43,7 @@ export default async function Page({ params }) {
 
     classElement['ContentData'] = getClassContentData(slug);    
     
-    classElement['SpecialSpoilerList'] = getClassSpoilers(slug, 1);
+    classElement['SpecialSpoilerList'] = getClassSpoilers(slug, 'special');
     classElement['SpoilerList'] = getClassSpoilers(slug);
 
     // блок обработки спойлеров в теле страницы среди информации
