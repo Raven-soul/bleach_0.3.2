@@ -13,7 +13,7 @@ export const getClassContentData = (class_name = 'Shinigami') => {
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
                           and type.name = 'class'
-               inner join c_ticket_record_class ct on ct.class_id = tm.id
+               inner join c_ticket_record_class ct on ct.menu_id = tm.id
                inner join c_ticket_element te on te.ticket_id = ct.ticket_id
                 left join c_ticket_element_type te_type on te_type.id = te.type
             
@@ -46,7 +46,7 @@ export const getClassContent = (class_name = 'Shinigami') => {
                rc.archetype_name,
                rc.archetype_description
           from c_ticket_menu tm
-               inner join c_ticket_record_class rc on rc.class_id = tm.id
+               inner join c_ticket_record_class rc on rc.menu_id = tm.id
          where tm.latin_name = '${class_name}'
     `;
     return db.prepare(sql).all();

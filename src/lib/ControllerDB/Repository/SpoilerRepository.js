@@ -33,7 +33,7 @@ export const getClassSpoilers = (class_name = 'Shinigami', type_name = 'common')
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
                           and type.name = 'class'
-               inner join c_ticket_record_class ct on ct.class_id = tm.id
+               inner join c_ticket_record_class ct on ct.menu_id = tm.id
                inner join c_spoiler sp on sp.ticket_id = ct.ticket_id
                 left join c_spoiler_type sp_type on sp_type.id = sp.spoiler_type
                

@@ -21,13 +21,14 @@ export const getRaceMenuContent = (group_id = 1) => {
                tm.name,
                tm.latin_name,
                tm.logo,
-               menu.link || tm.link as link
-     
-          from c_ticket_menu tm
-               left join c_ticket_menu_group menu_group on menu_group.id = tm.group_id
-               left join c_menu menu on menu.id = menu_group.menu_id
-               
-         where menu_group.id = ${group_id}
+               concat_ws('', menu.link, tm.link) as link,
+               t.show
+          from c_ticket t
+               inner join c_ticket_menu tm on tm.ticket_id = t.id
+               inner join c_ticket_menu_group tmg on tmg.id = tm.group_id
+                     and tmg.id = ${group_id}
+                left join c_menu menu on menu.id = tmg.menu_id
+         where t.show = 1
     `;
     return db.prepare(sql).all();
 };
@@ -43,7 +44,7 @@ export const getRaceContent = (race_name = 'Gecon') => {
                rr.comment_author_rank,
                rr.preview_content
           from c_ticket_menu tm
-               inner join c_ticket_record_race rr on rr.race_id = tm.id
+               inner join c_ticket_record_race rr on rr.menu_id = tm.id
          where tm.latin_name = '${race_name}'
     `;
     return db.prepare(sql).all();
@@ -62,7 +63,7 @@ export const getRaceContentData = (race_name = 'Gecon') => {
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
                           and type.name = 'race'
-               inner join c_ticket_record_race rr on rr.race_id = tm.id
+               inner join c_ticket_record_race rr on rr.menu_id = tm.id
                inner join c_ticket_element te on te.ticket_id = rr.ticket_id
                 left join c_ticket_element_type te_type on te_type.id = te.type
             

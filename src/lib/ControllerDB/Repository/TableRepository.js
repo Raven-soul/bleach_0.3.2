@@ -43,7 +43,7 @@ export const getClassTable = (class_name = 'Shinigami') => {
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
                           and type.name = 'class'
-               inner join c_ticket_record_class ct on ct.class_id = tm.id
+               inner join c_ticket_record_class ct on ct.menu_id = tm.id
                inner join c_table tb on tb.ticket_id = ct.ticket_id
               
          where tm.latin_name = '${class_name}'
