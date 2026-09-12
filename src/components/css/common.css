@@ -1152,6 +1152,33 @@ table.armament_update td{
 }
 /* ------------------------------------------------------------- armament_update end*/
 
+/* ------------------------------------------------------------- armament_update start*/
+.ticket_update_area{
+    overflow-y: scroll;
+
+    border-top: 1px solid #141414;    
+    border-bottom: 1px solid #141414;
+}
+table.ticket_update{
+    background-color: #fff;    
+    font-style: normal;
+    width: 100%;
+    height: 800px;
+}
+table.ticket_update .row_edited{
+    background-color: #22a0327c;
+}
+table.ticket_update th{
+    border: 1px solid #141414;
+    font-weight: normal;
+    background-color: #280dbd7c;
+}
+table.ticket_update td{
+    border: 1px solid #141414;
+}
+/* ------------------------------------------------------------- armament_update end*/
+
+
 /* ------------------------------------------------------------- news start*/
 
 .news-chapter-title{

@@ -13,7 +13,7 @@ export function Logo({name}){
     )
 }
 
-export function DataShowButton({name}){
+export function DataShowButton(){
     const func = (()=>{
         $('.eye-logo').toggle();
         $('.eng-content-data').toggle();

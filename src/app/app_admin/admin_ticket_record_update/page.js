@@ -43,7 +43,15 @@ export default function Class(param) {
                                         </div>      
                                         <div className="row">
                                             <div className="col-3">
-                                                <TicketTable list={ticketList}/>
+                                                <div className="row-2">
+                                                    <div style={{marginBottom: '10px'}}>
+                                                        <TicketTable list={ticketList}/>
+                                                    </div>
+                                                    <div>
+                                                        <TicketTable list={ticketList}/>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
                                             <div className="col-9">
                                                 <Form action="" className="row-2 form-insert" id="add_group">{/* action={insertVal} */}

@@ -23,7 +23,7 @@ export default async function fetch_data(id) {
 export function TicketTable({list}){
     return (
         <div className='armament_update_area'>
-            <table className="armament_update" key={'armament_table'}>
+            <table className="ticket_update" key={'ticket_table'}>
                 <thead>
                     <tr>
                         <th>id</th>
@@ -63,4 +63,6 @@ export function TableRow({element_id, element_type, element_name, element_edited
     )
 }
 
-function formRedresh(content){}
+function formRedresh(content){
+    
+}
