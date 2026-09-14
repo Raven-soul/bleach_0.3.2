@@ -3,7 +3,6 @@ import db from '../../../lib/ControllerDB/db_connection';
 export const getTicketList = () => {
     const sql = `
 select t.id,
-       t.edited,
        tt.name as type_name,
        substring(coalesce(tr.race_name, tc.class_name), 0, instr(coalesce(tr.race_name, tc.class_name), '[')) as ticket_name
   from c_ticket t
