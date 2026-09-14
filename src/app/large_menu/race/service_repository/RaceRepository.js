@@ -70,7 +70,7 @@ export const getRaceContentData = (race_name = 'Gecon') => {
          where 1=1
                and te.show = 1
                and tm.latin_name = '${race_name}'
-         order by te.id      
+         order by te.ord, te.id
     `;
     return db.prepare(sql).all();
 };
