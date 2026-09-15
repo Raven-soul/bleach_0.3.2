@@ -59,3 +59,47 @@ export function SpoilerBlock({spoiler_id, spoiler_name, description, spoiler_lis
         </div>
     )
 }
+
+export function SpellBlock({spell}){    
+    return (
+        <div className="spell-card">
+            <div className="name">
+                <div className="row">
+                    <div className="col">
+                        <span>Маска Пустого</span>
+                    </div>
+                </div>
+            </div>
+            <p>
+                <span className="param">Время накладывания:</span>
+                <span> </span>
+                <span className="half-gray">Бонусное действие</span>
+            </p>
+            <p>
+                <span className="param">Дистанция:</span>
+                <span> </span>
+                <span className="half-gray">На себя</span>
+            </p>
+            <p>
+                <span className="param">Компоненты:</span>
+                <span> </span>
+                <span className="half-gray">С</span>
+            </p>
+            <p>
+                <span className="param">Длительность:</span>
+                <span> </span>
+                <span className="half-gray">Особая длительность</span>
+            </p>
+            <p>
+                <span className="param">Перезарядка:</span>
+                <span> </span>
+                <span className="half-gray">Нет</span>
+            </p>
+            <p className={"requirements"}>
+                <span className="param">Требования:</span>
+                <span> </span>
+                <span className="half-gray">Нет</span>
+            </p>
+        </div>
+    )
+}

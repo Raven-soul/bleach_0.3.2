@@ -3,14 +3,14 @@ import db from './../db_connection';
 export const getClassSpoilersContent = (spoiler_id = 1) => {
     const sql = `
         select se.id,
-               se.spoiler_id,
+               se.extra_id as spoiler_id,
                se.h5_tag,
                se.name,
                se.requirements,
                se.value
 
           from c_spoiler sp 
-               inner join c_spoiler_element se on se.spoiler_id = sp.id
+               inner join c_spoiler_element se on se.extra_id = sp.id
               
          where sp.id = ${spoiler_id}
          order by se.id

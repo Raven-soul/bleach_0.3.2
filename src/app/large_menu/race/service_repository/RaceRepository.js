@@ -58,7 +58,7 @@ export const getRaceContentData = (race_name = 'Gecon') => {
                te.name,
                te.requirements,
                te.value,
-               te.spoiler_id
+               te.extra_id as spoiler_id
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
@@ -105,9 +105,11 @@ select sp.id,
        sp.description,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist
   from c_ticket_element te
-       left join c_spoiler sp on sp.id = te.spoiler_id
+       left join c_ticket_element_type t_type on t_type.id = te.type
+       left join c_spoiler sp on sp.id = te.extra_id
  where 1 = 1 
        and te.show = 1
+       and t_type.synonim = 'spoiler_block'
        and te.id = ${ticket_element_id}
  order by 1
     `;

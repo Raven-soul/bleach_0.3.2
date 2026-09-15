@@ -108,10 +108,13 @@ select ab.id,
        coalesce(kind.logo, 'null') as kind_value_logo
        
   from c_armament_ab ab
+       left join c_armament_ab_type ab_type on ab_type.id = ab.ability_type
        left join c_armament_ab_filter_item type on type.id = ab.type
        left join c_armament_ab_filter_item cost on cost.id = ab.cost
        left join c_armament_ab_filter_item kind on kind.id = ab.kind
- where ab.show = 1
+ where 1 = 1
+       and ab.show = 1
+       and ab_type.synonim = 'ability'
  order by type_order, kind_order, cost_order, ab.name
     `;
     return db.prepare(sql).all();

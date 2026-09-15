@@ -4,7 +4,7 @@ import { getRaceContent, getRaceContentData, getRaceSlagList, getRaceSpoilerData
 import { PageLoad } from '@/components/page_part/service_user/Load';
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
-import { SpoilerBlock } from './../../service_user';
+import { SpoilerBlock, SpellBlock } from './../../service_user';
 
 export function generateStaticParams() {
     const pages = getRaceSlagList();
@@ -18,7 +18,11 @@ export default async function Page({ params }) {
     raceElement['ContentData'] = getRaceContentData(slug);
 
     for(let i = 0; i < raceElement.ContentData.length; i++){
-        raceElement.ContentData[i]['Spoiler'] = getRaceSpoilerData(raceElement.ContentData[i].id)
+        switch(raceElement.ContentData[i].type_name) {
+            case 'spoiler_block':
+                raceElement.ContentData[i]['Spoiler'] = getRaceSpoilerData(raceElement.ContentData[i].id);
+                break;
+        }
     }
 
 //-----------------------------------------------------------------
@@ -77,6 +81,14 @@ export default async function Page({ params }) {
                                                        <SpoilerBlock spoiler_id={spoiler.id} spoiler_name={spoiler.name} description={spoiler.description} spoiler_list_exist={spoiler.spoiler_list_exist}/> 
                                                     )
                                                 }))}
+                                            </div>
+                                        )
+                                    }
+                                    else if(block.type_name == 'spell_block')
+                                    {   
+                                        return(
+                                            <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
+                                                <SpellBlock spell="spoiler.id"/> 
                                             </div>
                                         )
                                     }

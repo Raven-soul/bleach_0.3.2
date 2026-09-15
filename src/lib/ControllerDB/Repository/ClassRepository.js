@@ -8,7 +8,7 @@ export const getClassContentData = (class_name = 'Shinigami') => {
                te.name,
                te.requirements,
                te.value,
-               te.spoiler_id
+               te.extra_id as spoiler_id
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type

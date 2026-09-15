@@ -508,6 +508,20 @@ a.read-all:hover{
 .main-brown-data-area .content-block .spec-info-block .data-content .sub-data{
     margin-top: 15px;
 }
+
+.data-content .spell-card{
+    margin: 0 5px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #1060c959;
+    border: solid 4px #1060c98f;
+}
+
+.data-content .spell-card .name span{
+    font-size: 30px;
+    font-weight: 600;
+}
+
 .main-brown-data-area .back-image {
     position: absolute;
     top: 0px;
