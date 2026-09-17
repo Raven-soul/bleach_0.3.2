@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import { getRaceContent, getRaceContentData, getRaceSlagList, getRaceSpoilerData } from './../service_repository/RaceRepository';
+import { getContentSpell } from './../service_repository/TicketElementRepository';
 import { PageLoad } from '@/components/page_part/service_user/Load';
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
@@ -20,7 +21,11 @@ export default async function Page({ params }) {
     for(let i = 0; i < raceElement.ContentData.length; i++){
         switch(raceElement.ContentData[i].type_name) {
             case 'spoiler_block':
-                raceElement.ContentData[i]['Spoiler'] = getRaceSpoilerData(raceElement.ContentData[i].id);
+                raceElement.ContentData[i]['Spoiler'] = getRaceSpoilerData(raceElement.ContentData[i].id)[0];
+                break;
+
+            case 'spell_block':
+                raceElement.ContentData[i]['Spell'] = getContentSpell(raceElement.ContentData[i].id)[0];
                 break;
         }
     }
@@ -76,11 +81,7 @@ export default async function Page({ params }) {
                                     {   
                                         return(
                                             <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
-                                                {block.Spoiler.map((spoiler => {
-                                                    return(
-                                                       <SpoilerBlock spoiler_id={spoiler.id} spoiler_name={spoiler.name} description={spoiler.description} spoiler_list_exist={spoiler.spoiler_list_exist}/> 
-                                                    )
-                                                }))}
+                                                <SpoilerBlock spoiler={block.Spoiler}/> 
                                             </div>
                                         )
                                     }
@@ -88,7 +89,7 @@ export default async function Page({ params }) {
                                     {   
                                         return(
                                             <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
-                                                <SpellBlock spell="spoiler.id"/> 
+                                                <SpellBlock spell={block.Spell}/>
                                             </div>
                                         )
                                     }

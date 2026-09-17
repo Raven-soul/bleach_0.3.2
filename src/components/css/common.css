@@ -512,14 +512,19 @@ a.read-all:hover{
 .data-content .spell-card{
     margin: 0 5px;
     border-radius: 5px;
-    padding: 10px;
-    background-color: #1060c959;
-    border: solid 4px #1060c98f;
+    padding: 5px 20px;
+    background-color: #e6ba7c73;
+    border: 1px solid #cacaca;
+    box-shadow: 2px 2px #b3b3b3;
 }
 
 .data-content .spell-card .name span{
     font-size: 30px;
     font-weight: 600;
+}
+
+.data-content .spell-card .info p{
+    margin:0;
 }
 
 .main-brown-data-area .back-image {

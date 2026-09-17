@@ -38,15 +38,15 @@ export function SpoilerHead({spoiler_id, spoiler_name}) {
     )
 }
 
-export function SpoilerBlock({spoiler_id, spoiler_name, description, spoiler_list_exist}){    
+export function SpoilerBlock({spoiler}){     //, spoiler_name, description, spoiler_list_exist
     return (
         <div className="spoiler">
             <div className="spec-info-block">
-                <SpoilerHead spoiler_id={spoiler_id} spoiler_name={spoiler_name}/>
-                <div className={"hidden-data-item hb-" + spoiler_id}>
-                    <div style={{marginTop: '15px'}} dangerouslySetInnerHTML={{ __html: description }}></div>
+                <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
+                <div className={"hidden-data-item hb-" + spoiler.id}>
+                    <div style={{marginTop: '15px'}} dangerouslySetInnerHTML={{ __html: spoiler.description }}></div>
                     {(()=>{
-                        if(spoiler_list_exist == 1){
+                        if(spoiler.spoiler_list_exist == 1){
                             // пока таких не было, просто поставил заглушку
                             return(<div className="data-content">data empty</div>)
                         }
@@ -64,42 +64,37 @@ export function SpellBlock({spell}){
     return (
         <div className="spell-card">
             <div className="name">
-                <div className="row">
-                    <div className="col">
-                        <span>Маска Пустого</span>
-                    </div>
-                </div>
+                <span>{spell.ab_name}</span>
             </div>
-            <p>
-                <span className="param">Время накладывания:</span>
-                <span> </span>
-                <span className="half-gray">Бонусное действие</span>
-            </p>
-            <p>
-                <span className="param">Дистанция:</span>
-                <span> </span>
-                <span className="half-gray">На себя</span>
-            </p>
-            <p>
-                <span className="param">Компоненты:</span>
-                <span> </span>
-                <span className="half-gray">С</span>
-            </p>
-            <p>
-                <span className="param">Длительность:</span>
-                <span> </span>
-                <span className="half-gray">Особая длительность</span>
-            </p>
-            <p>
-                <span className="param">Перезарядка:</span>
-                <span> </span>
-                <span className="half-gray">Нет</span>
-            </p>
-            <p className={"requirements"}>
-                <span className="param">Требования:</span>
-                <span> </span>
-                <span className="half-gray">Нет</span>
-            </p>
+            <div className="info">
+                <p>
+                    <span className="param">Время накладывания: </span>
+                    <span className="value">{spell.cast_time_name}</span>
+                </p>
+                <p>
+                    <span className="param">Дистанция: </span>
+                    <span className="value">{spell.distance_name}</span>
+                </p>
+                <p>
+                    <span className="param">Компоненты: </span>
+                    <span className="value">{spell.components}</span>
+                </p>
+                <p>
+                    <span className="param">Длительность: </span>
+                    <span className="value">{spell.durations}</span>
+                </p>
+                <p>
+                    <span className="param">Перезарядка: </span>
+                    <span className="value">{(spell.recharge_name == null)? 'Нет': spell.recharge_name}</span>
+                </p>
+                <p>
+                    <span className="param">Требования: </span>
+                    <span className="value">{(spell.requirements == null)? 'Нет': spell.requirements}</span>
+                </p>
+            </div>
+            <div className="content">
+                <div dangerouslySetInnerHTML={{ __html: spell.translate }}></div>
+            </div>
         </div>
     )
 }
