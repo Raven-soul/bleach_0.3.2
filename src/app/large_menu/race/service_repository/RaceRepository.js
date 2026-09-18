@@ -113,5 +113,5 @@ select sp.id,
        and te.id = ${ticket_element_id}
  order by 1
     `;
-    return db.prepare(sql).all();
+    return db.prepare(sql).all()[0];
 };

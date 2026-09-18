@@ -524,8 +524,27 @@ a.read-all:hover{
 }
 
 .data-content .spell-card .info p{
-    margin:0;
+    margin:5px;
 }
+
+.data-content .spell-card .info .param{
+    font-weight: 600;
+}
+
+.data-content .spell-card div ul {    
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.data-content .spell-card div ul li{    
+    margin-top: 20px;
+}
+
+.data-content .spell-card div ul li::marker {
+    content: none;
+    display: none;
+}
+
 
 .main-brown-data-area .back-image {
     position: absolute;

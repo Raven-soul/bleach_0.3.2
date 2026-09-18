@@ -21,11 +21,11 @@ export default async function Page({ params }) {
     for(let i = 0; i < raceElement.ContentData.length; i++){
         switch(raceElement.ContentData[i].type_name) {
             case 'spoiler_block':
-                raceElement.ContentData[i]['Spoiler'] = getRaceSpoilerData(raceElement.ContentData[i].id)[0];
+                raceElement.ContentData[i]['Spoiler'] = getRaceSpoilerData(raceElement.ContentData[i].id);
                 break;
 
             case 'spell_block':
-                raceElement.ContentData[i]['Spell'] = getContentSpell(raceElement.ContentData[i].id)[0];
+                raceElement.ContentData[i]['Spell'] = getContentSpell(raceElement.ContentData[i].id);
                 break;
         }
     }

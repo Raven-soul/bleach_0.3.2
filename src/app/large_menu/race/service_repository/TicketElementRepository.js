@@ -102,5 +102,5 @@ select ab.id,
        and te.id = ${ticket_element_id}
     `;
 
-    return db.prepare(sql).all();
+    return db.prepare(sql).all()[0];
 };
