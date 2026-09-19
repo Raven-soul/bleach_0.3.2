@@ -34,7 +34,7 @@ export function TableBlock({table}) {
                     <tr className="tb-head-row">
                         {table.Header.map((head)=>{
                             return(
-                                <th key={'head_' + head.head_name}>
+                                <th key={'head_' + head.head_name} className={head.head_class}>
                                     <span className="long">{head.head_name}</span>
                                     <span className="short" title={head.head_name}>{head.head_name_short}</span>
                                 </th>

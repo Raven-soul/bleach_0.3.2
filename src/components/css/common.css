@@ -447,6 +447,12 @@ a.read-all:hover{
     padding: 4px 8px;
     font-weight: 600;
 }
+.main-brown-data-area .content-block .table th.hr-min-width-50{
+    min-width: 50px;
+}
+.main-brown-data-area .content-block .table th.hr-min-width-60{
+    min-width: 60px;
+}
 .main-brown-data-area .content-block .table th, .main-brown-data-area .content-block .table td {
     text-align: center;
     border: 1px solid rgba(168, 168, 168,.3);
