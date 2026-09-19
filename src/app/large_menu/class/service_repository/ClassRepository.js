@@ -3,11 +3,11 @@ import db from '@/lib/ControllerDB/db_connection';
 export const getClassSlagList = () => {
     const sql = `
 select tr.id,
-       tr.race_short_name
+       tr.class_short_name
   from c_ticket t
        inner join c_ticket_type tt on tt.id = t.ticket_type
             and tt.name = 'class'
-       left join c_ticket_record_race tr on tr.id = t.ticket_record_id
+       left join c_ticket_record_class tr on tr.id = t.ticket_record_id
  where t.show = 1
     `;
     
@@ -15,7 +15,7 @@ select tr.id,
     var array_result = [];
 
     for(var i=0; i < sql_result.length; i++){
-        array_result.push(sql_result[i].race_short_name.toString());
+        array_result.push(sql_result[i].class_short_name.toString());
     }
 
     return array_result; 
