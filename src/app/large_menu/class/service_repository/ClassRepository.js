@@ -39,7 +39,7 @@ export const getClassContentData = (class_name = 'Shinigami') => {
                 left join c_ticket_element_type te_type on te_type.id = te.type
             
          where tm.latin_name = '${class_name}'
-         order by te.id      
+         order by coalesce(te.ord, te.id)
     `;
     return db.prepare(sql).all();
 };

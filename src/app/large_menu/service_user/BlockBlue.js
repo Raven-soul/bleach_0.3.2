@@ -16,11 +16,11 @@ export function BlueBlock({classElement}){
             </div>
             <div className="data-block">
                 <h2 className="no-underlined-black">Владение</h2>
-                <p><strong className="feature-class">Броня:</strong> {classElement.armor}</p>
+                <p><strong className="feature-class">Доспехи:</strong> {classElement.armor}</p>
                 <p><strong className="feature-class">Оружие:</strong> {classElement.weapon}</p>
                 <p><strong className="feature-class">Инструменты:</strong> {classElement.tools}</p>
                 <p><strong className="feature-class">Спасброски:</strong> {classElement.savethrow}</p>
-                <p><strong className="feature-class">Навыки:</strong> {classElement.blocks}</p>
+                <p><strong className="feature-class">Навыки:</strong> {classElement.skills}</p>
             </div>
             <div className="data-block">
                 <h2 className="no-underlined-black">Cнаряжение</h2>
