@@ -1,11 +1,15 @@
 import Image from 'next/image'
 
-import { getRaceContent, getRaceContentData, getRaceSlagList, getRaceSpoilerData } from './../service_repository/RaceRepository';
-import { getContentSpell } from './../service_repository/TicketElementRepository';
 import { PageLoad } from '@/components/page_part/service_user/Load';
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
-import { SpoilerBlock, SpellBlock } from './../../service_user';
+import { getRaceContent, getRaceContentData, getRaceSlagList } from './../service_repository/RaceRepository';
+import { getTicketElementSpoilerData } from './../../service_repository/SpoilerRepository';
+import { getContentSpell } from './../../service_repository/TicketElementRepository';
+
+import { AnchorMenu } from '../../service_user/AnchorMenu';
+import { SpoilerElement } from '../../service_user/BlockSpoiler';
+import { SpellBlock } from '../../service_user/BlockSpell';
 
 export function generateStaticParams() {
     const pages = getRaceSlagList();
@@ -21,7 +25,7 @@ export default async function Page({ params }) {
     for(let i = 0; i < raceElement.ContentData.length; i++){
         switch(raceElement.ContentData[i].type_name) {
             case 'spoiler_block':
-                raceElement.ContentData[i]['Spoiler'] = getRaceSpoilerData(raceElement.ContentData[i].id);
+                raceElement.ContentData[i]['Spoiler'] = getTicketElementSpoilerData(raceElement.ContentData[i].id);
                 break;
 
             case 'spell_block':
@@ -56,15 +60,7 @@ export default async function Page({ params }) {
                         <div className="content-block" dangerouslySetInnerHTML={{ __html: raceElement.preview_content }}>
                         </div>
                         <div className="content-block">
-                            <div className="anchor-menu">
-                                {raceElement.ContentData.map((block)=>{
-                                    if(block.type_name == 'common_block'){   
-                                        return(
-                                            <a href={'#data_content_' + block.id} key={'anchor_' + block.id} className='anchor'>{block.name}</a>
-                                        )
-                                    }
-                                })}
-                            </div>
+                            <AnchorMenu elements={raceElement.ContentData}/>
                             <div className="content">
                                 {raceElement.ContentData.map((block)=>{
                                     if(block.type_name == 'common_block')
@@ -81,14 +77,14 @@ export default async function Page({ params }) {
                                     {   
                                         return(
                                             <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
-                                                <SpoilerBlock spoiler={block.Spoiler}/> 
+                                                <SpoilerElement spoiler={block.Spoiler}/> 
                                             </div>
                                         )
                                     }
                                     else if(block.type_name == 'spell_block')
                                     {   
                                         return(
-                                            <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
+                                            <div style={{marginTop: '30px'}} key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
                                                 <SpellBlock spell={block.Spell}/>
                                             </div>
                                         )

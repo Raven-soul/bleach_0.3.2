@@ -1,4 +1,4 @@
-import db from './../db_connection';
+import db from '../../../lib/ControllerDB/db_connection';
 
 export const getClassTableContent = (class_id = 1) => {
     const sql = `
@@ -21,7 +21,8 @@ export const getClassTableContent = (class_id = 1) => {
 
 export const getClassTable = (class_name = 'Shinigami') => {
     const sql = `
-        select tb.id,
+        select rc.class_short_name,
+               tb.id,
                tb.ticket_id,
                tb.col_num,
                tb.col_1,
@@ -43,10 +44,10 @@ export const getClassTable = (class_name = 'Shinigami') => {
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
                           and type.name = 'class'
-               inner join c_ticket_record_class ct on ct.menu_id = tm.id
-               inner join c_table tb on tb.ticket_id = ct.ticket_id
+               inner join c_ticket_record_class rc on rc.menu_id = tm.id
+               inner join c_table tb on tb.ticket_id = rc.ticket_id
               
          where tm.latin_name = '${class_name}'
     `;
-    return db.prepare(sql).all();
+    return db.prepare(sql).all()[0];
 };

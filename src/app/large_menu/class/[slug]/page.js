@@ -1,81 +1,51 @@
-import Image from 'next/image'
-
-// getClassContent - для получения основных данных класса
-// getClassTableHeadersContent - для получения заголовков таблицы класса
-// getClassTableContent - для получения основного тела таблицы класса
-// getClassContentData - для получения умений класса (идут сразу после таблицы)
-
-// getClassSpoilersHead 
-// getClassSpoilersContent
-
-import { getClassContent, getClassContentData } from "@/lib/ControllerDB/Repository/ClassRepository";
-import { getClassTable, getClassTableContent } from "@/lib/ControllerDB/Repository/TableRepository";
-import { getClassSpoilers, getClassSpoilersContent } from "@/lib/ControllerDB/Repository/SpoilerRepository";
-
 import { PageLoad } from "@/components/page_part/service_user/Load";
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
-import { SpoilerHead } from "../../service_user";
+import { getClassSpoilers, getClassSpoilersContent, getTicketElementSpoilerData } from "./../../service_repository/SpoilerRepository";
+import { getClassContent, getClassContentData, getClassSlagList } from "./../service_repository/ClassRepository";
+import { getClassTable, getClassTableContent } from "../../service_repository/TableRepository";
+
+import { AnchorMenu } from '../../service_user/AnchorMenu';
+import { SpoilerBlock, SpoilerElement } from '../../service_user/BlockSpoiler';
+import { TableBlock } from '../../service_user/BlockTable';
+import { BlueBlock } from '../../service_user/BlockBlue';
 
 export function generateStaticParams() {
-    const pages = ['Shinigami', 'Quincy', 'Arrankar', 'Fullbringer', 'Bount'];
+    const pages = getClassSlagList();
     return pages.map((page) => ({ slug: page }));
-}
-
-function getTableHeaders(table){
-    let headers = [];
-
-    for(var i=1; i<=table.col_num; i++){
-        headers.push({
-            head_name: table['col_' + i],
-            head_name_short: table['col_' + i + '_short'],
-            head_dash: ':---:'
-        })
-    }
-
-    return headers;
 }
 
 export default async function Page({ params }) {
     const { slug } = await params
     
-    let classElement = getClassContent(slug)[0];
+    let classElement = getClassContent(slug);
 
+//#region ContentData
     classElement['ContentData'] = getClassContentData(slug);    
-    
-    classElement['SpecialSpoilerList'] = getClassSpoilers(slug, 'special');
-    classElement['SpoilerList'] = getClassSpoilers(slug);
 
-    // блок обработки спойлеров в теле страницы среди информации
-    for(let i = 0; i < classElement.SpecialSpoilerList.length; i++){
-        classElement.SpecialSpoilerList[i]['content'] = getClassSpoilersContent(classElement.SpecialSpoilerList[i].id);
-    } 
+    for(let i = 0; i < classElement.ContentData.length; i++){
+        switch(classElement.ContentData[i].type_name) {
+            case 'spoiler_block':
+                classElement.ContentData[i]['Spoiler'] = getTicketElementSpoilerData(classElement.ContentData[i].id);
+                classElement.ContentData[i].Spoiler['Content'] = getClassSpoilersContent(classElement.ContentData[i].Spoiler.id);
+                break;
+        }
+    }
+//#endregion
+
+//#region SpoilerList
+    classElement['SpoilerList'] = getClassSpoilers(slug);
 
     // блок обработки спойлеров в конце тела страницы, где основа архитипов
     for(let i = 0; i < classElement.SpoilerList.length; i++){
-        classElement.SpoilerList[i]['content'] = getClassSpoilersContent(classElement.SpoilerList[i].id);
-    }  
-    
-    let table = getClassTable(slug)[0];
+        classElement.SpoilerList[i]['Content'] = getClassSpoilersContent(classElement.SpoilerList[i].id);
+    }
+//#endregion
 
-    table['content'] = getClassTableContent(table.id);
-    table['header'] = getTableHeaders(table);    
-
-    for(let i = 0; i<table.content.length; i++){
-        let cnt = [];
-
-        for(let j=1; j<=table.col_num; j++){
-            var check = (j == 3)? true : false
-            cnt.push({
-                key: 'col_' + j,
-                val: table.content[i]['col_' + j],
-                cls: 'left-content',
-                check: check
-            })
-        }
-
-        table.content[i]['data'] = cnt;
-    }         
+//#region Table
+    classElement['Table'] = getClassTable(slug);
+    classElement.Table['Content'] = getClassTableContent(classElement.Table.id);
+//#endregion
 
 //-----------------------------------------------------------------
 
@@ -103,59 +73,16 @@ export default async function Page({ params }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="content-block" dangerouslySetInnerHTML={{ __html: classElement.preview_content }}>
-                        </div>
+                        <div className="content-block" dangerouslySetInnerHTML={{ __html: classElement.preview_content }}></div>
                         <div className="content-block">
-                            <div className="sub-menu" hidden>
-                                <h5>Меню</h5>
-                                <a href="#">data</a>
-                                <a href="#">data</a>
-                                <a href="#">data</a>
-                                <a href="#">data</a>
-                            </div>
-                            <div className="table">
-                                <h2>{classElement.class_short_name}</h2>
-                                <table className="class-progress-table">
-                                    <tbody>
-                                        <tr className="tb-head-row">
-                                            {table.header.map((head)=>{
-                                                return(
-                                                    <th key={'head_' + head.head_name}>
-                                                        <span className="long">{head.head_name}</span>
-                                                        <span className="short" title={head.head_name}>{head.head_name_short}</span>
-                                                    </th>
-                                                )
-                                            })}
-                                        </tr>
-                                        <tr className="tb-empty-row">
-                                            {table.header.map((head)=>{
-                                                return(
-                                                    <td key={'head_dash_' + head.head_name}>{head.head_dash}</td>
-                                                )
-                                            })}
-                                        </tr>
-                                        {table.content.map((row)=>{
-                                            return(
-                                                <tr key={'content_' + row.id}>
-                                                    {row.data.map((line)=>{
-                                                        return(
-                                                            <td key={line.key} className={(line.check)? line.cls : ""}>
-                                                                {line.val}
-                                                            </td>
-                                                        )
-                                                    })}
-                                                </tr>
-                                            )
-                                        })}                                   
-                                    </tbody>
-                                </table>
-                            </div>
+                            <AnchorMenu elements={classElement.ContentData}/>
+                            <TableBlock table={classElement.Table}/>                            
                             <div className="content">
                                 {classElement.ContentData.map((block)=>{
                                     if(block.type_name == 'common_block')
                                     {   
                                         return(
-                                            <div key={'data_content_' + block.id} className="data-content">
+                                            <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
                                                 <h3>{block.name}</h3>
                                                 <p className="level">{block.requirements}</p>
                                                 <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
@@ -165,30 +92,10 @@ export default async function Page({ params }) {
                                     else if(block.type_name == 'blue_block') 
                                     {
                                         return(
-                                            <div key={'data_content_' + block.id} className="data-content">
+                                            <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
                                                 <h1>{block.name}</h1>
                                                 <p>{block.value}</p>
-                                                <div className="blue-data-area">
-                                                    <h4>Хиты, владение и снаряжение</h4>
-                                                    <div className="data-block">
-                                                        <h2>Хиты</h2>
-                                                        <p><strong className="feature-class">Кость Хитов:</strong> {classElement.hit_dice}</p>
-                                                        <p><strong className="feature-class">Хиты на 1 уровне:</strong> {classElement.hit_point_1_lvl}</p>
-                                                        <p><strong className="feature-class">Хиты на следующих уровнях:</strong> {classElement.hit_point_other}</p>
-                                                    </div>
-                                                    <div className="data-block">
-                                                        <h2 className="no-underlined-black">Владение</h2>
-                                                        <p><strong className="feature-class">Броня:</strong> {classElement.armor}</p>
-                                                        <p><strong className="feature-class">Оружие:</strong> {classElement.weapon}</p>
-                                                        <p><strong className="feature-class">Инструменты:</strong> {classElement.tools}</p>
-                                                        <p><strong className="feature-class">Спасброски:</strong> {classElement.savethrow}</p>
-                                                        <p><strong className="feature-class">Навыки:</strong> {classElement.blocks}</p>
-                                                    </div>
-                                                    <div className="data-block">
-                                                        <h2 className="no-underlined-black">Cнаряжение</h2>
-                                                        <div dangerouslySetInnerHTML={{ __html: classElement.equipment }}></div>
-                                                    </div>
-                                                </div>
+                                                <BlueBlock classElement={classElement}/>
                                             </div>
                                         )
                                     }
@@ -197,91 +104,16 @@ export default async function Page({ params }) {
                                             <div key={'data_content_' + block.id} className="data-content">
                                                 <h1>{block.name}</h1>
                                                 <p>{block.value}</p>
-                                                { (()=>{
-                                                    let check = false;
-                                                    var spoiler;
-                                                    for(let i = 0; i<classElement.SpecialSpoilerList.length; i++){
-                                                        if(classElement.SpecialSpoilerList[i].id != block.spoiler_id){}
-                                                        else {
-                                                            spoiler = classElement.SpecialSpoilerList[i];
-                                                            check = true;
-                                                        }
-                                                    }
-
-                                                    if(check == false) {
-                                                        return(
-                                                            <div></div>
-                                                        )
-                                                    }
-                                                    else {
-                                                        return(
-                                                            <div className="spoiler">
-                                                                <div className="spec-info-block">
-                                                                    <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
-                                                                    <div className={"hidden-data-item hb-" + spoiler.id}>
-                                                                        <p>{spoiler.description}</p>
-                                                                        {spoiler.content.map((block)=>{
-                                                                            return(
-                                                                                <div className="data-content">
-                                                                                    {(() => {
-                                                                                        if(block.h5_tag == 1) return(
-                                                                                            <h5>{block.name}</h5>
-                                                                                        )
-                                                                                        else return(
-                                                                                            <h4>{block.name}</h4>
-                                                                                        )
-                                                                                    })()}
-                                                                                    <p className="level">{block.requirements}</p>
-                                                                                    <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
-                                                                                </div>
-                                                                            )
-                                                                        })}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        )
-                                                    }                                                    
-                                                })()}
+                                                <SpoilerElement spoiler={block.Spoiler}/>
                                             </div>
                                         )
                                     }
-                                    else return(
-                                        <div></div>
-                                    )
                                 })}
-                                
-                                <div className="spoiler">
-                                    <h1>{classElement.archetype_name}</h1>
-                                    <p>{classElement.archetype_description}</p>
-
-                                    {classElement.SpoilerList.map((spoiler)=>{
-                                        return(
-                                            <div key={'spoiler_' + spoiler.id} className="spec-info-block">                                        
-                                                <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
-                                                <div className={"hidden-data-item hb-" + spoiler.id}>
-                                                    <p>{spoiler.description}</p>
-                                                    {spoiler.content.map((block)=>{
-                                                        return(
-                                                            <div key={'spoiler_content_' + block.id} className="data-content">
-                                                                {(() => {
-                                                                    if(block.h5_tag == 1) return(
-                                                                        <h5>{block.name}</h5>
-                                                                    )
-                                                                    else return(
-                                                                        <h4>{block.name}</h4>
-                                                                    )
-                                                                })()}
-                                                                <p className="level">{block.requirements}</p>
-                                                                <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
-                                                            </div>
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
                             </div>
+                            <SpoilerBlock block_name={classElement.archetype_name} 
+                                          block_description={classElement.archetype_description} 
+                                          spoiler_list={classElement.SpoilerList}
+                            />
                         </div>
                     </div>
                 </div>

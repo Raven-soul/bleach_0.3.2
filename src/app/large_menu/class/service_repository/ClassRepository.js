@@ -1,4 +1,25 @@
-import db from './../db_connection';
+import db from '@/lib/ControllerDB/db_connection';
+
+export const getClassSlagList = () => {
+    const sql = `
+select tr.id,
+       tr.race_short_name
+  from c_ticket t
+       inner join c_ticket_type tt on tt.id = t.ticket_type
+            and tt.name = 'class'
+       left join c_ticket_record_race tr on tr.id = t.ticket_record_id
+ where t.show = 1
+    `;
+    
+    var sql_result = db.prepare(sql).all();
+    var array_result = [];
+
+    for(var i=0; i < sql_result.length; i++){
+        array_result.push(sql_result[i].race_short_name.toString());
+    }
+
+    return array_result; 
+};
 
 export const getClassContentData = (class_name = 'Shinigami') => {
     const sql = `
@@ -12,7 +33,7 @@ export const getClassContentData = (class_name = 'Shinigami') => {
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
-                          and type.name = 'class'
+                     and type.name = 'class'
                inner join c_ticket_record_class ct on ct.menu_id = tm.id
                inner join c_ticket_element te on te.ticket_id = ct.ticket_id
                 left join c_ticket_element_type te_type on te_type.id = te.type
@@ -49,7 +70,7 @@ export const getClassContent = (class_name = 'Shinigami') => {
                inner join c_ticket_record_class rc on rc.menu_id = tm.id
          where tm.latin_name = '${class_name}'
     `;
-    return db.prepare(sql).all();
+    return db.prepare(sql).all()[0];
 };
 
 export const getClassMenuGroupContent = () => {

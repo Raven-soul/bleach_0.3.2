@@ -1,8 +1,8 @@
 import { getPageTitleTemplate} from "@/lib/ControllerDB/crud";
-import { getClassMenuGroupContent, getClassMenuContent } from "@/lib/ControllerDB/Repository/ClassRepository";
+import { getClassMenuGroupContent, getClassMenuContent } from "./service_repository/ClassRepository";
 import { PageLoad } from "@/components/page_part/service_user/Load";
 
-import { PageMenuItem } from "../service_user"
+import { PageMenuItem } from "../service_user/PageMenu"
 
 export default function Class(param) {
   const { data } = param;
