@@ -6,14 +6,14 @@ export const getClassSpoilersContent = (spoiler_id = 1) => {
                se.spoiler_id,
                se.h5_tag,
                se.name,
-               se.requirements,
+               concat_ws(' ', se.requirements || ',', 'умение', sp.name) as requirements,
                se.value
 
           from c_spoiler sp 
                inner join c_spoiler_element se on se.spoiler_id = sp.id
               
          where sp.id = ${spoiler_id}
-         order by se.id
+         order by coalesce(se.ord, se.id)
     `;
     return db.prepare(sql).all();
 };
