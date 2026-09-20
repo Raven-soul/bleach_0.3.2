@@ -6,7 +6,7 @@ export function getTableHeaders(table){
         headers.push({
             head_class: 
                 (i == 1)? 'hr-min-width-50' : 
-                (moveArray.includes(table['col_' + i + '_short']))? 'hr-min-width-60' : 
+                (moveArray.includes(table['col_' + i + '_short']))? 'hr-min-width-45' : 
                 '',
             head_name: table['col_' + i],
             head_name_short: table['col_' + i + '_short'],

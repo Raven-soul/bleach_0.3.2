@@ -447,6 +447,9 @@ a.read-all:hover{
     padding: 4px 8px;
     font-weight: 600;
 }
+.main-brown-data-area .content-block .table th.hr-min-width-45{
+    min-width: 45px;
+}
 .main-brown-data-area .content-block .table th.hr-min-width-50{
     min-width: 50px;
 }
