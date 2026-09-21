@@ -27,9 +27,33 @@ export function TableBlock({table}) {
         table.Content[i]['data'] = cnt;
     }   
 
+    const SchowMemoData = ((text)=>{
+        if($('#memo').text() != text){
+            $('#memo').text(text);
+            $('.memo-dataset').show();
+        }
+        else {
+            $('#memo').text('');
+            $('.memo-dataset').hide();
+        }        
+    });
+
+    const CloseMemoData = (()=>{
+        $('#memo').text('');
+        $('.memo-dataset').hide();
+    });
+
     return (
-        <div className="table">
-            <h2>{table.class_short_name}</h2>
+        <div className="table_data">
+            <div className="row" >
+                <div className="col-auto"><h2>{table.class_short_name}</h2></div>
+                <div className="col memo-dataset" style={{display: "none"}}>
+                    <div className="memo-card">
+                        <span id="memo">data</span>
+                        <button onClick={CloseMemoData}>X</button>
+                    </div>
+                </div>
+            </div>            
             <table className="class-progress-table">
                 <tbody>
                     <tr className="tb-head-row">
@@ -37,7 +61,12 @@ export function TableBlock({table}) {
                             return(
                                 <th key={'head_' + head.head_name} className={head.head_class}>
                                     <span className="long">{head.head_name}</span>
-                                    <span className="short" title={head.head_name}>{head.head_name_short}</span>
+                                    <span className="short" 
+                                          title={head.head_name} 
+                                          onClick={(()=>{SchowMemoData(head.head_name)})}
+                                        >
+                                        {head.head_name_short}
+                                    </span>
                                 </th>
                             )
                         })}
