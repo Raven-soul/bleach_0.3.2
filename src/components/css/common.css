@@ -436,6 +436,17 @@ a.read-all:hover{
     color: #212529;
     text-align: center;
 }
+
+.main-brown-data-area table .anchor{
+    color: black;
+    text-decoration: underline 1px dashed;
+}
+
+.main-brown-data-area table .anchor:hover{
+    color: rgb(47, 122, 155);
+    text-decoration: underline 1px dashed;
+}
+
 .main-brown-data-area .content-block .table tr {
     --bs-table-bg: #ffffff00;
 }

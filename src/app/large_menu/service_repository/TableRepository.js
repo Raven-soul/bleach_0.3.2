@@ -2,19 +2,51 @@ import db from '../../../lib/ControllerDB/db_connection';
 
 export const getClassTableContent = (class_id = 1) => {
     const sql = `
-        select te.id,
-               te.head,
-               te.col_1,
-               te.col_2,
-               te.col_3,
-               te.col_4,
-               te.col_5,
-               te.col_6,
-               te.col_7,
-               te.synonim
-          from c_table_element te
-         where te.head = ${class_id}
-         order by te.id
+with table_data as (
+    select tbe.id,
+           tbe.table_id,
+           tbe.col_1,
+           tbe.col_2,
+           tbe.col_3,
+           tbe.col_4,
+           tbe.col_5,
+           tbe.col_6,
+           tbe.col_7,
+           tbe.synonim,
+           tbe.anchor_list
+      from c_table_element tbe
+     where tbe.table_id = ${class_id}
+),
+group_t as (
+    select td.id,
+           string_agg(
+               '<a href="#data_content_' || 
+               te.id ||
+               '" class="anchor">' ||
+               te.name ||
+               '</a>', 
+               ', ') as anchor_list
+      from table_data td
+           left join c_ticket_element te on te.id in (
+               select value 
+                 from json_each(json('[' || td.anchor_list || ']'))
+           )
+     group by 1
+)
+select td.id,
+       td.table_id,
+       td.col_1,
+       td.col_2,
+       td.col_3,
+       gt.anchor_list,
+       td.col_4,
+       td.col_5,
+       td.col_6,
+       td.col_7,
+       td.synonim
+  from table_data td
+       left join group_t gt on gt.id = td.id
+ order by td.id         
     `;
     return db.prepare(sql).all();
 };
