@@ -5,8 +5,11 @@ export const getClassSpoilersContent = (spoiler_id = 1) => {
         select se.id,
                se.spoiler_id,
                se.h5_tag,
-               se.name,
-               concat_ws(' ', se.requirements || ',', 'умение', sp.name) as requirements,
+               se.name,               
+               case when se.requirements notnull
+                    then concat_ws(', ', se.requirements, 'умение ' || sp.name)
+                    else se.requirements
+                end as requirements,
                se.value
 
           from c_spoiler sp 

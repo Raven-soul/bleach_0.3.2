@@ -27,7 +27,10 @@ export const getClassContentData = (class_name = 'Shinigami') => {
                te.ticket_id,
                te_type.synonim as type_name,
                te.name,
-               te.requirements,
+               case when te.requirements notnull
+                    then concat_ws(', ', te.requirements, 'умение ' || tm.name)
+                    else te.requirements
+                end as requirements,
                te.value,
                te.extra_id as spoiler_id
           from c_ticket_menu tm
