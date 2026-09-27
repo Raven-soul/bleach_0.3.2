@@ -6,22 +6,16 @@ import { PageLoad } from "@/components/page_part/service_user/Load";
 import { ArmamentTable, FormLoad } from "./user_side";
 
 import { getArmamentList } from "@/app/app_admin/AdminRepository/AdminRepository";
-import { getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/app/app_admin/AdminRepository/AdminRepository";
-
-import { ArmamentChange } from "@/app/app_admin/service_server/UpdateGeneral"
+import { insertArmament, getParamType, getParamListByType, getAdditionalParamList, getAdditionalGroupList } from "@/app/app_admin/AdminRepository/AdminRepository";
 
 import Form from 'next/form'
 
 // export async function update(data) {
 //     'use server';
 
-//     var a = await ArmamentChange(data);
+//     var a = await insertArmament(data);
 //     return false;
 // }
-
-function update (){
-    return false;
-}
 
 export default function Class(param) {
     const { data } = param;
@@ -63,7 +57,7 @@ export default function Class(param) {
                                                 <ArmamentTable list={aList}/>
                                             </div>
                                             <div className="col-9">
-                                                <Form action={update} className="row-2 form-insert" id="add_group">{/* action={update} */}
+                                                <Form action="" className="row-2 form-insert" id="add_group">{/* action={update} */}
                                                     <div>
                                                         <input name="armament_id" id="armament_id" hidden/>
                                                         <input name="additional_id" id="additional_id" hidden/>
