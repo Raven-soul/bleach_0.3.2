@@ -1139,12 +1139,12 @@ content .armament-content div ul li::marker {
     padding-right: 5px;
 }
 .form-insert .submit-button,
-.spoiler-submit{
+.edit-data-submit{
     display: flex;
     justify-content: right;
 }
 .form-insert .submit-button button,
-.spoiler-submit button{
+.edit-data-submit button{
     width: 200px;
     border-radius: 5px;
     background-color: #867258;

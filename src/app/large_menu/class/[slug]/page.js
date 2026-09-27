@@ -9,7 +9,7 @@ import { AnchorMenu } from '../../service_user/AnchorMenu';
 import { SpoilerBlock, SpoilerElement } from '../../service_user/BlockSpoiler';
 import { TableBlock } from '../../service_user/BlockTable';
 import { BlueBlock } from '../../service_user/BlockBlue';
-import { DataShowButton } from '../../service_user/AdminData';
+import { DataShowButton, TicketElementContentBlock } from '../../service_user/AdminData';
 
 export function generateStaticParams() {
     const pages = getClassSlagList();
@@ -93,7 +93,7 @@ export default async function Page({ params }) {
                                             <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
                                                 <h3>{block.name}</h3>
                                                 <p className="level">{block.requirements}</p>
-                                                <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
+                                                <TicketElementContentBlock data_block={block}/>
                                             </div>
                                         )
                                     }

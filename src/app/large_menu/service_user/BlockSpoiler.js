@@ -42,15 +42,15 @@ export function SpoilerElement({spoiler}){
                                                     )
                                                 })()}
                                                 <p className="level">{block.requirements}</p>
-                                                <div className="spoiler_data" dangerouslySetInnerHTML={{ __html: block.value }}></div>
-                                                <div className="spoiler_edit" style={{display: 'none'}}>
+                                                <div className="content_data_block" dangerouslySetInnerHTML={{ __html: block.value }}></div>
+                                                <div className="content_data_edit" style={{display: 'none'}}>
                                                     <textarea 
                                                         style={{width: '100%', height: '200px'}} 
                                                         defaultValue={block.value}
                                                         spoiler_id={block.id}
                                                         id={"spoiler-data-textarea-" + block.id}
                                                         ></textarea>
-                                                    <div className="col spoiler-submit">                                                        
+                                                    <div className="col edit-data-submit">                                                        
                                                         <button
                                                             onClick={(()=>{UpdateSpoilerValue($('#spoiler-data-textarea-' + block.id).val(), block.id)})}
                                                         >
