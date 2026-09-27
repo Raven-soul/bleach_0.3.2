@@ -4,6 +4,8 @@ import $ from "jquery"
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { UpdateSpoilerValue } from "@/app/app_admin/service_server/UpdateGeneral"
+
 export function SpoilerHead({spoiler_id, spoiler_name}) {
     const func = (()=>{
         $('#spoiler-'+ spoiler_id).toggleClass('active');
@@ -42,8 +44,19 @@ export function SpoilerElement({spoiler}){
                                                 <p className="level">{block.requirements}</p>
                                                 <div className="spoiler_data" dangerouslySetInnerHTML={{ __html: block.value }}></div>
                                                 <div className="spoiler_edit" style={{display: 'none'}}>
-                                                    <textarea style={{width: '100%', height: '200px'}}>{block.value}</textarea>
-                                                    <button>Обновить</button>
+                                                    <textarea 
+                                                        style={{width: '100%', height: '200px'}} 
+                                                        defaultValue={block.value}
+                                                        spoiler_id={block.id}
+                                                        id={"spoiler-data-textarea-" + block.id}
+                                                        ></textarea>
+                                                    <div className="col spoiler-submit">                                                        
+                                                        <button
+                                                            onClick={(()=>{UpdateSpoilerValue($('#spoiler-data-textarea-' + block.id).val(), block.id)})}
+                                                        >
+                                                            Обновить
+                                                        </button>
+                                                    </div>                                                    
                                                 </div>                                                
                                             </div>
                                         )
