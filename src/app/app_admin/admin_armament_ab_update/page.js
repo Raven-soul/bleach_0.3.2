@@ -12,10 +12,14 @@ import { ArmamentChange } from "@/app/app_admin/service_server/UpdateGeneral"
 
 import Form from 'next/form'
 
-export async function update(data) {
-    'use server';
+// export async function update(data) {
+//     'use server';
 
-    var a = await ArmamentChange(data);
+//     var a = await ArmamentChange(data);
+//     return false;
+// }
+
+function update (){
     return false;
 }
 

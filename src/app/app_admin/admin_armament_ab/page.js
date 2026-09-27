@@ -7,13 +7,16 @@ import { getParamType, getLastAbilityParam, getParamListByType, getAdditionalPar
 import { ArmamentChange } from "@/app/app_admin/service_server/UpdateGeneral"
 import Form from 'next/form'
 
-export async function insertVal(data) {
-    'use server';
+// export async function insertVal(data) {
+//     'use server';
 
-    var a = await ArmamentChange(data);
+//     var a = await ArmamentChange(data);
+//     return false;
+// }
+
+function insertVal (){
     return false;
 }
-
 
 export default function Class(param) {
     const { data } = param;
