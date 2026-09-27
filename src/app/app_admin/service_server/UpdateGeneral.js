@@ -1,4 +1,4 @@
-'use server'
+//'use server'
 
 //import { UpdateSpoiler } from "@/app/large_menu/class/service_repository/AdminClassRepository";
 
