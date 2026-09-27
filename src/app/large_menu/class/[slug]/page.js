@@ -9,6 +9,7 @@ import { AnchorMenu } from '../../service_user/AnchorMenu';
 import { SpoilerBlock, SpoilerElement } from '../../service_user/BlockSpoiler';
 import { TableBlock } from '../../service_user/BlockTable';
 import { BlueBlock } from '../../service_user/BlockBlue';
+import { DataShowButton } from '../../service_user/AdminData';
 
 export function generateStaticParams() {
     const pages = getClassSlagList();
@@ -61,8 +62,15 @@ export default async function Page({ params }) {
                     <div className="main-content-block">
                         <div className="title-block">
                             <div className="row-3">
-                                <div className="col race-class-name">
-                                    <p>{classElement.class_name}</p>
+                                <div className="col">
+                                    <div className="row" style={{display: 'flex', justifyContent: 'space-between'}}>
+                                        <div className="col race-class-name">
+                                            <p>{classElement.class_name}</p>
+                                        </div>
+                                        <div className="col-auto">
+                                            <DataShowButton/>
+                                        </div>
+                                    </div>                                    
                                 </div>
                                 <div className="col race-class-source">
                                     <p><strong>Источник:</strong> {'"' + classElement.sorce_name + '"'}</p>

@@ -3,16 +3,16 @@ import $ from "jquery"
 import { getPageTitleTemplate } from "@/lib/ControllerDB/crud";
 import { PageLoad } from "@/components/page_part/service_user/Load";
 
-import { insertArmament, getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList, getArmamentInfo } from "@/app/app_admin/AdminRepository/AdminRepository";
-
+import { getParamType, getLastAbilityParam, getParamListByType, getAdditionalParamList, getAdditionalGroupList, getArmamentInfo } from "@/app/app_admin/AdminRepository/AdminRepository";
+import { ArmamentChange } from "@/app/app_admin/service_server/UpdateGeneral"
 import Form from 'next/form'
 
-// export async function insertVal(data) {
-//     'use server';
+export async function insertVal(data) {
+    'use server';
 
-//     var a = await insertArmament(data);
-//     return false;
-// }
+    var a = await ArmamentChange(data);
+    return false;
+}
 
 
 export default function Class(param) {
@@ -48,7 +48,7 @@ export default function Class(param) {
                                                 Добавление способности вооружения
                                             </span>
                                         </div>                                        
-                                        <Form action="" className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
+                                        <Form action={insertVal} className="row-2 form-insert" id="add_group">{/* action={insertVal} */}
                                             <div>
                                                 <p>Всего способностей: <b>{info.ab_length}</b>, последний тип: <b>{info.type_name}</b>,</p> 
                                                 <p>последнее название: <b>{info.name}</b></p>

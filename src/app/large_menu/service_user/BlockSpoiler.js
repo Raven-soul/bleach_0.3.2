@@ -40,7 +40,11 @@ export function SpoilerElement({spoiler}){
                                                     )
                                                 })()}
                                                 <p className="level">{block.requirements}</p>
-                                                <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
+                                                <div className="spoiler_data" dangerouslySetInnerHTML={{ __html: block.value }}></div>
+                                                <div className="spoiler_edit" style={{display: 'none'}}>
+                                                    <textarea style={{width: '100%', height: '200px'}}>{block.value}</textarea>
+                                                    <button>Обновить</button>
+                                                </div>                                                
                                             </div>
                                         )
                                     })}

@@ -51,7 +51,9 @@ import {
     faPersonWalking,
     faRocket,
     faInfinity,
-    faLeaf
+    faLeaf,
+    faPencil,
+    faPenToSquare as solid_faPenToSquare
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -63,6 +65,7 @@ import {
     faBookmark,
     faEye as regular_eye,
     faEyeSlash as regular_eye_slash,
+    faPenToSquare as regular_faPenToSquare
 
 } from '@fortawesome/free-regular-svg-icons'
 
@@ -191,6 +194,12 @@ export function Icon({name, className = '', style}){
         ['faX', faX],
         // бесконечность
         ['faInfinity', faInfinity],
+        // карандаш
+        ['faPencil', faPencil],
+        // карандаш
+        ['solid_faPenToSquare', solid_faPenToSquare],
+        // карандаш
+        ['regular_faPenToSquare', regular_faPenToSquare],
         //#endregion
 
         //#region Complex

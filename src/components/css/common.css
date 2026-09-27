@@ -908,12 +908,14 @@ a.read-all:hover{
     font-size: 30px;
 }
 
-.armament-data .show-armament-data-btn{
+.armament-data .show-armament-data-btn,
+.main-content-block .show-armament-data-btn{
     background: none;
     border: none;
 }
 
-.armament-data .show-armament-data-btn .armament-data-type{
+.armament-data .show-armament-data-btn .armament-data-type,
+.main-content-block .show-armament-data-btn{
     font-size: 18px;
     opacity: 30%;
 }
