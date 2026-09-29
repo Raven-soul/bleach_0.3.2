@@ -14,6 +14,7 @@ export const getClassSpoilersContent = (spoiler_id = 1) => {
 
           from c_spoiler sp 
                inner join c_spoiler_element se on se.spoiler_id = sp.id
+                     and se.show = 1
               
          where sp.id = ${spoiler_id}
          order by coalesce(se.ord, se.id)
@@ -43,7 +44,7 @@ export const getClassSpoilers = (class_name = 'Shinigami') => {
          where 1=1
                and tm.latin_name = '${class_name}'
                and sp_type.name = 'common'
-         order by sp.id 
+         order by coalesce(sp.ord, sp.id)
     `;
     return db.prepare(sql).all();
 };
