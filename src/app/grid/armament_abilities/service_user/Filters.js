@@ -227,11 +227,11 @@ export function FiltersPrompt({promptData}){
                             })}
                         </div>                        
                     </div>
-                </div>
-                <hr/> 
+                    <hr/> 
+                </div>                
             </div>   
             <div className="col prompt-area">
-                <div className="prompt-area-main disable prompt-follower">
+                <div className="prompt-follower prompt-button-area" style={{display:"none"}}>
                     <div className="prompt" >
                         <div className="prompt-data prompt-type py-1">
                             {promptData.map((element)=>{
@@ -248,11 +248,11 @@ export function FiltersPrompt({promptData}){
                             })}
                         </div>
                     </div>
-                </div>
-                <hr/> 
+                    <hr/> 
+                </div>                
             </div> 
             <div className="col prompt-area">
-                <div className="prompt-area-main disable prompt-follower">
+                <div className="prompt-follower prompt-button-area" style={{display:"none"}}>
                     <div className="prompt" >
                         <div className="prompt-data prompt-type py-1">
                             {promptData.map((element)=>{
@@ -269,11 +269,11 @@ export function FiltersPrompt({promptData}){
                             })}
                         </div>
                     </div>
+                    <hr/>
                 </div>
             </div>
             <div className="col prompt-area">
-                <div className="prompt-description" style={{ display: "none"}}>
-                    <hr/>
+                <div className="prompt-description" style={{ display: "none"}}>                    
                     <div className="prompt-description-data row-2">                    
                         {promptData.map((element)=>{
                             return(
@@ -286,73 +286,14 @@ export function FiltersPrompt({promptData}){
                             )
                         })}                    
                     </div>
-                </div>
-                <hr/>
+                    <hr/>
+                </div>                
             </div> 
-            <div className="prompt-bottom-button-area prompt-button-area" style={{display:"none"}}>
+            <div className="prompt-bottom-button-area prompt-button-area" style={{display:"none"}}>                
                 <button className="prompt-bottom-button" onClick={SchowPromptArea}>
                     <Icon name={"faChevronUp"}/>
                 </button>
             </div>           
         </div>        
-    )
-}
-
-export function ArmamentAbilitiesGridList({abilitiesList}){
-    return (
-        <div className="grid-abilities-data">
-            {abilitiesList.map((element)=>{
-                return(
-                    <div className="grid-abilities-item px-1" id={'armament_ability_' + element.id} key={'armament_ability_key_' + element.id}>
-                        <Link href={element.link + '/' + element.id} className="abilities-info-block">
-                            {element.param_list.map(param =>{
-                                return(
-                                    <div hidden className={param.name} value={param.value} key={'key_' + param.name + '_' + param.value}></div>
-                                )
-                            })}
-
-                            <div className="row abilities-info-block-data">
-                                <div className="col left-align-data">                                                                                            
-                                    <span className="level">
-                                        <span className="gray-font">[</span>{element.cost_name}<span className="gray-font">]</span>
-                                    </span>
-                                    <span className="school-logo">
-                                        <Icon name={element.type_logo}/>
-                                    </span>
-                                    <span className="kind-logo">
-                                        {(()=>{
-                                            if(element.kind_value_logo != 'null') {
-                                                return(<Icon name={element.kind_value_logo}/>)
-                                            }
-                                        })()}
-                                    </span>
-                                    <span className="summon-logo">
-                                        {(()=>{
-                                            if(element.is_summon == '1') {
-                                                return(<Icon name={'faPaw'}/>)
-                                            }
-                                        })()}
-                                    </span>
-                                    <span className="name">{element.ab_name}</span>
-                                </div>
-                                <div className="col-auto components">
-                                    {(()=>{
-                                        if(element.is_requirements == true){
-                                            return(<><Icon name={'faBookmark'}/>{element.components}</>)
-                                        }
-                                        else {
-                                            return(<>{element.components}</>)
-                                        }
-                                    })()}
-                                    
-                                </div>
-                            </div>  
-                            <hr className="abilities-hr-gradient"/>
-
-                        </Link>
-                    </div>
-                )
-            })}
-        </div>
     )
 }

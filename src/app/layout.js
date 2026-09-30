@@ -11,7 +11,6 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
-//import {FontAwesome, Jquery} from "../components/page_part/user_side/scripts/header";
 import Image from 'next/image'
 import Link from 'next/link'
 

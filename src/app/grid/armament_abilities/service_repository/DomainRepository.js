@@ -1,4 +1,4 @@
-import db from './../db_connection';
+import db from '@/lib/ControllerDB/db_connection';
 
 export const getMenuLink = (synonym) => {
     const sql = `

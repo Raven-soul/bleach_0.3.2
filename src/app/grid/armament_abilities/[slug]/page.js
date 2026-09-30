@@ -1,6 +1,7 @@
-import { getArmamentIdList, getArmamentData } from "@/lib/ControllerDB/Repository/ArmamentRepository";
 import { PageLoad } from '@/components/page_part/service_user/Load';
+
 import { Logo, DataShowButton } from './service_user';
+import { getArmamentIdList, getArmamentData } from "./../service_repository/ArmamentRepository"
 
 export function generateStaticParams() {
     const pages = getArmamentIdList();
