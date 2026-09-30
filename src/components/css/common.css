@@ -452,6 +452,11 @@ a.read-all:hover{
     justify-content: right;
 }
 
+.main-brown-data-area .table_data .memo-card{
+    display: flex;
+    justify-content: space-between;
+}
+
 .main-brown-data-area .table_data .memo-dataset .memo-card{    
     background-color: #21252946;
     padding: 0 10px;
