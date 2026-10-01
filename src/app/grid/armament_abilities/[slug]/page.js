@@ -35,7 +35,7 @@ export default async function Page({ params }) {
                             </div>
                         </div>
                         <p className="cost-type half-gray">
-                            <span>Стоимость <b>{Armament.cost_name}</b>, </span>
+                            <span>Стоимость <b>{Armament.cost_name} (SP)</b>, <b>{(Armament.type_value == 'hollow')? Armament.hd_name + ", " : ""}</b></span>
                             <span>Вид <b>{Armament.kind_name}</b>, </span>
                             <span>
                                 <span>Тип {Armament.type_name}  </span> 

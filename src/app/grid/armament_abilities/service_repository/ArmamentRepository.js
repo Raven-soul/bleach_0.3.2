@@ -286,13 +286,16 @@ select ab.id,
 
        kind.id as kind_id,
        kind.name as kind_name,
+       
+       hd.name as hd_name,
+       hd.value as hd_value,
 
        case when kind.value in ('ascended', 'ultimate','innate')
-                 then kind.value
-            when kind.value in ('passive','traits','appendages','strikes','action','speed')
-                 then 'hollow ' || kind.value
-            else 'classic'
-        end as kind_class_name,
+                then kind.value
+           when kind.value in ('passive','traits','appendages','strikes','action','speed')
+                then 'hollow ' || kind.value
+           else 'classic'
+       end as kind_class_name,
        
        distance.id as distance_id,
        distance.name as distance_name,
@@ -308,6 +311,7 @@ select ab.id,
        
   from c_armament_ab ab
        left join c_armament_ab_filter_item type on type.id = ab.type
+       left join c_armament_ab_filter_item hd on hd.id = ab.hd_hollow
        left join c_armament_ab_filter_item cost on cost.id = ab.cost
        left join c_armament_ab_filter_item kind on kind.id = ab.kind
        left join c_armament_ab_filter_item distance on distance.id = ab.range
