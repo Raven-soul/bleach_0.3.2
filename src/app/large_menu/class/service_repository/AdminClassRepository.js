@@ -6,7 +6,8 @@ export const UpdateSpoiler = (value, id) => {
     const sql = `
 update c_spoiler_element
    set value = '${new_value}',
-       update_dt = CURRENT_TIMESTAMP
+       update_dt = CURRENT_TIMESTAMP,
+       sysdate = coalesce(sysdate, CURRENT_TIMESTAMP)
  where id = ${id}
     `;
     
@@ -20,7 +21,8 @@ export const UpdateTicketContent = (value, id) => {
     const sql = `
 update c_ticket_element
    set value = '${new_value}',
-       update_dt = CURRENT_TIMESTAMP
+       update_dt = CURRENT_TIMESTAMP,
+       sysdate = coalesce(sysdate, CURRENT_TIMESTAMP)
  where id = ${id}
     `;
     
