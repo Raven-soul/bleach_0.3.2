@@ -109,9 +109,9 @@ export default async function Page({ params }) {
                                     }
                                     else if(block.type_name == 'spoiler_block') {
                                         return(
-                                            <div key={'data_content_' + block.id} className="data-content">
-                                                <h1>{block.name}</h1>
-                                                <p>{block.value}</p>
+                                            <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
+                                                {/* <h1>{block.name}</h1>
+                                                <p>{block.value}</p> */}
                                                 <SpoilerElement spoiler={block.Spoiler}/>
                                             </div>
                                         )
