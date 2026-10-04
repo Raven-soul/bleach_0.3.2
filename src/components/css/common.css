@@ -39,6 +39,7 @@ html body{
 }
 .data-content {
     margin-top: 15px;
+    scroll-margin-top: 45px;
 }
 /* ------------------------------------------------------------- gallery start */
 .gallery-data-block {

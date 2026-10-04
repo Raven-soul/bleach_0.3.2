@@ -30,8 +30,11 @@ export const getClassContentData = (class_name = 'Shinigami') => {
                case when te.requirements notnull
                     then concat_ws(', ', te.requirements, 'умение ' || tm.name)
                     else te.requirements
-                end as requirements,
-               te.value,
+               end as requirements,
+               case when te_type.synonim = 'har_block' and te.extra_id notnull
+                    then (select tt.value from c_ticket_element tt where tt.id = te.extra_id) 
+                    else te.value
+               end as value,
                te.extra_id as spoiler_id
           from c_ticket_menu tm
                inner join c_ticket_menu_group mg on mg.id = tm.group_id

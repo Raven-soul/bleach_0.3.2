@@ -97,6 +97,16 @@ export default async function Page({ params }) {
                                             </div>
                                         )
                                     }
+                                    if(block.type_name == 'har_block')
+                                    {   
+                                        return(
+                                            <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
+                                                <h3>{block.name}</h3>
+                                                <p className="level">{block.requirements}</p>
+                                                <div dangerouslySetInnerHTML={{ __html: block.value }}></div>
+                                            </div>
+                                        )
+                                    }
                                     else if(block.type_name == 'blue_block') 
                                     {
                                         return(
