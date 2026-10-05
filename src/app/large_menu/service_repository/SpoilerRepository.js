@@ -76,6 +76,7 @@ select sp.id,
        sp.ticket_id,
        sp.name,
        sp.description,
+       sp.filter,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist
   from c_ticket_element te
        left join c_ticket_element_type t_type on t_type.id = te.type
