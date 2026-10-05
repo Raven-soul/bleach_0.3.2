@@ -1,6 +1,6 @@
 import db from '@/lib/ControllerDB/db_connection';
 
-export const getClassSpoilersContent = (spoiler_id = 1) => {
+export const getSpoilersContent = (spoiler_id = 1) => {
     const sql = `
         select se.id,
                se.spoiler_id,
@@ -34,8 +34,8 @@ export const getClassSpoilers = (class_name = 'Shinigami') => {
                sp_type.name as type_name
 
           from c_ticket_menu tm
-               inner join c_ticket_menu_group mg on mg.id = tm.group_id
-               inner join c_ticket_type type on type.id = mg.ticket_type
+               inner join c_ticket t on t.id = tm.ticket_id
+               inner join c_ticket_type type on type.id = t.ticket_type
                      and type.name = 'class'
                inner join c_ticket_record_class ct on ct.menu_id = tm.id
                inner join c_spoiler sp on sp.ticket_id = ct.ticket_id
@@ -45,6 +45,27 @@ export const getClassSpoilers = (class_name = 'Shinigami') => {
                and tm.latin_name = '${class_name}'
                and sp_type.name = 'common'
          order by coalesce(sp.ord, sp.id)
+    `;
+    return db.prepare(sql).all();
+};
+
+export const getRaceSpoilers = (race_name = 'People') => {    
+    const sql = `
+select cs.id,
+       cs.ord,
+       sp_type.name as sp_type,
+       cs.ticket_id,       
+       cs.name,
+       cs.description,
+       coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = cs.id limit 1), 0) as spoiler_list_exist
+  from c_ticket_menu tm
+       inner join c_ticket ct on ct.id = tm.ticket_id
+             and ct.show = 1
+        left join c_spoiler cs on cs.ticket_id = ct.id
+        left join c_spoiler_type sp_type on sp_type.id = cs.spoiler_type
+        
+ where tm.latin_name = '${race_name}'
+ order by coalesce(cs.ord, cs.id)
     `;
     return db.prepare(sql).all();
 };

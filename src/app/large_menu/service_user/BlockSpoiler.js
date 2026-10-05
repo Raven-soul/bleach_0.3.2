@@ -75,15 +75,28 @@ export function SpoilerElement({spoiler}){
 }
 
 export function SpoilerBlock({block_name, block_description, spoiler_list}){
-    return (
-        <div className="spoiler-area">
-            <h1>{block_name}</h1>
-            <p>{block_description}</p>
-            {spoiler_list.map((spoiler)=>{
-                return(
-                    <SpoilerElement spoiler={spoiler} key={"spoiler_" + spoiler.id}/>
-                )
-            })}
-        </div>
-    )
+    if(block_name != ''){
+        return (
+            <div className="spoiler-area">
+                <h1>{block_name}</h1>
+                <p>{block_description}</p>
+                {spoiler_list.map((spoiler)=>{
+                    return(
+                        <SpoilerElement spoiler={spoiler} key={"spoiler_" + spoiler.id}/>
+                    )
+                })}
+            </div>
+        )
+    }
+    else {
+        return (
+            <div>
+                {spoiler_list.map((spoiler)=>{
+                    return(
+                        <SpoilerElement spoiler={spoiler} key={"spoiler_" + spoiler.id}/>
+                    )
+                })}
+            </div>
+        )
+    }    
 }

@@ -1,7 +1,7 @@
 import { PageLoad } from "@/components/page_part/service_user/Load";
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
-import { getClassSpoilers, getClassSpoilersContent, getTicketElementSpoilerData } from "./../../service_repository/SpoilerRepository";
+import { getClassSpoilers, getSpoilersContent, getTicketElementSpoilerData } from "./../../service_repository/SpoilerRepository";
 import { getClassContent, getClassContentData, getClassSlagList } from "./../service_repository/ClassRepository";
 import { getClassTable, getClassTableContent } from "../../service_repository/TableRepository";
 
@@ -21,32 +21,32 @@ export default async function Page({ params }) {
     
     let classElement = getClassContent(slug);
 
-//#region ContentData
-    classElement['ContentData'] = getClassContentData(slug);    
+    //#region ContentData
+        classElement['ContentData'] = getClassContentData(slug);    
 
-    for(let i = 0; i < classElement.ContentData.length; i++){
-        switch(classElement.ContentData[i].type_name) {
-            case 'spoiler_block':
-                classElement.ContentData[i]['Spoiler'] = getTicketElementSpoilerData(classElement.ContentData[i].id);
-                classElement.ContentData[i].Spoiler['Content'] = getClassSpoilersContent(classElement.ContentData[i].Spoiler.id);
-                break;
+        for(let i = 0; i < classElement.ContentData.length; i++){
+            switch(classElement.ContentData[i].type_name) {
+                case 'spoiler_block':
+                    classElement.ContentData[i]['Spoiler'] = getTicketElementSpoilerData(classElement.ContentData[i].id);
+                    classElement.ContentData[i].Spoiler['Content'] = getSpoilersContent(classElement.ContentData[i].Spoiler.id);
+                    break;
+            }
         }
-    }
-//#endregion
+    //#endregion
 
-//#region SpoilerList
-    classElement['SpoilerList'] = getClassSpoilers(slug);
+    //#region SpoilerList
+        classElement['SpoilerList'] = getClassSpoilers(slug);
 
-    // блок обработки спойлеров в конце тела страницы, где основа архитипов
-    for(let i = 0; i < classElement.SpoilerList.length; i++){
-        classElement.SpoilerList[i]['Content'] = getClassSpoilersContent(classElement.SpoilerList[i].id);
-    }
-//#endregion
+        // блок обработки спойлеров в конце тела страницы, где основа архитипов
+        for(let i = 0; i < classElement.SpoilerList.length; i++){
+            classElement.SpoilerList[i]['Content'] = getSpoilersContent(classElement.SpoilerList[i].id);
+        }
+    //#endregion
 
-//#region Table
-    classElement['Table'] = getClassTable(slug);
-    classElement.Table['Content'] = getClassTableContent(classElement.Table.id);
-//#endregion
+    //#region Table
+        classElement['Table'] = getClassTable(slug);
+        classElement.Table['Content'] = getClassTableContent(classElement.Table.id);
+    //#endregion
 
 //-----------------------------------------------------------------
 
@@ -120,17 +120,16 @@ export default async function Page({ params }) {
                                     else if(block.type_name == 'spoiler_block') {
                                         return(
                                             <div key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
-                                                {/* <h1>{block.name}</h1>
-                                                <p>{block.value}</p> */}
                                                 <SpoilerElement spoiler={block.Spoiler}/>
                                             </div>
                                         )
                                     }
                                 })}
                             </div>
-                            <SpoilerBlock block_name={classElement.archetype_name} 
-                                          block_description={classElement.archetype_description} 
-                                          spoiler_list={classElement.SpoilerList}
+                            <SpoilerBlock 
+                                block_name={classElement.archetype_name} 
+                                block_description={classElement.archetype_description} 
+                                spoiler_list={classElement.SpoilerList}
                             />
                         </div>
                     </div>

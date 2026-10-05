@@ -68,7 +68,7 @@ export const getRaceContent = (race_name = 'Gecon') => {
                inner join c_ticket_record_race rr on rr.menu_id = tm.id
          where tm.latin_name = '${race_name}'
     `;
-    return db.prepare(sql).all();
+    return db.prepare(sql).all()[0];
 };
 
 export const getRaceContentData = (race_name = 'Gecon') => {

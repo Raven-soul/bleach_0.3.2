@@ -4,11 +4,11 @@ import { PageLoad } from '@/components/page_part/service_user/Load';
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
 import { getRaceContent, getRaceContentData, getRaceSlagList } from './../service_repository/RaceRepository';
-import { getTicketElementSpoilerData } from './../../service_repository/SpoilerRepository';
+import { getRaceSpoilers, getSpoilersContent } from './../../service_repository/SpoilerRepository';
 import { getContentSpell } from './../../service_repository/TicketElementRepository';
 
 import { AnchorMenu } from '../../service_user/AnchorMenu';
-import { SpoilerElement } from '../../service_user/BlockSpoiler';
+import { SpoilerBlock, SpoilerElement } from '../../service_user/BlockSpoiler';
 import { SpellBlock } from '../../service_user/BlockSpell';
 
 export function generateStaticParams() {
@@ -19,20 +19,28 @@ export function generateStaticParams() {
 export default async function Page({ params }) {
     const { slug } = await params
     
-    let raceElement = getRaceContent(slug)[0];
-    raceElement['ContentData'] = getRaceContentData(slug);
+    let raceElement = getRaceContent(slug);
 
-    for(let i = 0; i < raceElement.ContentData.length; i++){
-        switch(raceElement.ContentData[i].type_name) {
-            case 'spoiler_block':
-                raceElement.ContentData[i]['Spoiler'] = getTicketElementSpoilerData(raceElement.ContentData[i].id);
-                break;
+    //#region ContentData
+        raceElement['ContentData'] = getRaceContentData(slug);
 
-            case 'spell_block':
-                raceElement.ContentData[i]['Spell'] = getContentSpell(raceElement.ContentData[i].id);
-                break;
+        for(let i = 0; i < raceElement.ContentData.length; i++){
+            switch(raceElement.ContentData[i].type_name) {
+                case 'spell_block':
+                    raceElement.ContentData[i]['Spell'] = getContentSpell(raceElement.ContentData[i].id);
+                    break;
+            }
         }
-    }
+    //#endregion
+
+    //#region SpoilerList
+        raceElement['SpoilerList'] = getRaceSpoilers(slug);
+    
+        // блок обработки спойлеров в конце тела страницы, где основа архитипов
+        for(let i = 0; i < raceElement.SpoilerList.length; i++){
+            raceElement.SpoilerList[i]['Content'] = getSpoilersContent(raceElement.SpoilerList[i].id);
+        }
+    //#endregion
 
 //-----------------------------------------------------------------
 
@@ -91,6 +99,11 @@ export default async function Page({ params }) {
                                     }
                                 })}
                             </div>
+                            <SpoilerBlock 
+                                block_name="" 
+                                block_description=""
+                                spoiler_list={raceElement.SpoilerList}
+                            />
                         </div>
                     </div>
                 </div>
