@@ -19,7 +19,7 @@ export function SpoilerHead({spoiler_id, spoiler_name}) {
     )
 }
 
-export function SpoilerElement({spoiler}){
+export function SpoilerElement({spoiler}){//s
     return (
         <div className="spoiler">
             <div className="spec-info-block">
