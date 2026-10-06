@@ -1,7 +1,7 @@
 import { PageLoad } from "@/components/page_part/service_user/Load";
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
-import { getClassSpoilers, getSpoilersContent, getTicketElementSpoilerData } from "./../../service_repository/SpoilerRepository";
+import { getClassSpoilers, getSpoilerContent, getSpoilerFilter, getTicketElementSpoilerData } from "./../../service_repository/SpoilerRepository";
 import { getClassContent, getClassContentData, getClassSlagList } from "./../service_repository/ClassRepository";
 import { getClassTable, getClassTableContent } from "../../service_repository/TableRepository";
 
@@ -28,7 +28,8 @@ export default async function Page({ params }) {
             switch(classElement.ContentData[i].type_name) {
                 case 'spoiler_block':
                     classElement.ContentData[i]['Spoiler'] = getTicketElementSpoilerData(classElement.ContentData[i].id);
-                    classElement.ContentData[i].Spoiler['Content'] = getSpoilersContent(classElement.ContentData[i].Spoiler.id);
+                    classElement.ContentData[i].Spoiler['Filter'] = getSpoilerFilter(classElement.ContentData[i].Spoiler.id);
+                    classElement.ContentData[i].Spoiler['Content'] = getSpoilerContent(classElement.ContentData[i].Spoiler.id);
                     break;
             }
         }
@@ -39,7 +40,8 @@ export default async function Page({ params }) {
 
         // блок обработки спойлеров в конце тела страницы, где основа архитипов
         for(let i = 0; i < classElement.SpoilerList.length; i++){
-            classElement.SpoilerList[i]['Content'] = getSpoilersContent(classElement.SpoilerList[i].id);
+            classElement.SpoilerList[i]['Filter'] = getSpoilerFilter(classElement.SpoilerList[i].id);
+            classElement.SpoilerList[i]['Content'] = getSpoilerContent(classElement.SpoilerList[i].id);
         }
     //#endregion
 

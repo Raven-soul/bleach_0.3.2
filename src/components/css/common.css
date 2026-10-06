@@ -530,39 +530,69 @@ a.read-all:hover{
 .main-brown-data-area .content-block .blue-data-area .data-block {
     margin-top: 20px;
 }
-.main-brown-data-area .content-block .spec-info-block .hide-next:hover {
+.spoiler-block .hide-next:hover {
     cursor: pointer;
 }
-.main-brown-data-area .content-block .spec-info-block .hidden-data-item.active {
+.spoiler-block .hidden-data-item.active {
     display: block;
 }
 .main-brown-data-area h1.hide-next:not(.active) {
     margin: 0;
 }
-.main-brown-data-area .content-block .spec-info-block .hidden-data-item:not(.active) {
+.spoiler-block .hidden-data-item:not(.active) {
     display: none;
 }
-.main-brown-data-area .content-block .spec-info-block {
+.spoiler-block {
     padding: 8px;
     border: 1px solid rgba(20,20,20,.1);
     border-radius: 5px;
     background-color: rgba(20,20,20,.05);
     margin-top: 10px;
 }
-.main-brown-data-area .content-block .spec-info-block b {
+.spoiler-block b {
     font-style: italic;
 }
 
-.main-brown-data-area .content-block .spec-info-block .data-content{
-    margin-top: 30px;
+.spoiler-block .data-content{
+    margin-top: 25px;
 }
 
 .main-brown-data-area .content-block .sub-data{
     margin-top: 15px;
 }
 
-.main-brown-data-area .content-block .spec-info-block .data-content .sub-data{
+.spoiler-block .data-content .sub-data{
     margin-top: 15px;
+}
+
+.spoiler-filter{
+    padding: 15px 0 0 0;
+}
+
+.filter-header {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.spoiler-filter .filter-button-area{
+    display: flex;
+    justify-content: left;
+}
+
+.spoiler-filter .filter-button{
+    padding: 0 16px;
+}
+
+.spoiler-filter .filter-button:hover{
+    cursor: pointer;
+}
+
+.spoiler-filter .filter-button:not(.active) span{
+    border-bottom: 1px solid gray;
+}
+
+.spoiler-filter .filter-button.active{
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .data-content .spell-card{

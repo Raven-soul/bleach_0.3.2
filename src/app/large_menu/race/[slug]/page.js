@@ -4,7 +4,7 @@ import { PageLoad } from '@/components/page_part/service_user/Load';
 import { Gallary } from '@/components/page_part/service_server/gallary';
 
 import { getRaceContent, getRaceContentData, getRaceSlagList } from './../service_repository/RaceRepository';
-import { getRaceSpoilers, getSpoilersContent } from './../../service_repository/SpoilerRepository';
+import { getRaceSpoilers, getSpoilerContent } from './../../service_repository/SpoilerRepository';
 import { getContentSpell } from './../../service_repository/TicketElementRepository';
 
 import { AnchorMenu } from '../../service_user/AnchorMenu';
@@ -38,7 +38,7 @@ export default async function Page({ params }) {
     
         // блок обработки спойлеров в конце тела страницы, где основа архитипов
         for(let i = 0; i < raceElement.SpoilerList.length; i++){
-            raceElement.SpoilerList[i]['Content'] = getSpoilersContent(raceElement.SpoilerList[i].id);
+            raceElement.SpoilerList[i]['Content'] = getSpoilerContent(raceElement.SpoilerList[i].id);
         }
     //#endregion
 

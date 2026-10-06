@@ -1,6 +1,20 @@
 import db from '@/lib/ControllerDB/db_connection';
 
-export const getSpoilersContent = (spoiler_id = 1) => {
+export const getSpoilerFilter = (spoiler_id = 1) => {
+    const sql = `
+        select sf.id,
+               sf.alfavit,
+               sf.level
+          from c_spoiler sp 
+               inner join c_spoiler_filter sf on sf.id = sp.filter_id
+                     and sf.show = 1              
+              
+         where sp.id = ${spoiler_id}
+    `;
+    return db.prepare(sql).all();
+};
+
+export const getSpoilerContent = (spoiler_id = 1) => {
     const sql = `
         select se.id,
                se.spoiler_id,
@@ -29,6 +43,7 @@ export const getClassSpoilers = (class_name = 'Shinigami') => {
         select sp.id,
                sp.ticket_id,
                sp.name,
+               sp.filter_id,
                concat_ws('', '<p>', sp.description, '</p>') as description,
                coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist,
                sp_type.name as type_name
@@ -76,7 +91,7 @@ select sp.id,
        sp.ticket_id,
        sp.name,
        sp.description,
-       sp.filter,
+       sp.filter_id,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist
   from c_ticket_element te
        left join c_ticket_element_type t_type on t_type.id = te.type

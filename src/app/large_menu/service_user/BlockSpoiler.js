@@ -1,8 +1,7 @@
 'use client';
 
 import $ from "jquery"
-import Image from 'next/image'
-import Link from 'next/link'
+import { useEffect } from "react";
 
 import { UpdateSpoilerValue } from "@/app/app_admin/service_server/UpdateGeneral"
 
@@ -19,13 +18,60 @@ export function SpoilerHead({spoiler_id, spoiler_name}) {
     )
 }
 
-export function SpoilerElement({spoiler}){//s
+export function SpoilerFilter({filter}) {
+    if(!filter) {return(<></>)}
+
+    let buttons = [
+        {
+            id: 1,
+            name: 'level',
+            text: 'По уровню'
+        },
+        {
+            id: 2,
+            name: 'alfavit',
+            text: 'По алфавиту'
+        }
+    ]
+
+    const setFilter = ((button_id)=>{
+        if($('#spoiler_filter_button_' + button_id).hasClass('active')){
+            $('#spoiler_filter_button_' + button_id).toggleClass('active');
+        }
+        else {
+            $('.filter-button').removeClass('active');
+            $('#spoiler_filter_button_' + button_id).toggleClass('active');
+        }
+    });
+
+    return (
+        <div className="spoiler-filter">
+            <div className="row-2">
+                <div className="col filter-header">
+                    Сортировка:
+                </div>
+                <div className="col filter-button-area">
+                    {buttons.map((button)=>{
+                        return(
+                            <div key={'spoiler_filter_button_' + button.id} id={'spoiler_filter_button_' + button.id} className="filter-button" onClick={(()=>{setFilter(button.id)})}>
+                                <span>{button.text}</span>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>            
+        </div>
+    )
+}
+
+export function SpoilerElement({spoiler}){
     return (
         <div className="spoiler">
-            <div className="spec-info-block">
+            <div className="spoiler-block">
                 <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
                 <div className={"hidden-data-item hb-" + spoiler.id}>
                     <div dangerouslySetInnerHTML={{ __html: spoiler.description }}></div>
+                    <SpoilerFilter filter={spoiler.Filter}/>
                     {(()=>{
                         if(spoiler.spoiler_list_exist == 1){
                             return(
