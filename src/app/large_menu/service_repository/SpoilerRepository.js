@@ -88,7 +88,7 @@ select cs.id,
        cs.ticket_id,       
        cs.name,
        cs.description,
-       case when sp.filter_list notnull then 1 else 0 end as filter_exist,
+       case when cs.filter_list notnull then 1 else 0 end as filter_exist,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = cs.id limit 1), 0) as spoiler_list_exist
   from c_ticket_menu tm
        inner join c_ticket ct on ct.id = tm.ticket_id
