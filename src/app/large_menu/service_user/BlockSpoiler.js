@@ -19,28 +19,15 @@ export function SpoilerHead({spoiler_id, spoiler_name}) {
 }
 
 export function SpoilerFilter({filter}) {
-    if(!filter) {return(<></>)}
+    if(filter.length == 0) {return(<></>)}
 
-    let buttons = [
-        {
-            id: 1,
-            name: 'level',
-            text: 'По уровню'
-        },
-        {
-            id: 2,
-            name: 'alfavit',
-            text: 'По алфавиту'
-        }
-    ]
+    const setFilter = ((spoiler_id, button_id)=>{
+        let id_name = '#sp_' + spoiler_id + '_ft_button_' + button_id;
 
-    const setFilter = ((button_id)=>{
-        if($('#spoiler_filter_button_' + button_id).hasClass('active')){
-            $('#spoiler_filter_button_' + button_id).toggleClass('active');
-        }
+        if($(id_name).hasClass('active')){}
         else {
             $('.filter-button').removeClass('active');
-            $('#spoiler_filter_button_' + button_id).toggleClass('active');
+            $(id_name).toggleClass('active');
         }
     });
 
@@ -51,9 +38,13 @@ export function SpoilerFilter({filter}) {
                     Сортировка:
                 </div>
                 <div className="col filter-button-area">
-                    {buttons.map((button)=>{
+                    {filter.map((button)=>{
                         return(
-                            <div key={'spoiler_filter_button_' + button.id} id={'spoiler_filter_button_' + button.id} className="filter-button" onClick={(()=>{setFilter(button.id)})}>
+                            <div key={'spoiler_filter_button_' + button.id} 
+                                 id={'sp_' + button.spoiler_id + '_ft_button_' + button.id} 
+                                 className={'filter-button ' + button.filter_class} 
+                                 onClick={(()=>{setFilter(button.spoiler_id, button.id)})}
+                                 > 
                                 <span>{button.text}</span>
                             </div>
                         )
@@ -71,7 +62,15 @@ export function SpoilerElement({spoiler}){
                 <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
                 <div className={"hidden-data-item hb-" + spoiler.id}>
                     <div dangerouslySetInnerHTML={{ __html: spoiler.description }}></div>
-                    <SpoilerFilter filter={spoiler.Filter}/>
+                    {(()=>{
+                        if(spoiler.filter_exist == 1) {
+                            return( 
+                                <SpoilerFilter filter={spoiler.Filter}/>
+                            )
+                        }
+                        else { return(<></>) }
+                    })()}
+
                     {(()=>{
                         if(spoiler.spoiler_list_exist == 1){
                             return(
@@ -110,9 +109,7 @@ export function SpoilerElement({spoiler}){
                                 </>
                             )
                         }
-                        else {
-                            return(<></>)
-                        }
+                        else { return(<></>) }
                     })()}
                 </div>
             </div>

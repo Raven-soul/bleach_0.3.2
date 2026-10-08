@@ -588,7 +588,7 @@ a.read-all:hover{
 }
 
 .spoiler-filter .filter-button:not(.active) span{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px dashed gray;
 }
 
 .spoiler-filter .filter-button.active{

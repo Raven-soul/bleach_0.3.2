@@ -2,14 +2,30 @@ import db from '@/lib/ControllerDB/db_connection';
 
 export const getSpoilerFilter = (spoiler_id = 1) => {
     const sql = `
-        select sf.id,
-               sf.alfavit,
-               sf.level
-          from c_spoiler sp 
-               inner join c_spoiler_filter sf on sf.id = sp.filter_id
-                     and sf.show = 1              
-              
-         where sp.id = ${spoiler_id}
+with filter_list as (
+    select sp.id as spoiler_id,
+           sf.id,
+           sf.name,
+           sf.text
+      from c_spoiler sp             
+           inner join c_spoiler_filter sf on 1=1
+                 and sf.id in (
+                         select value 
+                           from json_each(json('[' || sp.filter_list || ']'))
+                     )
+                 and sf.show = 1 
+     where sp.id = ${spoiler_id}
+)
+
+select f_list.id,
+       f_list.name,
+       f_list.text,
+       f_list.spoiler_id,
+       case when f_list.id = (select min(f.id) val from filter_list f)
+            then 'active'
+            else ''
+       end as filter_class
+  from filter_list f_list         
     `;
     return db.prepare(sql).all();
 };
@@ -43,8 +59,8 @@ export const getClassSpoilers = (class_name = 'Shinigami') => {
         select sp.id,
                sp.ticket_id,
                sp.name,
-               sp.filter_id,
                concat_ws('', '<p>', sp.description, '</p>') as description,
+               case when sp.filter_list notnull then 1 else 0 end as filter_exist,
                coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist,
                sp_type.name as type_name
 
@@ -72,6 +88,7 @@ select cs.id,
        cs.ticket_id,       
        cs.name,
        cs.description,
+       case when sp.filter_list notnull then 1 else 0 end as filter_exist,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = cs.id limit 1), 0) as spoiler_list_exist
   from c_ticket_menu tm
        inner join c_ticket ct on ct.id = tm.ticket_id
@@ -91,7 +108,7 @@ select sp.id,
        sp.ticket_id,
        sp.name,
        sp.description,
-       sp.filter_id,
+       case when sp.filter_list notnull then 1 else 0 end as filter_exist,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist
   from c_ticket_element te
        left join c_ticket_element_type t_type on t_type.id = te.type
