@@ -93,7 +93,9 @@ select cs.id,
   from c_ticket_menu tm
        inner join c_ticket ct on ct.id = tm.ticket_id
              and ct.show = 1
-        left join c_spoiler cs on cs.ticket_id = ct.id
+       inner join c_ticket_type tt on tt.id = ct.ticket_type
+             and tt.name = 'race'             
+       inner join c_spoiler cs on cs.ticket_id = ct.id
         left join c_spoiler_type sp_type on sp_type.id = cs.spoiler_type
         
  where tm.latin_name = '${race_name}'
