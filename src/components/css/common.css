@@ -530,16 +530,16 @@ a.read-all:hover{
 .main-brown-data-area .content-block .blue-data-area .data-block {
     margin-top: 20px;
 }
-.spoiler-block .hide-next:hover {
+.spoiler-block .spoiler-name:hover {
     cursor: pointer;
 }
-.spoiler-block .hidden-data-item.active {
+.spoiler-block .spoiler-hidden-block.active {
     display: block;
 }
-.main-brown-data-area h1.hide-next:not(.active) {
+.main-brown-data-area h1.spoiler-name:not(.active) {
     margin: 0;
 }
-.spoiler-block .hidden-data-item:not(.active) {
+.spoiler-block .spoiler-hidden-block:not(.active) {
     display: none;
 }
 .spoiler-block {

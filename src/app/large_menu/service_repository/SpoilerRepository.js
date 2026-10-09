@@ -54,7 +54,7 @@ select se.id,
                se.h5_tag,
                se.level,
                se.name,               
-               case when se.empty_requirements = 0
+               case when se.empty_requirements isnull
                     then concat_ws(', ', 
                         se.level || '-й уровень',
                         se.requirements, 

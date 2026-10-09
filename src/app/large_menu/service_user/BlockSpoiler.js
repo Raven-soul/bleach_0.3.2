@@ -7,65 +7,27 @@ import { UpdateSpoilerValue } from "@/app/app_admin/service_server/UpdateGeneral
 
 export function SpoilerHead({spoiler_id, spoiler_name}) {
     const func = (()=>{
-        $('#spoiler-'+ spoiler_id).toggleClass('active');
-        $('.hb-' + spoiler_id).toggleClass('active');
+        $('#hidden-block-' + spoiler_id).toggleClass('active');
     });
 
     return (
-        <h1 className="hide-next" id={spoiler_id} onClick={func}>
+        <h1 className="spoiler-name" onClick={func}>
             {spoiler_name}
         </h1>
     )
 }
 
-export function SpoilerFilter({filter}) {
-    if(filter.length == 0) {return(<></>)}
-
-    const setFilter = ((spoiler_id, button_id)=>{
-        let id_name = '#sp_' + spoiler_id + '_ft_button_' + button_id;
-
-        if($(id_name).hasClass('active')){}
-        else {
-            $('.filter-button').removeClass('active');
-            $(id_name).toggleClass('active');
-        }
-    });
-
-    return (
-        <div className="spoiler-filter">
-            <div className="row-2">
-                <div className="col filter-header">
-                    Сортировка:
-                </div>
-                <div className="col filter-button-area">
-                    {filter.map((button)=>{
-                        return(
-                            <div key={'spoiler_filter_button_' + button.id} 
-                                 id={'sp_' + button.spoiler_id + '_ft_button_' + button.id} 
-                                 className={'filter-button ' + button.filter_class} 
-                                 onClick={(()=>{setFilter(button.spoiler_id, button.id)})}
-                                 > 
-                                <span>{button.text}</span>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>            
-        </div>
-    )
-}
-
 export function SpoilerElement({spoiler}){
     return (
-        <div className="spoiler">
+        <div className="spoiler" id={'spoiler-' + spoiler.id}>
             <div className="spoiler-block">
                 <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
-                <div className={"hidden-data-item hb-" + spoiler.id}>
+                <div className={"spoiler-hidden-block"} id={"hidden-block-" + spoiler.id}>
                     <div dangerouslySetInnerHTML={{ __html: spoiler.description }}></div>
                     {(()=>{
                         if(spoiler.filter_exist == 1) {
                             return( 
-                                <SpoilerFilter filter={spoiler.Filter}/>
+                                <SpoilerFilter filter_list={spoiler.Filter}/>
                             )
                         }
                         else { return(<></>) }
@@ -74,10 +36,13 @@ export function SpoilerElement({spoiler}){
                     {(()=>{
                         if(spoiler.spoiler_list_exist == 1){
                             return(
-                                <>
+                                <div className={'spoiler-data-block'}>
                                     {spoiler.Content.map((block)=>{
                                         return(
-                                            <div className="data-content" key={"spoiler_content_" + block.id}>
+                                            <div className="data-content" 
+                                                name={block.name}
+                                                level={block.level}
+                                                key={"spoiler_content_" + block.id}>
                                                 {(() => {
                                                     if(block.h5_tag == 1) return(
                                                         <h5>{block.name}</h5>
@@ -106,7 +71,7 @@ export function SpoilerElement({spoiler}){
                                             </div>
                                         )
                                     })}
-                                </>
+                                </div>
                             )
                         }
                         else { return(<></>) }
@@ -142,4 +107,78 @@ export function SpoilerBlock({block_name, block_description, spoiler_list}){
             </div>
         )
     }    
+}
+
+export function SpoilerFilter({filter_list}) {
+    if(filter_list.length == 0) {return(<></>)}
+
+    const setFilter = ((spoiler_id, item_id, filter_name)=>{
+        let id_name = '#sp_' + spoiler_id + '_ft_button_' + item_id;
+        let filter_is_active = false;
+
+        if($(id_name).hasClass('active')){ filter_is_active = true}
+        else {
+            $('.filter-button').removeClass('active');
+            $(id_name).toggleClass('active');
+        }
+
+        if (filter_is_active == false) {
+            let spoiler_content_list = $('#spoiler-' + spoiler_id + ' .data-content');
+
+            let content_list = [];
+            for(let i=0; i<spoiler_content_list.length; i++){
+                content_list.push(
+                    {
+                        id: i,
+                        name: spoiler_content_list[i].getAttribute('name'),
+                        level: (!spoiler_content_list[i].getAttribute('level'))? 0 : parseInt(spoiler_content_list[i].getAttribute('level'), 10),
+                        html: spoiler_content_list[i].outerHTML
+                    }
+                )
+            }
+
+            let result = [];
+            let result_str = '';
+
+            switch (filter_name) {
+                case 'level':
+                    result = content_list.sort((a, b) => a.level - b.level);
+                    break;
+                case 'alfavit':
+                    result = content_list.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+            }
+
+            for(let i = 0; i<result.length; i++){
+                result_str += result[i].html;
+            }
+            
+            $('#spoiler-' + spoiler_id + ' .spoiler-data-block').html(result_str);
+        }
+    });
+
+    return (
+        <div className="spoiler-filter">
+            <div className="row-2">
+                <div className="col filter-header">
+                    Сортировка:
+                </div>
+                <div className="col filter-button-area">
+                    {filter_list.map((filter)=>{
+                        return(
+                            <div key={'spoiler_filter_button_' + filter.id} 
+                                 id={'sp_' + filter.spoiler_id + '_ft_button_' + filter.id} 
+                                 className={'filter-button ' + filter.filter_class} 
+                                 onClick={(()=>{setFilter(filter.spoiler_id, filter.id, filter.name)})}
+                                 name={filter.name}
+                                 level={filter.level}
+                                 > 
+                                <span>{filter.text}</span>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>            
+        </div>
+    )
 }
