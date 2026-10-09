@@ -32,22 +32,46 @@ select f_list.id,
 
 export const getSpoilerContent = (spoiler_id = 1) => {
     const sql = `
-        select se.id,
+with spoiler as (
+    select sp.id as spoiler_id,
+           sp.name as sp_name,
+           sf.id as filter_id,
+           sf.name as filter_name,
+           sf.text as filter_text
+      from c_spoiler sp
+           left join c_spoiler_filter sf on 1=1
+                and sf.id in (
+                        select value 
+                          from json_each(json('[' || sp.filter_list || ']'))
+                    )
+                and sf.show = 1 
+     where sp.id = ${spoiler_id}
+     order by sf.id
+     limit 1
+)        
+select se.id,
                se.spoiler_id,
                se.h5_tag,
+               se.level,
                se.name,               
-               case when se.requirements notnull
-                    then concat_ws(', ', se.requirements, 'умение ' || sp.name)
+               case when se.empty_requirements = 0
+                    then concat_ws(', ', 
+                        se.level || '-й уровень',
+                        se.requirements, 
+                        'умение ' || sp.sp_name
+                    )
                     else se.requirements
                 end as requirements,
                se.value
 
-          from c_spoiler sp 
-               inner join c_spoiler_element se on se.spoiler_id = sp.id
+          from spoiler sp 
+               inner join c_spoiler_element se on se.spoiler_id = sp.spoiler_id
                      and se.show = 1
-              
-         where sp.id = ${spoiler_id}
-         order by coalesce(se.ord, se.id)
+         order by case sp.filter_name 
+                       when 'level' then se.level
+                       when 'alfavit' then se.name
+                       else coalesce(se.ord, se.id)
+                  end
     `;
     return db.prepare(sql).all();
 };
