@@ -565,6 +565,15 @@ a.read-all:hover{
     margin-top: 15px;
 }
 
+.spoiler-block .spoiler-description-block.disable{
+    max-height: 30px;
+    overflow: hidden;
+}
+
+.spoiler-block .spoiler-description-block-button-area{
+    float: right;
+}
+
 .spoiler-filter{
     padding: 15px 0 0 0;
 }
@@ -945,13 +954,15 @@ a.read-all:hover{
 }
 
 .armament-data .show-armament-data-btn,
-.main-content-block .show-armament-data-btn{
+.main-content-block .show-armament-data-btn,
+.spoiler .spoiler-description-block-button{
     background: none;
     border: none;
 }
 
 .armament-data .show-armament-data-btn .armament-data-type,
-.main-content-block .show-armament-data-btn{
+.main-content-block .show-armament-data-btn,
+.spoiler .spoiler-description-block-button{
     font-size: 18px;
     opacity: 30%;
 }

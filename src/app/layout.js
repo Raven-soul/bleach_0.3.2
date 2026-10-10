@@ -16,6 +16,7 @@ import Link from 'next/link'
 
 import home_logo from "@/../public/img/home/home_button_logo_white.png";
 import dnd_su_logo from "@/../public/img/home/dnd_su_logo.png";
+import dixyn0rmous_logo from "@/../public/img/home/dixyn0rmous.png";
 
 export const metadata = {
   title: "Bleach D&D 5e",
@@ -57,6 +58,17 @@ export default function RootLayout({ children }) {
                                             </div>
                                             <div className="col-auto p-0 d-flex align-items-center">
                                                 <div className="row">
+                                                    <div className="col">
+                                                        <a href="https://www.gmbinder.com/share/-LkO8VBLAIck6JlLwS_7" className="dnd-su-link">
+                                                            <Image
+                                                                src={dixyn0rmous_logo}
+                                                                //className={"dnd-su-ico"}
+                                                                width={25}
+                                                                height={25}
+                                                                alt="bleach core"
+                                                            />
+                                                        </a>
+                                                    </div>
                                                     <div className="col">
                                                         <a href="https://dnd.su" className="dnd-su-link">
                                                             <Image

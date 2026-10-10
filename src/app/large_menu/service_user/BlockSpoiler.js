@@ -1,8 +1,8 @@
 'use client';
 
 import $ from "jquery"
-import { useEffect } from "react";
 
+import { Icon } from '@/components/page_part/service_server/fontawesome'
 import { UpdateSpoilerValue } from "@/app/app_admin/service_server/UpdateGeneral"
 
 export function SpoilerHead({spoiler_id, spoiler_name}) {
@@ -23,7 +23,38 @@ export function SpoilerElement({spoiler}){
             <div className="spoiler-block">
                 <SpoilerHead spoiler_id={spoiler.id} spoiler_name={spoiler.name}/>
                 <div className={"spoiler-hidden-block"} id={"hidden-block-" + spoiler.id}>
-                    <div dangerouslySetInnerHTML={{ __html: spoiler.description }}></div>
+                    {(()=>{
+                        if(spoiler.hide_description == 1){
+                            let description_visible = (()=>{
+                                $('.spoiler-'+ spoiler.id +'-spoiler-description-block').toggleClass('disable');
+                                $('.spoiler-description-block-button .spoiler-'+ spoiler.id +'-description-hide').toggle();
+                                $('.spoiler-description-block-button .spoiler-'+ spoiler.id +'-description-show').toggle();
+                            });
+
+                            return(
+                                <div className={'spoiler-description-block spoiler-'+ spoiler.id +'-spoiler-description-block disable'}>
+                                    <div className={'spoiler-description-block-button-area'}>
+                                        <button className={'spoiler-description-block-button'} onClick={description_visible}>
+                                            <span className={'spoiler-'+ spoiler.id +'-description-show'}>
+                                                <Icon name="faChevronDown"/>
+                                            </span>
+                                            <span className={'spoiler-'+ spoiler.id +'-description-hide'} style={{display: 'none'}}>
+                                                <Icon name="faChevronUp"/>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div dangerouslySetInnerHTML={{ __html: spoiler.description }}></div>                                    
+                                </div>
+                            )
+                        }
+                        else {
+                            return(
+                                <div className={"spoiler-description-block"}>
+                                    <div dangerouslySetInnerHTML={{ __html: spoiler.description }}></div>
+                                </div>
+                            )
+                        }
+                    })()}                                        
                     {(()=>{
                         if(spoiler.filter_exist == 1) {
                             return( 

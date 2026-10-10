@@ -50,28 +50,28 @@ with spoiler as (
      limit 1
 )        
 select se.id,
-               se.spoiler_id,
-               se.h5_tag,
-               se.level,
-               se.name,               
-               case when se.empty_requirements isnull
-                    then concat_ws(', ', 
-                        se.level || '-й уровень',
-                        se.requirements, 
-                        'умение ' || sp.sp_name
-                    )
-                    else se.requirements
-                end as requirements,
-               se.value
+       se.spoiler_id,
+       se.h5_tag,
+       se.level,
+       se.name,               
+       case when se.empty_requirements isnull
+            then concat_ws(', ', 
+                se.level || '-й уровень',
+                se.requirements, 
+                'умение ' || sp.sp_name
+            )
+            else se.requirements
+        end as requirements,
+       se.value
 
-          from spoiler sp 
-               inner join c_spoiler_element se on se.spoiler_id = sp.spoiler_id
-                     and se.show = 1
-         order by case sp.filter_name 
-                       when 'level' then se.level
-                       when 'alfavit' then se.name
-                       else coalesce(se.ord, se.id)
-                  end
+  from spoiler sp 
+       inner join c_spoiler_element se on se.spoiler_id = sp.spoiler_id
+             and se.show = 1
+ order by case sp.filter_name 
+               when 'level' then se.level
+               when 'alfavit' then se.name
+               else coalesce(se.ord, se.id)
+          end
     `;
     return db.prepare(sql).all();
 };
@@ -84,6 +84,7 @@ export const getClassSpoilers = (class_name = 'Shinigami') => {
                sp.ticket_id,
                sp.name,
                concat_ws('', '<p>', sp.description, '</p>') as description,
+               sp.hide_description,
                case when sp.filter_list notnull then 1 else 0 end as filter_exist,
                coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist,
                sp_type.name as type_name
@@ -112,6 +113,7 @@ select cs.id,
        cs.ticket_id,       
        cs.name,
        cs.description,
+       cs.hide_description,
        case when cs.filter_list notnull then 1 else 0 end as filter_exist,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = cs.id limit 1), 0) as spoiler_list_exist
   from c_ticket_menu tm
@@ -134,6 +136,7 @@ select sp.id,
        sp.ticket_id,
        sp.name,
        sp.description,
+       sp.hide_description,
        case when sp.filter_list notnull then 1 else 0 end as filter_exist,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist
   from c_ticket_element te
