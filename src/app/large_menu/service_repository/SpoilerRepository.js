@@ -34,7 +34,11 @@ export const getSpoilerContent = (spoiler_id = 1) => {
     const sql = `
 with spoiler as (
     select sp.id as spoiler_id,
-           sp.name as sp_name,
+           case when sp.latin_name notnull 
+                then concat_ws(' ', sp.name, '(' || sp.latin_name || ')')
+                else sp.name
+            end as sp_name,
+            
            sf.id as filter_id,
            sf.name as filter_name,
            sf.text as filter_text
@@ -82,7 +86,10 @@ export const getClassSpoilers = (class_name = 'Shinigami') => {
     const sql = `
         select sp.id,
                sp.ticket_id,
-               sp.name,
+               case when sp.latin_name notnull 
+                    then concat_ws(' ', sp.name, '(' || sp.latin_name || ')')
+                    else sp.name
+                end as name,
                concat_ws('', '<p>', sp.description, '</p>') as description,
                sp.hide_description,
                case when sp.filter_list notnull then 1 else 0 end as filter_exist,
@@ -111,7 +118,10 @@ select cs.id,
        cs.ord,
        sp_type.name as sp_type,
        cs.ticket_id,       
-       cs.name,
+       case when cs.latin_name notnull 
+                    then concat_ws(' ', cs.name, '(' || cs.latin_name || ')')
+                    else cs.name
+                end as name,
        cs.description,
        cs.hide_description,
        case when cs.filter_list notnull then 1 else 0 end as filter_exist,
@@ -134,7 +144,10 @@ export const getTicketElementSpoilerData = (ticket_element_id) => {
     const sql = `
 select sp.id,
        sp.ticket_id,
-       sp.name,
+       case when sp.latin_name notnull 
+            then concat_ws(' ', sp.name, '(' || sp.latin_name || ')')
+            else sp.name
+        end as name,
        sp.description,
        sp.hide_description,
        case when sp.filter_list notnull then 1 else 0 end as filter_exist,
