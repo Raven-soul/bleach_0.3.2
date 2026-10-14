@@ -2,51 +2,35 @@ import db from '../../../lib/ControllerDB/db_connection';
 
 export const getClassTableContent = (class_id = 1) => {
     const sql = `
-with table_data as (
-    select tbe.id,
-           tbe.table_id,
-           tbe.col_1,
-           tbe.col_2,
-           tbe.col_3,
-           tbe.col_4,
-           tbe.col_5,
-           tbe.col_6,
-           tbe.col_7,
-           tbe.synonim,
-           tbe.anchor_list
-      from c_table_element tbe
-     where tbe.table_id = ${class_id}
-),
-group_t as (
-    select td.id,
-           string_agg(
-               '<a href="#data_content_' || 
-               te.id ||
-               '" class="anchor">' ||
-               te.name ||
-               '</a>', 
-               ', ') as anchor_list
-      from table_data td
-           left join c_ticket_element te on te.id in (
-               select value 
-                 from json_each(json('[' || td.anchor_list || ']'))
-           )
-     group by 1
-)
-select td.id,
-       td.table_id,
-       td.col_1,
-       td.col_2,
-       td.col_3,
-       gt.anchor_list,
-       td.col_4,
-       td.col_5,
-       td.col_6,
-       td.col_7,
-       td.synonim
-  from table_data td
-       left join group_t gt on gt.id = td.id
- order by td.id         
+    select t.id,
+           tb.ticket_id,
+           t.row_num,
+           t.table_id,
+           t.col_1,
+           t.col_2,
+           t.col_3,
+           t.col_4,
+           t.col_5,
+           t.col_6,
+           t.col_7,
+           t.synonim,
+           (select string_agg(
+                   '<a href="#data_content_' || 
+                   te.id ||
+                   '" class="anchor">' ||
+                   te.name ||
+                   '</a>', 
+                   ', ')
+              from c_ticket_element te
+             where 1=1
+                   and te.ticket_id = tb.ticket_id
+                   and te.show = 1
+                   and t.row_num in (select value from json_each(json('[' || te.level || ']')))
+           ) as anchor_list
+
+      from c_table tb
+           left join c_table_element t on t.table_id = tb.id
+     where tb.id = ${class_id}
     `;
     return db.prepare(sql).all();
 };

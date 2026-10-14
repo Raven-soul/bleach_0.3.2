@@ -19,7 +19,7 @@ export function TableBlock({table}) {
                 key: 'col_' + j,
                 val: table.Content[i]['col_' + j],
                 cls: 'left-content',
-                check: check,
+                is_text_col: check,
                 anchor_list: (table.Content[i].anchor_list != null && j == 3)? table.Content[i].anchor_list : null
             })
         }
@@ -84,14 +84,14 @@ export function TableBlock({table}) {
                                 {row.data.map((line)=>{
                                     if(line.anchor_list != null){
                                         return(
-                                            <td key={line.key} className={(line.check)? line.cls : ""}>
+                                            <td key={line.key} className={(line.is_text_col)? line.cls : ""}>
                                                 <div dangerouslySetInnerHTML={{ __html: line.anchor_list }}></div>
                                             </td>
                                         )
                                     }
                                     else {
                                         return(
-                                            <td key={line.key} className={(line.check)? line.cls : ""}>
+                                            <td key={line.key} className={(line.is_text_col)? line.cls : ""}>
                                                 {line.val}
                                             </td>
                                         )

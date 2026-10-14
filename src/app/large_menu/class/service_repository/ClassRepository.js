@@ -31,19 +31,28 @@ export const getClassContentData = (class_name = 'Shinigami') => {
                     then concat_ws(', ', te.requirements, 'умение ' || tm.name)
                     else te.requirements
                end as requirements,
+               case when te.show_requirements = 1 
+                    then concat_ws(', ', 
+                              (select value from json_each(json('[' || te.level || ']')) order by 1 limit 1) || '-й уровень',
+                              te.requirements, 
+                              'умение ' || tm.name
+                         ) 
+                    else null
+               end as requirements,
                case when te_type.synonim = 'har_block' and te.extra_id notnull
                     then (select tt.value from c_ticket_element tt where tt.id = te.extra_id) 
                     else te.value
                end as value,
                te.extra_id as spoiler_id
+               --
           from c_ticket_menu tm
-               inner join c_ticket_menu_group mg on mg.id = tm.group_id
-               inner join c_ticket_type type on type.id = mg.ticket_type
+               inner join c_ticket t on t.id = tm.ticket_id
+               inner join c_ticket_type type on type.id = t.ticket_type
                      and type.name = 'class'
                inner join c_ticket_record_class ct on ct.menu_id = tm.id
                inner join c_ticket_element te on te.ticket_id = ct.ticket_id
                 left join c_ticket_element_type te_type on te_type.id = te.type
-            
+               --
          where 1 = 1
                and tm.latin_name = '${class_name}'
                and te.show = 1

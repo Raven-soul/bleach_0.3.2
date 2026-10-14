@@ -5,7 +5,7 @@ import { Gallary } from '@/components/page_part/service_server/gallary';
 
 import { getRaceContent, getRaceContentData, getRaceSlagList } from './../service_repository/RaceRepository';
 import { getRaceSpoilers, getSpoilerContent } from './../../service_repository/SpoilerRepository';
-import { getContentSpell } from './../../service_repository/TicketElementRepository';
+import { getContentSpell } from './../../service_repository/SpellRepository';
 
 import { AnchorMenu } from '../../service_user/AnchorMenu';
 import { SpoilerBlock, SpoilerElement } from '../../service_user/BlockSpoiler';

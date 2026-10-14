@@ -77,7 +77,13 @@ export const getRaceContentData = (race_name = 'Gecon') => {
                te.ticket_id,
                te_type.synonim as type_name,
                te.name,
-               te.requirements,
+               concat_ws(', ',
+                    case when te.level notnull 
+                         then (select value from json_each(json('[' || te.level || ']')) order by 1 limit 1) || '-й уровень'
+                         else null
+                    end,
+                    te.requirements
+               ) as requirements,
                te.value,
                te.extra_id as spoiler_id
           from c_ticket_menu tm
