@@ -769,6 +769,11 @@ a.read-all:hover{
     border-radius: 5px;
 }
 
+.about-area hr {
+    border-color: rgba(236, 228, 217, 0);
+    background-color: rgba(65, 39, 3, 0.795);
+}
+
 .prompt-area hr {
     margin: 0;
     padding: 0;

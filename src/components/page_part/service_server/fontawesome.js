@@ -53,7 +53,8 @@ import {
     faInfinity,
     faLeaf,
     faPencil,
-    faPenToSquare as solid_faPenToSquare
+    faPenToSquare as solid_faPenToSquare,
+    faCircleInfo
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -85,7 +86,9 @@ export function Icon({name, className = '', style}){
         ['faChevronUp', faChevronUp],
         //#endregion
 
-        //#region Circle
+        //#region Circle        
+        // круг с информацией (i по центру)
+        ['faCircleInfo', faCircleInfo],
         // круг с разрывом сверху
         ['faCircleNotch', faCircleNotch],
         // круг с крестиком внутри
