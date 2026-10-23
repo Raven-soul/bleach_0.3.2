@@ -33,6 +33,9 @@ export default function Home(param) {
                                 </div>
                                 <div className="col my-2">
                                     <hr/>
+                                    <div className="hidden-from-992">
+                                        <AboutImage image={'9f0acac7e6440c82160ba1d8ff888bf223.png'} height={'200'} name={'D&D logo'}/>
+                                    </div>
                                     <div className="row px-2">
                                         <div className="col py-3" style={{display:"flex", alignItems:"center"}}>
                                             <div>
@@ -50,15 +53,23 @@ export default function Home(param) {
                                                 </p>
                                             </div>                                            
                                         </div>
-                                        <div className="col py-3" style={{display:"flex", alignItems:"center"}}>
-                                            <AboutImage image={'9f0acac7e6440c82160ba1d8ff888bf223.png'} name={'D&D logo'}/>
+                                        <div className="col py-3 hidden-before-992">
+                                            <div style={{display:"flex", alignItems:"center", height:'100%'}}>
+                                                <AboutImage image={'9f0acac7e6440c82160ba1d8ff888bf223.png'} name={'D&D logo'}/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col my-2">
+                                    <hr/>
+                                    <div className="hidden-from-992">
+                                        <AboutImage image={'5d0910ef6b1ec221d6fbdf65b2bc2290.png'} height={'200'} name={'bleach logo'}/>
+                                    </div>
                                     <div className="row px-2">
-                                        <div className="col py-3" style={{display:"flex", alignItems:"center"}}>
-                                            <AboutImage image={'5d0910ef6b1ec221d6fbdf65b2bc2290.png'} name={'bleach logo'}/>
+                                        <div className="col py-3 hidden-before-992">
+                                            <div style={{display:"flex", alignItems:"center", height:'100%'}}>
+                                                <AboutImage image={'5d0910ef6b1ec221d6fbdf65b2bc2290.png'} name={'bleach logo'}/>
+                                            </div>
                                         </div>
                                         <div className="col py-3" style={{display:"flex", alignItems:"center"}}>
                                             <div>
@@ -81,10 +92,13 @@ export default function Home(param) {
                                                 </p>
                                             </div>                                            
                                         </div>                                      
-                                    </div> 
-                                    <hr/> 
+                                    </div>
                                 </div>
                                 <div className="col my-2">
+                                    <hr/>
+                                    <div className="hidden-from-992">
+                                        <AboutImage image={'bleach-recap-79-09.png'} height={'200'} name={'bleach logo'}/>                                       
+                                    </div>
                                     <div className="row px-2">
                                         <div className="col py-3" style={{display:"flex", alignItems:"center"}}>
                                             <div>
@@ -94,8 +108,10 @@ export default function Home(param) {
                                                 </p>
                                             </div>
                                         </div>  
-                                        <div className="col py-3" style={{display:"flex", alignItems:"center"}}>
-                                            <AboutImage image={'bleach-recap-79-09.png'} name={'bleach logo'}/>
+                                        <div className="col py-3 hidden-before-992" >
+                                            <div style={{display:"flex", alignItems:"center", height:'100%'}}>
+                                                <AboutImage image={'bleach-recap-79-09.png'} name={'bleach logo'}/>
+                                            </div>
                                         </div>
                                     </div> 
                                 </div>

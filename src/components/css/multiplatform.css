@@ -1,3 +1,46 @@
+@media (min-width: 1200px) {
+    .hidden-from-1200 {
+        display: none;
+    }
+}
+@media (max-width: 1200px) {
+    .hidden-before-1200 {
+        display: none;
+    }
+}
+@media (min-width: 992px) {
+    .hidden-from-992 {
+        display: none;
+    }
+}
+@media (max-width: 992px) {
+    .hidden-before-992 {
+        display: none;
+    }
+}
+@media (min-width: 768px) {
+    .hidden-from-768 {
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    .hidden-before-768 {
+        display: none;
+    }
+}
+@media (min-width: 576px) {
+    .hidden-from-576 {
+        display: none;
+    }
+}
+@media (max-width: 576px) {
+    .hidden-before-576 {
+        display: none;
+    }
+}
+
+
+
 @media (min-width: 992px) {
     /* ------------------------------------------------ footer-block start*/
     .parting-words-col {
