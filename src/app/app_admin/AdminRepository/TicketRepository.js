@@ -7,10 +7,10 @@ select t.id,
        substring(coalesce(tr.race_name, tc.class_name), 0, instr(coalesce(tr.race_name, tc.class_name), '[')) as ticket_name
   from c_ticket t
        left join c_ticket_type tt on tt.id = t.ticket_type
-       left join c_ticket_record_race tr on tr.id = t.ticket_record_id
-            and tt.name = 'race'
-       left join c_ticket_record_class tc on tc.id = t.ticket_record_id
-            and tt.name = 'class'
+       left join c_case_record_race tr on tr.id = t.ticket_record_id
+            and tt.name = 'case_race'
+       left join c_case_record_class tc on tc.id = t.ticket_record_id
+            and tt.name = 'case_class'
  where t.show = 1
  order by t.id desc            
     `;

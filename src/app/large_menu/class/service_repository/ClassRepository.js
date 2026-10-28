@@ -6,8 +6,8 @@ select tr.id,
        tr.class_latin_name
   from c_ticket t
        inner join c_ticket_type tt on tt.id = t.ticket_type
-            and tt.name = 'class'
-       left join c_ticket_record_class tr on tr.id = t.ticket_record_id
+            and tt.name = 'case_class'
+       left join c_case_record_class tr on tr.id = t.ticket_record_id
  where t.show = 1
     `;
     
@@ -45,11 +45,11 @@ export const getClassContentData = (class_name = 'Shinigami') => {
                end as value,
                te.extra_id as spoiler_id
                --
-          from c_ticket_menu tm
+          from c_case_menu tm
                inner join c_ticket t on t.id = tm.ticket_id
                inner join c_ticket_type type on type.id = t.ticket_type
-                     and type.name = 'class'
-               inner join c_ticket_record_class ct on ct.menu_id = tm.id
+                     and type.name = 'case_class'
+               inner join c_case_record_class ct on ct.menu_id = tm.id
                inner join c_ticket_element te on te.ticket_id = ct.ticket_id
                 left join c_ticket_element_type te_type on te_type.id = te.type
                --
@@ -83,8 +83,8 @@ export const getClassContent = (class_name = 'Shinigami') => {
                rc.equipment,
                rc.archetype_name,
                rc.archetype_description
-          from c_ticket_menu tm
-               inner join c_ticket_record_class rc on rc.menu_id = tm.id
+          from c_case_menu tm
+               inner join c_case_record_class rc on rc.menu_id = tm.id
          where tm.latin_name = '${class_name}'
     `;
     return db.prepare(sql).all()[0];
@@ -95,9 +95,9 @@ export const getClassMenuGroupContent = () => {
         select mg.id,
                mg.ticket_type,
                mg.name
-          from c_ticket_menu_group mg
+          from c_case_menu_group mg
                inner join c_ticket_type type on type.id = mg.ticket_type
-                          and type.name = 'class'
+                          and type.name = 'case_class'
          order by mg.id
     `;
     return db.prepare(sql).all();
@@ -111,8 +111,8 @@ export const getClassMenuContent = (group_id = 1) => {
                tm.latin_name,
                tm.logo,
                menu.link || tm.link as link
-          from c_ticket_menu tm
-               left join c_ticket_menu_group menu_group on menu_group.id = tm.group_id
+          from c_case_menu tm
+               left join c_case_menu_group menu_group on menu_group.id = tm.group_id
                left join c_menu menu on menu.id = menu_group.menu_id
                
          where menu_group.id = ${group_id}

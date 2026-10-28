@@ -7,8 +7,8 @@ select tr.id,
        tr.race_short_name
   from c_ticket t
        inner join c_ticket_type tt on tt.id = t.ticket_type
-            and tt.name = 'race'
-       left join c_ticket_record_race tr on tr.id = t.ticket_record_id
+            and tt.name = 'case_race'
+       left join c_case_record_race tr on tr.id = t.ticket_record_id
  where t.show = 1
     `;
     
@@ -27,9 +27,9 @@ export const getRaceMenuGroupContent = () => {
         select mg.id,
                mg.ticket_type,
                mg.name
-          from c_ticket_menu_group mg
+          from c_case_menu_group mg
                inner join c_ticket_type type on type.id = mg.ticket_type
-                          and type.name = 'race'
+                          and type.name = 'case_race'
          order by mg.id
     `;
     return db.prepare(sql).all();
@@ -45,8 +45,8 @@ export const getRaceMenuContent = (group_id = 1) => {
                concat_ws('', menu.link, tm.link) as link,
                t.show
           from c_ticket t
-               inner join c_ticket_menu tm on tm.ticket_id = t.id
-               inner join c_ticket_menu_group tmg on tmg.id = tm.group_id
+               inner join c_case_menu tm on tm.ticket_id = t.id
+               inner join c_case_menu_group tmg on tmg.id = tm.group_id
                      and tmg.id = ${group_id}
                 left join c_menu menu on menu.id = tmg.menu_id
          where t.show = 1
@@ -64,8 +64,8 @@ export const getRaceContent = (race_name = 'Gecon') => {
                rr.comment_author,
                rr.comment_author_rank,
                rr.preview_content
-          from c_ticket_menu tm
-               inner join c_ticket_record_race rr on rr.menu_id = tm.id
+          from c_case_menu tm
+               inner join c_case_record_race rr on rr.menu_id = tm.id
          where tm.latin_name = '${race_name}'
     `;
     return db.prepare(sql).all()[0];
@@ -86,11 +86,11 @@ export const getRaceContentData = (race_name = 'Gecon') => {
                ) as requirements,
                te.value,
                te.extra_id as spoiler_id
-          from c_ticket_menu tm
-               inner join c_ticket_menu_group mg on mg.id = tm.group_id
+          from c_case_menu tm
+               inner join c_case_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type
-                     and type.name = 'race'
-               inner join c_ticket_record_race rr on rr.menu_id = tm.id
+                     and type.name = 'case_race'
+               inner join c_case_record_race rr on rr.menu_id = tm.id
                inner join c_ticket_element te on te.ticket_id = rr.ticket_id
                 left join c_ticket_element_type te_type on te_type.id = te.type
             

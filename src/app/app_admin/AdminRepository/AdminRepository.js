@@ -2,7 +2,7 @@ import db from '../../../lib/ControllerDB/db_connection';
 
 export const insertTicketGroup = (data) => {
     const sql = `
-        insert into c_ticket_menu(
+        insert into c_case_menu(
             group_id,
             name,
             latin_name,
@@ -20,11 +20,11 @@ export const insertTicketGroup = (data) => {
     return true;
 };
 
-export const getTicketMenuGroup = (ticket_type = 'class') => {
+export const getTicketMenuGroup = (ticket_type = 'case_class') => {
     const sql = `
         select mg.id,
                mg.name
-          from c_ticket_menu_group mg 
+          from c_case_menu_group mg 
                left join c_ticket_type type on type.id = mg.ticket_type
          where type.name = '${ticket_type}'
     `;
@@ -33,7 +33,7 @@ export const getTicketMenuGroup = (ticket_type = 'class') => {
 
 export const insertParam = (data) => {
     const sql = `
-        insert into c_armament_ab_filter_item (
+        insert into c_buckwheat_filter_item (
             filter,
             name,
             value
@@ -53,7 +53,7 @@ export const getParamType = () => {
                c.ord + 1 as ord,
                c.translate as name,
                c.name as latin_name
-          from c_armament_ab_filter c
+          from c_buckwheat_filter c
          where c.ord not null
          order by c.ord
     `;
@@ -68,7 +68,7 @@ export const getLastParam = () => {
                    p.name,
                    p.value,
                    p.logo
-              from c_armament_ab_filter_item p
+              from c_buckwheat_filter_item p
              order by p.id desc
              limit 1
         ),
@@ -129,14 +129,14 @@ export const getLastAbilityParam = (param_name = 'type') => {
                    end as val
                    
               from (select '${param_name}' as name) p 
-                   left join c_armament_ab ab on true                     
-                   left join c_armament_ab_filter_item ptype on ptype.id = ab.type
-                   left join c_armament_ab_filter_item pcost on pcost.id = ab.cost
-                   left join c_armament_ab_filter_item phd on phd.id = ab.hd_hollow
-                   left join c_armament_ab_filter_item pkind on pkind.id = ab.kind
-                   left join c_armament_ab_filter_item pc_time on pc_time.id = ab.casting_time
-                   left join c_armament_ab_filter_item prange on prange.id = ab.range
-                   left join c_armament_ab_filter_item precharge on precharge.id = ab.recharge
+                   left join c_buckwheat_record_armament_ab ab on true                     
+                   left join c_buckwheat_filter_item ptype on ptype.id = ab.type
+                   left join c_buckwheat_filter_item pcost on pcost.id = ab.cost
+                   left join c_buckwheat_filter_item phd on phd.id = ab.hd_hollow
+                   left join c_buckwheat_filter_item pkind on pkind.id = ab.kind
+                   left join c_buckwheat_filter_item pc_time on pc_time.id = ab.casting_time
+                   left join c_buckwheat_filter_item prange on prange.id = ab.range
+                   left join c_buckwheat_filter_item precharge on precharge.id = ab.recharge
         ),
 
         t_all as (
@@ -162,10 +162,10 @@ export const getParamListByType = (type_id = 1) => {
     const sql = `
         select item.id,
                concat_ws(' ',
-                    (select '(' || ft.short_translate || ')' from c_armament_ab_filter ft where ft.id = item.parent),
+                    (select '(' || ft.short_translate || ')' from c_buckwheat_filter ft where ft.id = item.parent),
                     item.name
                ) as name
-          from c_armament_ab_filter_item item
+          from c_buckwheat_filter_item item
          where 1 = 1
                and item.filter = ${type_id}
                and item.value <> 'discard'
@@ -195,7 +195,7 @@ export const getAdditionalParamList = (group_id = 1) => {
                             item.id,
                             item.value,
                             item.name
-                       from c_armament_ab_filter_item item
+                       from c_buckwheat_filter_item item
                       where 1=1
                             and item.filter = 6
                             and item.value <> 'discard'
@@ -210,7 +210,7 @@ export const getAdditionalParamList = (group_id = 1) => {
                             item.id,
                             item.value,
                             item.name
-                       from c_armament_ab_filter_item item
+                       from c_buckwheat_filter_item item
                       where 1=1
                             and item.filter = 7
                             and item.value <> 'discard'
@@ -246,11 +246,11 @@ export const getAdditionalGroupList = () => {
 
 export const getArmamentInfo = () => {
     const sql = `
-        select (select count(t.id) as val from c_armament_ab t) as ab_length,
+        select (select count(t.id) as val from c_buckwheat_record_armament_ab t) as ab_length,
                ab.name,
                item.name as type_name
-          from c_armament_ab ab
-               left join c_armament_ab_filter_item item on item.id = ab.type
+          from c_buckwheat_record_armament_ab ab
+               left join c_buckwheat_filter_item item on item.id = ab.type
          where ab.show = 1
          order by ab.id desc
          limit 1
@@ -306,7 +306,7 @@ const set_armament_ability = (data, list) => {
     var dt = data.get('data').replace(/'/g, "''");
 
     const sql = `
-insert into c_armament_ab(
+insert into c_buckwheat_record_armament_ab(
        type,       
        cost,
        hd_hollow,
@@ -341,7 +341,7 @@ select ${!data.get('type') ? null : data.get('type')} as type,
        ${!data.get('data') ? null : "'" + dt + "'"} as data,
 
        (select string_agg(item.id, ',') as val
-              from c_armament_ab_filter_item item
+              from c_buckwheat_filter_item item
              where 1=1
                    and item.filter = 7
                    and item.value <> 'discard'
@@ -367,7 +367,7 @@ select ${!data.get('type') ? null : data.get('type')} as type,
        ) as duration,
 
        (select string_agg(item.id, ',') as val
-              from c_armament_ab_filter_item item
+              from c_buckwheat_filter_item item
              where 1=1
                    and item.filter = 6
                    and item.value <> 'discard'
@@ -399,7 +399,7 @@ const update_armament_ability = (data, list) => {
     var dt = data.get('data').replace(/'/g, "''");
 
     const sql = `
-update c_armament_ab
+update c_buckwheat_record_armament_ab
    set 
        material_data = ${!data.get('material_data') ? null : "'" + md + "'"},
        name = ${!data.get('name') ? null : "'" + name + "'"},
@@ -417,7 +417,7 @@ update c_armament_ab
        edited = 1,
        duration = (
             select string_agg(item.id, ',') as val
-              from c_armament_ab_filter_item item
+              from c_buckwheat_filter_item item
              where 1=1
                    and item.filter = 7
                    and item.value <> 'discard'
@@ -443,7 +443,7 @@ update c_armament_ab
        ),
 
        components = (select string_agg(item.id, ',') as val
-              from c_armament_ab_filter_item item
+              from c_buckwheat_filter_item item
              where 1=1
                    and item.filter = 6
                    and item.value <> 'discard'
@@ -472,7 +472,7 @@ select ab.id,
        ab.edited,
        substring(ab.name, instr(ab.name, '[') + 1, instr(ab.name, ']') - (instr(ab.name, '[') + 1)) as latin_name
  
-  from c_armament_ab ab
+  from c_buckwheat_record_armament_ab ab
  where ab.show = 1
  order by ab.id desc
 `;
@@ -500,7 +500,7 @@ select ab.id as armament_id,
        ab.components,
        ab.duration
  
-  from c_armament_ab ab
+  from c_buckwheat_record_armament_ab ab
  where ab.id = ${id}
 `;
     return db.prepare(sql).all();

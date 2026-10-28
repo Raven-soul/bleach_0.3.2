@@ -96,11 +96,11 @@ export const getClassSpoilers = (class_name = 'Shinigami') => {
                coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = sp.id limit 1), 0) as spoiler_list_exist,
                sp_type.name as type_name
 
-          from c_ticket_menu tm
+          from c_case_menu tm
                inner join c_ticket t on t.id = tm.ticket_id
                inner join c_ticket_type type on type.id = t.ticket_type
-                     and type.name = 'class'
-               inner join c_ticket_record_class ct on ct.menu_id = tm.id
+                     and type.name = 'case_class'
+               inner join c_case_record_class ct on ct.menu_id = tm.id
                inner join c_spoiler sp on sp.ticket_id = ct.ticket_id
                 left join c_spoiler_type sp_type on sp_type.id = sp.spoiler_type
                
@@ -126,11 +126,11 @@ select cs.id,
        cs.hide_description,
        case when cs.filter_list notnull then 1 else 0 end as filter_exist,
        coalesce((select 1 from c_spoiler_element sel where sel.spoiler_id = cs.id limit 1), 0) as spoiler_list_exist
-  from c_ticket_menu tm
+  from c_case_menu tm
        inner join c_ticket ct on ct.id = tm.ticket_id
              and ct.show = 1
        inner join c_ticket_type tt on tt.id = ct.ticket_type
-             and tt.name = 'race'             
+             and tt.name = 'case_race'             
        inner join c_spoiler cs on cs.ticket_id = ct.id
         left join c_spoiler_type sp_type on sp_type.id = cs.spoiler_type
         

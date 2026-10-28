@@ -3,7 +3,7 @@ import db from '@/lib/ControllerDB/db_connection';
 export const getArmamentFilterList = () => {
     const sql = `
 select *
-  from c_armament_ab_filter ft
+  from c_buckwheat_filter ft
  where ft.show = 1
 `;
     return db.prepare(sql).all();
@@ -17,13 +17,13 @@ select case when item.value = 'discard'
        end as id,
        item.filter,
        case when item.parent not null 
-            then (select '(' || ft.short_translate || ') ' from c_armament_ab_filter ft where ft.id = item.parent) || item.name
+            then (select '(' || ft.short_translate || ') ' from c_buckwheat_filter ft where ft.id = item.parent) || item.name
             else item.name
         end as name,
        item.value,
        item.logo
-  from c_armament_ab_filter filter
-       inner join c_armament_ab_filter_item item on item.filter = filter.id
+  from c_buckwheat_filter filter
+       inner join c_buckwheat_filter_item item on item.filter = filter.id
  where 1=1
        and filter.id = ${filter_id}    
        and item.show = 1
@@ -43,9 +43,9 @@ select item.id,
        item.logo,
        item.description,
        filter.name as filter_name
-  from c_armament_ab_filter filter
-       inner join c_armament_ab_filter_item item on item.filter = filter.id
-       left join (select ft.name, ft.id from c_armament_ab_filter ft) as parent on parent.id = item.parent
+  from c_buckwheat_filter filter
+       inner join c_buckwheat_filter_item item on item.filter = filter.id
+       left join (select ft.name, ft.id from c_buckwheat_filter ft) as parent on parent.id = item.parent
  where 1=1 
        and (filter.name = 'type' or 
             filter.name = 'info' or
@@ -63,7 +63,7 @@ with components as (
            item.name,
            item.value,
            item.ord
-      from c_armament_ab_filter_item item
+      from c_buckwheat_filter_item item
      where 1=1 
            and item.filter = 6
            and item.value <> 'discard'
@@ -107,11 +107,11 @@ select ab.id,
        
        coalesce(kind.logo, 'null') as kind_value_logo
        
-  from c_armament_ab ab
-       left join c_armament_ab_type ab_type on ab_type.id = ab.ability_type
-       left join c_armament_ab_filter_item type on type.id = ab.type
-       left join c_armament_ab_filter_item cost on cost.id = ab.cost
-       left join c_armament_ab_filter_item kind on kind.id = ab.kind
+  from c_buckwheat_record_armament_ab ab
+       left join c_buckwheat_type ab_type on ab_type.id = ab.ability_type
+       left join c_buckwheat_filter_item type on type.id = ab.type
+       left join c_buckwheat_filter_item cost on cost.id = ab.cost
+       left join c_buckwheat_filter_item kind on kind.id = ab.kind
  where 1 = 1
        and ab.show = 1
        and ab_type.synonim = 'ability'
@@ -133,7 +133,7 @@ with armament_data as (
                ab.recharge,
                ab.components,
                ab.duration
-          from c_armament_ab ab 
+          from c_buckwheat_record_armament_ab ab 
          where ab.id = ${armament_id}
 ),
     
@@ -160,8 +160,8 @@ union all
 -- так я избегаю ошибок в названиях и могу разграничить данные фильтров для спасобностей
 select filter.name,
        coalesce(item.id, 'null') as value
-  from c_armament_ab_filter filter
-       left join c_armament_ab_filter_item item on item.filter = filter.id
+  from c_buckwheat_filter filter
+       left join c_buckwheat_filter_item item on item.filter = filter.id
                  and item.value <> 'discard'
                  and item.id in (select * from non_bool_props)
  where filter.item_type <> 'bool'
@@ -170,14 +170,14 @@ union all
 
 select filter.name,
        coalesce((select components from armament_data), 'null') as value
-  from c_armament_ab_filter filter
+  from c_buckwheat_filter filter
  where filter.id = 6
  
 union all
 
 select filter.name,
        coalesce((select duration from armament_data), 'null') as value
-  from c_armament_ab_filter filter
+  from c_buckwheat_filter filter
  where filter.id = 7
     `;
 
@@ -207,7 +207,7 @@ export const getArmamentIdList = () => {
 select ab.id,
        ab.name as ab_name
        
-  from c_armament_ab ab
+  from c_buckwheat_record_armament_ab ab
  where ab.show = 1
     `;
     
@@ -228,7 +228,7 @@ with components as (
            item.name,
            item.value,
            item.ord
-      from c_armament_ab_filter_item item
+      from c_buckwheat_filter_item item
      where 1=1 
            and item.filter = 6
            and item.value <> 'discard'
@@ -240,7 +240,7 @@ durations as (
            item.name,
            item.value,
            item.ord
-      from c_armament_ab_filter_item item
+      from c_buckwheat_filter_item item
      where 1=1 
            and item.filter = 7
            and item.value <> 'discard'
@@ -309,14 +309,14 @@ select ab.id,
        ab.data,
        '<ul>' || ab.translate || '</ul>' as translate
        
-  from c_armament_ab ab
-       left join c_armament_ab_filter_item type on type.id = ab.type
-       left join c_armament_ab_filter_item hd on hd.id = ab.hd_hollow
-       left join c_armament_ab_filter_item cost on cost.id = ab.cost
-       left join c_armament_ab_filter_item kind on kind.id = ab.kind
-       left join c_armament_ab_filter_item distance on distance.id = ab.range
-       left join c_armament_ab_filter_item cast_time on cast_time.id = ab.casting_time
-       left join c_armament_ab_filter_item recharge on recharge.id = ab.recharge
+  from c_buckwheat_record_armament_ab ab
+       left join c_buckwheat_filter_item type on type.id = ab.type
+       left join c_buckwheat_filter_item hd on hd.id = ab.hd_hollow
+       left join c_buckwheat_filter_item cost on cost.id = ab.cost
+       left join c_buckwheat_filter_item kind on kind.id = ab.kind
+       left join c_buckwheat_filter_item distance on distance.id = ab.range
+       left join c_buckwheat_filter_item cast_time on cast_time.id = ab.casting_time
+       left join c_buckwheat_filter_item recharge on recharge.id = ab.recharge
 
  where 1 = 1
        and ab.show = 1

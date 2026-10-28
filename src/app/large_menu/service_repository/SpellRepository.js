@@ -8,7 +8,7 @@ with components as (
            item.name,
            item.value,
            item.ord
-      from c_armament_ab_filter_item item
+      from c_buckwheat_filter_item item
      where 1=1 
            and item.filter = 6
            and item.value <> 'discard'
@@ -20,7 +20,7 @@ durations as (
            item.name,
            item.value,
            item.ord
-      from c_armament_ab_filter_item item
+      from c_buckwheat_filter_item item
      where 1=1 
            and item.filter = 7
            and item.value <> 'discard'
@@ -89,13 +89,13 @@ select ab.id,
   from c_ticket_element te
        inner join c_ticket_element_type te_type on te_type.id = te.type
              and te_type.synonim = 'spell_block'
-        left join c_armament_ab ab on ab.id = te.extra_id
-        left join c_armament_ab_filter_item type on type.id = ab.type
-        left join c_armament_ab_filter_item cost on cost.id = ab.cost
-        left join c_armament_ab_filter_item kind on kind.id = ab.kind
-        left join c_armament_ab_filter_item distance on distance.id = ab.range
-        left join c_armament_ab_filter_item cast_time on cast_time.id = ab.casting_time
-        left join c_armament_ab_filter_item recharge on recharge.id = ab.recharge
+        left join c_buckwheat_record_armament_ab ab on ab.id = te.extra_id
+        left join c_buckwheat_filter_item type on type.id = ab.type
+        left join c_buckwheat_filter_item cost on cost.id = ab.cost
+        left join c_buckwheat_filter_item kind on kind.id = ab.kind
+        left join c_buckwheat_filter_item distance on distance.id = ab.range
+        left join c_buckwheat_filter_item cast_time on cast_time.id = ab.casting_time
+        left join c_buckwheat_filter_item recharge on recharge.id = ab.recharge
 
  where 1 = 1
        and ab.show = 1
