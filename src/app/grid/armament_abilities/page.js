@@ -59,8 +59,7 @@ export default async function Page({ params }) {
                                             </div>
                                             <div className="col">
                                                 <ArmamentAbilitiesGridList abilitiesList={armamentGridList}/>                                                                                                                 
-                                            </div>
-                                            
+                                            </div>                                            
                                         </div>                                                      
                                     </div>
                                 </div>

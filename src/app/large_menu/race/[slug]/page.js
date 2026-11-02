@@ -5,7 +5,7 @@ import { Gallary } from '@/components/page_part/service_server/gallary';
 
 import { getRaceContent, getRaceContentData, getRaceSlagList } from './../service_repository/RaceRepository';
 import { getRaceSpoilers, getSpoilerContent } from './../../service_repository/SpoilerRepository';
-import { getContentSpell } from './../../service_repository/SpellRepository';
+import { getSpell, getSpellContent } from './../../service_repository/SpellRepository';
 
 import { AnchorMenu } from '../../service_user/AnchorMenu';
 import { SpoilerBlock, SpoilerElement } from '../../service_user/BlockSpoiler';
@@ -27,7 +27,8 @@ export default async function Page({ params }) {
         for(let i = 0; i < raceElement.ContentData.length; i++){
             switch(raceElement.ContentData[i].type_name) {
                 case 'spell_block':
-                    raceElement.ContentData[i]['Spell'] = getContentSpell(raceElement.ContentData[i].id);
+                    raceElement.ContentData[i]['Spell'] = getSpell(raceElement.ContentData[i].id);
+                    raceElement.ContentData[i].Spell['Content'] = getSpellContent(raceElement.ContentData[i].Spell.id);
                     break;
             }
         }

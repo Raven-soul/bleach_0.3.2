@@ -8,7 +8,7 @@ export function SpellBlock({spell}){
     return (
         <div className="spell-card">
             <div className="name">
-                <span>{spell.ab_name}</span>
+                <span>{spell.name}</span>
             </div>
             <div className="info">
                 <p>
@@ -37,7 +37,11 @@ export function SpellBlock({spell}){
                 </p>
             </div>
             <div className="content">
-                <div dangerouslySetInnerHTML={{ __html: spell.translate }}></div>
+                {spell.Content.map((content)=>{
+                    return(
+                        <div dangerouslySetInnerHTML={{ __html: content.value }}></div>
+                    )
+                })}                
             </div>
         </div>
     )
