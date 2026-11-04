@@ -85,7 +85,7 @@ export const getRaceContentData = (race_name = 'Gecon') => {
                     te.requirements
                ) as requirements,
                te.value,
-               te.extra_id as spoiler_id
+               te.extra_id
           from c_case_menu tm
                inner join c_case_menu_group mg on mg.id = tm.group_id
                inner join c_ticket_type type on type.id = mg.ticket_type

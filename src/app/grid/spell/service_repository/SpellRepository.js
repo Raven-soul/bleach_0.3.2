@@ -4,20 +4,20 @@ export const getFilterList = (synonim = 'spell') => {
      // вывожу все доступные фильтры для этой карточки
     const sql = `
 select ft.id,
+       ft.code,
        ft.name,
-       ft.translate,
-       ft.short_translate,
+       ft.short_name,
        ft.item_type,
-       ft.ord,
+       ft.form_order,
        ft.show
-  from (select value as name --список фильтров, которые выданы на карточку
+  from (select value --список фильтров, которые выданы на карточку
           from json_each((
                         select json(concat('["', replace(tp.filters, ',', '","'), '"]'))
                           from c_buckwheat_type tp
                          where tp.synonim = ${synonim}
                     ))
        ) fl
-       inner join c_buckwheat_filter ft on ft.name = fl.name
+       inner join c_buckwheat_filter ft on ft.code = fl.value
              and ft.show = 1
      `;
     return db.prepare(sql).all();
@@ -30,31 +30,73 @@ with filter as (
     select cast(${spell_id} as integer) as spell_id
 )
 --
-, filter_list as (
-    select value as name --список фильтров, которые выданы на карточку
+, filter_list as ( 
+    -- список фильтров, которые выданы на карточку
+    -- спрашиваю о разрешении использовать фильтры, значени ене учитывается
+    select bf.id,
+           bf.code,
+           bf.name 
       from json_each((
                     select json(concat('["', replace(tp.filters, ',', '","'), '"]'))
                       from filter ft 
                            left join c_buckwheat_record_spell spell on spell.id = ft.spell_id
                            left join c_buckwheat_type tp on tp.id = spell.buckwheat_type
-                ))
+           )) t
+           left join c_buckwheat_filter bf on bf.code = t.value                
 )
 --
-select ft_val.name as code,
-       ft.translate as text,
-       coalesce(ft_item.name, 'Нет') as value
-  from (select fl.name,
-               json_extract(json(filter_values.filters), '$.' || fl.name) as val
-          from filter_list fl
-               left join (
-                        select concat('{', spell.filters, '}') as filters
-                          from filter ft
-                               left join c_buckwheat_record_spell spell on spell.id = ft.spell_id
-                    ) filter_values on true
-       ) ft_val
-       left join c_buckwheat_filter ft on ft.name = ft_val.name
-       left join c_buckwheat_filter_item ft_item on ft_item.filter = ft.id
-            and case when ft_val.val notnull then ft_item.id = ft_val.val else 1<>1 end    
+, spell_filters as ( 
+    -- список фильтров, которые выданы на заклинание
+    -- получаю значения фильтров выданых на заклинание, разрешение не учитывается
+    select t.key,
+           t.value
+      from json_each((
+             select concat('{', spell.filters, '}') as filters
+               from filter ft
+                    left join c_buckwheat_record_spell spell on spell.id = ft.spell_id
+           )) t
+)
+--
+, ft_values as (
+    select sf.key,
+           '' as short_list,
+           (select string_agg(ft_item.name, ', ') as v
+              from json_each(concat('[', sf.value, ']')) t
+                   left join c_buckwheat_filter_item ft_item on ft_item.id = t.value
+           ) as list 
+      from spell_filters sf
+     where sf.key <> 'components'
+      
+     union all
+
+    select 'components' as key,
+           string_agg(case when t.value isnull then '.' else components.short_name end, '') as short_list,
+           string_agg(case when t.value notnull then components.name end, ', ') as list
+      from (select ft_item.id,
+                   substring(ft_item.name, 1, 1) as short_name,
+                   ft_item.name
+              from c_buckwheat_filter ft
+                   left join c_buckwheat_filter_item ft_item on ft_item.filter = ft.id
+                        and ft_item.value <> 'discard'
+             where ft.name = 'components'
+             order by ft_item.ord
+            ) components
+            left join json_each((
+                        select concat('[', sf.value, ']')
+                          from spell_filters sf 
+                         where sf.key = 'components'
+                 )) t on cast(t.value as integer) = components.id
+)
+--
+select fl.id,
+       fl.name as code,
+       fl.translate as name,
+       sf.value,
+       ft_v.short_list,
+       ft_v.list
+  from filter_list fl
+       left join spell_filters sf on sf.key = fl.name
+       left join ft_values ft_v on ft_v.key = fl.name
      `;
      return db.prepare(sql).all();
 };

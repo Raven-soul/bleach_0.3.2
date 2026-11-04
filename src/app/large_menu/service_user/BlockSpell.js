@@ -11,26 +11,14 @@ export function SpellBlock({spell}){
                 <span>{spell.name}</span>
             </div>
             <div className="info">
-                <p>
-                    <span className="param">Время накладывания: </span>
-                    <span className="value">{spell.cast_time_name}</span>
-                </p>
-                <p>
-                    <span className="param">Дистанция: </span>
-                    <span className="value">{spell.distance_name}</span>
-                </p>
-                <p>
-                    <span className="param">Компоненты: </span>
-                    <span className="value">{spell.components}</span>
-                </p>
-                <p>
-                    <span className="param">Длительность: </span>
-                    <span className="value">{spell.durations}</span>
-                </p>
-                <p>
-                    <span className="param">Перезарядка: </span>
-                    <span className="value">{(spell.recharge_name == null)? 'Нет': spell.recharge_name}</span>
-                </p>
+                {spell.Filters.map((filter)=>{
+                    return (
+                        <p key={filter.id + '_' + filter.code}>
+                            <span className="param">{filter.name}: </span>
+                            <span className="value">{filter.list}</span>
+                        </p>
+                    )
+                })}
                 <p>
                     <span className="param">Требования: </span>
                     <span className="value">{(spell.requirements == null)? 'Нет': spell.requirements}</span>
@@ -39,7 +27,7 @@ export function SpellBlock({spell}){
             <div className="content">
                 {spell.Content.map((content)=>{
                     return(
-                        <div dangerouslySetInnerHTML={{ __html: content.value }}></div>
+                        <div key={'ticket_element_' + content.id} dangerouslySetInnerHTML={{ __html: content.value }}></div>
                     )
                 })}                
             </div>

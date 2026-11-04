@@ -3,7 +3,7 @@ import db from '@/lib/ControllerDB/db_connection';
 export const getArmamentFilterList = () => {
     const sql = `
 select *
-  from c_buckwheat_filter ft
+  from c_buckwheat_filter_old ft
  where ft.show = 1
 `;
     return db.prepare(sql).all();
@@ -17,12 +17,12 @@ select case when item.value = 'discard'
        end as id,
        item.filter,
        case when item.parent not null 
-            then (select '(' || ft.short_translate || ') ' from c_buckwheat_filter ft where ft.id = item.parent) || item.name
+            then (select '(' || ft.short_translate || ') ' from c_buckwheat_filter_old ft where ft.id = item.parent) || item.name
             else item.name
         end as name,
        item.value,
        item.logo
-  from c_buckwheat_filter filter
+  from c_buckwheat_filter_old filter
        inner join c_buckwheat_filter_item item on item.filter = filter.id
  where 1=1
        and filter.id = ${filter_id}    
@@ -43,9 +43,9 @@ select item.id,
        item.logo,
        item.description,
        filter.name as filter_name
-  from c_buckwheat_filter filter
+  from c_buckwheat_filter_old filter
        inner join c_buckwheat_filter_item item on item.filter = filter.id
-       left join (select ft.name, ft.id from c_buckwheat_filter ft) as parent on parent.id = item.parent
+       left join (select ft.name, ft.id from c_buckwheat_filter_old ft) as parent on parent.id = item.parent
  where 1=1 
        and (filter.name = 'type' or 
             filter.name = 'info' or
@@ -160,7 +160,7 @@ union all
 -- так я избегаю ошибок в названиях и могу разграничить данные фильтров для спасобностей
 select filter.name,
        coalesce(item.id, 'null') as value
-  from c_buckwheat_filter filter
+  from c_buckwheat_filter_old filter
        left join c_buckwheat_filter_item item on item.filter = filter.id
                  and item.value <> 'discard'
                  and item.id in (select * from non_bool_props)
@@ -170,14 +170,14 @@ union all
 
 select filter.name,
        coalesce((select components from armament_data), 'null') as value
-  from c_buckwheat_filter filter
+  from c_buckwheat_filter_old filter
  where filter.id = 6
  
 union all
 
 select filter.name,
        coalesce((select duration from armament_data), 'null') as value
-  from c_buckwheat_filter filter
+  from c_buckwheat_filter_old filter
  where filter.id = 7
     `;
 

@@ -53,7 +53,7 @@ export const getParamType = () => {
                c.ord + 1 as ord,
                c.translate as name,
                c.name as latin_name
-          from c_buckwheat_filter c
+          from c_buckwheat_filter_old c
          where c.ord not null
          order by c.ord
     `;
@@ -162,7 +162,7 @@ export const getParamListByType = (type_id = 1) => {
     const sql = `
         select item.id,
                concat_ws(' ',
-                    (select '(' || ft.short_translate || ')' from c_buckwheat_filter ft where ft.id = item.parent),
+                    (select '(' || ft.short_translate || ')' from c_buckwheat_filter_old ft where ft.id = item.parent),
                     item.name
                ) as name
           from c_buckwheat_filter_item item
