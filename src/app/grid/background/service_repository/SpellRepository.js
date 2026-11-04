@@ -58,7 +58,7 @@ select ab.id,
        left join c_buckwheat_filter_item kind on kind.id = ab.kind
  where 1 = 1
        and ab.show = 1
-       and ab_type.synonim = 'ability'
+       and ab_type.synonim = 'spell'
  order by type_order, kind_order, cost_order, ab.name
     `;
     return db.prepare(sql).all();
