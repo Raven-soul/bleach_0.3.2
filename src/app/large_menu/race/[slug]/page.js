@@ -5,11 +5,11 @@ import { Gallary } from '@/components/page_part/service_server/gallary';
 
 import { getRaceContent, getRaceContentData, getRaceSlagList } from './../service_repository/RaceRepository';
 import { getRaceSpoilers, getSpoilerContent } from './../../service_repository/SpoilerRepository';
-import { getSpell, getSpellFilters, getSpellContent } from './../../service_repository/SpellRepository';
+import { getKido, getKidoFilters, getKidoContent } from './../../service_repository/SpellRepository';
 
 import { AnchorMenu } from '../../service_user/AnchorMenu';
 import { SpoilerBlock, SpoilerElement } from '../../service_user/BlockSpoiler';
-import { SpellBlock } from '../../service_user/BlockSpell';
+import { KidoBlock } from '../../service_user/BlockSpell';
 
 export function generateStaticParams() {
     const pages = getRaceSlagList();
@@ -27,9 +27,9 @@ export default async function Page({ params }) {
         for(let i = 0; i < raceElement.ContentData.length; i++){
             switch(raceElement.ContentData[i].type_name) {
                 case 'spell_block':
-                    raceElement.ContentData[i]['Spell'] = getSpell(raceElement.ContentData[i].extra_id);
-                    raceElement.ContentData[i].Spell['Filters'] = getSpellFilters(raceElement.ContentData[i].Spell.id);
-                    raceElement.ContentData[i].Spell['Content'] = getSpellContent(raceElement.ContentData[i].Spell.id);
+                    raceElement.ContentData[i]['Kido'] = getKido(raceElement.ContentData[i].extra_id);
+                    raceElement.ContentData[i].Kido['Filters'] = getKidoFilters(raceElement.ContentData[i].Kido.id);
+                    raceElement.ContentData[i].Kido['Content'] = getKidoContent(raceElement.ContentData[i].Kido.id);
                     break;
             }
         }
@@ -95,7 +95,7 @@ export default async function Page({ params }) {
                                     {   
                                         return(
                                             <div style={{marginTop: '30px'}} key={'data_content_' + block.id} id={'data_content_' + block.id} className="data-content">
-                                                <SpellBlock spell={block.Spell}/>
+                                                <KidoBlock kido={block.Kido}/>
                                             </div>
                                         )
                                     }

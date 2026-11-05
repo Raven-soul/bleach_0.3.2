@@ -3,12 +3,12 @@ import template from './db_connection_template';
 
 //Template data ------------------------------------------------------------------------
 
-export const getPageTitleTemplate = (synonym = 'class') => {
+export const getPageTitleTemplate = (synonim = 'class') => {
     const sql = `
         select tt.id,
                tt.name
            from template_title tt
-           where tt.synonim = '${synonym}'
+           where tt.synonim = '${synonim}'
     `;
     return template.prepare(sql).all();
 };

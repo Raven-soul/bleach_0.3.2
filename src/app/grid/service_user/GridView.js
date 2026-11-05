@@ -1,27 +1,25 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
+
 import { PageLoad } from "@/components/page_part/service_user/Load";
+import { FormFilters } from "./FormFilters";
 
-import { 
-    getSpellGridList
-} from "./service_repository/SpellRepository";
-
-export default async function Page({ params }) {
-    let spellGridList = getSpellGridList();
-
-    //-----------------------------------------------------------------
-
+export function View({grid, filters}){
+    //let name = GetPageName(await usePathname().substring(usePathname().lastIndexOf('/') + 1));
     return (
         <div className="row-2">
             <div className="col chapter-title-mobile"></div>
             <div className="col">
-                <PageLoad page_title={"d"}/>
+                <PageLoad page_title={'d'}/>
                 <div className="row-2">
                     <div className="col">
                         <div className="filter-above-grig-oficial">
                             <p>Homebrew</p>
                         </div>
                     </div>
-                    <div className="col" hidden>
-                        filter data
+                    <div className="col">
+                        <FormFilters filters={filters}/>
                     </div>
                     <div className="col abilities-grid">
                         <div className="armament-abilities-content">

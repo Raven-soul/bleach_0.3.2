@@ -4,14 +4,14 @@ import $ from "jquery"
 import Image from 'next/image'
 import Link from 'next/link'
 
-export function SpellBlock({spell}){    
+export function KidoBlock({kido}){    
     return (
         <div className="spell-card">
             <div className="name">
-                <span>{spell.name}</span>
+                <span>{kido.name}</span>
             </div>
             <div className="info">
-                {spell.Filters.map((filter)=>{
+                {kido.Filters.map((filter)=>{
                     return (
                         <p key={filter.id + '_' + filter.code}>
                             <span className="param">{filter.name}: </span>
@@ -21,11 +21,11 @@ export function SpellBlock({spell}){
                 })}
                 <p>
                     <span className="param">Требования: </span>
-                    <span className="value">{(spell.requirements == null)? 'Нет': spell.requirements}</span>
+                    <span className="value">{(kido.requirements == null)? 'Нет': kido.requirements}</span>
                 </p>
             </div>
             <div className="content">
-                {spell.Content.map((content)=>{
+                {kido.Content.map((content)=>{
                     return(
                         <div key={'ticket_element_' + content.id} dangerouslySetInnerHTML={{ __html: content.value }}></div>
                     )

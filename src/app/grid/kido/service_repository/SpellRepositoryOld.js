@@ -1,6 +1,6 @@
 import db from '@/lib/ControllerDB/db_connection';
 
-export const getFilterList = (synonim = 'spell') => {
+export const getFilterList = (synonim = 'kido') => {
      // вывожу все доступные фильтры для этой карточки
     const sql = `
 select ft.id,
@@ -23,11 +23,11 @@ select ft.id,
     return db.prepare(sql).all();
 };
 
-export const getSpellFilters = (spell_id) => {
+export const getSpellFilters = (kido_id) => {
      // вывожу все фильтры доступные конкретному заклинанию
     const sql = `
 with filter as (
-    select cast(${spell_id} as integer) as spell_id
+    select cast(${kido_id} as integer) as kido_id
 )
 --
 , filter_list as ( 
@@ -39,8 +39,8 @@ with filter as (
       from json_each((
                     select json(concat('["', replace(tp.filters, ',', '","'), '"]'))
                       from filter ft 
-                           left join c_buckwheat_record_spell spell on spell.id = ft.spell_id
-                           left join c_buckwheat_type tp on tp.id = spell.buckwheat_type
+                           left join c_buckwheat_record_kido kido on kido.id = ft.kido_id
+                           left join c_buckwheat_type tp on tp.id = kido.buckwheat_type
            )) t
            left join c_buckwheat_filter bf on bf.code = t.value                
 )
@@ -51,9 +51,9 @@ with filter as (
     select t.key,
            t.value
       from json_each((
-             select concat('{', spell.filters, '}') as filters
+             select concat('{', kido.filters, '}') as filters
                from filter ft
-                    left join c_buckwheat_record_spell spell on spell.id = ft.spell_id
+                    left join c_buckwheat_record_kido kido on kido.id = ft.kido_id
            )) t
 )
 --
@@ -159,7 +159,7 @@ select ab.id,
        left join c_buckwheat_filter_item kind on kind.id = ab.kind
  where 1 = 1
        and ab.show = 1
-       and ab_type.synonim = 'spell'
+       and ab_type.synonim = 'kido'
  order by type_order, kind_order, cost_order, ab.name
     `;
     return db.prepare(sql).all();
