@@ -7,21 +7,6 @@ import { Icon } from '@/components/page_part/service_server/fontawesome'
 import { futer_fix } from "@/components/page_part/service_user/Load";
 
 export function FormFilters({filters}){
-    // const 
-
-    // const ResetFilters = (()=>{        
-    //     $(".filter-search-item input").val('');
-    //     $(".filter-grid-group-data-item select").prop('selectedIndex', 0); //.val('discard');
-
-    //     usingFilters();
-    //     futer_fix();
-    // })
-
-    // const CommonSearch = (()=>{
-    //     usingFilters();
-    //     futer_fix();
-    // });
-
     if(filters == null) return(<></>)
     else return (
         <div className="filter-grid-group">
@@ -41,26 +26,10 @@ export function FormFilters({filters}){
                             </div>                                                        
                         </div>
                     )
-                })}  
-                {/* {filter_list.map((element)=>{                
-                    return(
-                        <div className='filter-grid-group-data-item' key={'filter_' + element.id}>            
-                            <div className='col'>
-                                <select name={element.name} type={element.item_type} id={element.name + '_selector_id'} onChange={SetFilter} defaultValue={'all'}>
-                                    <option value='all' disabled>{element.translate}</option>
-                                    {element.content.map((item)=>{
-                                        return(
-                                            <option value={item.id} armtype={element.item_type} key={'filter_option_' + item.id}>{item.name}</option>
-                                        )
-                                    })}                        
-                                </select>
-                            </div>                                                        
-                        </div>
-                    )
-                })} */}
+                })}
                 <div className='filter-grid-group-data-item'>
                     <div className='col'>
-                        <div //onClick={ResetFilters} 
+                        <div onClick={ResetFilters} 
                             className="filter-grid-group-button">
                             <span style={{
                                 paddingLeft: "5px",
@@ -80,7 +49,7 @@ export function FormFilters({filters}){
                 <input type="text" 
                        name="username"
                        placeholder="Поиск по названию"
-                       //onChange={CommonSearch}
+                       onChange={CommonSearch}
                        >
                 </input>
             </div>                                                    
@@ -91,11 +60,89 @@ export function FormFilters({filters}){
 function SetFilter (element){
     var selector = '#' + element.target.getAttribute("id");
 
-    if($(selector + ' option:selected').val() == 'discard') {//$().prop('selectedIndex');
+    if($(selector + ' option:selected').val() == 'discard') {
         $(element.target).prop('selectedIndex', 0); 
     }
 
-    //     usingFilters();
-    //     futer_fix();
-    // 
+    // FilterSearch();
+    futer_fix(); 
+}
+
+function ResetFilters (){        
+    $(".filter-search-item input").val('');
+    $(".filter-grid-group-data-item select").prop('selectedIndex', 0);
+
+    // FilterSearch();
+    futer_fix();
+}
+
+function CommonSearch (){
+    // FilterSearch();
+    futer_fix();
+}
+
+function FilterSearch(){
+    var filterValues = [];
+
+    // беру список активных фильтров, чтобы получить их значения
+    var filterTags = $(".filter-grid-group-data-item select");
+    var searchTagValue = ($(".filter-search-item input").length > 0)? 
+        $(".filter-search-item input").val() :
+        null;
+
+    // получаю значения фильтров
+    for(var i = 0; i < filterTags.length; i++){
+        let filter = filterTags[i];
+
+        filterValues.push({
+            name : filter.getAttribute('name'),
+            type : filter.getAttribute('type'),
+            value : filter.options[filter.selectedIndex].value
+        });
+    }
+
+    // беру список способностей для фильтрации
+    var armamentItems = $(".grid-abilities-data .grid-abilities-item");
+
+    for(var j = 0; j < armamentItems.length; j++){
+        var armament = armamentItems[j];
+        var result = true;
+
+        filterValues.forEach(filter => {
+            if(filter.type == 'value'){
+                if(filter.value == 'all') {}
+                else if(armament.querySelector('div.' + filter.name).getAttribute('value') == filter.value) {}
+                else {
+                    result = false;
+                    return;
+                }
+            }
+            else {
+                var arr = armament.querySelector('div.' + filter.name).getAttribute('value').split(',');
+
+                if(filter.value == 'all') {}
+                else if(arr != null && arr.indexOf( filter.value ) != -1) {}
+                else {
+                    result = false;
+                    return;
+                }
+            }
+        });
+
+        // применение поиска (введене с клавиатуры)
+        if(searchTagValue != null && searchTagValue != ""){
+            var armament_name = armament.querySelector('div.name').getAttribute('value');
+
+            if(!armament_name.toLowerCase().includes(searchTagValue.toLowerCase())){
+                result = false;
+            }
+        }
+
+        if(result == true) { 
+            $('#' + armament.getAttribute('id')).show(); 
+        }
+        else {
+            $('#' + armament.getAttribute('id')).hide(); 
+        }
+    }
 }

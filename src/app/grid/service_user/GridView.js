@@ -5,13 +5,13 @@ import { usePathname } from 'next/navigation';
 import { PageLoad } from "@/components/page_part/service_user/Load";
 import { FormFilters } from "./FormFilters";
 
-export function View({grid, filters}){
+export function View({grid, filters, page_name}){
     //let name = GetPageName(await usePathname().substring(usePathname().lastIndexOf('/') + 1));
     return (
         <div className="row-2">
             <div className="col chapter-title-mobile"></div>
             <div className="col">
-                <PageLoad page_title={'d'}/>
+                <PageLoad page_title={page_name}/>
                 <div className="row-2">
                     <div className="col">
                         <div className="filter-above-grig-oficial">
