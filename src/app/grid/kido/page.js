@@ -1,12 +1,12 @@
 
-import { View } from "../service_user/GridView";
+import { PageView } from "../service_user/GridView";
 
 import { 
     getFilterList,
     getFilterItems
 } from "./../service_repository/FilterRepository";
 
-import { getPageName } from "./../service_repository/ServiceReposytory";
+import { getPageName } from "../../../components/page_part/service_repository/BaseReposytory";
 
 export default async function Page({ params }) {
 
@@ -19,6 +19,6 @@ export default async function Page({ params }) {
     }
 
     return (
-        <View grid={grid} filters={filters} page_name={page_name}/>
+        <PageView grid={grid} filters={filters} page_name={page_name}/>
     )
 }

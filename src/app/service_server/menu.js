@@ -5,7 +5,7 @@ export async function MenuTemplateList() {
     let selections = await getMenuSectionlist();    
     let template_list = await getMenuTemplate();
     let hide_section = template_list[2].value;
-    let chevrone = template_list[3].value;
+    let chevrone = template_list[3].value;    
 
     for(let i = 0; i < selections.length; i++){
         selections[i]["content"] = await getMenuContent(selections[i].id);

@@ -42,7 +42,10 @@ export const getMenuSectionlist = () => {
                cmg.name,
                cmg.show
           from c_menu_group cmg
-         where cmg.show >= 0
+               inner join c_menu menu on menu.group_id = cmg.id
+                     and menu.show <> '-1'
+         --where cmg.show >= 0
+         group by cmg.id
          order by cmg.id
     `;
     return db.prepare(sql).all();

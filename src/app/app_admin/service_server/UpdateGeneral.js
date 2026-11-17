@@ -11,3 +11,8 @@ export async function UpdateTicketContentValue(value, id) {
 //    var a = await UpdateTicketContent(value, id);
     return false;
 }
+
+export async function AddGridValue(data) {
+//     var a = await insertArmament(data);
+    return false;
+}
