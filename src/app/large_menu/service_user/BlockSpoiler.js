@@ -3,7 +3,7 @@
 import $ from "jquery"
 
 import { Icon } from '@/components/page_part/service_server/fontawesome'
-import { UpdateSpoilerValue } from "@/app/app_admin/service_server/UpdateGeneral"
+import { UpdateSpoilerValue } from "@/components/page_part/service_server/BaseUpdate"
 
 export function SpoilerHead({spoiler_id, spoiler_name}) {
     const func = (()=>{

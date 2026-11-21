@@ -4,7 +4,7 @@ import $ from "jquery"
 import { Icon } from '@/components/page_part/service_server/fontawesome'
 import { futer_fix } from "@/components/page_part/service_user/Load";
 
-import { UpdateTicketContentValue } from "@/app/app_admin/service_server/UpdateGeneral"
+import { UpdateTicketContentValue } from "@/components/page_part/service_server/BaseUpdate"
 
 export function DataShowButton(){
     const func = (()=>{

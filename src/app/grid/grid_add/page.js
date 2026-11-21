@@ -1,19 +1,12 @@
-import { AddGridValue } from "@/app/app_admin/service_server/UpdateGeneral"
-
 import { PageView } from "../service_user/AdminAddElementView";
 import { getKidoGridInfo } from "../service_repository/EditRepository";
 
-import { getPageName } from "../../../components/page_part/service_repository/BaseReposytory";
+import { getPageName } from "../../../components/page_part/service_repository/BaseRepository";
 
 import { 
     getFilterList,
     getFilterItems
 } from "./../service_repository/FilterRepository";
-
-
-function insertVal(data){
-    //AddGridValue();
-}
 
 export default async function Page({ params }) {
 
@@ -32,6 +25,6 @@ export default async function Page({ params }) {
     }
 
     return (
-        <PageView insert_function={insertVal} info={info} paramList={paramList} radioList={radioList} page_name={page_name}/>
+        <PageView info={info} paramList={paramList} radioList={radioList} page_name={page_name}/>
     )
 }

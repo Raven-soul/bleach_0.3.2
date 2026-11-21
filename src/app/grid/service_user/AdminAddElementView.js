@@ -1,7 +1,10 @@
+'use client';
+
 import $ from "jquery"
 import Form from 'next/form'
 
 import { BaseView } from "@/components/page_part/service_user/BasePageView";
+import { AddGridValue } from "@/components/page_part/service_server/BaseUpdate"
 
 // базовый шаблон для страниц после layout, 
 // то есть общие черты всех страниц сайта, меняется только наполнение
@@ -36,7 +39,7 @@ function AddView(info, paramList, radioList){
                                                 <option value="" className="null-dt">Выберете значение</option>
                                                 {param.content.map((element)=>{
                                                     return(
-                                                        <option value={element.id} key={'param_' + element.id}>{element.name}</option>
+                                                        <option value={param.item_type + '_' + element.id} key={param.item_type + '_' + element.id}>{element.name}</option>
                                                     )                                                    
                                                 })}
                                             </select>
@@ -54,8 +57,8 @@ function AddView(info, paramList, radioList){
                                                     {list.content.map((element)=>{
                                                         return(
                                                             <div className="col-auto check_item" key={'check_list_' + element.id}> 
-                                                                <label htmlFor={element.value}>{element.name}</label>
-                                                                <input type="checkbox" id={element.value} name={element.value}/>
+                                                                <label htmlFor={list.item_type + '_' + element.id}>{element.name}</label>
+                                                                <input type="checkbox" id={list.item_type + '_' + element.id} name={list.item_type + '_' + element.id}/>
                                                             </div>
                                                         )                                                                    
                                                     })}
@@ -82,7 +85,21 @@ function AddView(info, paramList, radioList){
                                 </div>
                                 <hr/>
                                 <div className="submit-button">
-                                    <button type="submit">Добавить</button>
+                                    <button onClick={(()=>{
+                                        let formdata = $('form#add_group').serializeArray();
+                                        let postdata = {};
+
+                                        postdata['filters'] = filterBuilder(radioList, formdata) + ',' + filterBuilder(paramList, formdata);
+
+                                        postdata['material_data'] = findElement('material_data', formdata);
+                                        postdata['requirements'] = findElement('requirements', formdata);
+                                        postdata['name'] = findElement('name', formdata);
+                                        postdata['data'] = findElement('data', formdata);
+
+                                        AddGridValue(postdata);
+                                    })}>
+                                        Добавить
+                                    </button>
                                 </div>
                             </Form>
                         </div>
@@ -91,4 +108,29 @@ function AddView(info, paramList, radioList){
             </div>
         </div>
     );
+}
+
+function filterBuilder(array, formdata){
+    let postdata = '';
+
+    array.map((list)=>{
+        let stroke = '';
+        list.content.map((element)=>{
+            let item = formdata.find(function(item) {                 
+                return (list.item_type == 'value')? 
+                    item.value === (list.item_type + '_' + element.id) : 
+                    item.name === (list.item_type + '_' + element.id); });            
+            if(item != undefined) {stroke += ((stroke.length > 0)? ',' : '') + element.id;}                                    
+        });
+        postdata += ((postdata.length > 0)? ',' : '') + '"' + list.code + '":"' + stroke + '"';
+    })
+
+    return postdata;
+}
+
+function findElement(text, formdata){
+    let element = formdata.find(function(item) {                 
+        return item.name === text; 
+    });
+    return (element != undefined)? element.value : '';
 }
