@@ -2,7 +2,8 @@
 
 import { BaseView } from "@/components/page_part/service_user/BasePageView";
 
-import { FormFilters } from "./GridFiltersView";
+import { FiltersData } from "./GridFiltersView";
+import { GridData } from "./GridTableView";
 
 // базовый шаблон для страниц после layout, 
 // то есть общие черты всех страниц сайта, меняется только наполнение
@@ -21,7 +22,7 @@ function GridView(grid, filters) {
                 </div>
             </div>
             <div className="col">
-                <FormFilters filters={filters}/>
+                <FiltersData filters={filters}/>
             </div>
             <div className="col abilities-grid">
                 <div className="armament-abilities-content">
@@ -36,7 +37,7 @@ function GridView(grid, filters) {
                                         <p className="vertical-group-name">data</p>
                                     </div>
                                     <div className="col">
-                                        list
+                                        <GridData grid={grid}/>
                                     </div>
                                 </div>                                                      
                             </div>

@@ -51,16 +51,3 @@ select case when ft_item.value = 'discard'
      `;
     return db.prepare(sql).all();
 };
-
-// export const getParamList = () => {
-//     const sql = `
-//         select c.id,
-//                c.ord + 1 as ord,
-//                c.translate as name,
-//                c.name as latin_name
-//           from c_buckwheat_filter_old c
-//          where c.ord not null
-//          order by c.ord
-//     `;
-//     return db.prepare(sql).all();
-// };

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Icon } from '@/components/page_part/service_server/fontawesome'
 import { futer_fix } from "@/components/page_part/service_user/Load";
 
-export function FormFilters({filters}){
+export function FiltersData({filters}){
     if(filters == null) return(<></>)
     else return (
         <div className="filter-grid-group">

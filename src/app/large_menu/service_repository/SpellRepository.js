@@ -8,7 +8,7 @@ select kido.id,
        kido.show,
        kido.requirements,
        kido.material_data 
-  from c_buckwheat_record_kido kido
+  from c_buckwheat_record kido
  where 1 = 1
        and kido.id = ${kido_id}
     `;
@@ -32,7 +32,7 @@ with filter as (
       from json_each((
                     select json(concat('["', replace(tp.filters, ',', '","'), '"]'))
                       from filter ft 
-                           left join c_buckwheat_record_kido kido on kido.id = ft.kido_id
+                           left join c_buckwheat_record kido on kido.id = ft.kido_id
                            left join c_buckwheat_type tp on tp.id = kido.buckwheat_type
            )) t
            left join c_buckwheat_filter bf on bf.code = t.value                
@@ -46,7 +46,7 @@ with filter as (
       from json_each((
              select concat('{', kido.filters, '}') as filters
                from filter ft
-                    left join c_buckwheat_record_kido kido on kido.id = ft.kido_id
+                    left join c_buckwheat_record kido on kido.id = ft.kido_id
            )) t
 )
 --

@@ -1,15 +1,22 @@
 import db from '@/lib/ControllerDB/db_connection';
 
+var gridType = {
+    "armament": 1,
+    "kido": 2,
+    "background": 3
+}
+
 export function InsertGridKido(postdata){
-    var kido_id = insertKido(postdata);
-    var ticket_id = insertTicket(kido_id, 3);
+    var buckwheat_id = insertBuckwheat(postdata, gridType['kido']);
+    var ticket_id = insertTicket(buckwheat_id, 3);
     insertTicketElement(0, null, ticket_id, null, null, null, postdata['data']);
 }
 
-function insertKido(postdata){
+function insertBuckwheat(postdata, buckwheat_type){
     const sql = `
-   insert into c_buckwheat_record_kido(name, requirements, material_data, filters)
-   select '${postdata['name'].replace(/'/g, "''")}',
+   insert into c_buckwheat_record(buckwheat_type, name, requirements, material_data, filters)
+   select ${buckwheat_type},
+          '${postdata['name'].replace(/'/g, "''")}',
           '${postdata['requirements'].replace(/'/g, "''")}',
           '${postdata['material_data'].replace(/'/g, "''")}',
           '${postdata['filters']}'
@@ -22,7 +29,7 @@ returning id
 function insertTicket(id, type_id){
     const sql = `
    insert into c_ticket(record_id, ticket_type)
-   select '${id}',
+   select ${id},
           ${type_id}
 returning id
     `;
