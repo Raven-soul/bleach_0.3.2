@@ -11,7 +11,7 @@ export function GridData({grid}){
         <div className="grid-abilities-data">
             {grid.map((element)=>{
                 return(
-                    <div className="grid-abilities-item px-1" id={'armament_ability_' + element.id} key={'armament_ability_key_' + element.id}>
+                    <div className="grid-abilities-item px-1" id={element.record_type + '_' + element.id} key={element.record_type + '_key_' + element.id}>
                         {/* <Link href={element.link + '/' + element.id} className="abilities-info-block">
                             {element.param_list.map(param =>{
                                 return(
@@ -58,6 +58,7 @@ export function GridData({grid}){
                             <hr className="abilities-hr-gradient"/>
 
                         </Link> */}
+                        data
                     </div>
                 )
             })}

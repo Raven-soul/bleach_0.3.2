@@ -1,5 +1,29 @@
 import db from '@/lib/ControllerDB/db_connection';
 
+export const getBuckwheatList = (buckwheat_type = 'kido', order_filter) => {
+    const sql = `
+select record.id,
+       record.name,
+       b_type.synonim as record_type,
+       (  select cast(
+                    case when instr(t.value, ',') <> 0 
+                         then substr(t.value, 1, instr(t.value, ',') - 1)
+                         else t.value
+                    end
+                 as integer) as value
+            from json_each(( select concat('{', record.filters, '}') as filters )) t
+           where t.key = '${order_filter}'
+           limit 1
+       ) as filter_order
+  from c_buckwheat_record record
+       inner join c_buckwheat_type b_type on b_type.id = record.buckwheat_type 
+             and b_type.synonim = '${buckwheat_type}'
+ where record.show = 1
+ order by 3, record.name
+    `;
+    return db.prepare(sql).all();
+}
+
 export const getBuckwheatFilters = (buckwheat_id) => {
      // вывожу все фильтры доступные конкретному заклинанию
     const sql = `
