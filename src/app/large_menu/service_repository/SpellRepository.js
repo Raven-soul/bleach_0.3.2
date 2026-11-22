@@ -110,7 +110,7 @@ select te.id,
              and tt.name = 'buckwheat_kido'
         left join c_ticket_element te on te.ticket_id = ticket.id
  where 1 = 1
-       and ticket.ticket_record_id = ${kido_id}
+       and ticket.record_id = ${kido_id}
  order by te.ord
     `;
     return db.prepare(sql).all();

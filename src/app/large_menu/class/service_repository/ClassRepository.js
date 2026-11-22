@@ -7,7 +7,7 @@ select tr.id,
   from c_ticket t
        inner join c_ticket_type tt on tt.id = t.ticket_type
             and tt.name = 'case_class'
-       left join c_case_record_class tr on tr.id = t.ticket_record_id
+       left join c_case_record_class tr on tr.id = t.record_id
  where t.show = 1
     `;
     
