@@ -8,13 +8,13 @@ import { AddGridValue } from "@/components/page_part/service_server/BaseUpdate"
 
 // базовый шаблон для страниц после layout, 
 // то есть общие черты всех страниц сайта, меняется только наполнение
-export function PageView({info, paramList, radioList, page_name}){    
+export function PageView({info, paramList, radioList, boolList, page_name}){    
     return(
-        <BaseView page={AddView(info, paramList, radioList)} page_name={page_name}/>
+        <BaseView page={AddView(info, paramList, radioList, boolList)} page_name={page_name}/>
     );
 }
 
-function AddView(info, paramList, radioList){
+function AddView(info, paramList, radioList, boolList){
     return (
         <div className="col">
             <div className="main-brown-data-area">
@@ -57,6 +57,27 @@ function AddView(info, paramList, radioList){
                                                     {list.content.map((element)=>{
                                                         return(
                                                             <div className="col-auto check_item" key={'check_list_' + element.id}> 
+                                                                <label htmlFor={list.item_type + '_' + element.id}>{element.name}</label>
+                                                                <input type="checkbox" id={list.item_type + '_' + element.id} name={list.item_type + '_' + element.id}/>
+                                                            </div>
+                                                        )                                                                    
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                                <div className="row-2" style={{'margin-top': '10px'}}>
+                                    {boolList.map((list)=>{
+                                        return(
+                                            <div className="col checkbox-area" key={'check_group_' + list.id}>
+                                                <div className="col-3">
+                                                    <p>{list.name}</p>
+                                                </div>
+                                                <div className="col-3" key={'check_' + list.id}>
+                                                    {list.content.map((element)=>{
+                                                        return(
+                                                            <div className="check_item" key={'check_list_' + element.id}> 
                                                                 <label htmlFor={list.item_type + '_' + element.id}>{element.name}</label>
                                                                 <input type="checkbox" id={list.item_type + '_' + element.id} name={list.item_type + '_' + element.id}/>
                                                             </div>

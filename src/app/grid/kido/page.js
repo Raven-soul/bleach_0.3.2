@@ -16,18 +16,26 @@ import {
 export default async function Page({ params }) {
     let buckwheat_type = 'kido';
 
-    let grid = getBuckwheatList(buckwheat_type);
-    let filters = getFilterList(buckwheat_type);
     let page_name = getPageName(buckwheat_type);
+
+    //------------------------------------------
+
+    let grid = getBuckwheatList(buckwheat_type);
 
     for(let i = 0; i<grid.length; i++){
         grid[i]['filters'] = getBuckwheatFilters(grid[i].id);
     }
 
+    //------------------------------------------
+
+    let filters = getFilterList(buckwheat_type);
+
     for(let i = 0; i<filters.length; i++){
-        filters[i]['content'] = getFilterItems(filters[i].id);
+        filters[i]['content'] = getFilterItems(filters[i].id, filters[i].item_type);
     }
 
+    //------------------------------------------
+    
     return (
         <PageView grid={grid} filters={filters} page_name={page_name}/>
     )
